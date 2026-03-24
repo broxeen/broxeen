@@ -1,507 +1,509 @@
 flowchart LR
     subgraph e2e_voice_interface
+        e2e__voice_interface__spec__hasTtsButton["hasTtsButton"]
         e2e__voice_interface__spec__orig["orig"]
         e2e__voice_interface__spec__speakCalled["speakCalled"]
         e2e__voice_interface__spec__count["count"]
-        e2e__voice_interface__spec__hasTtsButton["hasTtsButton"]
     end
     subgraph scripts_install_openvino_pip
         scripts__install_openvino_pip__print["print"]
     end
     subgraph scripts_motion_pipeline
-        scripts__motion_pipeline__main["main"]
-        scripts__motion_pipeline__create_bg_subtractor["create_bg_subtractor"]
-        scripts__motion_pipeline__get_statistics["get_statistics"]
-        scripts___maybe_emit_stats["_maybe_emit_stats"]
-        scripts__motion_pipeline__MotionPipeline____init__["__init__"]
-        scripts__classify["classify"]
-        scripts__motion_pipeline__LlmVerifier__verify["verify"]
-        scripts__process_frame["process_frame"]
-        scripts__motion_pipeline__should_send_to_llm["should_send_to_llm"]
-        scripts__motion_pipeline__init_db["init_db"]
-        scripts__motion_pipeline__save_detection["save_detection"]
-        scripts___crop_to_b64["_crop_to_b64"]
-        scripts__motion_pipeline__MotionPipeline__run["run"]
         scripts__motion_pipeline__parse_args["parse_args"]
+        scripts__motion_pipeline__get_statistics["get_statistics"]
+        scripts__motion_pipeline__LlmVerifier__verify["verify"]
+        scripts__motion_pipeline__MotionPipeline__run["run"]
         scripts___emit_event["_emit_event"]
+        scripts__motion_pipeline__main["main"]
+        scripts___crop_to_b64["_crop_to_b64"]
+        scripts__motion_pipeline__MotionPipeline____init__["__init__"]
+        scripts__motion_pipeline__create_bg_subtractor["create_bg_subtractor"]
+        scripts__process_frame["process_frame"]
+        scripts__motion_pipeline__save_detection["save_detection"]
+        scripts__motion_pipeline__init_db["init_db"]
         scripts__motion_pipeline__extract_moving_objects["extract_moving_objects"]
+        scripts__classify["classify"]
+        scripts___maybe_emit_stats["_maybe_emit_stats"]
+        scripts__motion_pipeline__should_send_to_llm["should_send_to_llm"]
     end
     subgraph src_commands
-        src__commands__sendMessageCommand__logger["logger"]
-        src__commands__browseCommand__BrowseCommand__now["now"]
-        src__execute["execute"]
-        src__constructor["constructor"]
-        src__execute["execute"]
-        src__execute["execute"]
         src__execute["execute"]
         src__content["content"]
-        src__browseResult["browseResult"]
         src__commands__saveSettingsCommand__logger["logger"]
+        src__execute["execute"]
+        src__commands__sendMessageCommand__logger["logger"]
         src__constructor["constructor"]
-        src__commands__copyContextCommand__logger["logger"]
-        src__safeSummary["safeSummary"]
         src__summary["summary"]
+        src__execute["execute"]
+        src__execute["execute"]
+        src__commands__browseCommand__BrowseCommand__now["now"]
+        src__constructor["constructor"]
+        src__safeSummary["safeSummary"]
+        src__browseResult["browseResult"]
+        src__commands__copyContextCommand__logger["logger"]
     end
     subgraph src_core
-        src__core__cache__Cache__clear["clear"]
-        src__fallbackToLocalStorage["fallbackToLocalStorage"]
-        src__core__preferenceLearning__log["log"]
-        src__core__systemContext__detectCapabilities["detectCapabilities"]
-        src__core__systemContext__updateSystemContext["updateSystemContext"]
-        src__core__fallbackHandler__scored["scored"]
-        src__core__cache__Cache__set["set"]
-        src__core__intentRouter__IntentRouter__detect["detect"]
-        src__core__retry__isProbablyTransientErrorMessage["isProbablyTransientErrorMessag"]
-        src__core__commandBus__CommandBus__execute["execute"]
-        src__complete["complete"]
-        src__dataSourceInitPromises["dataSourceInitPromises"]
-        src__core__pluginRegistry__PluginRegistry__get["get"]
-        src__core__queryBus__QueryBus__execute["execute"]
-        src__core__fallbackHandler__injectFavorites["injectFavorites"]
-        src__handleBroadcastMessage["handleBroadcastMessage"]
-        src__core__cache__CacheFactory__clearAll["clearAll"]
-        src__core__processRegistry__ProcessRegistry__fail["fail"]
-        src__dataSourcePlugins["dataSourcePlugins"]
-        src__core__queryBus__QueryBus__registeredQueries["registeredQueries"]
-        src__core__systemContext__detectUser["detectUser"]
-        src__core__cache__Cache__estimateEntrySize["estimateEntrySize"]
-        src__core__commandBus__CommandBus__register["register"]
-        src__checkSupport["checkSupport"]
-        src__core__cache__Cache__constructor["constructor"]
-        src__core__retry__maxDelayMs["maxDelayMs"]
-        src__core__fallbackHandler__generateFallback["generateFallback"]
-        src__legacyInitPromises["legacyInitPromises"]
-        src__core__systemContext__detectHomeDir["detectHomeDir"]
-        src__core__systemContext__detectOs["detectOs"]
-        src__core__cache__CacheFactory__getAllStats["getAllStats"]
-        src__key["key"]
-        src__core__retry__min["min"]
-        src__ensureLoaded["ensureLoaded"]
-        src__setStatus["setStatus"]
-        src__core__intentSchema__getAllIntentSchemas["getAllIntentSchemas"]
-        src__core__retry__sleep["sleep"]
-        src__legacyPlugins["legacyPlugins"]
-        src__core__realtimeSync__RealtimeSync__broadcast["broadcast"]
-        src__core__llmIntentClassifier__context["context"]
-        src__core__cache__Cache__get["get"]
-        src__core__fallbackHandler__tryLlmFallback["tryLlmFallback"]
-        src__listActive["listActive"]
-        src__core__bootstrap__safeRegister["safeRegister"]
-        src__core__cache__Cache__now["now"]
-        src__core__llmIntentClassifier__cacheGet["cacheGet"]
-        src__core__intentRouter__IntentRouter__matches["matches"]
-        src__save["save"]
-        src__core__retry__computeDelayMs["computeDelayMs"]
-        src__core__intentSchema__canPluginHandle["canPluginHandle"]
-        src__core__cache__Cache__getStats["getStats"]
-        src__core__bootstrap__registerCorePlugins["registerCorePlugins"]
         src__core__cache__CacheFactory__delete["delete"]
-        src__core__llmIntentClassifier__buildIntentPrompt["buildIntentPrompt"]
-        src__core__retry__jitterRatio["jitterRatio"]
-        src__extractEntities["extractEntities"]
+        src__normalizeKey["normalizeKey"]
+        src__core__pluginRegistry__PluginRegistry__get["get"]
+        src__core__bootstrap__registerCorePlugins["registerCorePlugins"]
+        src__core__realtimeSync__RealtimeSync__constructor["constructor"]
+        src__core__processRegistry__ProcessRegistry__get["get"]
+        src__core__realtimeSync__RealtimeSync__handler["handler"]
         src__core__fallbackHandler__keywordFallback["keywordFallback"]
-        src__core__retry__message["message"]
+        src__complete["complete"]
+        src__core__cache__CacheFactory__disposeAll["disposeAll"]
+        src__core__systemContext__detectShell["detectShell"]
+        src__core__llmIntentClassifier__context["context"]
+        src__disposeAll["disposeAll"]
+        src__core__cache__Cache__set["set"]
+        src__reset["reset"]
+        src__core__retry__jitterRatio["jitterRatio"]
+        src__core__retry__maxDelayMs["maxDelayMs"]
+        src__dataSourceInitPromises["dataSourceInitPromises"]
+        src__core__intentSchema__getAllIntentSchemas["getAllIntentSchemas"]
+        src__core__commandBus__CommandBus__register["register"]
+        src__core__cache__Cache__getStats["getStats"]
+        src__initializeLocalStorageFallback["initializeLocalStorageFallback"]
         src__core__intentSchema__registerIntentSchemas["registerIntentSchemas"]
+        src__unregister["unregister"]
+        src__core__intentRouter__IntentRouter__detect["detect"]
+        src__core__preferenceLearning__log["log"]
+        src__core__intentSchema__canPluginHandle["canPluginHandle"]
+        src__core__realtimeSync__RealtimeSync__broadcast["broadcast"]
+        src__dataSourcePlugins["dataSourcePlugins"]
+        src__core__cache__Cache__now["now"]
+        src__core__realtimeSync__RealtimeSync__dispose["dispose"]
+        src__core__commandBus__CommandBus__execute["execute"]
+        src__core__systemContext__getSystemContext["getSystemContext"]
+        src__core__retry__message["message"]
+        src__setStatus["setStatus"]
+        src__core__queryBus__QueryBus__execute["execute"]
+        src__core__cache__Cache__findLRUKey["findLRUKey"]
+        src__core__queryBus__QueryBus__mw["mw"]
+        src__core__systemContext__detectCapabilities["detectCapabilities"]
+        src__core__intentRouter__IntentRouter__matches["matches"]
+        src__processSyncEvent["processSyncEvent"]
+        src__core__cache__Cache__constructor["constructor"]
+        src__core__retry__max["max"]
+        src__core__systemContext__detectHomeDir["detectHomeDir"]
+        src__core__actionSchema__scoreMatch["scoreMatch"]
+        src__core__intentSchema__getSchemasByPlugin["getSchemasByPlugin"]
+        src__core__cache__CacheFactory__clearAll["clearAll"]
+        src__core__preferenceLearning__MAX_ENTRIES["MAX_ENTRIES"]
+        src__core__realtimeSync__RealtimeSync__setTimeout["setTimeout"]
+        src__core__cache__Cache__dispose["dispose"]
+        src__core__retry__resolveDecision["resolveDecision"]
+        src__core__queryBus__QueryBus__chain["chain"]
+        src__core__realtimeSync__RealtimeSync__initialize["initialize"]
+        src__core__cache__Cache__clearInterval["clearInterval"]
+        src__core__cache__CacheFactory__get["get"]
+        src__core__processRegistry__ProcessRegistry__fail["fail"]
+        src__core__cache__CacheFactory__cache["cache"]
+        src__getAll["getAll"]
+        src__core__actionSchema__findMatchingSchemas["findMatchingSchemas"]
+        src__core__cache__CacheFactory__getAllStats["getAllStats"]
+        src__baseConfidence["baseConfidence"]
+        src__core__intentRouter__IntentRouter__constructor["constructor"]
+        src__core__retry__sleep["sleep"]
+        src__core__queryBus__QueryBus__dispatch["dispatch"]
+        src__core__fallbackHandler__tryLlmFallback["tryLlmFallback"]
+        src__core__processRegistry__ProcessRegistry__now["now"]
+        src__score["score"]
+        src__core__actionSchema__findDomainSchemas["findDomainSchemas"]
+        src__core__fallbackHandler__generateFallback["generateFallback"]
+        src__core__intentRouter__IntentRouter__keywords["keywords"]
+        src__core__cache__Cache__get["get"]
+        src__listActive["listActive"]
+        src__core__fallbackHandler__injectFavorites["injectFavorites"]
+        src__core__queryBus__QueryBus__registeredQueries["registeredQueries"]
+        src__core__intentSchema__registerIntentSchema["registerIntentSchema"]
+        src__core__bootstrap__safeRegister["safeRegister"]
+        src__core__fallbackHandler__domainSchemas["domainSchemas"]
+        src__core__intentSchema__getSchemasByDomain["getSchemasByDomain"]
+        src__core__fallbackHandler__scored["scored"]
+        src__save["save"]
+        src__core__cache__Cache__evict["evict"]
+        src__core__retry__computeDelayMs["computeDelayMs"]
+        src__core__realtimeSync__disposeRealtimeSync["disposeRealtimeSync"]
+        src__legacyPlugins["legacyPlugins"]
+        src__core__retry__min["min"]
+        src__core__cache__Cache__memoryUsage["memoryUsage"]
+        src__core__cache__Cache__findLFUKey["findLFUKey"]
+        src__handleBroadcastMessage["handleBroadcastMessage"]
+        src__core__processRegistry__ProcessRegistry__stop["stop"]
+        src__core__cache__Cache__estimateEntrySize["estimateEntrySize"]
+        src__core__cache__Cache__entry["entry"]
+        src__core__llmIntentClassifier__buildIntentPrompt["buildIntentPrompt"]
         src__core__fallbackHandler__rankByPreference["rankByPreference"]
         src__core__llmIntentClassifier__getCacheKey["getCacheKey"]
-        src__core__cache__Cache__has["has"]
-        src__core__queryBus__QueryBus__mw["mw"]
-        src__core__intentRouter__IntentRouter__constructor["constructor"]
-        src__reset["reset"]
-        src__core__retry__resolveDecision["resolveDecision"]
-        src__core__actionSchema__findMatchingSchemas["findMatchingSchemas"]
-        src__handleStorageEvent["handleStorageEvent"]
-        src__listAll["listAll"]
-        src__core__cache__Cache__evict["evict"]
-        src__core__systemContext__detectShell["detectShell"]
-        src__core__commandBus__CommandBus__handler["handler"]
-        src__core__commandBus__CommandBus__has["has"]
-        src__core__cache__Cache__findLFUKey["findLFUKey"]
-        src__core__realtimeSync__RealtimeSync__dispose["dispose"]
-        src__generateSourceId["generateSourceId"]
-        src__core__intentSchema__registerIntentSchema["registerIntentSchema"]
-        src__normalizeKey["normalizeKey"]
-        src__getTopPreferences["getTopPreferences"]
-        src__core__intentRouter__IntentRouter__keywords["keywords"]
-        src__core__systemContext__buildSystemContextPrompt["buildSystemContextPrompt"]
-        src__core__realtimeSync__disposeRealtimeSync["disposeRealtimeSync"]
-        src__calculateConfidence["calculateConfidence"]
-        src__core__actionSchema__scoreMatch["scoreMatch"]
-        src__core__systemContext__getSystemContext["getSystemContext"]
-        src__unregister["unregister"]
-        src__core__realtimeSync__RealtimeSync__handler["handler"]
-        src__core__intentSchema__getSchemasByPlugin["getSchemasByPlugin"]
-        src__core__realtimeSync__RealtimeSync__constructor["constructor"]
-        src__core__processRegistry__ProcessRegistry__stop["stop"]
-        src__core__processRegistry__ProcessRegistry__now["now"]
+        src__core__systemContext__updateSystemContext["updateSystemContext"]
         src__core__realtimeSync__RealtimeSync__handlers["handlers"]
-        src__initializeAll["initializeAll"]
-        src__processSyncEvent["processSyncEvent"]
-        src__core__actionSchema__findDomainSchemas["findDomainSchemas"]
-        src__core__queryBus__QueryBus__chain["chain"]
-        src__core__fallbackHandler__domainSchemas["domainSchemas"]
-        src__core__realtimeSync__RealtimeSync__setTimeout["setTimeout"]
-        src__core__cache__Cache__findFIFOKey["findFIFOKey"]
-        src__core__intentSchema__getSchemasByDomain["getSchemasByDomain"]
-        src__core__cache__CacheFactory__get["get"]
-        src__initializeLocalStorageFallback["initializeLocalStorageFallback"]
-        src__core__actionSchema__getDomainHints["getDomainHints"]
-        src__core__preferenceLearning__MAX_ENTRIES["MAX_ENTRIES"]
-        src__core__cache__CacheFactory__disposeAll["disposeAll"]
-        src__initializeDefaultPatterns["initializeDefaultPatterns"]
-        src__core__retry__shouldRetryUnknownAsTransient["shouldRetryUnknownAsTransient"]
-        src__core__commandBus__CommandBus__unregister["unregister"]
-        src__score["score"]
-        src__core__cache__Cache__findLRUKey["findLRUKey"]
-        src__getAll["getAll"]
+        src__generateSourceId["generateSourceId"]
+        src__calculateConfidence["calculateConfidence"]
+        src__handleStorageEvent["handleStorageEvent"]
         src__core__retry__retry["retry"]
-        src__core__cache__Cache__memoryUsage["memoryUsage"]
+        src__initializeAll["initializeAll"]
+        src__getTopPreferences["getTopPreferences"]
+        src__core__cache__Cache__clear["clear"]
+        src__core__systemContext__detectUser["detectUser"]
+        src__core__cache__Cache__findFIFOKey["findFIFOKey"]
+        src__ensureLoaded["ensureLoaded"]
+        src__core__commandBus__CommandBus__unregister["unregister"]
+        src__fallbackToLocalStorage["fallbackToLocalStorage"]
+        src__listAll["listAll"]
+        src__core__commandBus__CommandBus__has["has"]
+        src__core__llmIntentClassifier__cacheGet["cacheGet"]
+        src__checkSupport["checkSupport"]
+        src__core__systemContext__detectOs["detectOs"]
+        src__core__systemContext__buildSystemContextPrompt["buildSystemContextPrompt"]
         src__core__llmIntentClassifier__classifyIntent["classifyIntent"]
-        src__core__cache__Cache__cleanup["cleanup"]
+        src__core__retry__shouldRetryUnknownAsTransient["shouldRetryUnknownAsTransient"]
+        src__extractEntities["extractEntities"]
+        src__core__retry__isProbablyTransientErrorMessage["isProbablyTransientErrorMessag"]
+        src__core__cache__Cache__has["has"]
+        src__core__actionSchema__getDomainHints["getDomainHints"]
         src__core__queryBus__QueryBus__index["index"]
-        src__core__processRegistry__ProcessRegistry__get["get"]
-        src__core__retry__max["max"]
-        src__core__queryBus__QueryBus__dispatch["dispatch"]
-        src__disposeAll["disposeAll"]
-        src__core__realtimeSync__RealtimeSync__initialize["initialize"]
-        src__baseConfidence["baseConfidence"]
-        src__core__cache__Cache__dispose["dispose"]
-        src__core__cache__Cache__entry["entry"]
-        src__core__cache__CacheFactory__cache["cache"]
-        src__core__cache__Cache__clearInterval["clearInterval"]
+        src__core__cache__Cache__cleanup["cleanup"]
+        src__key["key"]
+        src__core__commandBus__CommandBus__handler["handler"]
+        src__legacyInitPromises["legacyInitPromises"]
+        src__initializeDefaultPatterns["initializeDefaultPatterns"]
     end
     subgraph src_discovery
-        src__VALUES["VALUES"]
-        src__persistServices["persistServices"]
-        src__probeSshService["probeSshService"]
+        src__getLocalNetworkRanges["getLocalNetworkRanges"]
         src__emitEvent["emitEvent"]
-        src__discovery__serviceProber__ServiceProber__json["json"]
-        src__discovery__serviceProber__ServiceProber__now["now"]
-        src__addEventListener["addEventListener"]
-        src__probeMqttService["probeMqttService"]
-        src__probeApiService["probeApiService"]
-        src__results["results"]
-        src__discovery__serviceProber__ServiceProber__db["db"]
-        src__listener["listener"]
-        src__probeRtspService["probeRtspService"]
-        src__startTime["startTime"]
-        src__probeHttpService["probeHttpService"]
-        src__probeDevice["probeDevice"]
+        src__VALUES["VALUES"]
+        src__mdnsDiscovery["mdnsDiscovery"]
+        src__generateIpRange["generateIpRange"]
+        src__pingHost["pingHost"]
+        src__pingSweep["pingSweep"]
+        src__deduplicateDevices["deduplicateDevices"]
+        src__performScan["performScan"]
+        src__promises["promises"]
+        src__now["now"]
+        src__networkRanges["networkRanges"]
+        src__discovery__networkScanner__NetworkScanner__db["db"]
+        src__persistDevices["persistDevices"]
+        src__ssdpDiscovery["ssdpDiscovery"]
+        src__scanNetwork["scanNetwork"]
+        src__arpScan["arpScan"]
     end
     subgraph src_hooks
-        src__hooks__useChatDispatch__networkSelectionId["networkSelectionId"]
-        src__handleCommandHistorySelect["handleCommandHistorySelect"]
-        src__hooks__useTts__stop["stop"]
-        src__addToNetworkHistoryLocalStorage["addToNetworkHistoryLocalStorag"]
-        src__hooks__useSpeech__recognitionRef["recognitionRef"]
-        src__hooks__useLlm__runSummarizeSearch["runSummarizeSearch"]
-        src__hooks__useWatchNotifications__unsub["unsub"]
-        src__hooks__useSpeech__stopRequestedRef["stopRequestedRef"]
-        src__hooks__useTts__synthesis["synthesis"]
-        src__hooks__useLlm__summarizeSearch["summarizeSearch"]
-        src__hooks__useStt__startInFlightRef["startInFlightRef"]
-        src__sendNetworkSelectionMessage["sendNetworkSelectionMessage"]
-        src__hooks__useChatDispatch__errorMessage["errorMessage"]
-        src__getSuggestionsForQuery["getSuggestionsForQuery"]
         src__hooks__useStt__modeRef["modeRef"]
-        src__getSessionConversationId["getSessionConversationId"]
-        src__mapChangeToNotification["mapChangeToNotification"]
-        src__hooks__useStt__startRecording["startRecording"]
-        src__hooks__useSpeech__enableAutoListen["enableAutoListen"]
-        src__hooks__useStt__useStt["useStt"]
-        src__hooks__useLlm__send["send"]
+        src__hooks__useTts__preprocessForTts["preprocessForTts"]
+        src__hooks__useLlm__detectIntent["detectIntent"]
+        src__hooks__useStt__buf["buf"]
+        src__hooks__useLlm__summarize["summarize"]
+        src__hooks__useTts__startBackendProgress["startBackendProgress"]
+        src__hooks__useChatSpeech__unsub["unsub"]
         src__hooks__useChatDispatch__suggestionsId["suggestionsId"]
-        src__hooks__useTts__runStop["runStop"]
+        src__hooks__useChatDispatch__handleSubmit["handleSubmit"]
+        src__hooks__useStt__streamRef["streamRef"]
+        src__hooks__useTts__speak["speak"]
+        src__hooks__useHistoryPersistence__getRepo["getRepo"]
+        src__hooks__useChatPersistence__repoRef["repoRef"]
+        src__hooks__useLlm__summarizeSearch["summarizeSearch"]
+        src__hooks__useSpeech__stopRequestedRef["stopRequestedRef"]
+        src__hooks__useSpeech__runStartListening["runStartListening"]
+        src__hooks__useStt__arrayBufferToBase64["arrayBufferToBase64"]
+        src__hooks__useSpeech__recognitionRef["recognitionRef"]
+        src__hooks__useStt__writeWavPcm16["writeWavPcm16"]
+        src__hooks__useStt__recorderRef["recorderRef"]
+        src__hooks__useTts__synthesis["synthesis"]
+        src__hooks__useStt__getUnsupportedReason["getUnsupportedReason"]
+        src__hooks__useSpeech__runStopListening["runStopListening"]
+        src__hooks__useStt__getAudioSettings["getAudioSettings"]
+        src__hooks__useChatDispatch__getAmbiguousQueryText["getAmbiguousQueryText"]
+        src__hooks__useTts__getSpeechSynthesisApi["getSpeechSynthesisApi"]
+        src__looksLikeRecoverableError["looksLikeRecoverableError"]
+        src__hooks__useLlm__send["send"]
+        src__previousLoadingWaitIdsRef["previousLoadingWaitIdsRef"]
+        src__hooks__useTts__stop["stop"]
+        src__hooks__useChatDispatch__categorizeCommand["categorizeCommand"]
+        src__handleNetworkOptionClick["handleNetworkOptionClick"]
+        src__hooks__useStt__writeString["writeString"]
+        src__hooks__useSpeech__restartTimerRef["restartTimerRef"]
+        src__useHistoryPersistence["useHistoryPersistence"]
+        src__hooks__useWatchNotifications__unsub["unsub"]
+        src__hooks__useTts__resume["resume"]
+        src__hooks__useSpeech__autoListenEnabledRef["autoListenEnabledRef"]
+        src__hooks__useTts__runResume["runResume"]
+        src__hooks__useLlm__runDetectIntent["runDetectIntent"]
+        src__hooks__useChatSpeech__unsub2["unsub2"]
+        src__hooks__useLlm__runSummarizeSearch["runSummarizeSearch"]
+        src__handleCommandHistorySelect["handleCommandHistorySelect"]
+        src__hooks__useStt__rec["rec"]
+        src__hooks__useChatDispatch__fallbackPrompt["fallbackPrompt"]
+        src__mapChangeToNotification["mapChangeToNotification"]
+        src__hooks__useStt__arr["arr"]
+        src__hooks__useStt__stopInFlightRef["stopInFlightRef"]
+        src__hooks__useSpeech__enableAutoListen["enableAutoListen"]
+        src__hooks__useStt__runBackendStart["runBackendStart"]
+        src__hooks__useChatDispatch__handleSuggestionClick["handleSuggestionClick"]
+        src__hooks__useSpeech__runtimeIsTauri["runtimeIsTauri"]
+        src__hooks__useChatDispatch__useChatDispatch["useChatDispatch"]
+        src__hooks__useStt__startRecording["startRecording"]
+        src__hooks__useTts__pause["pause"]
+        src__hooks__useStt__useStt["useStt"]
+        src__hooks__useSpeech__startListening["startListening"]
+        src__loadCommandHistoryLocalStorage["loadCommandHistoryLocalStorage"]
+        src__hooks__useStt__stopTracks["stopTracks"]
+        src__hooks__useTts__useTts["useTts"]
+        src__hooks__useLlm__historyRef["historyRef"]
         src__hooks__useTts__clearBackendProgress["clearBackendProgress"]
-        src__hooks__useChatPersistence__conversationIdRef["conversationIdRef"]
-        src__addToNetworkHistory["addToNetworkHistory"]
+        src__hooks__useTts__runSpeak["runSpeak"]
+        src__hooks__useStt__chunksRef["chunksRef"]
         src__hooks__useStt__runBackendStop["runBackendStop"]
         src__loadNetworkHistory["loadNetworkHistory"]
-        src__hooks__useTts__runPause["runPause"]
-        src__hooks__useHistoryPersistence__getRepo["getRepo"]
-        src__hooks__useSpeech__autoListenEnabledRef["autoListenEnabledRef"]
-        src__sendAmbiguousQuerySuggestions["sendAmbiguousQuerySuggestions"]
-        src__hooks__useTts__runStopViaBackend["runStopViaBackend"]
-        src__hooks__useLlm__describe["describe"]
-        src__hooks__useStt__startTauriRecording["startTauriRecording"]
-        src__hooks__useTts__getSpeechSynthesisApi["getSpeechSynthesisApi"]
-        src__hooks__useStt__wav["wav"]
-        src__hooks__useChatSpeech__unsub["unsub"]
-        src__hooks__useSpeech__useSpeech["useSpeech"]
-        src__loadCommandHistory["loadCommandHistory"]
-        src__hooks__useChatDispatch__useChatDispatch["useChatDispatch"]
-        src__hooks__useStt__stopRecording["stopRecording"]
-        src__hooks__useSpeech__restartTimerRef["restartTimerRef"]
-        src__hooks__useStt__arr["arr"]
-        src__hooks__useTts__loadVoices["loadVoices"]
-        src__hooks__useStt__recorderRef["recorderRef"]
-        src__hooks__useLlm__historyRef["historyRef"]
-        src__hooks__useStt__runBackendStart["runBackendStart"]
-        src__hooks__useStt__buf["buf"]
-        src__hooks__useSpeech__getSpeechRecognitionCtor["getSpeechRecognitionCtor"]
-        src__hooks__useChatDispatch__categorizeCommand["categorizeCommand"]
-        src__hooks__useTts__runSpeakViaBackend["runSpeakViaBackend"]
-        src__hooks__useStt__ctx["ctx"]
-        src__hooks__useStt__stopInFlightRef["stopInFlightRef"]
-        src__handleNetworkOptionClick["handleNetworkOptionClick"]
-        src__hooks__useStt__stopTracks["stopTracks"]
-        src__hooks__useStt__chunksRef["chunksRef"]
-        src__hooks__useStt__writeWavPcm16["writeWavPcm16"]
-        src__addToCommandHistoryLocalStorage["addToCommandHistoryLocalStorag"]
-        src__hooks__useChatDispatch__handleSuggestionClick["handleSuggestionClick"]
-        src__previousLoadingWaitIdsRef["previousLoadingWaitIdsRef"]
-        src__hooks__useTts__pause["pause"]
-        src__hooks__useLlm__runDetectIntent["runDetectIntent"]
-        src__hooks__useTts__useTts["useTts"]
         src__getNetworkSelectionText["getNetworkSelectionText"]
-        src__hooks__useLlm__runDescribe["runDescribe"]
-        src__hooks__useSpeech__getUnsupportedReason["getUnsupportedReason"]
-        src__hooks__useSpeech__runStartListening["runStartListening"]
-        src__hooks__useStt__runOnStop["runOnStop"]
-        src__loadNetworkHistoryLocalStorage["loadNetworkHistoryLocalStorage"]
-        src__hooks__useTts__runResume["runResume"]
-        src__hooks__useLlm__detectIntent["detectIntent"]
-        src__hooks__useStt__arrayBufferToBase64["arrayBufferToBase64"]
-        src__hooks__useChatPersistence__repoRef["repoRef"]
-        src__hooks__useTts__runSpeak["runSpeak"]
-        src__hooks__useLlm__runSend["runSend"]
-        src__hooks__useLlm__runSummarize["runSummarize"]
-        src__hooks__useStt__rec["rec"]
-        src__hooks__useSpeech__runStopListening["runStopListening"]
-        src__hooks__useTts__startBackendProgress["startBackendProgress"]
-        src__hooks__useTts__speak["speak"]
-        src__hooks__useStt__getAudioSettings["getAudioSettings"]
-        src__hooks__useSpeech__runtimeIsTauri["runtimeIsTauri"]
-        src__hooks__useChatDispatch__fallbackPrompt["fallbackPrompt"]
-        src__hooks__useStt__getUnsupportedReason["getUnsupportedReason"]
-        src__useWatchNotifications["useWatchNotifications"]
-        src__hooks__useTts__preprocessForTts["preprocessForTts"]
-        src__hooks__useTts__resume["resume"]
-        src__hooks__useChatSpeech__unsub2["unsub2"]
-        src__hooks__useChatDispatch__getAmbiguousQueryText["getAmbiguousQueryText"]
-        src__addToCommandHistory["addToCommandHistory"]
-        src__hooks__useStt__streamRef["streamRef"]
-        src__hooks__useTts__estimatedDurationMs["estimatedDurationMs"]
-        src__looksLikeRecoverableError["looksLikeRecoverableError"]
-        src__hooks__useLlm__summarize["summarize"]
-        src__hooks__useStt__audioBuffer["audioBuffer"]
-        src__hooks__useStt__blobToWavBase64["blobToWavBase64"]
-        src__useHistoryPersistence["useHistoryPersistence"]
-        src__hooks__useStt__run["run"]
+        src__hooks__useStt__wav["wav"]
         src__hooks__useChatDispatch__addScopePrefix["addScopePrefix"]
+        src__hooks__useStt__runOnStop["runOnStop"]
+        src__hooks__useLlm__runSend["runSend"]
+        src__sendNetworkSelectionMessage["sendNetworkSelectionMessage"]
+        src__getSessionConversationId["getSessionConversationId"]
+        src__getSuggestionsForQuery["getSuggestionsForQuery"]
+        src__hooks__useSpeech__getSpeechRecognitionCtor["getSpeechRecognitionCtor"]
+        src__hooks__useTts__estimatedDurationMs["estimatedDurationMs"]
+        src__hooks__useStt__stopRecording["stopRecording"]
+        src__hooks__useLlm__runSummarize["runSummarize"]
+        src__addToNetworkHistoryLocalStorage["addToNetworkHistoryLocalStorag"]
         src__hooks__useStt__isRecordingRef["isRecordingRef"]
-        src__hooks__useStt__writeString["writeString"]
-        src__hooks__useSpeech__stopListening["stopListening"]
-        src__hooks__useSpeech__SpeechRecognition["SpeechRecognition"]
-        src__hooks__useSpeech__startListening["startListening"]
         src__hooks__useChatPersistence__useChatPersistence["useChatPersistence"]
-        src__hooks__useChatDispatch__handleSubmit["handleSubmit"]
-        src__loadCommandHistoryLocalStorage["loadCommandHistoryLocalStorage"]
+        src__hooks__useStt__startInFlightRef["startInFlightRef"]
+        src__hooks__useChatDispatch__networkSelectionId["networkSelectionId"]
+        src__hooks__useTts__runStopViaBackend["runStopViaBackend"]
+        src__addToCommandHistory["addToCommandHistory"]
+        src__hooks__useTts__runPause["runPause"]
+        src__hooks__useSpeech__SpeechRecognition["SpeechRecognition"]
+        src__hooks__useChatPersistence__conversationIdRef["conversationIdRef"]
+        src__hooks__useStt__blobToWavBase64["blobToWavBase64"]
+        src__hooks__useStt__audioBuffer["audioBuffer"]
+        src__hooks__useSpeech__useSpeech["useSpeech"]
+        src__addToNetworkHistory["addToNetworkHistory"]
+        src__hooks__useLlm__describe["describe"]
+        src__loadCommandHistory["loadCommandHistory"]
+        src__hooks__useLlm__runDescribe["runDescribe"]
+        src__hooks__useStt__ctx["ctx"]
+        src__hooks__useSpeech__getUnsupportedReason["getUnsupportedReason"]
+        src__hooks__useTts__loadVoices["loadVoices"]
+        src__hooks__useStt__startTauriRecording["startTauriRecording"]
+        src__hooks__useTts__runSpeakViaBackend["runSpeakViaBackend"]
+        src__hooks__useChatDispatch__errorMessage["errorMessage"]
+        src__useWatchNotifications["useWatchNotifications"]
+        src__sendAmbiguousQuerySuggestions["sendAmbiguousQuerySuggestions"]
+        src__hooks__useSpeech__stopListening["stopListening"]
+        src__hooks__useTts__runStop["runStop"]
+        src__addToCommandHistoryLocalStorage["addToCommandHistoryLocalStorag"]
+        src__loadNetworkHistoryLocalStorage["loadNetworkHistoryLocalStorage"]
+        src__hooks__useStt__run["run"]
     end
     subgraph src_lib
-        src__lib__browseGateway__fetchViaAllOriginsRaw["fetchViaAllOriginsRaw"]
-        src__lib__llmClient__runChatViaTauri["runChatViaTauri"]
-        src__lib__sttClient__resp["resp"]
-        src__lib__llmClient__summarizeSearchResults["summarizeSearchResults"]
-        src__lib__browseGateway__shouldRemove["shouldRemove"]
-        src__lib__browseGateway__createHumanLikeSummary["createHumanLikeSummary"]
-        src__lib__llmClient__summarizeForTts["summarizeForTts"]
-        src__lib__browseGateway__installMatch["installMatch"]
-        src__lib__browseGateway__calculateBlockScore["calculateBlockScore"]
-        src__lib__browseGateway__intro["intro"]
-        src__lib__browseGateway__normalizeText["normalizeText"]
-        src__lib__browseGateway__summarizeArticle["summarizeArticle"]
-        src__lib__llmClient__describeImage["describeImage"]
-        src__lib__browseGateway__generateWPPLCookies["generateWPPLCookies"]
-        src__lib__browseGateway__getMetaInfo["getMetaInfo"]
-        src__lib__browseGateway__newsScore["newsScore"]
-        src__lib__llmClient__getConfig["getConfig"]
-        src__lib__browseGateway__price["price"]
-        src__lib__browseGateway__bestScore["bestScore"]
-        src__lib__browseGateway__fetchViaAllOriginsJson["fetchViaAllOriginsJson"]
-        src__lib__browseGateway__title["title"]
-        src__lib__sttClient__buildSttRequestBody["buildSttRequestBody"]
-        src__lib__browseGateway__processedContent["processedContent"]
-        src__lib__browseGateway__summarizeProduct["summarizeProduct"]
-        src__lib__browseGateway__removedCount["removedCount"]
-        src__lib__sttClient__getSttConfig["getSttConfig"]
-        src__lib__llmClient__text["text"]
-        src__lib__browseGateway__cookieStripped["cookieStripped"]
-        src__lib__browseGateway__summarizeForum["summarizeForum"]
-        src__lib__browseGateway__normalizeBrowseResult["normalizeBrowseResult"]
-        src__lib__sttClient__transcribeAudio["transcribeAudio"]
-        src__lib__browseGateway__regularProxies["regularProxies"]
-        src__lib__browseGateway__controller["controller"]
-        src__lib__browseGateway__extractedContent["extractedContent"]
-        src__lib__llmClient__chatViaTauri["chatViaTauri"]
-        src__lib__browseGateway__stripCookieBannerText["stripCookieBannerText"]
-        src__lib__browseGateway__generateRandomIP["generateRandomIP"]
-        src__lib__browseGateway__timeout["timeout"]
-        src__lib__browseGateway__runBrowseInBrowser["runBrowseInBrowser"]
-        src__lib__browseGateway__links["links"]
-        src__lib__llmClient__chatDirect["chatDirect"]
-        src__lib__browseGateway__generateInteriaCookies["generateInteriaCookies"]
-        src__lib__browseGateway__productScore["productScore"]
         src__lib__browseGateway__getMetadataLabel["getMetadataLabel"]
-        src__lib__browseGateway__dateMatch["dateMatch"]
-        src__lib__llmClient__TTS_TRIM["TTS_TRIM"]
-        src__lib__browseGateway__looksLikeHtml["looksLikeHtml"]
-        src__lib__browseGateway__getRandomAcceptLanguage["getRandomAcceptLanguage"]
-        src__lib__browseGateway__takeaways["takeaways"]
-        src__lib__browseGateway__normalized["normalized"]
-        src__lib__browseGateway__usageMatch["usageMatch"]
-        src__lib__browseGateway__getRandomReferer["getRandomReferer"]
-        src__lib__browseGateway__RATE_LIMIT_MS["RATE_LIMIT_MS"]
-        src__lib__browseGateway__timestamps["timestamps"]
-        src__lib__llmClient__runDescribe["runDescribe"]
-        src__lib__browseGateway__examples["examples"]
-        src__lib__browseGateway__processedBlock["processedBlock"]
-        src__lib__logger__createScopedLogger["createScopedLogger"]
-        src__lib__llmClient__describeImageChange["describeImageChange"]
-        src__lib__browseGateway__detectContentType["detectContentType"]
-        src__lib__browseGateway__generateAdvancedHeaders["generateAdvancedHeaders"]
-        src__lib__browseGateway__generateOnetCookies["generateOnetCookies"]
-        src__lib__resolver__similarity["similarity"]
-        src__lib__browseGateway__summarizeShop["summarizeShop"]
-        src__lib__browseGateway__brandMatch["brandMatch"]
-        src__lib__resolver__stem["stem"]
-        src__lib__browseGateway__executeBrowseCommand["executeBrowseCommand"]
-        src__lib__browseGateway__match["match"]
-        src__lib__browseGateway__brand["brand"]
-        src__lib__browseGateway__conclusion["conclusion"]
-        src__lib__llmClient__runAsk["runAsk"]
-        src__lib__browseGateway__rawTitle["rawTitle"]
-        src__lib__browseGateway__withHttpScheme["withHttpScheme"]
-        src__lib__browseGateway__raw["raw"]
-        src__lib__browseGateway__listItems["listItems"]
-        src__lib__sttClient__appCfg["appCfg"]
-        src__lib__browseGateway__fetchViaJina["fetchViaJina"]
-        src__lib__browseGateway__rawUrl["rawUrl"]
-        src__lib__logger__emit["emit"]
-        src__lib__browseGateway__summarizeBlog["summarizeBlog"]
-        src__lib__browseGateway__fetchViaCorsProxy["fetchViaCorsProxy"]
-        src__lib__browseGateway__summarizeGeneral["summarizeGeneral"]
-        src__lib__sttClient__run["run"]
-        src__lib__llmClient__chat["chat"]
-        src__lib__browseGateway__requestTimestamps["requestTimestamps"]
-        src__lib__browseGateway__summarizeDocumentation["summarizeDocumentation"]
-        src__lib__browseGateway__categories["categories"]
-        src__lib__browseGateway__now["now"]
-        src__lib__browseGateway__contentWasHtml["contentWasHtml"]
-        src__lib__browseGateway__runExecuteBrowseCommand["runExecuteBrowseCommand"]
-        src__lib__browseGateway__configMatch["configMatch"]
-        src__lib__browseGateway__browseInBrowser["browseInBrowser"]
-        src__lib__browseGateway__blocks["blocks"]
-        src__lib__logger__safeStringify["safeStringify"]
-        src__lib__browseGateway__authorMatch["authorMatch"]
-        src__lib__llmClient__runChatDirect["runChatDirect"]
-        src__lib__resolver__cleaned["cleaned"]
-        src__lib__browseGateway__versionMatch["versionMatch"]
-        src__lib__browseGateway__summarizeNews["summarizeNews"]
-        src__lib__llmClient__runSummarize["runSummarize"]
-        src__lib__browseGateway__safeUrl["safeUrl"]
         src__lib__browseGateway__jinaProxies["jinaProxies"]
-        src__lib__browseGateway__delay["delay"]
-        src__lib__browseGateway__featured["featured"]
-        src__lib__browseGateway__fetchViaAdvancedProxy["fetchViaAdvancedProxy"]
-        src__lib__llmClient__runChat["runChat"]
-        src__lib__browseGateway__shouldRateLimit["shouldRateLimit"]
-        src__lib__browseGateway__isValidContent["isValidContent"]
-        src__lib__browseGateway__fetchers["fetchers"]
-        src__lib__browseGateway__wpProxies["wpProxies"]
-        src__lib__browseGateway__getSmartFetchers["getSmartFetchers"]
+        src__lib__browseGateway__runBrowseInBrowser["runBrowseInBrowser"]
+        src__lib__browseGateway__listItems["listItems"]
+        src__lib__browseGateway__productScore["productScore"]
         src__lib__llmClient__detectIntent["detectIntent"]
+        src__lib__browseGateway__fetchViaAllOriginsRaw["fetchViaAllOriginsRaw"]
+        src__lib__resolver__similarity["similarity"]
+        src__lib__browseGateway__priceMatch["priceMatch"]
+        src__lib__browseGateway__price["price"]
+        src__lib__llmClient__chatDirect["chatDirect"]
+        src__lib__llmClient__runChatDirect["runChatDirect"]
+        src__lib__browseGateway__removedCount["removedCount"]
+        src__lib__browseGateway__configMatch["configMatch"]
+        src__lib__logger__createScopedLogger["createScopedLogger"]
+        src__lib__llmClient__chat["chat"]
+        src__lib__browseGateway__regularProxies["regularProxies"]
         src__lib__browseGateway__getRandomUserAgent["getRandomUserAgent"]
+        src__lib__browseGateway__summarizeShop["summarizeShop"]
+        src__lib__browseGateway__summarizeProduct["summarizeProduct"]
+        src__lib__browseGateway__requestTimestamps["requestTimestamps"]
+        src__lib__browseGateway__blocks["blocks"]
+        src__lib__llmClient__runChat["runChat"]
+        src__extractBrowserReadableContent["extractBrowserReadableContent"]
+        src__lib__browseGateway__createHumanLikeSummary["createHumanLikeSummary"]
+        src__lib__browseGateway__summarizeForum["summarizeForum"]
+        src__lib__browseGateway__cookieStripped["cookieStripped"]
+        src__lib__browseGateway__match["match"]
+        src__lib__browseGateway__shouldRateLimit["shouldRateLimit"]
+        src__lib__browseGateway__generateOnetCookies["generateOnetCookies"]
+        src__lib__llmClient__runAsk["runAsk"]
+        src__lib__sttClient__appCfg["appCfg"]
+        src__lib__browseGateway__isValidContent["isValidContent"]
+        src__lib__browseGateway__controller["controller"]
+        src__lib__llmClient__text["text"]
+        src__lib__browseGateway__links["links"]
+        src__lib__llmClient__runDescribe["runDescribe"]
+        src__lib__browseGateway__delay["delay"]
+        src__lib__browseGateway__calculateBlockScore["calculateBlockScore"]
+        src__lib__browseGateway__browseInBrowser["browseInBrowser"]
+        src__lib__browseGateway__title["title"]
+        src__lib__browseGateway__stripCookieBannerText["stripCookieBannerText"]
+        src__lib__browseGateway__getRandomReferer["getRandomReferer"]
+        src__lib__browseGateway__getSmartFetchers["getSmartFetchers"]
+        src__lib__browseGateway__authorMatch["authorMatch"]
+        src__lib__llmClient__describeImageChange["describeImageChange"]
+        src__lib__browseGateway__now["now"]
+        src__lib__browseGateway__dateMatch["dateMatch"]
+        src__lib__browseGateway__contentWasHtml["contentWasHtml"]
+        src__lib__browseGateway__generateWPPLCookies["generateWPPLCookies"]
+        src__lib__browseGateway__runExecuteBrowseCommand["runExecuteBrowseCommand"]
+        src__lib__browseGateway__newsScore["newsScore"]
+        src__lib__browseGateway__generateAdvancedHeaders["generateAdvancedHeaders"]
+        src__lib__resolver__fuzzyMatchDomain["fuzzyMatchDomain"]
+        src__lib__browseGateway__bestScore["bestScore"]
+        src__lib__browseGateway__text["text"]
+        src__lib__browseGateway__usageMatch["usageMatch"]
+        src__lib__browseGateway__normalized["normalized"]
+        src__lib__resolver__levenshtein["levenshtein"]
+        src__lib__browseGateway__summarizeDocumentation["summarizeDocumentation"]
+        src__lib__llmClient__CONTENT_TRIM["CONTENT_TRIM"]
+        src__lib__browseGateway__conclusion["conclusion"]
+        src__lib__browseGateway__timestamps["timestamps"]
+        src__lib__browseGateway__getMetaInfo["getMetaInfo"]
+        src__lib__sttClient__run["run"]
+        src__lib__browseGateway__versionMatch["versionMatch"]
+        src__lib__browseGateway__summarizeGeneral["summarizeGeneral"]
+        src__lib__sttClient__resp["resp"]
+        src__lib__browseGateway__contentType["contentType"]
+        src__lib__browseGateway__brand["brand"]
+        src__lib__browseGateway__raw["raw"]
+        src__lib__llmClient__summarizeForTts["summarizeForTts"]
+        src__lib__browseGateway__extractedContent["extractedContent"]
+        src__lib__browseGateway__withHttpScheme["withHttpScheme"]
+        src__lib__llmClient__getConfig["getConfig"]
+        src__lib__browseGateway__processedBlock["processedBlock"]
+        src__lib__browseGateway__detectContentType["detectContentType"]
+        src__lib__browseGateway__brandMatch["brandMatch"]
+        src__lib__llmClient__TTS_TRIM["TTS_TRIM"]
+        src__lib__llmClient__summarizeSearchResults["summarizeSearchResults"]
+        src__lib__browseGateway__generateInteriaCookies["generateInteriaCookies"]
+        src__lib__browseGateway__getRandomAcceptLanguage["getRandomAcceptLanguage"]
+        src__lib__browseGateway__fetchers["fetchers"]
+        src__lib__browseGateway__description["description"]
+        src__lib__logger__emit["emit"]
+        src__lib__browseGateway__timeout["timeout"]
+        src__lib__browseGateway__examples["examples"]
+        src__lib__browseGateway__safeUrl["safeUrl"]
+        src__lib__browseGateway__RATE_LIMIT_MS["RATE_LIMIT_MS"]
+        src__lib__browseGateway__takeaways["takeaways"]
+        src__lib__browseGateway__installMatch["installMatch"]
+        src__lib__browseGateway__summarizeNews["summarizeNews"]
+        src__lib__browseGateway__generateRandomIP["generateRandomIP"]
+        src__lib__browseGateway__docScore["docScore"]
+        src__lib__browseGateway__fetchViaCorsProxy["fetchViaCorsProxy"]
+        src__lib__llmClient__runSummarize["runSummarize"]
+        src__lib__browseGateway__normalizeText["normalizeText"]
+        src__lib__browseGateway__looksLikeHtml["looksLikeHtml"]
+        src__lib__llmClient__runChatViaTauri["runChatViaTauri"]
+        src__lib__browseGateway__wpProxies["wpProxies"]
+        src__lib__browseGateway__processedContent["processedContent"]
+        src__lib__browseGateway__executeBrowseCommand["executeBrowseCommand"]
+        src__lib__browseGateway__fetchViaAllOriginsJson["fetchViaAllOriginsJson"]
+        src__lib__resolver__stem["stem"]
+        src__lib__browseGateway__categories["categories"]
+        src__lib__browseGateway__shouldRemove["shouldRemove"]
+        src__lib__llmClient__describeImage["describeImage"]
+        src__lib__browseGateway__featured["featured"]
+        src__lib__browseGateway__normalizeBrowseResult["normalizeBrowseResult"]
+        src__lib__llmClient__askAboutContent["askAboutContent"]
+        src__lib__browseGateway__summarizeBlog["summarizeBlog"]
+        src__lib__sttClient__getSttConfig["getSttConfig"]
         src__lib__llmClient__runDetect["runDetect"]
         src__lib__resolver__resolve["resolve"]
-        src__lib__browseGateway__docScore["docScore"]
-        src__lib__browseGateway__contentType["contentType"]
-        src__lib__resolver__fuzzyMatchDomain["fuzzyMatchDomain"]
-        src__lib__browseGateway__description["description"]
-        src__lib__resolver__levenshtein["levenshtein"]
-        src__lib__llmClient__CONTENT_TRIM["CONTENT_TRIM"]
-        src__lib__browseGateway__text["text"]
-        src__lib__browseGateway__priceMatch["priceMatch"]
-        src__lib__llmClient__askAboutContent["askAboutContent"]
-        src__extractBrowserReadableContent["extractBrowserReadableContent"]
+        src__lib__browseGateway__rawUrl["rawUrl"]
+        src__lib__logger__safeStringify["safeStringify"]
+        src__lib__llmClient__chatViaTauri["chatViaTauri"]
+        src__lib__browseGateway__summarizeArticle["summarizeArticle"]
+        src__lib__sttClient__transcribeAudio["transcribeAudio"]
+        src__lib__resolver__cleaned["cleaned"]
+        src__lib__browseGateway__rawTitle["rawTitle"]
+        src__lib__browseGateway__fetchViaJina["fetchViaJina"]
+        src__lib__browseGateway__intro["intro"]
+        src__lib__browseGateway__fetchViaAdvancedProxy["fetchViaAdvancedProxy"]
+        src__lib__sttClient__buildSttRequestBody["buildSttRequestBody"]
     end
     subgraph src_persistence
-        src__close["close"]
-        src__COALESCE["COALESCE"]
-        src__constructor["constructor"]
+        src__ensureConversation["ensureConversation"]
+        src__getById["getById"]
+        src__save["save"]
+        src__updateLastSnapshot["updateLastSnapshot"]
+        src__id["id"]
+        src__now["now"]
         src__getLastSuccessfulBySubnet["getLastSuccessfulBySubnet"]
-        src__persistence__deviceRepository__repoLogger["repoLogger"]
+        src__getOfflineDevices["getOfflineDevices"]
+        src__constructor["constructor"]
+        src__saveMessage["saveMessage"]
+        src__now["now"]
+        src__getStats["getStats"]
+        src__setMonitorIntervalMs["setMonitorIntervalMs"]
+        src__getDevicesWithStatus["getDevicesWithStatus"]
+        src__rowToDevice["rowToDevice"]
+        src__count["count"]
+        src__shouldUseIncrementalScan["shouldUseIncrementalScan"]
+        src__VALUES["VALUES"]
+        src__constructor["constructor"]
+        src__VALUES["VALUES"]
+        src__runMigrations["runMigrations"]
+        src__close["close"]
+        src__genId["genId"]
+        src__countTables["countTables"]
+        src__setMonitorEnabled["setMonitorEnabled"]
+        src__close["close"]
         src__VALUES["VALUES"]
         src__upsertCommand["upsertCommand"]
-        src__getDevicesWithStatus["getDevicesWithStatus"]
-        src__close["close"]
-        src__setMonitorEnabled["setMonitorEnabled"]
-        src__rows["rows"]
-        src__execute["execute"]
-        src__now["now"]
-        src__runMigrations["runMigrations"]
-        src__constructor["constructor"]
-        src__VALUES["VALUES"]
-        src__getStats["getStats"]
-        src__count["count"]
-        src__close["close"]
-        src__getOfflineDevices["getOfflineDevices"]
-        src__persistence__databaseManager__dbLogger["dbLogger"]
-        src__rowToDevice["rowToDevice"]
-        src__row["row"]
-        src__VALUES["VALUES"]
-        src__getRecentlyActiveDevices["getRecentlyActiveDevices"]
-        src__genId["genId"]
-        src__appliedSet["appliedSet"]
-        src__VALUES["VALUES"]
-        src__id["id"]
-        src__saveDevices["saveDevices"]
-        src__setMonitorIntervalMs["setMonitorIntervalMs"]
-        src__VALUES["VALUES"]
-        src__getByIp["getByIp"]
-        src__save["save"]
         src__updateDeviceStatus["updateDeviceStatus"]
-        src__setMonitorChangeThreshold["setMonitorChangeThreshold"]
-        src__now["now"]
-        src__ensureConversation["ensureConversation"]
-        src__save["save"]
-        src__shouldUseIncrementalScan["shouldUseIncrementalScan"]
-        src__getById["getById"]
-        src__saveMessages["saveMessages"]
-        src__saveMessage["saveMessage"]
-        src__persistence__chatRepository__repoLogger["repoLogger"]
-        src__countTables["countTables"]
-        src__now["now"]
-        src__initialize["initialize"]
-        src__rows["rows"]
+        src__VALUES["VALUES"]
+        src__persistence__databaseManager__dbLogger["dbLogger"]
         src__COUNT["COUNT"]
         src__now["now"]
-        src__updateLastSnapshot["updateLastSnapshot"]
+        src__row["row"]
+        src__getByIp["getByIp"]
+        src__rows["rows"]
+        src__getRecentlyActiveDevices["getRecentlyActiveDevices"]
+        src__COALESCE["COALESCE"]
+        src__persistence__chatRepository__repoLogger["repoLogger"]
+        src__initialize["initialize"]
+        src__save["save"]
+        src__saveDevices["saveDevices"]
+        src__setMonitorChangeThreshold["setMonitorChangeThreshold"]
+        src__saveMessages["saveMessages"]
+        src__VALUES["VALUES"]
+        src__rows["rows"]
+        src__now["now"]
+        src__close["close"]
+        src__persistence__deviceRepository__repoLogger["repoLogger"]
+        src__execute["execute"]
+        src__appliedSet["appliedSet"]
     end
     subgraph src_plugins
-        src__len["len"]
         src__plugins__monitoringPlugin__formatQueryResult["formatQueryResult"]
-        src__plugins__monitoringPlugin__cols["cols"]
         src__plugins__monitoringPlugin__max["max"]
         src__execute["execute"]
+        src__plugins__monitoringPlugin__widths["widths"]
+        src__len["len"]
+        src__plugins__monitoringPlugin__cols["cols"]
     end
     subgraph src_services
-        src__ask["ask"]
         src__response["response"]
+        src__ask["ask"]
     end
     subgraph vite_config
+        vite__config__handleQuery["handleQuery"]
+        vite__config__host["host"]
+        vite__config__parseArpEntries["parseArpEntries"]
+        vite__config__parseNmapHosts["parseNmapHosts"]
+        vite__config__intent["intent"]
+        vite__config__run["run"]
+        vite__config__detectIntent["detectIntent"]
+        vite__config__sub["sub"]
+        vite__config__getLocalIp["getLocalIp"]
         vite__config__nmapOut["nmapOut"]
         vite__config__out["out"]
-        vite__config__sub["sub"]
-        vite__config__handleQuery["handleQuery"]
-        vite__config__detectIntent["detectIntent"]
         vite__config__chatApiPlugin["chatApiPlugin"]
-        vite__config__getLocalIp["getLocalIp"]
-        vite__config__intent["intent"]
-        vite__config__parseArpEntries["parseArpEntries"]
-        vite__config__host["host"]
-        vite__config__parseNmapHosts["parseNmapHosts"]
-        vite__config__run["run"]
     end
     e2e__voice_interface__spec__hasTtsButton --> e2e__voice_interface__spec__count
     e2e__voice_interface__spec__speakCalled --> e2e__voice_interface__spec__orig
@@ -557,6 +559,8 @@ flowchart LR
     src__commands__copyContextCommand__logger --> src__constructor
     src__commands__copyContextCommand__logger --> src__execute
     src__commands__sendMessageCommand__logger --> src__execute
+    src__commands__saveSettingsCommand__logger --> src__constructor
+    src__commands__saveSettingsCommand__logger --> src__execute
     src__persistence__chatRepository__repoLogger --> src__constructor
     src__persistence__chatRepository__repoLogger --> src__ensureConversation
     src__persistence__chatRepository__repoLogger --> src__now
@@ -567,8 +571,6 @@ flowchart LR
     src__saveMessage --> src__now
     src__saveMessage --> src__VALUES
     src__saveMessages --> src__saveMessage
-    src__commands__saveSettingsCommand__logger --> src__constructor
-    src__commands__saveSettingsCommand__logger --> src__execute
     src__execute --> src__commands__browseCommand__BrowseCommand__now
     src__browseResult --> src__commands__browseCommand__BrowseCommand__now
     src__content --> src__commands__browseCommand__BrowseCommand__now
@@ -773,6 +775,18 @@ flowchart LR
     src__lib__browseGateway__runExecuteBrowseCommand --> src__lib__browseGateway__normalizeBrowseResult
     src__lib__browseGateway__runExecuteBrowseCommand --> src__lib__browseGateway__looksLikeHtml
     src__lib__browseGateway__runExecuteBrowseCommand --> src__lib__browseGateway__browseInBrowser
+    src__useHistoryPersistence --> src__hooks__useHistoryPersistence__getRepo
+    src__useHistoryPersistence --> src__addToCommandHistoryLocalStorage
+    src__addToCommandHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__addToCommandHistory --> src__addToCommandHistoryLocalStorage
+    src__loadCommandHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__loadCommandHistory --> src__loadCommandHistoryLocalStorage
+    src__addToNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__addToNetworkHistory --> src__addToNetworkHistoryLocalStorage
+    src__loadNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__loadNetworkHistory --> src__loadNetworkHistoryLocalStorage
+    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub
+    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub2
     src__hooks__useChatDispatch__useChatDispatch --> src__hooks__useChatDispatch__addScopePrefix
     src__hooks__useChatDispatch__handleSubmit --> src__hooks__useChatDispatch__addScopePrefix
     src__hooks__useChatDispatch__fallbackPrompt --> src__hooks__useChatDispatch__categorizeCommand
@@ -786,24 +800,14 @@ flowchart LR
     src__hooks__useChatDispatch__suggestionsId --> src__getSuggestionsForQuery
     src__sendNetworkSelectionMessage --> src__getNetworkSelectionText
     src__hooks__useChatDispatch__networkSelectionId --> src__getNetworkSelectionText
-    src__useHistoryPersistence --> src__hooks__useHistoryPersistence__getRepo
-    src__useHistoryPersistence --> src__addToCommandHistoryLocalStorage
-    src__addToCommandHistory --> src__hooks__useHistoryPersistence__getRepo
-    src__addToCommandHistory --> src__addToCommandHistoryLocalStorage
-    src__loadCommandHistory --> src__hooks__useHistoryPersistence__getRepo
-    src__loadCommandHistory --> src__loadCommandHistoryLocalStorage
-    src__addToNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
-    src__addToNetworkHistory --> src__addToNetworkHistoryLocalStorage
-    src__loadNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
-    src__loadNetworkHistory --> src__loadNetworkHistoryLocalStorage
-    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub
-    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub2
     src__hooks__useLlm__historyRef --> src__hooks__useLlm__runSend
     src__hooks__useLlm__send --> src__hooks__useLlm__runSend
     src__hooks__useLlm__describe --> src__hooks__useLlm__runDescribe
     src__hooks__useLlm__summarize --> src__hooks__useLlm__runSummarize
     src__hooks__useLlm__summarizeSearch --> src__hooks__useLlm__runSummarizeSearch
     src__hooks__useLlm__detectIntent --> src__hooks__useLlm__runDetectIntent
+    src__useWatchNotifications --> src__mapChangeToNotification
+    src__hooks__useWatchNotifications__unsub --> src__mapChangeToNotification
     src__hooks__useStt__writeWavPcm16 --> src__hooks__useStt__writeString
     src__hooks__useStt__blobToWavBase64 --> src__hooks__useStt__arrayBufferToBase64
     src__hooks__useStt__blobToWavBase64 --> src__hooks__useStt__writeWavPcm16
@@ -830,8 +834,6 @@ flowchart LR
     src__hooks__useStt__stopRecording --> src__hooks__useStt__getAudioSettings
     src__hooks__useStt__runBackendStop --> src__hooks__useStt__getAudioSettings
     src__hooks__useStt__rec --> src__hooks__useStt__stopTracks
-    src__useWatchNotifications --> src__mapChangeToNotification
-    src__hooks__useWatchNotifications__unsub --> src__mapChangeToNotification
     src__response --> src__ask
     src__core__preferenceLearning__log --> src__key
     src__core__preferenceLearning__MAX_ENTRIES --> src__key
@@ -841,6 +843,25 @@ flowchart LR
     src__getTopPreferences --> src__score
     src__getAll --> src__ensureLoaded
     src__reset --> src__save
+    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__execute
+    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__mw
+    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__chain
+    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__mw
+    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__execute
+    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__mw
+    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__execute
+    src__core__queryBus__QueryBus__mw --> src__core__queryBus__QueryBus__registeredQueries
+    src__core__realtimeSync__RealtimeSync__constructor --> src__generateSourceId
+    src__core__realtimeSync__RealtimeSync__constructor --> src__checkSupport
+    src__core__realtimeSync__RealtimeSync__constructor --> src__core__realtimeSync__RealtimeSync__initialize
+    src__core__realtimeSync__RealtimeSync__initialize --> src__initializeLocalStorageFallback
+    src__handleBroadcastMessage --> src__processSyncEvent
+    src__handleStorageEvent --> src__processSyncEvent
+    src__processSyncEvent --> src__core__realtimeSync__RealtimeSync__handler
+    src__core__realtimeSync__RealtimeSync__handlers --> src__core__realtimeSync__RealtimeSync__handler
+    src__core__realtimeSync__RealtimeSync__broadcast --> src__fallbackToLocalStorage
+    src__fallbackToLocalStorage --> src__core__realtimeSync__RealtimeSync__setTimeout
+    src__core__realtimeSync__disposeRealtimeSync --> src__core__realtimeSync__RealtimeSync__dispose
     src__hooks__useSpeech__useSpeech --> src__hooks__useSpeech__getSpeechRecognitionCtor
     src__hooks__useSpeech__useSpeech --> src__hooks__useSpeech__getUnsupportedReason
     src__hooks__useSpeech__recognitionRef --> src__hooks__useSpeech__getSpeechRecognitionCtor
@@ -859,30 +880,11 @@ flowchart LR
     src__hooks__useSpeech__runStartListening --> src__hooks__useSpeech__getUnsupportedReason
     src__hooks__useSpeech__stopListening --> src__hooks__useSpeech__runStopListening
     src__hooks__useSpeech__enableAutoListen --> src__hooks__useSpeech__startListening
-    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__execute
-    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__mw
-    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__chain
-    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__mw
-    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__execute
-    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__mw
-    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__execute
-    src__core__queryBus__QueryBus__mw --> src__core__queryBus__QueryBus__registeredQueries
     src__unregister --> src__core__pluginRegistry__PluginRegistry__get
     src__legacyPlugins --> src__initializeAll
     src__dataSourcePlugins --> src__initializeAll
     src__legacyInitPromises --> src__disposeAll
     src__dataSourceInitPromises --> src__disposeAll
-    src__core__realtimeSync__RealtimeSync__constructor --> src__generateSourceId
-    src__core__realtimeSync__RealtimeSync__constructor --> src__checkSupport
-    src__core__realtimeSync__RealtimeSync__constructor --> src__core__realtimeSync__RealtimeSync__initialize
-    src__core__realtimeSync__RealtimeSync__initialize --> src__initializeLocalStorageFallback
-    src__handleBroadcastMessage --> src__processSyncEvent
-    src__handleStorageEvent --> src__processSyncEvent
-    src__processSyncEvent --> src__core__realtimeSync__RealtimeSync__handler
-    src__core__realtimeSync__RealtimeSync__handlers --> src__core__realtimeSync__RealtimeSync__handler
-    src__core__realtimeSync__RealtimeSync__broadcast --> src__fallbackToLocalStorage
-    src__fallbackToLocalStorage --> src__core__realtimeSync__RealtimeSync__setTimeout
-    src__core__realtimeSync__disposeRealtimeSync --> src__core__realtimeSync__RealtimeSync__dispose
     src__core__cache__Cache__constructor --> src__core__cache__Cache__cleanup
     src__core__cache__Cache__get --> src__core__cache__Cache__now
     src__core__cache__Cache__get --> src__core__cache__Cache__set
@@ -908,6 +910,12 @@ flowchart LR
     src__core__cache__CacheFactory__clearAll --> src__core__cache__Cache__clear
     src__core__cache__CacheFactory__disposeAll --> src__core__cache__Cache__dispose
     src__core__cache__CacheFactory__disposeAll --> src__core__cache__Cache__clear
+    src__core__intentRouter__IntentRouter__constructor --> src__initializeDefaultPatterns
+    src__core__intentRouter__IntentRouter__detect --> src__calculateConfidence
+    src__core__intentRouter__IntentRouter__detect --> src__extractEntities
+    src__core__intentRouter__IntentRouter__keywords --> src__extractEntities
+    src__core__intentRouter__IntentRouter__matches --> src__extractEntities
+    src__baseConfidence --> src__extractEntities
     src__core__bootstrap__registerCorePlugins --> src__core__bootstrap__safeRegister
     src__core__systemContext__getSystemContext --> src__core__systemContext__detectOs
     src__core__systemContext__getSystemContext --> src__core__systemContext__detectUser
@@ -916,12 +924,6 @@ flowchart LR
     src__core__systemContext__getSystemContext --> src__core__systemContext__detectCapabilities
     src__core__systemContext__updateSystemContext --> src__core__systemContext__getSystemContext
     src__core__systemContext__buildSystemContextPrompt --> src__core__systemContext__getSystemContext
-    src__core__intentRouter__IntentRouter__constructor --> src__initializeDefaultPatterns
-    src__core__intentRouter__IntentRouter__detect --> src__calculateConfidence
-    src__core__intentRouter__IntentRouter__detect --> src__extractEntities
-    src__core__intentRouter__IntentRouter__keywords --> src__extractEntities
-    src__core__intentRouter__IntentRouter__matches --> src__extractEntities
-    src__baseConfidence --> src__extractEntities
     src__complete --> src__setStatus
     src__core__processRegistry__ProcessRegistry__fail --> src__setStatus
     src__core__processRegistry__ProcessRegistry__stop --> src__setStatus
@@ -943,19 +945,19 @@ flowchart LR
     src__core__retry__message --> src__core__retry__isProbablyTransientErrorMessage
     src__core__actionSchema__findMatchingSchemas --> src__core__actionSchema__scoreMatch
     src__core__actionSchema__findDomainSchemas --> src__core__actionSchema__getDomainHints
+    src__core__intentSchema__registerIntentSchemas --> src__core__intentSchema__registerIntentSchema
+    src__core__intentSchema__getSchemasByPlugin --> src__core__intentSchema__getAllIntentSchemas
+    src__core__intentSchema__getSchemasByDomain --> src__core__intentSchema__getAllIntentSchemas
+    src__core__intentSchema__canPluginHandle --> src__core__intentSchema__getSchemasByPlugin
+    src__core__commandBus__CommandBus__register --> src__core__commandBus__CommandBus__has
+    src__core__commandBus__CommandBus__unregister --> src__core__commandBus__CommandBus__has
+    src__core__commandBus__CommandBus__execute --> src__core__commandBus__CommandBus__handler
     src__core__fallbackHandler__keywordFallback --> src__core__fallbackHandler__rankByPreference
     src__core__fallbackHandler__keywordFallback --> src__core__fallbackHandler__injectFavorites
     src__core__fallbackHandler__domainSchemas --> src__core__fallbackHandler__rankByPreference
     src__core__fallbackHandler__scored --> src__core__fallbackHandler__rankByPreference
     src__core__fallbackHandler__generateFallback --> src__core__fallbackHandler__tryLlmFallback
     src__core__fallbackHandler__generateFallback --> src__core__fallbackHandler__keywordFallback
-    src__core__commandBus__CommandBus__register --> src__core__commandBus__CommandBus__has
-    src__core__commandBus__CommandBus__unregister --> src__core__commandBus__CommandBus__has
-    src__core__commandBus__CommandBus__execute --> src__core__commandBus__CommandBus__handler
-    src__core__intentSchema__registerIntentSchemas --> src__core__intentSchema__registerIntentSchema
-    src__core__intentSchema__getSchemasByPlugin --> src__core__intentSchema__getAllIntentSchemas
-    src__core__intentSchema__getSchemasByDomain --> src__core__intentSchema__getAllIntentSchemas
-    src__core__intentSchema__canPluginHandle --> src__core__intentSchema__getSchemasByPlugin
     src__core__llmIntentClassifier__buildIntentPrompt --> src__core__llmIntentClassifier__context
     src__core__llmIntentClassifier__classifyIntent --> src__core__llmIntentClassifier__getCacheKey
     src__core__llmIntentClassifier__classifyIntent --> src__core__llmIntentClassifier__cacheGet
@@ -973,28 +975,28 @@ flowchart LR
     scripts__process_frame --> scripts__motion_pipeline__should_send_to_llm
     scripts__motion_pipeline__MotionPipeline__run --> scripts__motion_pipeline__get_statistics
     scripts__motion_pipeline__main --> scripts__motion_pipeline__parse_args
-    src__probeDevice --> src__discovery__serviceProber__ServiceProber__now
-    src__probeDevice --> src__probeHttpService
-    src__probeDevice --> src__probeRtspService
-    src__probeDevice --> src__probeMqttService
-    src__probeDevice --> src__probeSshService
-    src__probeDevice --> src__probeApiService
-    src__probeDevice --> src__emitEvent
-    src__startTime --> src__discovery__serviceProber__ServiceProber__json
-    src__startTime --> src__discovery__serviceProber__ServiceProber__now
-    src__results --> src__emitEvent
-    src__probeHttpService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeRtspService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeMqttService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeSshService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeApiService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeApiService --> src__discovery__serviceProber__ServiceProber__json
-    src__persistServices --> src__discovery__serviceProber__ServiceProber__now
-    src__persistServices --> src__VALUES
-    src__discovery__serviceProber__ServiceProber__db --> src__VALUES
-    src__discovery__serviceProber__ServiceProber__now --> src__VALUES
-    src__VALUES --> src__addEventListener
-    src__emitEvent --> src__listener
     src__execute --> src__plugins__monitoringPlugin__formatQueryResult
     src__plugins__monitoringPlugin__formatQueryResult --> src__plugins__monitoringPlugin__max
     src__plugins__monitoringPlugin__cols --> src__plugins__monitoringPlugin__max
+    src__plugins__monitoringPlugin__widths --> src__plugins__monitoringPlugin__max
+    src__scanNetwork --> src__now
+    src__scanNetwork --> src__performScan
+    src__scanNetwork --> src__deduplicateDevices
+    src__scanNetwork --> src__persistDevices
+    src__scanNetwork --> src__emitEvent
+    src__performScan --> src__pingSweep
+    src__performScan --> src__mdnsDiscovery
+    src__performScan --> src__ssdpDiscovery
+    src__performScan --> src__arpScan
+    src__pingSweep --> src__getLocalNetworkRanges
+    src__pingSweep --> src__generateIpRange
+    src__pingSweep --> src__pingHost
+    src__pingSweep --> src__emitEvent
+    src__networkRanges --> src__pingHost
+    src__networkRanges --> src__emitEvent
+    src__promises --> src__pingHost
+    src__promises --> src__emitEvent
+    src__pingHost --> src__now
+    src__persistDevices --> src__now
+    src__persistDevices --> src__VALUES
+    src__discovery__networkScanner__NetworkScanner__db --> src__VALUES

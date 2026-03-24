@@ -312,7 +312,6 @@ flowchart TD
         src_tauri__list_network_interfaces["list_network_interfaces"]
         src_tauri__test_get_local_network_info["test_get_local_network_info"]
         src_tauri__test_list_network_interfaces["test_list_network_interfaces"]
-        src_tauri__src__main_changes__main["main"]
         src_tauri__src__vision_config__default_camera_id["default_camera_id"]
         src_tauri__src__vision_config__default_model_path["default_model_path"]
         src_tauri__default_confidence_threshold["default_confidence_threshold"]
@@ -342,6 +341,7 @@ flowchart TD
         src_tauri__default_max_narrative_tokens["default_max_narrative_tokens"]
         src_tauri__src__vision_config__load_config["load_config"]
         src_tauri__src__vision_config__default_config["default_config"]
+        src_tauri__src__main_changes__main["main"]
         src_tauri__build_timeline["build_timeline"]
         src_tauri__src__vision_scene_buffer__select_crops("select_crops CC=9")
         src_tauri__src__vision_scene_buffer__new["new"]
@@ -603,21 +603,6 @@ flowchart TD
         src__core__queryBus__key["key"]
         src__core__queryBus__cached["cached"]
         src__core__queryBus__result["result"]
-        src__register["register"]
-        src__pluginId["pluginId"]
-        src__unregister["unregister"]
-        src__core__pluginRegistry__PluginRegistry__plugin["plugin"]
-        src__core__pluginRegistry__PluginRegistry__get["get"]
-        src__core__pluginRegistry__PluginRegistry__getAll["getAll"]
-        src__findByIntent["findByIntent"]
-        src__legacyPlugins["legacyPlugins"]
-        src__dataSourcePlugins["dataSourcePlugins"]
-        src__initializeAll["initializeAll"]
-        src__legacyInitPromises["legacyInitPromises"]
-        src__dataSourceInitPromises["dataSourceInitPromises"]
-        src__disposeAll["disposeAll"]
-        src__legacyDisposePromises["legacyDisposePromises"]
-        src__dataSourceDisposePromises["dataSourceDisposePromises"]
         src__core__realtimeSync__syncLogger["syncLogger"]
         src__core__realtimeSync__RealtimeSync__constructor["constructor"]
         src__generateSourceId["generateSourceId"]
@@ -625,35 +610,23 @@ flowchart TD
         src__core__realtimeSync__RealtimeSync__test["test"]
         src__core__realtimeSync__RealtimeSync__initialize["initialize"]
         src__initializeLocalStorageFallback["initializeLocalStorageFallback"]
+        src__handleBroadcastMessage["handleBroadcastMessage"]
+        src__core__realtimeSync__RealtimeSync__message["message"]
+        src__handleStorageEvent["handleStorageEvent"]
+        src__processSyncEvent["processSyncEvent"]
+        src__core__realtimeSync__RealtimeSync__handlers["handlers"]
+        src__core__realtimeSync__RealtimeSync__handler["handler"]
+        src__core__realtimeSync__RealtimeSync__broadcast["broadcast"]
+        src__fallbackToLocalStorage["fallbackToLocalStorage"]
+        src__core__realtimeSync__RealtimeSync__setTimeout["setTimeout"]
+        src__core__realtimeSync__RealtimeSync__getStats["getStats"]
+        src__core__realtimeSync__RealtimeSync__dispose["dispose"]
+        src__core__realtimeSync__getRealtimeSync["getRealtimeSync"]
+        src__core__realtimeSync__disposeRealtimeSync["disposeRealtimeSync"]
+        src__register["register"]
+        src__pluginId["pluginId"]
     end
     subgraph src_discovery
-        src__constructor["constructor"]
-        src__probeDevice("probeDevice CC=10")
-        src__startTime("startTime CC=12")
-        src__results["results"]
-        src__probeDuration["probeDuration"]
-        src__probeHttpService("probeHttpService CC=12")
-        src__response["response"]
-        src__responseTime["responseTime"]
-        src__discovery__serviceProber__ServiceProber__html["html"]
-        src__titleMatch["titleMatch"]
-        src__probeRtspService["probeRtspService"]
-        src__probeMqttService["probeMqttService"]
-        src__probeSshService["probeSshService"]
-        src__probeApiService("probeApiService CC=12")
-        src__discovery__serviceProber__ServiceProber__json["json"]
-        src__discovery__serviceProber__ServiceProber__p["p"]
-        src__persistServices["persistServices"]
-        src__discovery__serviceProber__ServiceProber__db["db"]
-        src__discovery__serviceProber__ServiceProber__now["now"]
-        src__existingService["existingService"]
-        src__VALUES["VALUES"]
-        src__addEventListener["addEventListener"]
-        src__removeEventListener["removeEventListener"]
-        src__index["index"]
-        src__emitEvent["emitEvent"]
-        src__listener["listener"]
-        src__isActive["isActive"]
         src__constructor["constructor"]
         src__scanNetwork["scanNetwork"]
         src__startTime["startTime"]
@@ -679,6 +652,33 @@ flowchart TD
         src__discovery__networkScanner__NetworkScanner__db["db"]
         src__now["now"]
         src__existingDevice["existingDevice"]
+        src__VALUES["VALUES"]
+        src__addEventListener["addEventListener"]
+        src__removeEventListener["removeEventListener"]
+        src__index["index"]
+        src__emitEvent["emitEvent"]
+        src__listener["listener"]
+        src__isActive["isActive"]
+        src__constructor["constructor"]
+        src__probeDevice("probeDevice CC=10")
+        src__startTime("startTime CC=12")
+        src__results["results"]
+        src__probeDuration["probeDuration"]
+        src__probeHttpService("probeHttpService CC=12")
+        src__response["response"]
+        src__responseTime["responseTime"]
+        src__discovery__serviceProber__ServiceProber__html["html"]
+        src__titleMatch["titleMatch"]
+        src__probeRtspService["probeRtspService"]
+        src__probeMqttService["probeMqttService"]
+        src__probeSshService["probeSshService"]
+        src__probeApiService("probeApiService CC=12")
+        src__discovery__serviceProber__ServiceProber__json["json"]
+        src__discovery__serviceProber__ServiceProber__p["p"]
+        src__persistServices["persistServices"]
+        src__discovery__serviceProber__ServiceProber__db["db"]
+        src__discovery__serviceProber__ServiceProber__now["now"]
+        src__existingService["existingService"]
         src__VALUES["VALUES"]
         src__addEventListener["addEventListener"]
         src__removeEventListener["removeEventListener"]
@@ -768,9 +768,9 @@ flowchart TD
         src__hooks__useTts__runStopViaBackend["runStopViaBackend"]
         src__DatabaseManagerContext["DatabaseManagerContext"]
         src__hooks__useDatabaseManager__useDatabaseManager["useDatabaseManager"]
-        src__hooks__useChatDispatch__dispatchLogger{{dispatchLogger CC=19}}
-        src__hooks__useChatDispatch__handleConfigCommand{{handleConfigCommand CC=19}}
-        src__hooks__useChatDispatch__lower["lower"]
+        src__hooks__useHistoryPersistence__histLogger["histLogger"]
+        src__useHistoryPersistence{{useHistoryPersistence CC=20}}
+        src__hooks__useHistoryPersistence__repoRef["repoRef"]
     end
     subgraph src_integration
         src__processMessage("processMessage CC=8")
@@ -978,19 +978,19 @@ flowchart TD
         src__errorResult["errorResult"]
         src__initialize["initialize"]
         src__dispose["dispose"]
+        src__initialize["initialize"]
+        src__dispose["dispose"]
         src__canHandle["canHandle"]
-        src__lower["lower"]
-        src__execute["execute"]
-        src__start["start"]
-        src__services["services"]
-        src__formatServices["formatServices"]
-        src__grouped["grouped"]
-        src__txtStr["txtStr"]
-        src__groupByType["groupByType"]
-        src__plugins__network__mdnsPlugin__MdnsPlugin__key["key"]
-        src__friendlyType["friendlyType"]
-        src__extractServiceTypes("extractServiceTypes CC=8")
-        src__errorResult["errorResult"]
+        src__execute{{execute CC=26}}
+        src__intentLower{{intentLower CC=26}}
+        src__machine["machine"]
+        src__handleAddMachine["handleAddMachine"]
+        src__hostMatch["hostMatch"]
+        src__userMatch["userMatch"]
+        src__handleListMachines["handleListMachines"]
+        src__machineList["machineList"]
+        src__handleTestConnection["handleTestConnection"]
+        src__handleConnect["handleConnect"]
     end
     subgraph src_queries
         src__queries__getSettingsQuery__logger["logger"]
@@ -1227,6 +1227,8 @@ flowchart TD
     src__commands__copyContextCommand__logger --> src__constructor
     src__commands__copyContextCommand__logger --> src__execute
     src__commands__sendMessageCommand__logger --> src__execute
+    src__commands__saveSettingsCommand__logger --> src__constructor
+    src__commands__saveSettingsCommand__logger --> src__execute
     src__persistence__chatRepository__repoLogger --> src__constructor
     src__persistence__chatRepository__repoLogger --> src__ensureConversation
     src__persistence__chatRepository__repoLogger --> src__now
@@ -1238,8 +1240,6 @@ flowchart TD
     src__saveMessage --> src__now
     src__saveMessage --> src__VALUES
     src__saveMessages --> src__saveMessage
-    src__commands__saveSettingsCommand__logger --> src__constructor
-    src__commands__saveSettingsCommand__logger --> src__execute
     src__execute --> src__commands__browseCommand__BrowseCommand__now
     src__browseResult --> src__commands__browseCommand__BrowseCommand__now
     src__content --> src__commands__browseCommand__BrowseCommand__now
@@ -1479,6 +1479,20 @@ flowchart TD
     src__lib__browseGateway__runExecuteBrowseCommand --> src__lib__browseGateway__normalizeBrowseResult
     src__lib__browseGateway__runExecuteBrowseCommand --> src__lib__browseGateway__looksLikeHtml
     src__lib__browseGateway__runExecuteBrowseCommand --> src__lib__browseGateway__browseInBrowser
+    src__useHistoryPersistence --> src__hooks__useHistoryPersistence__getRepo
+    src__useHistoryPersistence --> src__addToCommandHistoryLocalStorage
+    src__useHistoryPersistence --> src__loadCommandHistoryLocalStorage
+    src__useHistoryPersistence --> src__addToNetworkHistoryLocalStorage
+    src__addToCommandHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__addToCommandHistory --> src__addToCommandHistoryLocalStorage
+    src__loadCommandHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__loadCommandHistory --> src__loadCommandHistoryLocalStorage
+    src__addToNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__addToNetworkHistory --> src__addToNetworkHistoryLocalStorage
+    src__loadNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__loadNetworkHistory --> src__loadNetworkHistoryLocalStorage
+    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub
+    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub2
     src__hooks__useChatDispatch__useChatDispatch --> src__hooks__useChatDispatch__addScopePrefix
     src__hooks__useChatDispatch__useChatDispatch --> src__hooks__useChatDispatch__originalQuery
     src__hooks__useChatDispatch__useChatDispatch --> src__hooks__useChatDispatch__handleConfigCommand
@@ -1496,20 +1510,6 @@ flowchart TD
     src__hooks__useChatDispatch__suggestionsId --> src__getSuggestionsForQuery
     src__sendNetworkSelectionMessage --> src__getNetworkSelectionText
     src__hooks__useChatDispatch__networkSelectionId --> src__getNetworkSelectionText
-    src__useHistoryPersistence --> src__hooks__useHistoryPersistence__getRepo
-    src__useHistoryPersistence --> src__addToCommandHistoryLocalStorage
-    src__useHistoryPersistence --> src__loadCommandHistoryLocalStorage
-    src__useHistoryPersistence --> src__addToNetworkHistoryLocalStorage
-    src__addToCommandHistory --> src__hooks__useHistoryPersistence__getRepo
-    src__addToCommandHistory --> src__addToCommandHistoryLocalStorage
-    src__loadCommandHistory --> src__hooks__useHistoryPersistence__getRepo
-    src__loadCommandHistory --> src__loadCommandHistoryLocalStorage
-    src__addToNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
-    src__addToNetworkHistory --> src__addToNetworkHistoryLocalStorage
-    src__loadNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
-    src__loadNetworkHistory --> src__loadNetworkHistoryLocalStorage
-    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub
-    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub2
     src__hooks__useLlm__useLlm --> src__hooks__useLlm__runSend
     src__hooks__useLlm__useLlm --> src__hooks__useLlm__runDescribe
     src__hooks__useLlm__historyRef --> src__hooks__useLlm__runSend
@@ -1518,6 +1518,8 @@ flowchart TD
     src__hooks__useLlm__summarize --> src__hooks__useLlm__runSummarize
     src__hooks__useLlm__summarizeSearch --> src__hooks__useLlm__runSummarizeSearch
     src__hooks__useLlm__detectIntent --> src__hooks__useLlm__runDetectIntent
+    src__useWatchNotifications --> src__mapChangeToNotification
+    src__hooks__useWatchNotifications__unsub --> src__mapChangeToNotification
     src__hooks__useStt__writeWavPcm16 --> src__hooks__useStt__writeString
     src__hooks__useStt__blobToWavBase64 --> src__hooks__useStt__arrayBufferToBase64
     src__hooks__useStt__blobToWavBase64 --> src__hooks__useStt__writeWavPcm16
@@ -1544,8 +1546,6 @@ flowchart TD
     src__hooks__useStt__stopRecording --> src__hooks__useStt__getAudioSettings
     src__hooks__useStt__runBackendStop --> src__hooks__useStt__getAudioSettings
     src__hooks__useStt__rec --> src__hooks__useStt__stopTracks
-    src__useWatchNotifications --> src__mapChangeToNotification
-    src__hooks__useWatchNotifications__unsub --> src__mapChangeToNotification
     src__response --> src__ask
     src__core__preferenceLearning__log --> src__key
     src__core__preferenceLearning__MAX_ENTRIES --> src__key
@@ -1555,6 +1555,25 @@ flowchart TD
     src__getTopPreferences --> src__score
     src__getAll --> src__ensureLoaded
     src__reset --> src__save
+    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__execute
+    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__mw
+    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__chain
+    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__mw
+    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__execute
+    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__mw
+    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__execute
+    src__core__queryBus__QueryBus__mw --> src__core__queryBus__QueryBus__registeredQueries
+    src__core__realtimeSync__RealtimeSync__constructor --> src__generateSourceId
+    src__core__realtimeSync__RealtimeSync__constructor --> src__checkSupport
+    src__core__realtimeSync__RealtimeSync__constructor --> src__core__realtimeSync__RealtimeSync__initialize
+    src__core__realtimeSync__RealtimeSync__initialize --> src__initializeLocalStorageFallback
+    src__handleBroadcastMessage --> src__processSyncEvent
+    src__handleStorageEvent --> src__processSyncEvent
+    src__processSyncEvent --> src__core__realtimeSync__RealtimeSync__handler
+    src__core__realtimeSync__RealtimeSync__handlers --> src__core__realtimeSync__RealtimeSync__handler
+    src__core__realtimeSync__RealtimeSync__broadcast --> src__fallbackToLocalStorage
+    src__fallbackToLocalStorage --> src__core__realtimeSync__RealtimeSync__setTimeout
+    src__core__realtimeSync__disposeRealtimeSync --> src__core__realtimeSync__RealtimeSync__dispose
     src__hooks__useSpeech__useSpeech --> src__hooks__useSpeech__getSpeechRecognitionCtor
     src__hooks__useSpeech__useSpeech --> src__hooks__useSpeech__getUnsupportedReason
     src__hooks__useSpeech__recognitionRef --> src__hooks__useSpeech__getSpeechRecognitionCtor
@@ -1575,30 +1594,11 @@ flowchart TD
     src__hooks__useSpeech__runStartListening --> src__hooks__useSpeech__SpeechRecognition
     src__hooks__useSpeech__stopListening --> src__hooks__useSpeech__runStopListening
     src__hooks__useSpeech__enableAutoListen --> src__hooks__useSpeech__startListening
-    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__execute
-    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__mw
-    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__chain
-    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__mw
-    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__execute
-    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__mw
-    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__execute
-    src__core__queryBus__QueryBus__mw --> src__core__queryBus__QueryBus__registeredQueries
     src__unregister --> src__core__pluginRegistry__PluginRegistry__get
     src__legacyPlugins --> src__initializeAll
     src__dataSourcePlugins --> src__initializeAll
     src__legacyInitPromises --> src__disposeAll
     src__dataSourceInitPromises --> src__disposeAll
-    src__core__realtimeSync__RealtimeSync__constructor --> src__generateSourceId
-    src__core__realtimeSync__RealtimeSync__constructor --> src__checkSupport
-    src__core__realtimeSync__RealtimeSync__constructor --> src__core__realtimeSync__RealtimeSync__initialize
-    src__core__realtimeSync__RealtimeSync__initialize --> src__initializeLocalStorageFallback
-    src__handleBroadcastMessage --> src__processSyncEvent
-    src__handleStorageEvent --> src__processSyncEvent
-    src__processSyncEvent --> src__core__realtimeSync__RealtimeSync__handler
-    src__core__realtimeSync__RealtimeSync__handlers --> src__core__realtimeSync__RealtimeSync__handler
-    src__core__realtimeSync__RealtimeSync__broadcast --> src__fallbackToLocalStorage
-    src__fallbackToLocalStorage --> src__core__realtimeSync__RealtimeSync__setTimeout
-    src__core__realtimeSync__disposeRealtimeSync --> src__core__realtimeSync__RealtimeSync__dispose
     src__core__cache__Cache__constructor --> src__core__cache__Cache__cleanup
     src__core__cache__Cache__get --> src__core__cache__Cache__now
     src__core__cache__Cache__get --> src__core__cache__Cache__set
@@ -1624,6 +1624,12 @@ flowchart TD
     src__core__cache__CacheFactory__clearAll --> src__core__cache__Cache__clear
     src__core__cache__CacheFactory__disposeAll --> src__core__cache__Cache__dispose
     src__core__cache__CacheFactory__disposeAll --> src__core__cache__Cache__clear
+    src__core__intentRouter__IntentRouter__constructor --> src__initializeDefaultPatterns
+    src__core__intentRouter__IntentRouter__detect --> src__calculateConfidence
+    src__core__intentRouter__IntentRouter__detect --> src__extractEntities
+    src__core__intentRouter__IntentRouter__keywords --> src__extractEntities
+    src__core__intentRouter__IntentRouter__matches --> src__extractEntities
+    src__baseConfidence --> src__extractEntities
     src__core__bootstrap__registerCorePlugins --> src__core__bootstrap__safeRegister
     src__core__systemContext__getSystemContext --> src__core__systemContext__detectOs
     src__core__systemContext__getSystemContext --> src__core__systemContext__detectUser
@@ -1632,12 +1638,6 @@ flowchart TD
     src__core__systemContext__getSystemContext --> src__core__systemContext__detectCapabilities
     src__core__systemContext__updateSystemContext --> src__core__systemContext__getSystemContext
     src__core__systemContext__buildSystemContextPrompt --> src__core__systemContext__getSystemContext
-    src__core__intentRouter__IntentRouter__constructor --> src__initializeDefaultPatterns
-    src__core__intentRouter__IntentRouter__detect --> src__calculateConfidence
-    src__core__intentRouter__IntentRouter__detect --> src__extractEntities
-    src__core__intentRouter__IntentRouter__keywords --> src__extractEntities
-    src__core__intentRouter__IntentRouter__matches --> src__extractEntities
-    src__baseConfidence --> src__extractEntities
     src__complete --> src__setStatus
     src__core__processRegistry__ProcessRegistry__fail --> src__setStatus
     src__core__processRegistry__ProcessRegistry__stop --> src__setStatus
@@ -1659,6 +1659,13 @@ flowchart TD
     src__core__retry__message --> src__core__retry__isProbablyTransientErrorMessage
     src__core__actionSchema__findMatchingSchemas --> src__core__actionSchema__scoreMatch
     src__core__actionSchema__findDomainSchemas --> src__core__actionSchema__getDomainHints
+    src__core__intentSchema__registerIntentSchemas --> src__core__intentSchema__registerIntentSchema
+    src__core__intentSchema__getSchemasByPlugin --> src__core__intentSchema__getAllIntentSchemas
+    src__core__intentSchema__getSchemasByDomain --> src__core__intentSchema__getAllIntentSchemas
+    src__core__intentSchema__canPluginHandle --> src__core__intentSchema__getSchemasByPlugin
+    src__core__commandBus__CommandBus__register --> src__core__commandBus__CommandBus__has
+    src__core__commandBus__CommandBus__unregister --> src__core__commandBus__CommandBus__has
+    src__core__commandBus__CommandBus__execute --> src__core__commandBus__CommandBus__handler
     src__core__fallbackHandler__tryLlmFallback --> src__core__fallbackHandler__response
     src__core__fallbackHandler__keywordFallback --> src__core__fallbackHandler__rankByPreference
     src__core__fallbackHandler__keywordFallback --> src__core__fallbackHandler__injectFavorites
@@ -1666,13 +1673,6 @@ flowchart TD
     src__core__fallbackHandler__scored --> src__core__fallbackHandler__rankByPreference
     src__core__fallbackHandler__generateFallback --> src__core__fallbackHandler__tryLlmFallback
     src__core__fallbackHandler__generateFallback --> src__core__fallbackHandler__keywordFallback
-    src__core__commandBus__CommandBus__register --> src__core__commandBus__CommandBus__has
-    src__core__commandBus__CommandBus__unregister --> src__core__commandBus__CommandBus__has
-    src__core__commandBus__CommandBus__execute --> src__core__commandBus__CommandBus__handler
-    src__core__intentSchema__registerIntentSchemas --> src__core__intentSchema__registerIntentSchema
-    src__core__intentSchema__getSchemasByPlugin --> src__core__intentSchema__getAllIntentSchemas
-    src__core__intentSchema__getSchemasByDomain --> src__core__intentSchema__getAllIntentSchemas
-    src__core__intentSchema__canPluginHandle --> src__core__intentSchema__getSchemasByPlugin
     src__core__llmIntentClassifier__buildIntentPrompt --> src__core__llmIntentClassifier__context
     src__core__llmIntentClassifier__classifyIntent --> src__core__llmIntentClassifier__getCacheKey
     src__core__llmIntentClassifier__classifyIntent --> src__core__llmIntentClassifier__cacheGet
@@ -1695,34 +1695,10 @@ flowchart TD
     scripts__process_frame --> scripts__motion_pipeline__update_detection_llm
     scripts__motion_pipeline__MotionPipeline__run --> scripts__motion_pipeline__get_statistics
     scripts__motion_pipeline__main --> scripts__motion_pipeline__parse_args
-    src__probeDevice --> src__discovery__serviceProber__ServiceProber__now
-    src__probeDevice --> src__probeHttpService
-    src__probeDevice --> src__probeRtspService
-    src__probeDevice --> src__probeMqttService
-    src__probeDevice --> src__probeSshService
-    src__probeDevice --> src__probeApiService
-    src__probeDevice --> src__emitEvent
-    src__probeDevice --> src__persistServices
-    src__startTime --> src__discovery__serviceProber__ServiceProber__json
-    src__startTime --> src__discovery__serviceProber__ServiceProber__now
-    src__results --> src__emitEvent
-    src__probeHttpService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeRtspService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeMqttService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeSshService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeApiService --> src__discovery__serviceProber__ServiceProber__now
-    src__probeApiService --> src__discovery__serviceProber__ServiceProber__json
-    src__persistServices --> src__discovery__serviceProber__ServiceProber__now
-    src__persistServices --> src__VALUES
-    src__discovery__serviceProber__ServiceProber__db --> src__VALUES
-    src__discovery__serviceProber__ServiceProber__now --> src__VALUES
-    src__VALUES --> src__addEventListener
-    src__emitEvent --> src__listener
     src__execute --> src__plugins__monitoringPlugin__formatQueryResult
     src__plugins__monitoringPlugin__formatQueryResult --> src__plugins__monitoringPlugin__max
     src__plugins__monitoringPlugin__cols --> src__plugins__monitoringPlugin__max
     src__plugins__monitoringPlugin__widths --> src__plugins__monitoringPlugin__max
-    src__queries__getSettingsQuery__logger --> src__execute
     src__scanNetwork --> src__now
     src__scanNetwork --> src__performScan
     src__scanNetwork --> src__deduplicateDevices
@@ -1744,6 +1720,30 @@ flowchart TD
     src__persistDevices --> src__now
     src__persistDevices --> src__VALUES
     src__discovery__networkScanner__NetworkScanner__db --> src__VALUES
+    src__VALUES --> src__addEventListener
+    src__emitEvent --> src__listener
+    src__queries__getSettingsQuery__logger --> src__execute
+    src__probeDevice --> src__discovery__serviceProber__ServiceProber__now
+    src__probeDevice --> src__probeHttpService
+    src__probeDevice --> src__probeRtspService
+    src__probeDevice --> src__probeMqttService
+    src__probeDevice --> src__probeSshService
+    src__probeDevice --> src__probeApiService
+    src__probeDevice --> src__emitEvent
+    src__probeDevice --> src__persistServices
+    src__startTime --> src__discovery__serviceProber__ServiceProber__json
+    src__startTime --> src__discovery__serviceProber__ServiceProber__now
+    src__results --> src__emitEvent
+    src__probeHttpService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeRtspService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeMqttService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeSshService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeApiService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeApiService --> src__discovery__serviceProber__ServiceProber__json
+    src__persistServices --> src__discovery__serviceProber__ServiceProber__now
+    src__persistServices --> src__VALUES
+    src__discovery__serviceProber__ServiceProber__db --> src__VALUES
+    src__discovery__serviceProber__ServiceProber__now --> src__VALUES
     src__config__autoConfig__runAutoConfig --> src__config__autoConfig__pickBestInterface
     src__config__autoConfig__runAutoConfig --> src__config__autoConfig__buildWelcomeMessage
     src__config__autoConfig__status --> src__config__autoConfig__pickBestInterface
@@ -1774,5 +1774,5 @@ flowchart TD
 
     classDef highCC fill:#ff6b6b,stroke:#c92a2a,color:#fff
     classDef medCC fill:#ffd43b,stroke:#f08c00,color:#000
-    class vite__config__host,vite__config__chatApiPlugin,vite__config__handleQuery,vite__config__intent,vite__config__sub,src__persistence__deviceRepository__repoLogger,src__execute,src__lib__sttClient__transcribeAudio,src__lib__sttClient__run,src__hooks__useChatPersistence__useChatPersistence,src__hooks__useChatPersistence__repoRef,src__hooks__useChatPersistence__conversationIdRef,src__hooks__useTts__useTts,src__hooks__useTts__probeTauriBackendTts,src__hooks__useTts__speak,src__hooks__useTts__runSpeak,src__lib__browseGateway__detectContentType,src__lib__browseGateway__stripCookieBannerText,src__lib__browseGateway__calculateBlockScore,src__extractBrowserReadableContent,src__lib__browseGateway__title,src__lib__browseGateway__bestScore,src__lib__browseGateway__normalizeBrowseResult,src__lib__browseGateway__fetchViaAllOriginsJson,src__lib__browseGateway__fetchViaJina,src__lib__browseGateway__jinaProxies,src__lib__browseGateway__isValidContent,src__hooks__useChatDispatch__dispatchLogger,src__hooks__useChatDispatch__handleConfigCommand,src__hooks__useChatDispatch__useChatDispatch highCC
+    class vite__config__host,vite__config__chatApiPlugin,vite__config__handleQuery,vite__config__intent,vite__config__sub,src__persistence__deviceRepository__repoLogger,src__execute,src__lib__sttClient__transcribeAudio,src__lib__sttClient__run,src__hooks__useChatPersistence__useChatPersistence,src__hooks__useChatPersistence__repoRef,src__hooks__useChatPersistence__conversationIdRef,src__hooks__useTts__useTts,src__hooks__useTts__probeTauriBackendTts,src__hooks__useTts__speak,src__hooks__useTts__runSpeak,src__lib__browseGateway__detectContentType,src__lib__browseGateway__stripCookieBannerText,src__lib__browseGateway__calculateBlockScore,src__extractBrowserReadableContent,src__lib__browseGateway__title,src__lib__browseGateway__bestScore,src__lib__browseGateway__normalizeBrowseResult,src__lib__browseGateway__fetchViaAllOriginsJson,src__lib__browseGateway__fetchViaJina,src__lib__browseGateway__jinaProxies,src__lib__browseGateway__isValidContent,src__useHistoryPersistence,src__hooks__useChatSpeech__useChatSpeech,src__hooks__useChatDispatch__dispatchLogger highCC
     class vite__config__parseArpEntries,src__runMigrations,src__appliedSet,src__save,src__persistence__chatRepository__repoLogger,src__lib__logger__emit,src__lib__resolver__resolve,src__lib__llmClient__chatDirect,src__lib__llmClient__runChatDirect,src__lib__browseGateway__text,src__lib__browseGateway__createHumanLikeSummary,src__lib__browseGateway__contentType,src__lib__browseGateway__summarizeShop,src__lib__browseGateway__summarizeNews,src__lib__browseGateway__summarizeDocumentation,src__lib__browseGateway__getMetaInfo,src__lib__browseGateway__raw,src__lib__browseGateway__blocks,src__lib__browseGateway__removedCount,src__lib__browseGateway__score,src__lib__browseGateway__node,src__lib__browseGateway__headings,src__lib__browseGateway__lists,src__lib__browseGateway__links,src__lib__browseGateway__linkRatio,src__lib__browseGateway__fetchViaAdvancedProxy,src__lib__browseGateway__browseInBrowser,src__lib__browseGateway__runBrowseInBrowser,src__lib__browseGateway__fetchers,src__lib__browseGateway__getSmartFetchers medCC

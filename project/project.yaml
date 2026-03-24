@@ -3,7 +3,7 @@ project:
   name: broxeen
   repo: /home/tom/github/broxeen/broxeen
   language: typescript
-  analyzed_at: '2026-03-24T11:03:47Z'
+  analyzed_at: '2026-03-24T11:52:37Z'
   tool: code2llm
   stats:
     files: 206
@@ -9118,6 +9118,10 @@ refactoring:
     impact: high
     effort: low
     module: browseGateway.ts
+  - action: Split useChatSpeech (CC=107 → target CC<10)
+    impact: high
+    effort: low
+    module: useChatSpeech.ts
   - action: Split useChatDispatch (CC=78 → target CC<10)
     impact: high
     effort: low
@@ -9126,10 +9130,6 @@ refactoring:
     impact: high
     effort: low
     module: useChatDispatch.ts
-  - action: Split useChatSpeech (CC=107 → target CC<10)
-    impact: high
-    effort: low
-    module: useChatSpeech.ts
 evolution:
 - date: '2026-03-24'
   cc_avg: 4.0

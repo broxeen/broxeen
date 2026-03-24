@@ -583,9 +583,9 @@ DATA_TYPES (by cross-function usage) [25 annotated, 154 inferred / 3725 function
   sqlite3.Connection   consumed:3   produced:1    narrow scope
   bool                 consumed:2   produced:2    narrow scope
   tuple                consumed:1   produced:2    narrow scope
-  cv2.BackgroundSubtractorMOG2 consumed:1   produced:1    narrow scope
   argparse.Namespace   consumed:1   produced:1    narrow scope
   list                 consumed:0   produced:2    narrow scope
+  cv2.BackgroundSubtractorMOG2 consumed:1   produced:1    narrow scope
   list[tuple[str, float]] consumed:0   produced:1    narrow scope
   ResolveResult        consumed:0   produced:1    narrow scope
 
