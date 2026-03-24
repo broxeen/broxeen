@@ -1,3 +1,18 @@
+## [Unreleased]
+
+## [1.0.98] - 2026-03-24
+
+### Docs
+- Update project/README.md
+
+### Other
+- Update project.sh
+- Update project.toon
+- Update project/analysis.toon
+- Update project/evolution.toon
+- Update project/project.toon
+- Update src-tauri/src/toonic_sidecar.rs
+
 ## [1.0.98] - 2026-03-02
 
 ### Summary

@@ -169,19 +169,43 @@ pub async fn toonic_start(port: Option<u16>, goal: Option<String>) -> Result<Too
     })?;
 
     let pid = child.id();
-    backend_info(format!("Toonic sidecar started (pid={})", pid));
+    backend_info(format!("Toonic sidecar started (pid={}), waiting for health check...", pid));
+
+    // Store child process (separate scope to avoid holding lock across await)
+    {
+        let mut guard = toonic_lock().lock().map_err(|e| e.to_string())?;
+        *guard = Some(child);
+    }
+
+    // Wait for HTTP health check (up to 10 seconds)
+    let health_url = format!("http://127.0.0.1:{}/api/broxeen/health", port);
+    let client = reqwest::Client::new();
+    let mut health_ok = false;
+    
+    for attempt in 0..20 {
+        tokio::time::sleep(Duration::from_millis(500)).await;
+        match client.get(&health_url).timeout(Duration::from_secs(2)).send().await {
+            Ok(resp) if resp.status().is_success() => {
+                health_ok = true;
+                backend_info(format!("Toonic health check passed after {}ms", (attempt + 1) * 500));
+                break;
+            }
+            _ => {
+                if attempt == 19 {
+                    backend_error("Toonic health check failed after 10s".to_string());
+                }
+            }
+        }
+    }
 
     let status = ToonicStatus {
-        running: true,
+        running: health_ok,
         pid: Some(pid),
         port,
         url: format!("http://127.0.0.1:{}", port),
         toonic_path: Some(toonic_path),
         python,
     };
-
-    let mut guard = toonic_lock().lock().map_err(|e| e.to_string())?;
-    *guard = Some(child);
 
     Ok(status)
 }
