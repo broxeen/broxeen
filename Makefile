@@ -15,13 +15,13 @@
         nlp2cmd-setup nlp2cmd-test nlp2cmd-install nlp2cmd-status nlp2cmd-set-local nlp2cmd-env-setup nlp2cmd-env-show download-bielik \
         run run-url run-cam2 query ask stats narratives recent thumbnail
 
-# ╔══════════════════════════════════════════════════════════════════╗
+# ╔═════════════════════════════════════════════════════════════════╗
 # ║  Broxeen Vision — Makefile                                      ║
-# ╠══════════════════════════════════════════════════════════════════╣
+# ╠═════════════════════════════════════════════════════════════════╣
 # ║  make help            — show all targets                        ║
 # ║  make openvino-detect — detect your platform                    ║
 # ║  make openvino-install— auto-install OpenVINO                   ║
-# ╚══════════════════════════════════════════════════════════════════╝
+# ╚═════════════════════════════════════════════════════════════════╝
 
 SHELL := /bin/bash
 

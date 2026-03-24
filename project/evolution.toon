@@ -1,20 +1,56 @@
-# code2llm/evolution | 25 func | 2f | 2026-03-03
+# code2llm/evolution | 3725 func | 206f | 2026-03-24
 
-NEXT[1] (ranked by impact):
-  [1] !! SPLIT           scripts/motion_pipeline.py
+NEXT[10] (ranked by impact):
+  [1] !! SPLIT-FUNC      useChatSpeech  CC=107  fan=49
+      WHY: CC=107 exceeds 15
+      EFFORT: ~1h  IMPACT: 5243
+
+  [2] !! SPLIT           scripts/motion_pipeline.py
       WHY: 624L, 3 classes, max CC=7
       EFFORT: ~4h  IMPACT: 4368
+
+  [3] !! SPLIT-FUNC      CameraLivePlugin.execute  CC=95  fan=43
+      WHY: CC=95 exceeds 15
+      EFFORT: ~1h  IMPACT: 4085
+
+  [4] !! SPLIT-FUNC      ChatInput  CC=101  fan=38
+      WHY: CC=101 exceeds 15
+      EFFORT: ~1h  IMPACT: 3838
+
+  [5] !! SPLIT-FUNC      MonitorPlugin.handleStart  CC=93  fan=41
+      WHY: CC=93 exceeds 15
+      EFFORT: ~1h  IMPACT: 3813
+
+  [6] !! SPLIT-FUNC      useChatDispatch  CC=78  fan=46
+      WHY: CC=78 exceeds 15
+      EFFORT: ~1h  IMPACT: 3588
+
+  [7] !! SPLIT-FUNC      ChatMessageList  CC=107  fan=33
+      WHY: CC=107 exceeds 15
+      EFFORT: ~1h  IMPACT: 3531
+
+  [8] !! SPLIT-FUNC      useTts  CC=72  fan=48
+      WHY: CC=72 exceeds 15
+      EFFORT: ~1h  IMPACT: 3456
+
+  [9] !! SPLIT-FUNC      host  CC=71  fan=47
+      WHY: CC=71 exceeds 15
+      EFFORT: ~1h  IMPACT: 3337
+
+  [10] !! SPLIT-FUNC      chatApiPlugin  CC=71  fan=47
+      WHY: CC=71 exceeds 15
+      EFFORT: ~1h  IMPACT: 3337
 
 
 RISKS[1]:
   ⚠ Splitting scripts/motion_pipeline.py may break 23 import paths
 
 METRICS-TARGET:
-  CC̄:          3.4 → ≤2.4
-  max-CC:      10 → ≤5
+  CC̄:          4.0 → ≤2.8
+  max-CC:      107 → ≤20
   god-modules: 1 → 0
-  high-CC(≥15): 0 → ≤0
+  high-CC(≥15): 143 → ≤71
   hub-types:   0 → ≤0
 
 HISTORY:
-  prev CC̄=3.4 → now CC̄=3.4
+  prev CC̄=4.0 → now CC̄=4.0

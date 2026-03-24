@@ -305,7 +305,7 @@ D:
     openApp(page: Page)
   e2e/plugin-system.spec.ts:
     i: @playwright/test
-    e: sendMessage,waitForApp
+    e: waitForApp,sendMessage
     waitForApp(page: import('@playwright/test').Page)
     sendMessage(page: import('@playwright/test').Page;text: string)
   e2e/voice-interface.spec.ts:
@@ -324,7 +324,7 @@ D:
     addCamera()
   scripts/chat-cli.mjs:
     i: child_process,os,readline,fs,path
-    e: sqliteQuery,handleConfig,handleDbCommand,getFrigateConfig,handlePlugins,handlePing,handleEmailSend,handleArp
+    e: runComparison,handleMonitorCommand,getLocalCidrs,handleBrowse,showEmailHelp,handlePing,parseArpEntries,handleFrigateCommand
     col(text)
     run(cmd)
     hasCmd()
@@ -349,7 +349,7 @@ D:
     parse_args()->argparse.Namespace
   scripts/net-diag.mjs:
     i: child_process,os
-    e: getArpEntries,printRoutes,main,nmapScan,printLocalInfo,printTools,compareWithApp,printMdns
+    e: main,parseNmapResult,getArpEntries,run,printMdns,nmapScan,printLocalInfo,printArp
     col(t)
     sep()
     run(cmd)
@@ -360,7 +360,7 @@ D:
     getArpEntries()
   scripts/test-email.mjs:
     i: child_process,fs
-    e: fail,ok,skip,runPy,run,section
+    e: section,fail,runPy,run,skip,ok
     col(t)
     run(cmd)
     runPy(script)
@@ -851,8 +851,8 @@ D:
   src/components/ActionSuggestions.tsx:
     i: react,lucide-react
     e: ActionSuggestionsProps,ActionSuggestion
-    getSmartTitle(query: string)
-    getSmartIcon(category: string)
+    getSmartTitle(query: string)->string
+    getSmartIcon(category: string)->React.ReactNode
     getCategoryColor(category: ActionSuggestion['category'])
     getCategoryIcon(category: ActionSuggestion['category'])
     handleSuggestionClick(suggestion: ActionSuggestion)
@@ -860,14 +860,17 @@ D:
     i: ..{/hooks/useAlertBridge,/plugins/discovery/autoScanScheduler}
     e: AlertBridgeComponent,AlertBridgeComponentProps
     AlertBridgeComponent()
+  src/components/CameraLiveInline.tsx:
+    i: react,@tauri-apps/api/core
+    tick()
   src/components/CameraPreview.tsx:
     i: react,lucide-react,../contexts/pluginContext
-    e: CameraPreviewProps,FrameAnalysis
+    e: FrameAnalysis,CameraPreviewProps
     handlePlay()
     handlePause()
-    createRTSPStream()
-    createMJPEGStream()
-    createWebRTCStream()
+    createRTSPStream()->Promise<MediaStream>
+    createMJPEGStream()->Promise<MediaStream>
+    createWebRTCStream()->Promise<MediaStream>
     startStreamMonitoring()
     stopStreamMonitoring()
     handleMuteToggle()
@@ -882,7 +885,7 @@ D:
     Chat()
   src/components/ChatConfigPrompt.tsx:
     i: lucide-react,react,..{/config/appConfig,/config/configStore,/core/preferenceLearning}
-    e: ConfigAction,ChatConfigPromptProps,ConfigPromptData,ChatConfigPrompt
+    e: ConfigPromptData,ChatConfigPrompt,ChatConfigPromptProps,ConfigAction
     ChatConfigPrompt()
   src/components/ChatMessageList.tsx:
     i: react,lucide-react,react-markdown,remark-gfm,remark-breaks,.{/ActionSuggestions,/CameraLiveInline,/CameraPreview,/ChatConfigPrompt},../domain/chatEvents
@@ -890,15 +893,15 @@ D:
     getNetworkIcon(scope: string)
   src/components/ChatPersistenceBridge.tsx:
     i: ..{/contexts/CqrsContext,/hooks/useChatPersistence,/persistence/databaseManager}
-    e: Props,ChatPersistenceBridge
+    e: ChatPersistenceBridge,Props
     ChatPersistenceBridge()
   src/components/CommandHistory.tsx:
     i: react,lucide-react
-    e: CommandHistoryItem,CommandHistory,CategoryFilter,CommandHistoryProps
+    e: CommandHistoryItem,CommandHistory,CommandHistoryProps,CategoryFilter
     CommandHistory()
   src/components/DeviceDashboardModal.tsx:
     i: react,lucide-react
-    e: DeviceServiceEntry,timeAgo,deviceIcon,DeviceDashboardModalProps,DeviceEntry,inferDeviceType,statusColor
+    e: DeviceEntry,deviceIcon,timeAgo,DeviceDashboardModalProps,statusColor,DeviceServiceEntry,inferDeviceType
     timeAgo(ts: number)->string
     statusColor(device: DeviceEntry)->string
     inferDeviceType(device: DeviceEntry)->"camera" | "server" | "device"
@@ -906,10 +909,10 @@ D:
     dispatchChatAction(mode: 'prefill' | 'execute';text: string)
   src/components/DeviceStrip.test.tsx:
     i: vitest,@testing-library/react,./DeviceStrip,..{/persistence/configuredDeviceRepository,/persistence/databaseManager}
-    makeDevice(overrides: Partial<ConfiguredDevice>)
+    makeDevice(overrides: Partial<ConfiguredDevice>)->ConfiguredDevice
   src/components/DeviceStrip.tsx:
     i: react,lucide-react,..{/persistence/configuredDeviceRepository,/persistence/databaseManager}
-    e: statusDot,deviceTypeIcon,DeviceStripProps
+    e: deviceTypeIcon,DeviceStripProps,statusDot
     deviceTypeIcon(type: string;size)
     statusDot(device: ConfiguredDevice)
   src/components/ErrorReportPanel.tsx:
@@ -925,7 +928,7 @@ D:
     getSeverityIcon(severity: string)
   src/components/FileResultsDisplay.tsx:
     i: react,lucide-react
-    e: FileResultsDisplayProps,getFileIcon,formatBytes,FileResultsDisplay,FileResult
+    e: FileResult,getFileIcon,FileResultsDisplay,formatBytes,FileResultsDisplayProps
     getFileIcon(ext: string;mime: string)
     formatBytes(bytes: number)->string
     FileResultsDisplay()
@@ -937,7 +940,7 @@ D:
     runHealthCheck()
   src/components/MessageQuickActions.tsx:
     i: react,lucide-react,./ChatConfigPrompt,..{/domain/chatEvents,/utils/quickActionResolver}
-    e: MessageQuickActions,MessageQuickActionsProps
+    e: MessageQuickActionsProps,MessageQuickActions
     MessageQuickActions()
     getVariantClasses(variant: ConfigAction['variant'];isExecuted: boolean)
   src/components/MicSettingsModal.tsx:
@@ -947,16 +950,16 @@ D:
     handleSave()
   src/components/NetworkSelector.tsx:
     i: react,lucide-react,./NetworkHistorySelector
-    e: NetworkConfig,NetworkSelector,NetworkSelectorProps,NetworkScope
+    e: NetworkScope,NetworkSelectorProps,NetworkSelector,NetworkConfig
     NetworkSelector()
   src/components/QuickActionButtons.tsx:
     i: react,lucide-react,../domain/chatEvents
-    e: QuickActionButtons,ActionLink,MessageWithQuickActions,QuickActionButtonsProps
+    e: MessageWithQuickActions,ActionLink,QuickActionButtonsProps,QuickActionButtons
     QuickActionButtons()
     MessageWithQuickActions()
   src/components/Settings.test.tsx:
     i: vitest,@testing-library/react,@tauri-apps/api/core,./Settings,../lib/runtime
-    e: renderSettings,stubMediaDevices,stubPermissions
+    e: stubMediaDevices,stubPermissions,renderSettings
     stubMediaDevices()
     stubPermissions(state: "granted" | "denied" | "prompt")
     renderSettings(props: Partial<typeof baseProps>)
@@ -974,7 +977,7 @@ D:
     canProceed()
   src/components/ThinkingMessage.tsx:
     i: react,lucide-react
-    e: ThinkingMessageProps,ThinkingMessage
+    e: ThinkingMessage,ThinkingMessageProps
     ThinkingMessage()
   src/components/TtsControls.tsx:
     i: lucide-react,../lib/logger
@@ -989,14 +992,14 @@ D:
     handleSave()
   src/components/WatchBadge.simple.tsx:
     i: react,lucide-react
-    e: WatchBadge,WatchBadgeProps
+    e: WatchBadgeProps,WatchBadge
     WatchBadge()
   src/config/appConfig.ts:
-    e: AppConfig,NetworkScanConfig,SshAppConfig,CameraDefaults,LlmAppConfig,ServiceProbeConfig,ConfigFieldMeta,FrigateAppConfig
+    e: ServiceProbeConfig,AppConfig,LocaleConfig,CameraDefaults,LlmAppConfig,FrigateAppConfig,SttAppConfig,EmailAppConfig
     getConfigFieldsByCategory()->Map<string, ConfigFieldMeta[]>
   src/config/autoConfig.ts:
     i: ./configStore,..{/components/ChatConfigPrompt,/lib/logger}
-    e: interfaceScore,pickBestInterface,isValidCandidateIp,buildWelcomeMessage,runAutoConfig,isPrivateIp,AutoConfigResult
+    e: isValidCandidateIp,pickBestInterface,interfaceScore,buildWelcomeMessage,AutoConfigResult,runAutoConfig,isPrivateIp
     runAutoConfig()->Promise<AutoConfigResult>
     buildWelcomeMessage(caps: AutoConfigResult['capabilities'];needsSetup: boolean)->string
     isPrivateIp(ip: string)->boolean
@@ -1005,11 +1008,11 @@ D:
     pickBestInterface(interfaces: Array<[string; string]>)->[string, string] | null
   src/config/configStore.ts:
     i: ./appConfig,../lib/logger
-    e: ConfigListener,ConfigStoreImpl,ConfigStatus
+    e: ConfigStatus,ConfigStoreImpl,ConfigListener
     ConfigStoreImpl: constructor(0),load(0),persist(0),getAll(0),get(1)
   src/config/watchConfig.ts:
     i: ..{/discovery/types,/integration/autoWatchIntegration,/persistence/types,/reactive/types}
-    e: getChangeThreshold,getWatchConfig,validateWatchConfig,mergeWatchConfig,getAutoWatchConfig,getPollingInterval
+    e: getChangeThreshold,validateWatchConfig,getWatchConfig,getAutoWatchConfig,mergeWatchConfig,getPollingInterval
     getWatchConfig()->WatchConfig
     getAutoWatchConfig()->AutoWatchConfig
     getPollingInterval(serviceType: keyof typeof servicePollIntervals)->number
@@ -1018,16 +1021,16 @@ D:
     mergeWatchConfig(base: WatchConfig;override: Partial<WatchConfig>)->WatchConfig
   src/contexts/CqrsContext.tsx:
     i: react,.
-    e: CqrsProvider,CqrsContextValue
+    e: CqrsContextValue,CqrsProvider
     CqrsProvider()
   src/contexts/pluginContext.tsx:
     i: react,@tauri-apps/api/core,..{/config/configStore,/core/bootstrap,/core/types,/lib/runtime},../core/plugin.types
-    e: PluginContextValue,usePlugins,PluginProviderProps,PluginProvider
+    e: PluginProvider,PluginProviderProps,PluginContextValue,usePlugins
     PluginProvider()
     usePlugins()->PluginContextValue
   src/core/actionSchema.ts:
     i: ../components/ChatConfigPrompt
-    e: schemasToConfigActions,ActionSchema,getSchemasByDomain,getDomainHints,schemasToLlmContext,findMatchingSchemas,ActionDomain,findDomainSchemas
+    e: schemasToLlmContext,schemasToConfigActions,getDomainHints,findDomainSchemas,ActionDomain,findMatchingSchemas,scoreMatch,ActionSchema
     getSchemasByDomain(domain: ActionDomain)->ActionSchema[]
     getAllDomains()->ActionDomain[]
     scoreMatch(query: string;schema: ActionSchema)->number
@@ -1038,13 +1041,13 @@ D:
     schemasToLlmContext(schemas: ActionSchema[])->string
   src/core/bootstrap.ts:
     i: .{/commandBus,/intentRouter,/llmIntentClassifier,/pluginRegistry,/types},..{/config/configStore,/domain/eventStore,/lib/logger,/persistence/databaseManager,/plugins/scope/scopeRegistry}
-    e: safeRegister,bootstrapApp,registerCorePlugins
+    e: AppContext,registerCorePlugins,bootstrapApp,safeRegister
     bootstrapApp(config: {   isTauri: boolean;   tauriInvoke?: (command: string; args?: any) => Promise<any>;   cameras?: import('./types').CameraConfig[];   mqtt?: import('./types').MqttConfig;   describeImage?: (imageUrl: string) => Promise<string>; })->Promise<AppContext>
     safeRegister(registry: PluginRegistry;router: IntentRouter;plugin: any;label: string)->void
     registerCorePlugins(registry: PluginRegistry;router: IntentRouter;bus: CommandBus;isTauri: boolean;tauriInvoke?)->Promise<void>
   src/core/cache.ts:
     i: ../lib/logger
-    e: CacheStats,CacheFactory,CacheEntry,Cache,CacheConfig
+    e: CacheFactory,Cache,CacheEntry,CacheStats,CacheConfig
     Cache: constructor(1),get(1),set(3),delete(1),has(1)
     CacheFactory: create(2),get(1),delete(1),getAllStats(0),clearAll(0)
   src/core/commandBus.ts:
@@ -1053,7 +1056,7 @@ D:
     CommandBus: register(2),unregister(1),execute(2),getRegisteredCommands(0),has(1)
   src/core/fallbackHandler.ts:
     i: .{/actionSchema,/preferenceLearning,/systemContext},..{/components/ChatConfigPrompt,/lib/logger}
-    e: generateFallback,tryLlmFallback,keywordFallback,injectFavorites,FallbackResult,rankByPreference,FallbackOptions
+    e: tryLlmFallback,keywordFallback,generateFallback,injectFavorites,FallbackOptions,rankByPreference,FallbackResult
     tryLlmFallback(options: FallbackOptions)->Promise<FallbackResult | null>
     rankByPreference(actions: ConfigAction[])->ConfigAction[]
     injectFavorites(actions: ConfigAction[];limit)->ConfigAction[]
@@ -1070,7 +1073,7 @@ D:
     buildQuery(intent: string;rawInput: string;overrides: Partial<Omit<PluginQuery; 'intent' | 'rawInput'>>)->PluginQuery
   src/core/intentSchema.ts:
     i: ./actionSchema
-    e: IntentSchema,SubActionDef,getAllIntentSchemas,getSchemasByDomain,canPluginHandle,matchIntentByPatterns,registerIntentSchema,getSchemasByPlugin
+    e: IntentSchema,registerIntentSchema,registerIntentSchemas,matchIntentByPatterns,getIntentSchema,getAllIntentSchemas,defineIntent,getSchemasByPlugin
     registerIntentSchema(schema: IntentSchema)->void
     registerIntentSchemas(schemas: readonly IntentSchema[])->void
     getIntentSchema(intent: string)->IntentSchema | undefined
@@ -1084,7 +1087,7 @@ D:
 } | null
   src/core/llmIntentClassifier.ts:
     i: .{/actionSchema,/systemContext},../lib/logger
-    e: getIntentCacheStats,cacheGet,clearIntentCache,LlmResponse,cacheSet,buildIntentPrompt,classifyIntent,isLlmClassifierAvailable
+    e: classifyIntent,clearIntentCache,buildIntentPrompt,LlmResponse,getIntentCacheStats,getCacheKey,LlmIntentResult,isLlmClassifierAvailable
     getCacheKey(query: string)->string
     cacheSet(key: string;result: LlmIntentResult)->void
     cacheGet(key: string)->LlmIntentResult | null
@@ -1094,7 +1097,7 @@ D:
     clearIntentCache()->void
     getIntentCacheStats()->{ size: number; maxSize: number }
   src/core/plugin.types.ts:
-    e: VisualPlugin,PluginEvent,IntentName,PersistentPlugin,DataSourcePlugin,IQueryHandler,IPluginRegistry,PluginId
+    e: PluginEventType,isPersistent,PluginCapabilities,ICommandHandler,IIntentRouter,PluginResult,ResultMetadata,PluginQuery
     isStreamable(plugin: DataSourcePlugin)
     isVisual(plugin: DataSourcePlugin)
     isPersistent(plugin: DataSourcePlugin)
@@ -1108,24 +1111,24 @@ D:
     PluginRegistry: register(1),unregister(1),get(1),getAll(0),findByIntent(1)
   src/core/preferenceLearning.ts:
     i: ./actionSchema,../lib/logger
-    e: PreferenceScore,PreferenceEntry,PreferenceLearningStore
+    e: PreferenceLearningStore,PreferenceEntry,PreferenceScore
     PreferenceLearningStore: ensureLoaded(0),save(0),normalizeKey(2),recordChoice(1),score(2)
   src/core/processRegistry.ts:
-    e: ProcessRegistry,ProcessInfo,ProcessRecord,ProcessStatus,ProcessType
+    e: ProcessStatus,ProcessType,ProcessInfo,ProcessRecord,ProcessRegistry
     ProcessRegistry: upsertRunning(1),complete(1),fail(2),stop(1),remove(1)
   src/core/queryBus.ts:
     i: ./plugin.types
-    e: QueryBus,QueryMiddleware,GetPluginStatusQuery,PluginInfo,cachingMiddleware,ListPluginsQuery
+    e: ListPluginsQuery,GetPluginStatusQuery,QueryBus,PluginInfo,cachingMiddleware,QueryMiddleware
     QueryBus: register(2),unregister(1),use(1),dispatch(1),registeredQueries(0)
     cachingMiddleware(ttlMs: number)->QueryMiddleware
   src/core/realtimeSync.ts:
     i: ..{/domain/chatEvents,/lib/logger}
-    e: SyncMessage,RealtimeSyncConfig,RealtimeSync,getRealtimeSync,disposeRealtimeSync
+    e: RealtimeSync,disposeRealtimeSync,SyncMessage,RealtimeSyncConfig,getRealtimeSync
     RealtimeSync: constructor(1),generateSourceId(0),checkSupport(0),initialize(0),initializeLocalStorageFallback(0)
     getRealtimeSync()->RealtimeSync
     disposeRealtimeSync()->void
   src/core/retry.ts:
-    e: RetryOptions,computeDelayMs,retry,isProbablyTransientHttpStatus,RetryDecision,isProbablyTransientErrorMessage,shouldRetryUnknownAsTransient,sleep
+    e: retry,computeDelayMs,resolveDecision,isProbablyTransientErrorMessage,sleep,RetryDecision,isProbablyTransientHttpStatus,RetryOptions
     resolveDecision(decision: boolean | RetryDecision | undefined)->RetryDecision
     sleep(ms: number)->Promise<void>
     computeDelayMs(attempt: number;baseDelayMs: number;maxDelayMs: number;jitterRatio: number)->number
@@ -1135,7 +1138,7 @@ D:
     shouldRetryUnknownAsTransient(error: unknown)->RetryDecision
   src/core/systemContext.ts:
     i: ..{/lib/logger,/lib/runtime}
-    e: updateSystemContext,resetSystemContext,detectOs,SystemContext,getSystemContext,OsPlatform,detectShell,RuntimeType
+    e: updateSystemContext,getSystemContext,SystemContext,RuntimeType,detectHomeDir,OsPlatform,detectOs,detectUser
     detectOs()->OsPlatform
     detectUser()->string
     detectHomeDir(os: OsPlatform;user: string)->string
@@ -1161,12 +1164,12 @@ D:
     ChatAggregate: apply(1),replayAll(1),getMessages(0),getNextId(0),getMessage(1)
   src/domain/chatEvents.ts:
     i: ./audioSettings
-    e: DomainEvent,ChatMessage,ChatMessageRole,projectChatMessages,createEvent,ChatEvent
+    e: ChatMessage,createEvent,ChatEvent,DomainEvent,projectChatMessages,ChatMessageRole
     createEvent(type: T;payload?)->DomainEvent
     projectChatMessages(current: ChatMessage[];event: ChatEvent | DomainEvent)->ChatMessage[]
   src/domain/eventStore.ts:
     i: ./chatEvents,..{/core/realtimeSync,/lib/logger}
-    e: EventHandler,EventStore
+    e: EventStore,EventHandler
     EventStore: append(1),on(2),onAll(1),getEvents(1),project(1)
   src/hooks/useAlertBridge.ts:
     i: react,..{/contexts/CqrsContext,/lib/logger,/plugins/discovery/autoScanScheduler,/reactive/alertBridge}
@@ -1174,7 +1177,7 @@ D:
     useAlertBridge(autoScanScheduler: AutoScanScheduler | null)->AlertBridge | null
   src/hooks/useChatDispatch.ts:
     i: react,.
-    e: useChatDispatch,parseCameraResults,checkIfNetworkQuery,getAmbiguousQueryText,containsUrl,getSuggestionsForQuery,checkIfAmbiguousQuery,addScopePrefix
+    e: useChatDispatch,getSuggestionsForQuery,getNetworkSelectionText,looksLikeRecoverableError,containsUrl,getAmbiguousQueryText,checkIfNetworkQuery,UseChatDispatchDeps
     handleConfigCommand(query: string)->{ text: string; prompt: ConfigPromptData } | null
     addScopePrefix(query: string;scope: QueryScope)->string
     categorizeCommand(command: string)->CommandHistoryItem['category']
@@ -1189,12 +1192,12 @@ D:
     useChatMessages()
   src/hooks/useChatPersistence.ts:
     i: react,..{/domain/chatEvents,/domain/eventStore,/lib/logger,/persistence/chatRepository,/persistence/databaseManager}
-    e: useChatPersistence,getSessionConversationId
+    e: getSessionConversationId,useChatPersistence
     getSessionConversationId()->string
     useChatPersistence(eventStore: EventStore | null;databaseManager: DatabaseManager | null)
   src/hooks/useChatSpeech.ts:
     i: react,@tauri-apps/api/core,.{/useSpeech,/useStt,/useTts},..{/components/ChatInput,/domain/audioSettings,/domain/eventStore,/lib/logger,/lib/runtime}
-    e: useChatSpeech,UseChatSpeechReturn,UseChatSpeechDeps
+    e: UseChatSpeechDeps,useChatSpeech,UseChatSpeechReturn
     useChatSpeech(deps: UseChatSpeechDeps)->UseChatSpeechReturn
   src/hooks/useDatabaseManager.ts:
     i: react,../persistence/databaseManager
@@ -1202,7 +1205,7 @@ D:
     useDatabaseManager()->DatabaseManager | null
   src/hooks/useHistoryPersistence.ts:
     i: react,..{/lib/logger,/persistence/databaseManager,/persistence/historyRepository}
-    e: addToNetworkHistoryLocalStorage,CommandHistoryItem,NetworkHistoryItem,addToCommandHistoryLocalStorage,loadCommandHistoryLocalStorage,loadNetworkHistoryLocalStorage,useHistoryPersistence
+    e: addToNetworkHistoryLocalStorage,useHistoryPersistence,loadNetworkHistoryLocalStorage,CommandHistoryItem,addToCommandHistoryLocalStorage,NetworkHistoryItem,loadCommandHistoryLocalStorage
     useHistoryPersistence(databaseManager: DatabaseManager | null)
     addToCommandHistoryLocalStorage(command: string;result?;category;success)
     loadCommandHistoryLocalStorage()->CommandHistoryItem[]
@@ -1210,22 +1213,22 @@ D:
     loadNetworkHistoryLocalStorage()->NetworkHistoryItem[]
   src/hooks/useLlm.ts:
     i: react,..{/lib/llmClient,/lib/llmPrompts,/lib/logger}
-    e: UseLlmReturn,IntentType,UseLlmOptions,useLlm
+    e: UseLlmOptions,useLlm,UseLlmReturn,IntentType
     useLlm(options: UseLlmOptions)->UseLlmReturn
   src/hooks/useSpeech.test.ts:
     i: vitest,@testing-library/react,./useSpeech
     e: MockRecognition
-    makeMockRecognition()
+    makeMockRecognition()->MockRecognition
   src/hooks/useSpeech.ts:
     i: react,..{/lib/logger,/lib/runtime}
-    e: getSpeechRecognitionCtor,getUnsupportedReason,useSpeech,SpeechRecognitionInstance,SpeechRecognitionErrorEvent,SpeechRecognitionEvent
+    e: SpeechRecognitionErrorEvent,SpeechRecognitionInstance,getUnsupportedReason,SpeechRecognitionEvent,useSpeech,getSpeechRecognitionCtor
     getSpeechRecognitionCtor()->| (new () => SpeechRecognitionInstance)
   | undefined
     getUnsupportedReason(supported: boolean;runtimeIsTauri: boolean)->string | null
     useSpeech(lang: string)
   src/hooks/useStt.ts:
     i: react,@tauri-apps/api/core,..{/domain/audioSettings,/lib/logger,/lib/runtime,/lib/sttClient}
-    e: getAudioSettings,writeWavPcm16,blobToWavBase64,useStt,arrayBufferToBase64,getUnsupportedReason,UseSttOptions,UseSttReturn
+    e: blobToWavBase64,useStt,arrayBufferToBase64,getUnsupportedReason,UseSttOptions,toErrorDetails,writeWavPcm16,getAudioSettings
     getAudioSettings()->Promise<AudioSettings>
     arrayBufferToBase64(buf: ArrayBuffer)->string
     writeWavPcm16(audioBuffer: AudioBuffer)->ArrayBuffer
@@ -1235,23 +1238,23 @@ D:
     useStt(options: UseSttOptions)->UseSttReturn
   src/hooks/useTts.ts:
     i: react,@tauri-apps/api/core,..{/lib/logger,/lib/runtime}
-    e: estimateBackendSpeechDurationMs,preprocessForTts,getSpeechSynthesisApi,TauriTtsAvailability,useTts,TtsOptions,BackendTtsInfo
+    e: TtsOptions,BackendTtsInfo,getSpeechSynthesisApi,TauriTtsAvailability,estimateBackendSpeechDurationMs,useTts,preprocessForTts
     getSpeechSynthesisApi()->SpeechSynthesis | undefined
     preprocessForTts(text: string)->string
     estimateBackendSpeechDurationMs(text: string;rate: number)->number
     useTts(options: Partial<TtsOptions>)
   src/hooks/useWatchNotifications.ts:
     i: react,..{/reactive/types,/reactive/watchManager}
-    e: useWatchNotifications,mapChangeToNotification,WatchNotification,UseWatchNotificationsReturn
+    e: useWatchNotifications,WatchNotification,UseWatchNotificationsReturn,mapChangeToNotification
     useWatchNotifications(watchManager: WatchManager | null)->UseWatchNotificationsReturn
     mapChangeToNotification(change: ChangeDetectedEvent)->WatchNotification
   src/integration/autoWatchIntegration.ts:
     i: ..{/domain/chatEvents,/lib/logger,/persistence/databaseManager,/reactive/watchManager}
-    e: AutoWatchIntegration,AutoWatchStats,AutoWatchConfig
+    e: AutoWatchStats,AutoWatchConfig,AutoWatchIntegration
     AutoWatchIntegration: constructor(3),processMessage(1),extractIntentInfo(1),shouldAutoWatch(2),hasRecentQuery(4)
   src/lib/browseGateway.ts:
     i: @tauri-apps/api/core,.{/logger,/runtime},../core/retry
-    e: browseInBrowser,normalizeBrowseResult,getMetadataLabel,looksLikeHtml,summarizeUnknownError,fetchViaAllOriginsJson,calculateBlockScore,isValidContent
+    e: getMetadataLabel,fetchViaAdvancedProxy,executeBrowseCommand,summarizeForum,summarizeShop,shouldRateLimit,getContentTypeLabel,AllOriginsResponse
     getRandomUserAgent()->string
     getRandomReferer(targetUrl: string)->string
     getRandomAcceptLanguage()->string
@@ -1262,12 +1265,12 @@ D:
     generateRandomIP()->string
   src/lib/llmClient.test.ts:
     i: vitest
-    e: mockFetchSuccess,mockFetchError
+    e: mockFetchError,mockFetchSuccess
     mockFetchSuccess(responseText: string;model)
     mockFetchError(status: number;body: string)
   src/lib/llmClient.ts:
     i: .{/logger,/runtime},../config/configStore
-    e: LlmContentPart,chat,chatDirect,describeImageChange,askAboutContent,summarizeForTts,detectIntent,chatViaTauri
+    e: LlmConfig,describeImage,summarizeSearchResults,LlmResponse,chat,getConfig,LlmContentPart,chatDirect
     getConfig()->LlmConfig
     chat(messages: LlmMessage[];configOverride?)->Promise<LlmResponse>
     chatDirect(messages: LlmMessage[];cfg: LlmConfig)->Promise<LlmResponse>
@@ -1280,7 +1283,7 @@ D:
     e: getPrompt,PromptMode
     getPrompt(mode: PromptMode;override?)->string
   src/lib/logger.ts:
-    e: ScopedLogger,logAsyncDecorator,safeStringify,createScopedLogger,logSyncDecorator,normalizeLogArg,emit,LogLevel
+    e: logAsyncDecorator,safeStringify,emit,normalizeLogArg,logSyncDecorator,LogMethod,createScopedLogger,ScopedLogger
     normalizeLogArg(arg: any)
     safeStringify(value: any)->string
     emit(level: LogLevel;scope: string | undefined;message: string)
@@ -1289,12 +1292,12 @@ D:
     logAsyncDecorator(scope: string;operationName: string;fn: (...args: TArgs) => Promise<TResult>)->(...args: TArgs) => Promise<TResult>
   src/lib/phonetic.ts:
     i: ./logger
-    e: normalize,looksLikeUrl
+    e: looksLikeUrl,normalize
     normalize(text: string)->string
     looksLikeUrl(text: string)->boolean
   src/lib/resolver.ts:
     i: .{/logger,/phonetic}
-    e: ResolveResult,resolve,fuzzyMatchDomain,levenshtein,similarity
+    e: ResolveResult,fuzzyMatchDomain,levenshtein,resolve,similarity
     levenshtein(a: string;b: string)->number
     similarity(a: string;b: string)->number
     fuzzyMatchDomain(input: string;threshold;maxResults)->Array<[string, number]>
@@ -1304,7 +1307,7 @@ D:
     isTauriRuntime()->boolean
   src/lib/sttClient.ts:
     i: @tauri-apps/api/core,.{/logger,/runtime},../config/configStore
-    e: SttAudioFormat,getSttConfig,transcribeAudio,buildSttRequestBody,SttConfig
+    e: SttAudioFormat,getSttConfig,buildSttRequestBody,transcribeAudio,SttConfig
     buildSttRequestBody(params: {   model: string;   prompt: string;   audioBase64: string;   format: SttAudioFormat;   maxTokens: number;   temperature: number; })
     getSttConfig()->SttConfig
     transcribeAudio(audioBase64: string;format: SttAudioFormat;languageOverride?;configOverride?)->Promise<string>
@@ -1314,13 +1317,13 @@ D:
     ChatRepository: constructor(1),ensureConversation(1),saveMessage(2),saveMessages(2),loadMessages(2)
   src/persistence/configuredDeviceRepository.ts:
     i: ./databaseManager,../lib/logger
-    e: ConfiguredDeviceRepository,ConfiguredDeviceInput,ConfiguredDevice,genId,ConfiguredDeviceRow,rowToDevice
+    e: rowToDevice,ConfiguredDeviceRow,ConfiguredDeviceRepository,genId,ConfiguredDeviceInput,ConfiguredDevice
     ConfiguredDeviceRepository: constructor(1),save(1),listAll(0),listMonitored(0),getById(1)
     rowToDevice(r: ConfiguredDeviceRow)->ConfiguredDevice
     genId()->string
   src/persistence/databaseManager.ts:
     i: .{/migrations,/types},../lib/logger
-    e: TauriDbAdapter,DbAdapter,InMemoryDbAdapter,DatabaseManager
+    e: DatabaseManager,DbAdapter,InMemoryDbAdapter,TauriDbAdapter
     TauriDbAdapter: constructor(2),isOpen(0),execute(2),query(2),queryOne(2)
     InMemoryDbAdapter: constructor(1),isOpen(0),execute(2),query(2),queryOne(2)
     DatabaseManager: constructor(2),initialize(0),getDevicesDb(0),getChatDb(0),runMigrations(3)
@@ -1334,10 +1337,10 @@ D:
     createMockDb()
   src/persistence/historyRepository.ts:
     i: ./databaseManager,../lib/logger
-    e: NetworkHistoryRow,CommandHistoryRow,HistoryRepository
+    e: CommandHistoryRow,NetworkHistoryRow,HistoryRepository
     HistoryRepository: constructor(1),saveCommand(1),upsertCommand(4),listCommands(1),saveNetworkEntry(1)
   src/persistence/scanHistoryRepository.ts:
-    e: ScanHistoryEntry,ScanHistoryRepository,IncrementalScanRecommendation
+    e: IncrementalScanRecommendation,ScanHistoryRepository,ScanHistoryEntry
     ScanHistoryRepository: constructor(1),save(1),list(1),getLastSuccessfulBySubnet(1),shouldUseIncrementalScan(1)
   src/plugins/__tests__/plugins.e2e.test.ts:
     i: vitest,.,../..{/core/intentRouter,/core/pluginRegistry}
@@ -1352,7 +1355,7 @@ D:
     e: CameraLivePlugin
     CameraLivePlugin: canHandle(2),execute(2),resolveVendorFromDb(2),mapVendorStringToId(1),handleTestStreams(5)
   src/plugins/camera/cameraVendorDatabase.ts:
-    e: CameraVendor,getVendorInfo,buildSnapshotUrl,detectCameraVendor,buildRtspUrl
+    e: buildSnapshotUrl,detectCameraVendor,buildRtspUrl,CameraVendor,getVendorInfo
     detectCameraVendor(options: {   hostname?: string;   mac?: string;   httpHeaders?: Record<string; string>;   httpContent?: string;   rtspPath?: string; })->string
     getVendorInfo(vendorId: string)->CameraVendor
     buildRtspUrl(ip: string;username: string;password: string;vendorId: string;quality: 'main' | 'sub' | 'mobile';port: number)->string
@@ -1363,7 +1366,7 @@ D:
     CameraHealthPlugin: canHandle(2),execute(2),formatStatuses(1),extractCameraId(1),errorResult(2)
   src/plugins/cameras/cameraPtzPlugin.ts:
     i: ../../core/types
-    e: PtzCommand,PtzDirection,CameraPtzPlugin
+    e: CameraPtzPlugin,PtzDirection,PtzCommand
     CameraPtzPlugin: canHandle(2),execute(2),parseCommand(1),extractCameraId(1),directionLabel(1)
   src/plugins/cameras/cameraSnapshotPlugin.ts:
     i: ../../core/types
@@ -1382,10 +1385,10 @@ D:
     makeTauriCtx(invokeImpl?)
   src/plugins/discovery/autoScanScheduler.ts:
     i: ../..{/core/types,/lib/logger,/persistence/deviceRepository,/persistence/scanHistoryRepository,/reactive/alertBridge}
-    e: AutoScanConfig,DeviceStatusChangeCallback,AutoScanScheduler
+    e: DeviceStatusChangeCallback,AutoScanScheduler,AutoScanConfig
     AutoScanScheduler: constructor(2),setStatusChangeCallback(1),start(1),stop(0),isRunning(0)
   src/plugins/discovery/cameraDetection.ts:
-    e: CameraVendor,PortScanResult,CameraDetectionResult,getAllCameraPorts,generateRtspUrls,generateRecommendations,identifyVendor
+    e: getAllCameraPorts,generateRecommendations,PortScanResult,identifyVendor,generateRtspUrls,CameraDetectionResult,CameraVendor
     getAllCameraPorts()->number[]
     identifyVendor(httpContent: string;headers: Record<string; string>)->{ vendor: string; confidence: number } | null
     generateRtspUrls(ip: string;vendor?)->string[]
@@ -1400,7 +1403,7 @@ D:
     DeviceStatusPlugin: initialize(1),canHandle(2),execute(2),showGeneralStatus(0),showOnlineDevices(0)
   src/plugins/discovery/networkScanPlugin.ts:
     i: ../.
-    e: NetworkScanPlugin,NetworkScanResult,NetworkDevice
+    e: NetworkScanResult,NetworkDevice,NetworkScanPlugin
     NetworkScanPlugin: resolveRoute(1),initialize(1),canHandle(2),isStatusQuery(1),isFilterQuery(1)
   src/plugins/discovery/serviceProbePlugin.ts:
     i: ../..{/core/types,/discovery/types}
@@ -1408,7 +1411,7 @@ D:
     ServiceProbePlugin: initialize(1),canHandle(2),execute(2),extractTarget(1),performSimpleProbe(1)
   src/plugins/docker/dockerPlugin.ts:
     i: ../../core/types
-    e: DockerContainer,DockerVolume,DockerPlugin,DockerImage,DockerInfo,DockerNetwork
+    e: DockerContainer,DockerNetwork,DockerVolume,DockerImage,DockerInfo,DockerPlugin
     DockerPlugin: initialize(1),dispose(0),canHandle(2),execute(2),extractContainerId(1)
   src/plugins/email/emailPlugin.ts:
     i: ../..{/config/configStore,/core/types}
@@ -1416,14 +1419,14 @@ D:
     EmailPlugin: resolveRoute(1),canHandle(2),execute(2),isPollConfigRequest(1),handleConfig(2)
   src/plugins/files/fileSearchPlugin.ts:
     i: ../..{/core/systemContext,/core/types}
-    e: FileContentResponse,FileSearchPlugin,FileSearchResult,FileSearchResponse
+    e: FileSearchPlugin,FileSearchResult,FileContentResponse,FileSearchResponse
     FileSearchPlugin: canHandle(2),execute(2),executeSearch(3),executeRead(3),buildGridResult(2)
   src/plugins/frigate/frigateEventsPlugin.test.ts:
     i: vitest,./frigateEventsPlugin,../..{/core/types,/lib/llmClient}
-    tauriCtx(overrides?)
+    tauriCtx(overrides?)->PluginContext
   src/plugins/frigate/frigateEventsPlugin.ts:
     i: ../..{/config/configStore,/core/types,/lib/logger}
-    e: FrigateEvent,UnlistenFn,FrigateMqttEnvelope,FrigateEventsPlugin
+    e: FrigateMqttEnvelope,UnlistenFn,FrigateEvent,FrigateEventsPlugin
     FrigateEventsPlugin: initialize(1),dispose(0),resolveRoute(1),canHandle(2),execute(2)
   src/plugins/http/browsePlugin.ts:
     i: ../../core/types
@@ -1431,19 +1434,19 @@ D:
     HttpBrowsePlugin: isLanUrl(1),extractUrlFromInput(1),sanitizeExtractedUrl(1),canHandle(2),execute(2)
   src/plugins/marketplace/marketplaceLoader.ts:
     i: ../scope/scopeRegistry,../../core/types
-    e: MarketplaceEntry,MarketplacePlugin
+    e: MarketplacePlugin,MarketplaceEntry
     MarketplacePlugin: resolveRoute(1),canHandle(2),execute(2),handleBrowse(1),handleSearch(2)
   src/plugins/monitor/monitorPlugin.ts:
     i: ../.
-    e: MonitorUiEventDetail,MonitorPlugin,MonitorLogEntry,MonitorTarget,CaptureMetadata
+    e: MonitorLogEntry,MonitorPlugin,CaptureMetadata,MonitorTarget,MonitorUiEventDetail
     MonitorPlugin: buildDbConflictPrompt(0),canHandle(2),execute(2),parseToggleMonitoring(1),handleToggleMonitoring(4)
   src/plugins/monitor/motionDetectionPlugin.test.ts:
     i: vitest,./motionDetectionPlugin,../../core/types
-    makeTauriCtx(invokeImpl?)
-    makeBrowserCtx()
+    makeTauriCtx(invokeImpl?)->PluginContext
+    makeBrowserCtx()->PluginContext
   src/plugins/monitor/motionDetectionPlugin.ts:
     i: ../..{/components/ChatConfigPrompt,/config/configStore,/core/types,/lib/logger}
-    e: UnlistenFn,PipelineStatus,MotionDetectionPlugin,DetectionRow,DetectionStats
+    e: PipelineStatus,UnlistenFn,MotionDetectionPlugin,DetectionRow,DetectionStats
     MotionDetectionPlugin: initialize(1),dispose(0),canHandle(2),execute(2),handleStart(3)
   src/plugins/monitoringPlugin.ts:
     i: ..{/lib/logger,/lib/runtime},../core/plugin.types
@@ -1452,7 +1455,7 @@ D:
     formatQueryResult(result: VisionQueryResult;elapsedMs: number)->string
   src/plugins/mqtt/index.ts:
     i: ./mqttPlugin,../../core/pluginRegistry
-    e: registerMqttPlugin
+    e: MqttPlugin,registerMqttPlugin,MqttConfig,MqttClientAdapter
     registerMqttPlugin(registry: PluginRegistry;config: MqttConfig;client: MqttClientAdapter)->MqttPlugin
   src/plugins/mqtt/mqttPlugin.ts:
     i: ../../core/plugin.types
@@ -1460,7 +1463,7 @@ D:
     MqttPlugin: connected(0),constructor(2),initialize(0),isAvailable(0),execute(1)
   src/plugins/network/arpPlugin.ts:
     i: ../../core/types
-    e: ArpHost,ArpPlugin
+    e: ArpPlugin,ArpHost
     ArpPlugin: canHandle(2),execute(2),formatHosts(3),extractSubnet(1),errorResult(2)
   src/plugins/network/mdnsPlugin.ts:
     i: ../../core/types
@@ -1468,15 +1471,15 @@ D:
     MdnsPlugin: canHandle(2),execute(2),formatServices(2),groupByType(1),friendlyType(1)
   src/plugins/network/onvifPlugin.ts:
     i: ../../core/types
-    e: OnvifCamera,OnvifPlugin
+    e: OnvifPlugin,OnvifCamera
     OnvifPlugin: canHandle(2),execute(2),browserProbe(2),formatCameras(2),extractSubnet(1)
   src/plugins/network/pingPlugin.ts:
     i: ../../core/types
-    e: PingPlugin,PingResult
+    e: PingResult,PingPlugin
     PingPlugin: canHandle(2),execute(2),extractTarget(1),formatResult(3),errorResult(2)
   src/plugins/network/portScanPlugin.ts:
     i: ../../core/types
-    e: PortScanResult,PortScanPlugin
+    e: PortScanPlugin,PortScanResult
     PortScanPlugin: canHandle(2),execute(2),extractTarget(1),extractPorts(1),formatResult(3)
   src/plugins/network/wakeOnLanPlugin.ts:
     i: ../../core/types
@@ -1484,34 +1487,34 @@ D:
     WakeOnLanPlugin: canHandle(2),execute(2),extractMac(1),errorResult(2),initialize(1)
   src/plugins/protocol-bridge/protocolBridgePlugin.ts:
     i: ../..{/core/types,/lib/logger}
-    e: WsConnection,ProtocolBridgePlugin,BridgeProtocol,BridgeDirection,MqttCacheEntry,SseStream,ActionHint,BridgeEndpoint
+    e: BridgeMessage,BridgeEndpoint,MqttCacheEntry,BridgeProtocol,BridgeDirection,ProtocolBridgePlugin,SseStream,WsConnection
     ProtocolBridgePlugin: resolveRoute(1),canHandle(2),execute(2),detectProtocolFromInput(1),handleAdd(2)
   src/plugins/remote-machine/remoteMachinePlugin.ts:
     i: ../../core/types
-    e: RemoteMachinePlugin,NetworkInterface,RemoteMachine,RemoteProcess,RemoteSystemInfo,RemoteCommandResult,DiskUsage
+    e: RemoteMachine,NetworkInterface,DiskUsage,RemoteProcess,RemoteCommandResult,RemoteMachinePlugin,RemoteSystemInfo
     RemoteMachinePlugin: initialize(1),dispose(0),canHandle(2),execute(2),handleAddMachine(1)
   src/plugins/rtsp-camera/index.ts:
     i: ./rtspCameraPlugin,../../core/pluginRegistry
-    e: RegisterRtspCameraOptions,registerRtspCameraPlugin
+    e: CapturedFrame,SceneDescriber,registerRtspCameraPlugin,RtspCameraPlugin,RegisterRtspCameraOptions,FrameGrabber,CameraConfig
     registerRtspCameraPlugin(registry: PluginRegistry;options: RegisterRtspCameraOptions)->RtspCameraPlugin
   src/plugins/rtsp-camera/rtspCameraPlugin.ts:
     i: ../../core/plugin.types
-    e: RtspCameraPlugin,RtspCameraPluginOptions,CameraConfig,FrameGrabber,HttpSnapshotGrabber,TauriRtspGrabber,CapturedFrame,SceneDescriber
+    e: LlmSceneDescriber,RtspCameraPluginOptions,CapturedFrame,TauriRtspGrabber,SceneDescriber,blobToBase64,RtspCameraPlugin,HttpSnapshotGrabber
     HttpSnapshotGrabber: isAvailable(0),capture(1)
     TauriRtspGrabber: constructor(1),isAvailable(0),capture(1)
     LlmSceneDescriber: constructor(1),describe(2)
     RtspCameraPlugin: constructor(1),initialize(0),isAvailable(0),execute(1),captureFrame(1)
     blobToBase64(blob: Blob)->Promise<string>
   src/plugins/scope/scopeRegistry.ts:
-    e: RemotePluginManifest,ScopeDefinition,ScopeId,ScopeRegistry
+    e: ScopeId,ScopeDefinition,RemotePluginManifest,ScopeRegistry
     ScopeRegistry: normalizeScopeId(1),constructor(0),getScope(1),getAllScopes(0),getActiveScope(0)
   src/plugins/system/diskInfoPlugin.ts:
     i: ../../core/types
-    e: DiskInfoPlugin,DiskInfo,DiskPartition,SshResult
+    e: DiskInfo,DiskInfoPlugin,DiskPartition,SshResult
     DiskInfoPlugin: canHandle(2),execute(2),buildConfigPrompt(1),buildProgressBar(2),executeTauri(3)
   src/plugins/system/logsPlugin.ts:
     i: ../..{/config/configStore,/core/types,/lib/logger}
-    e: LogCommandAction,LogCommand,LogsPlugin
+    e: LogCommand,LogsPlugin,LogCommandAction
     LogsPlugin: initialize(1),canHandle(2),execute(2),executeCommand(2),downloadLogs(0)
   src/plugins/system/processesPlugin.ts:
     i: ../..{/core/processRegistry,/core/types}
@@ -1519,7 +1522,7 @@ D:
     ProcessesPlugin: canHandle(2),execute(2)
   src/plugins/system/sshPlugin.ts:
     i: ../..{/config/configStore,/core/retry,/core/types}
-    e: KnownHost,SshPlugin,SshExecResult,SshTestResult
+    e: SshTestResult,SshExecResult,SshPlugin,KnownHost
     SshPlugin: canHandle(2),execute(2),handleExecute(3),listKnownHosts(2),testConnection(4)
   src/plugins/toonic/toonicBridgePlugin.ts:
     i: ../..{/core/types,/lib/logger}
@@ -1527,7 +1530,7 @@ D:
     ToonicBridgePlugin: canHandle(2),execute(2),handleStart(1),handleStop(1),handleStatus(1)
   src/plugins/voice/voiceCommandsPlugin.ts:
     i: ../..{/core/types,/lib/logger}
-    e: VoiceCommandsPlugin,VoiceCommand,VoiceCommandAction
+    e: VoiceCommandAction,VoiceCommand,VoiceCommandsPlugin
     VoiceCommandsPlugin: initialize(1),canHandle(2),execute(2),executeCommand(1),dispose(0)
   src/queries/getMessagesQuery.ts:
     i: ..{/domain/chatAggregate,/domain/chatEvents}
@@ -1544,7 +1547,7 @@ D:
     captureMessages(store: EventStore)
   src/reactive/alertBridge.ts:
     i: .{/types,/watchManager},..{/domain/chatEvents,/domain/eventStore,/lib/logger}
-    e: AlertBridge,DeviceStatusChange,AlertBridgeOptions
+    e: AlertBridgeOptions,DeviceStatusChange,AlertBridge
     AlertBridge: constructor(2),attachWatchManager(1),detachWatchManager(0),emitChangeAlert(1),notifyDeviceStatusChange(1)
   src/reactive/changeDetector.ts:
     i: ./types,..{/persistence/databaseManager,/persistence/types}
@@ -1564,7 +1567,7 @@ D:
     DefaultLlmAdapter: chat(1),ask(2),summarize(2),summarizeSearch(2),detectIntent(1)
   src/utils/errorReporting.ts:
     i: ../lib/logger
-    e: captureError,captureNetworkError,capturePluginError,captureUserError,captureSystemError,ErrorReporting,ErrorReport
+    e: captureUserError,captureNetworkError,ErrorReporting,captureError,capturePluginError,captureSystemError,ErrorReport
     ErrorReporting: constructor(0),generateSessionId(0),setupGlobalHandlers(0),getContext(0),captureError(1)
     captureError(error: Partial<ErrorReport>)
     captureNetworkError(message: string;details?)
@@ -1573,7 +1576,7 @@ D:
     captureSystemError(message: string;details?)
   src/utils/healthCheck.ts:
     i: ..{/lib/logger,/persistence/databaseManager}
-    e: HealthCheckResult,runQuickHealthCheck,HealthChecker,HealthReport,runHealthCheck
+    e: HealthChecker,HealthReport,runQuickHealthCheck,runHealthCheck,HealthCheckResult
     HealthChecker: constructor(0),registerDefaultChecks(0),addCheck(3),runChecks(0),runQuickCheck(0)
     runHealthCheck()
     runQuickHealthCheck()
@@ -1589,3 +1592,9 @@ D:
     i: vite,@vitejs/plugin-react,vitest/config,child_process,os
     e: chatApiPlugin
     chatApiPlugin()->Plugin
+    run(cmd: string;timeout)->string | null
+    getLocalIp()->string | null
+    detectIntent(q: string)->string
+    parseArpEntries()
+    parseNmapHosts(out: string)
+    handleQuery(query: string;scope: string)->{ intent: string; content: Array<{type:string;data:string}> }

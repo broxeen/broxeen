@@ -1,5 +1,25 @@
 ## [Unreleased]
 
+## [1.0.99] - 2026-03-24
+
+### Docs
+- Update docs/README.md
+- Update project/README.md
+- Update project/context.md
+
+### Other
+- Update Makefile
+- Update project/analysis.toon
+- Update project/calls.mmd
+- Update project/calls.png
+- Update project/compact_flow.mmd
+- Update project/compact_flow.png
+- Update project/dashboard.html
+- Update project/duplication.toon
+- Update project/evolution.toon
+- Update project/flow.mmd
+- ... and 7 more files
+
 ## [1.0.98] - 2026-03-24
 
 ### Docs

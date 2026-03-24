@@ -1,0 +1,1778 @@
+flowchart TD
+    subgraph e2e_chat_features
+        e2e__chat_features__spec__openApp["openApp"]
+        e2e__chat_features__spec__url["url"]
+        e2e__chat_features__spec__input["input"]
+        e2e__chat_features__spec__assistantMessages["assistantMessages"]
+        e2e__chat_features__spec__settingsBtn["settingsBtn"]
+        e2e__chat_features__spec__btn["btn"]
+        e2e__chat_features__spec__ttsCheckbox["ttsCheckbox"]
+        e2e__chat_features__spec__saveBtn["saveBtn"]
+        e2e__chat_features__spec__closeBtn["closeBtn"]
+        e2e__chat_features__spec__copyMainBtn["copyMainBtn"]
+        e2e__chat_features__spec__clipboardText["clipboardText"]
+    end
+    subgraph e2e_logging
+        e2e__logging__spec__diagnosticButton["diagnosticButton"]
+        e2e__logging__spec__diagnosticTitle["diagnosticTitle"]
+        e2e__logging__spec__closeDiagnosticBtn["closeDiagnosticBtn"]
+        e2e__logging__spec__errorReportBtn["errorReportBtn"]
+        e2e__logging__spec__w["w"]
+    end
+    subgraph e2e_network_scanning_flow
+        e2e__network_scanning_flow__spec__networkOption["networkOption"]
+        e2e__network_scanning_flow__spec__scanResults["scanResults"]
+        e2e__scanResultsVisible["scanResultsVisible"]
+        e2e__network_scanning_flow__spec__networkOptions["networkOptions"]
+        e2e__network_scanning_flow__spec__cameraFound["cameraFound"]
+        e2e__network_scanning_flow__spec__optionLocator["optionLocator"]
+        e2e__network_scanning_flow__spec__element["element"]
+        e2e__network_scanning_flow__spec__interactionFound["interactionFound"]
+        e2e__network_scanning_flow__spec__testSuccessful["testSuccessful"]
+        e2e__network_scanning_flow__spec__button["button"]
+        e2e__network_scanning_flow__spec__backButton["backButton"]
+        e2e__network_scanning_flow__spec__historyItems["historyItems"]
+        e2e__network_scanning_flow__spec__historyItem["historyItem"]
+    end
+    subgraph e2e_new_plugins
+        e2e__new_plugins__spec__llmStatus["llmStatus"]
+        e2e__new_plugins__spec__env["env"]
+        e2e__new_plugins__spec__llmClassifierStatus["llmClassifierStatus"]
+        e2e__new_plugins__spec__configStore["configStore"]
+        e2e__new_plugins__spec__apiKey["apiKey"]
+        e2e__new_plugins__spec__text["text"]
+        e2e__new_plugins__spec__messages["messages"]
+        e2e__new_plugins__spec__lastMessage["lastMessage"]
+        e2e__new_plugins__spec__updatedMessages["updatedMessages"]
+        e2e__new_plugins__spec__newLastMessage["newLastMessage"]
+        e2e__new_plugins__spec__input["input"]
+        e2e__new_plugins__spec__autocomplete["autocomplete"]
+        e2e__new_plugins__spec__suggestions["suggestions"]
+        e2e__new_plugins__spec__currentValue["currentValue"]
+    end
+    subgraph e2e_plugin_system
+        e2e__plugin_system__spec__waitForApp["waitForApp"]
+        e2e__plugin_system__spec__sendMessage["sendMessage"]
+        e2e__plugin_system__spec__body["body"]
+    end
+    subgraph e2e_ssh_docker
+        e2e__ssh_docker__spec__SSH_TEST_PORT["SSH_TEST_PORT"]
+        e2e__ssh_docker__spec__input["input"]
+        e2e__ssh_docker__spec__response["response"]
+        e2e__ssh_docker__spec__messages["messages"]
+        e2e__ssh_docker__spec__apiKey["apiKey"]
+    end
+    subgraph e2e_ssh_integration
+        e2e__ssh_integration__spec__input["input"]
+        e2e__ssh_integration__spec__response["response"]
+        e2e__ssh_integration__spec__messages["messages"]
+        e2e__ssh_integration__spec__apiKeySet["apiKeySet"]
+    end
+    subgraph e2e_voice_interface
+        e2e__voice_interface__spec__openApp["openApp"]
+        e2e__voice_interface__spec__supported["supported"]
+        e2e__voice_interface__spec__input["input"]
+        e2e__voice_interface__spec__ttsButton["ttsButton"]
+        e2e__voice_interface__spec__hasTtsButton["hasTtsButton"]
+        e2e__voice_interface__spec__assistantMessages["assistantMessages"]
+        e2e__voice_interface__spec__count["count"]
+        e2e__voice_interface__spec__result["result"]
+        e2e__voice_interface__spec__utt["utt"]
+        e2e__voice_interface__spec__voiceCount["voiceCount"]
+        e2e__voice_interface__spec__voices["voices"]
+        e2e__voice_interface__spec__micButton["micButton"]
+        e2e__voice_interface__spec__SR["SR"]
+        e2e__voice_interface__spec__orig["orig"]
+        e2e__voice_interface__spec__startCalled["startCalled"]
+        e2e__voice_interface__spec__speakCalled["speakCalled"]
+        e2e__voice_interface__spec__sendBtn["sendBtn"]
+        e2e__voice_interface__spec__copyBtn["copyBtn"]
+        e2e__voice_interface__spec__settingsBtn["settingsBtn"]
+    end
+    subgraph playwright_config
+        playwright__config__testEnv["testEnv"]
+    end
+    subgraph resolver
+        resolver__fuzzy_match_domain["fuzzy_match_domain"]
+        resolver__resolve("resolve CC=10")
+    end
+    subgraph scripts_add_reolink_camera
+        scripts__add_reolink_camera__addCamera["addCamera"]
+        scripts__add_reolink_camera__dbManager["dbManager"]
+        scripts__add_reolink_camera__deviceRepo["deviceRepo"]
+    end
+    subgraph scripts_chat_cli
+        scripts__chat_cli__col["col"]
+        scripts__chat_cli__run["run"]
+        scripts__chat_cli__hasCmd["hasCmd"]
+        scripts__chat_cli__getLocalIp["getLocalIp"]
+        scripts__chat_cli__subnet["subnet"]
+        scripts__chat_cli__getLocalCidrs["getLocalCidrs"]
+        scripts__chat_cli__out["out"]
+        scripts__chat_cli__cidrs["cidrs"]
+        scripts__chat_cli__m["m"]
+        scripts__chat_cli__ip["ip"]
+        scripts__chat_cli__detectIntent["detectIntent"]
+        scripts__chat_cli__handlePing["handlePing"]
+        scripts__chat_cli__host["host"]
+        scripts__chat_cli__parseArpEntries("parseArpEntries CC=9")
+        scripts__chat_cli__raw["raw"]
+        scripts__chat_cli__mac["mac"]
+        scripts__chat_cli__parseNmapHosts["parseNmapHosts"]
+        scripts__chat_cli__block["block"]
+        scripts__chat_cli__hasCam["hasCam"]
+        scripts__chat_cli__handleFindRpi{{handleFindRpi CC=18}}
+        scripts__chat_cli__blocks["blocks"]
+        scripts__chat_cli__hits["hits"]
+        scripts__chat_cli__vendor["vendor"]
+        scripts__chat_cli__handleScan{{handleScan CC=18}}
+        scripts__chat_cli__localIp["localIp"]
+        scripts__chat_cli__sub("sub CC=8")
+        scripts__chat_cli__arp["arp"]
+        scripts__chat_cli__wifiArp["wifiArp"]
+        scripts__chat_cli__nmapCmd["nmapCmd"]
+        scripts__chat_cli__nmapOut("nmapOut CC=9")
+        scripts__chat_cli__hosts["hosts"]
+        scripts__chat_cli__cameras["cameras"]
+        scripts__chat_cli__others["others"]
+        scripts__chat_cli__handlePortScan("handlePortScan CC=8")
+        scripts__chat_cli__r["r"]
+        scripts__chat_cli__handleArp["handleArp"]
+        scripts__chat_cli__entries["entries"]
+        scripts__chat_cli__handleBrowse("handleBrowse CC=8")
+        scripts__chat_cli__url["url"]
+        scripts__chat_cli__res["res"]
+        scripts__chat_cli__text["text"]
+        scripts__chat_cli__title["title"]
+        scripts__chat_cli__plain["plain"]
+        scripts__chat_cli__showHelp["showHelp"]
+        scripts__chat_cli__findDbPath["findDbPath"]
+        scripts__chat_cli__hasSqlite3Cli["hasSqlite3Cli"]
+        scripts__chat_cli__sqliteQuery["sqliteQuery"]
+        scripts__chat_cli__handleDevices["handleDevices"]
+        scripts__chat_cli__dbPath["dbPath"]
+        scripts__chat_cli__device["device"]
+        scripts__chat_cli__services["services"]
+        scripts__chat_cli__count["count"]
+        scripts__chat_cli__handlePlugins("handlePlugins CC=10")
+        scripts__chat_cli__data["data"]
+        scripts__chat_cli__plugins["plugins"]
+        scripts__chat_cli__name["name"]
+        scripts__chat_cli__handleDbCommand("handleDbCommand CC=12")
+        scripts__chat_cli__devicesDb["devicesDb"]
+        scripts__chat_cli__chatDb["chatDb"]
+        scripts__chat_cli__tables["tables"]
+    end
+    subgraph scripts_detect_platform
+        scripts__detect_platform__detect_os["detect_os"]
+        scripts__detect_platform__detect_arch["detect_arch"]
+        scripts__detect_platform__detect_cpu["detect_cpu"]
+        scripts__detect_platform__detect_gpu["detect_gpu"]
+        scripts__detect_platform__recommend_openvino_ep["recommend_openvino_ep"]
+        scripts__detect_platform__print_report["print_report"]
+        scripts__detect_platform__export_vars["export_vars"]
+        scripts__detect_platform__main["main"]
+    end
+    subgraph scripts_install_openvino
+        scripts__install_openvino__run_detect["run_detect"]
+        scripts__install_openvino__check_install["check_install"]
+        scripts__install_openvino__print["print"]
+        scripts__install_openvino__main["main"]
+    end
+    subgraph scripts_install_openvino_docker
+        scripts__install_openvino_docker__check_docker["check_docker"]
+        scripts__pull_openvino_image["pull_openvino_image"]
+        scripts__install_openvino_docker__test_in_docker["test_in_docker"]
+        scripts__install_openvino_docker__print["print"]
+        scripts__generate_dockerfile["generate_dockerfile"]
+        scripts__install_openvino_docker__generate_compose["generate_compose"]
+        scripts__build_docker_image["build_docker_image"]
+        scripts__install_openvino_docker__main["main"]
+    end
+    subgraph scripts_install_openvino_macos
+        scripts__install_homebrew_deps["install_homebrew_deps"]
+        scripts__install_openvino_macos__install_via_pip["install_via_pip"]
+        scripts__install_openvino_macos__install_via_brew["install_via_brew"]
+        scripts__install_openvino_macos__print_macos_notes["print_macos_notes"]
+        scripts__install_openvino_macos__setup_environment["setup_environment"]
+        scripts__install_openvino_macos__verify_install["verify_install"]
+        scripts__install_openvino_macos__print["print"]
+        scripts__install_openvino_macos__main["main"]
+    end
+    subgraph scripts_install_openvino_pip
+        scripts__install_openvino_pip__find_python["find_python"]
+        scripts__install_openvino_pip__install_in_venv["install_in_venv"]
+        scripts__install_openvino_pip__install_system_wide["install_system_wide"]
+        scripts__install_openvino_pip__install_dev_tools["install_dev_tools"]
+        scripts__install_openvino_pip__verify_install["verify_install"]
+        scripts__install_openvino_pip__print["print"]
+        scripts__install_openvino_pip__main["main"]
+    end
+    subgraph scripts_install_openvino_rhel
+        scripts__install_prerequisites["install_prerequisites"]
+        scripts__install_via_yum_repo["install_via_yum_repo"]
+        scripts__install_openvino_rhel__install_via_pip["install_via_pip"]
+        scripts__install_gpu_runtime["install_gpu_runtime"]
+        scripts__install_openvino_rhel__setup_environment["setup_environment"]
+        scripts__install_openvino_rhel__verify_install["verify_install"]
+        scripts__install_openvino_rhel__main["main"]
+    end
+    subgraph scripts_install_openvino_ubuntu
+        scripts__install_prerequisites["install_prerequisites"]
+        scripts__install_openvino_ubuntu__install_via_apt["install_via_apt"]
+        scripts__install_openvino_ubuntu__install_via_pip["install_via_pip"]
+        scripts__install_gpu_runtime["install_gpu_runtime"]
+        scripts__install_python_extras["install_python_extras"]
+        scripts__setup_environment["setup_environment"]
+        scripts__install_openvino_ubuntu__verify_install["verify_install"]
+        scripts__install_openvino_ubuntu__print["print"]
+        scripts__install_openvino_ubuntu__main["main"]
+    end
+    subgraph scripts_motion_pipeline
+        scripts__motion_pipeline__init_db["init_db"]
+        scripts__motion_pipeline__save_detection["save_detection"]
+        scripts__motion_pipeline__update_detection_llm["update_detection_llm"]
+        scripts__motion_pipeline__get_statistics["get_statistics"]
+        scripts__motion_pipeline__create_bg_subtractor["create_bg_subtractor"]
+        scripts__motion_pipeline__extract_moving_objects["extract_moving_objects"]
+        scripts____init__["__init__"]
+        scripts___load_model["_load_model"]
+        scripts___select_model_path["_select_model_path"]
+        scripts__classify["classify"]
+        scripts__motion_pipeline__LlmVerifier____init__["__init__"]
+        scripts___crop_to_b64["_crop_to_b64"]
+        scripts__motion_pipeline__LlmVerifier__verify["verify"]
+        scripts__motion_pipeline__should_send_to_llm["should_send_to_llm"]
+        scripts__motion_pipeline__MotionPipeline____init__["__init__"]
+        scripts___is_in_cooldown["_is_in_cooldown"]
+        scripts___update_cooldown["_update_cooldown"]
+        scripts___emit_event["_emit_event"]
+        scripts___maybe_emit_stats["_maybe_emit_stats"]
+        scripts__process_frame["process_frame"]
+        scripts__motion_pipeline__MotionPipeline__run["run"]
+        scripts__motion_pipeline__parse_args["parse_args"]
+        scripts__motion_pipeline__main["main"]
+    end
+    subgraph scripts_net_diag
+        scripts__net_diag__ARGS["ARGS"]
+        scripts__net_diag__MODE_CAM["MODE_CAM"]
+        scripts__net_diag__MODE_CMP["MODE_CMP"]
+        scripts__net_diag__APP_URL["APP_URL"]
+        scripts__net_diag__col["col"]
+        scripts__net_diag__sep["sep"]
+        scripts__net_diag__run["run"]
+        scripts__net_diag__has["has"]
+        scripts__net_diag__getLocalIp["getLocalIp"]
+        scripts__net_diag__printTools["printTools"]
+        scripts__net_diag__printLocalInfo["printLocalInfo"]
+        scripts__net_diag__ifaces["ifaces"]
+        scripts__net_diag__getArpEntries("getArpEntries CC=11")
+        scripts__net_diag__raw("raw CC=8")
+        scripts__net_diag__ip["ip"]
+        scripts__net_diag__mac["mac"]
+        scripts__net_diag__printArp("printArp CC=12")
+        scripts__net_diag__stateColor("stateColor CC=8")
+        scripts__net_diag__printRoutes["printRoutes"]
+        scripts__net_diag__out["out"]
+        scripts__net_diag__pingBroadcast["pingBroadcast"]
+        scripts__net_diag__targets["targets"]
+        scripts__net_diag__results["results"]
+        scripts__net_diag__nmapScan["nmapScan"]
+        scripts__net_diag__cmd["cmd"]
+        scripts__net_diag__parseNmapResult("parseNmapResult CC=10")
+        scripts__net_diag__hostname["hostname"]
+        scripts__net_diag__block["block"]
+        scripts__net_diag__vendor["vendor"]
+        scripts__net_diag__hasCam["hasCam"]
+        scripts__net_diag__printNmapHosts("printNmapHosts CC=11")
+        scripts__net_diag__icon["icon"]
+        scripts__net_diag__label["label"]
+        scripts__net_diag__printMdns["printMdns"]
+        scripts__net_diag__compareWithApp["compareWithApp"]
+        scripts__net_diag__res["res"]
+        scripts__net_diag__data["data"]
+        scripts__net_diag__content["content"]
+        scripts__net_diag__main("main CC=11")
+        scripts__net_diag__localIp["localIp"]
+        scripts__net_diag__sub["sub"]
+        scripts__net_diag__arpEntries["arpEntries"]
+        scripts__net_diag__pingAlive["pingAlive"]
+        scripts__net_diag__nmapOut["nmapOut"]
+        scripts__net_diag__nmapHosts["nmapHosts"]
+        scripts__net_diag__allIps["allIps"]
+        scripts__net_diag__cameras["cameras"]
+    end
+    subgraph src_tauri_benches
+        src_tauri__create_large_test_dataset["create_large_test_dataset"]
+        src_tauri__benchmark_search_with_rust_search_direc["benchmark_search_with_rust_search_d"]
+    end
+    subgraph src_tauri_src
+        src_tauri__get_local_network_info["get_local_network_info"]
+        src_tauri__src__network_info__get_interface_name["get_interface_name"]
+        src_tauri__list_network_interfaces["list_network_interfaces"]
+        src_tauri__test_get_local_network_info["test_get_local_network_info"]
+        src_tauri__test_list_network_interfaces["test_list_network_interfaces"]
+        src_tauri__src__main_changes__main["main"]
+        src_tauri__src__vision_config__default_camera_id["default_camera_id"]
+        src_tauri__src__vision_config__default_model_path["default_model_path"]
+        src_tauri__default_confidence_threshold["default_confidence_threshold"]
+        src_tauri__default_nms_threshold["default_nms_threshold"]
+        src_tauri__src__vision_config__default_input_size["default_input_size"]
+        src_tauri__default_use_openvino["default_use_openvino"]
+        src_tauri__default_intra_threads["default_intra_threads"]
+        src_tauri__src__vision_config__default["default"]
+        src_tauri__default_process_every["default_process_every"]
+        src_tauri__src__vision_config__default_bg_history["default_bg_history"]
+        src_tauri__default_bg_var_threshold["default_bg_var_threshold"]
+        src_tauri__default_min_activity_area["default_min_activity_area"]
+        src_tauri__default_iou_match_threshold["default_iou_match_threshold"]
+        src_tauri__default_max_age_frames["default_max_age_frames"]
+        src_tauri__src__vision_config__default_min_hits["default_min_hits"]
+        src_tauri__src__vision_config__default_crop_max_px["default_crop_max_px"]
+        src_tauri__default_crops_per_track["default_crops_per_track"]
+        src_tauri__default_flush_interval_secs["default_flush_interval_secs"]
+        src_tauri__default_min_crops_for_llm["default_min_crops_for_llm"]
+        src_tauri__default_ring_capacity["default_ring_capacity"]
+        src_tauri__default_max_crops_per_batch["default_max_crops_per_batch"]
+        src_tauri__src__vision_config__default_db_path["default_db_path"]
+        src_tauri__default_openrouter_model["default_openrouter_model"]
+        src_tauri__src__vision_config__default_local_model["default_local_model"]
+        src_tauri__default_local_base_url["default_local_base_url"]
+        src_tauri__src__vision_config__default_max_tokens["default_max_tokens"]
+        src_tauri__default_max_narrative_tokens["default_max_narrative_tokens"]
+        src_tauri__src__vision_config__load_config["load_config"]
+        src_tauri__src__vision_config__default_config["default_config"]
+        src_tauri__build_timeline["build_timeline"]
+        src_tauri__src__vision_scene_buffer__select_crops("select_crops CC=9")
+        src_tauri__src__vision_scene_buffer__new["new"]
+        src_tauri__src__vision_scene_buffer__push["push"]
+        src_tauri__src__vision_scene_buffer__should_flush["should_flush"]
+        src_tauri__src__vision_scene_buffer__drain["drain"]
+        src_tauri__src__vision_scene_buffer__force_drain["force_drain"]
+        src_tauri__src__vision_tracker__new["new"]
+        src_tauri__src__vision_tracker__update{{update CC=20}}
+        src_tauri__src__vision_tracker__compute_iou["compute_iou"]
+        src_tauri__src__vision_tracker__extract_crop("extract_crop CC=10")
+        src_tauri__src__tts__active_tts_child["active_tts_child"]
+        src_tauri__src__tts__detect_backend["detect_backend"]
+        src_tauri__src__tts__normalize_lang["normalize_lang"]
+        src_tauri__src__tts__map_rate["map_rate"]
+        src_tauri__src__tts__map_pitch["map_pitch"]
+        src_tauri__src__tts__map_volume["map_volume"]
+        src_tauri__src__tts__stop_active_tts_child["stop_active_tts_child"]
+        src_tauri__src__tts__tts_is_available["tts_is_available"]
+        src_tauri__src__tts__tts_speak("tts_speak CC=14")
+        src_tauri__src__tts__tts_stop["tts_stop"]
+        src_tauri__src__vision_motion__new["new"]
+        src_tauri__src__vision_motion__process_frame{{process_frame CC=16}}
+        src_tauri__src__llm_query__validate_sql_public["validate_sql_public"]
+        src_tauri__src__llm_query__validate_sql("validate_sql CC=8")
+    end
+    subgraph src_App
+        src__App__startupLogger["startupLogger"]
+        src__App__tts["tts"]
+        src__App__micStreamRef{{micStreamRef CC=21}}
+        src__App__micAudioCtxRef{{micAudioCtxRef CC=21}}
+        src__App__micAnimationFrameRef{{micAnimationFrameRef CC=21}}
+        src__App__runtimeIsTauri["runtimeIsTauri"]
+        src__App__runHealthCheck["runHealthCheck"]
+        src__App__healthStatus["healthStatus"]
+        src__App__initializePlugins["initializePlugins"]
+        src__App__context["context"]
+        src__App__loadSettings["loadSettings"]
+        src__App__loadVoices["loadVoices"]
+        src__App__availableVoices["availableVoices"]
+        src__App__warmupMicrophone["warmupMicrophone"]
+        src__App__stream["stream"]
+        src__App__md["md"]
+        src__App__cancelled["cancelled"]
+        src__App__cleanup["cleanup"]
+        src__App__interval["interval"]
+        src__App__level["level"]
+        src__App__ctx["ctx"]
+        src__App__src["src"]
+        src__App__analyser["analyser"]
+        src__App__buf["buf"]
+        src__App__loop["loop"]
+        src__App__sum["sum"]
+        src__App__v["v"]
+        src__App__rms["rms"]
+        src__App__micDevices["micDevices"]
+        src__App__speakerDevices["speakerDevices"]
+        src__App__activeMic["activeMic"]
+        src__App__activeSpeaker["activeSpeaker"]
+        src__App__persistSettings["persistSettings"]
+        src__App__updateSettings["updateSettings"]
+    end
+    subgraph src_commands
+        src__commands__copyContextCommand__logger["logger"]
+        src__constructor["constructor"]
+        src__execute["execute"]
+        src__msg["msg"]
+        src__userQuery["userQuery"]
+        src__context["context"]
+        src__commands__sendMessageCommand__logger["logger"]
+        src__execute["execute"]
+        src__loadingId["loadingId"]
+        src__answer["answer"]
+        src__errorMsg["errorMsg"]
+        src__commands__saveSettingsCommand__logger["logger"]
+        src__constructor["constructor"]
+        src__execute["execute"]
+        src__errorMsg["errorMsg"]
+        src__commands__browseCommand__logger["logger"]
+        src__execute{{execute CC=15}}
+        src__commands__browseCommand__BrowseCommand__now["now"]
+        src__loadingId["loadingId"]
+        src__browseResult["browseResult"]
+        src__content["content"]
+        src__summary["summary"]
+        src__safeSummary["safeSummary"]
+        src__errorMsg["errorMsg"]
+    end
+    subgraph src_components
+        src__components__WatchBadge__formatTime["formatTime"]
+        src__components__WatchBadge__now["now"]
+        src__components__WatchBadge__diff["diff"]
+        src__components__WatchBadge__getNotificationIcon["getNotificationIcon"]
+        src__components__WatchBadge__getSeverityColor["getSeverityColor"]
+        src__components__NetworkSelector__handleSelect["handleSelect"]
+        src__handleHistorySelect["handleHistorySelect"]
+        src__components__NetworkSelector__config["config"]
+        src__components__NetworkSelector__handleNewNetwork["handleNewNetwork"]
+        src__copyErrorsToClipboard{{copyErrorsToClipboard CC=15}}
+        src__components__HealthDiagnostic__currentReport["currentReport"]
+        src__components__HealthDiagnostic__timestamp["timestamp"]
+        src__components__HealthDiagnostic__errors["errors"]
+        src__components__HealthDiagnostic__warnings["warnings"]
+        src__components__HealthDiagnostic__detailsStr["detailsStr"]
+        src__components__HealthDiagnostic__textArea["textArea"]
+        src__showNotification["showNotification"]
+        src__components__HealthDiagnostic__notification["notification"]
+        src__components__HealthDiagnostic__bgColor["bgColor"]
+        src__components__HealthDiagnostic__runHealthCheck["runHealthCheck"]
+        src__components__HealthDiagnostic__result["result"]
+        src__components__HealthDiagnostic__interval["interval"]
+        src__components__HealthDiagnostic__handleKeyDown["handleKeyDown"]
+        src__components__HealthDiagnostic__getStatusColor["getStatusColor"]
+        src__components__HealthDiagnostic__getStatusIcon["getStatusIcon"]
+        src__getOverallStatus["getOverallStatus"]
+        src__components__HealthDiagnostic__overallStatus["overallStatus"]
+        src__components__HealthDiagnostic__categoryChecks["categoryChecks"]
+        src__useHealthDiagnostic["useHealthDiagnostic"]
+        src__components__HealthDiagnostic__checkHealth["checkHealth"]
+        src__components__HealthDiagnostic__status["status"]
+        src__AlertBridgeComponent["AlertBridgeComponent"]
+        src__components__ChatOverlays__ChatOverlays["ChatOverlays"]
+        src__components__Settings__STT_MODELS["STT_MODELS"]
+        src__components__Settings__runtimeIsTauri["runtimeIsTauri"]
+        src__components__Settings__speech["speech"]
+        src__components__Settings__stt["stt"]
+        src__components__Settings__tts["tts"]
+        src__components__Settings__permissionsApi["permissionsApi"]
+        src__components__Settings__active["active"]
+        src__components__Settings__state["state"]
+        src__components__Settings__next["next"]
+        src__components__Settings__micDevices["micDevices"]
+        src__components__Settings__speakerDevices["speakerDevices"]
+        src__components__Settings__hasDeviceLabels["hasDeviceLabels"]
+        src__components__Settings__update["update"]
+        src__components__Settings__handleSave["handleSave"]
+        src__components__Settings__result["result"]
+        src__components__Settings__msg["msg"]
+        src__savedHistory["savedHistory"]
+        src__components__NetworkHistorySelector__parsed("parsed CC=8")
+        src__components__NetworkHistorySelector__filtered["filtered"]
+        src__saveHistory["saveHistory"]
+        src__addToHistory["addToHistory"]
+        src__existingIndex["existingIndex"]
+        src__removeFromHistory["removeFromHistory"]
+        src__newHistory["newHistory"]
+        src__clearHistory["clearHistory"]
+        src__startVoiceRecognition("startVoiceRecognition CC=11")
+        src__SpeechRecognition["SpeechRecognition"]
+    end
+    subgraph src_config
+        src__config__appConfig__getConfigFieldsByCategory["getConfigFieldsByCategory"]
+        src__config__appConfig__map["map"]
+        src__config__appConfig__list["list"]
+        src__config__autoConfig__autoConfigLogger["autoConfigLogger"]
+        src__config__autoConfig__runAutoConfig["runAutoConfig"]
+        src__config__autoConfig__status["status"]
+        src__config__autoConfig__isTauri["isTauri"]
+        src__config__autoConfig__interfaces["interfaces"]
+        src__config__autoConfig__best["best"]
+        src__config__autoConfig__buildWelcomeMessage("buildWelcomeMessage CC=8")
+        src__config__autoConfig__isPrivateIp["isPrivateIp"]
+        src__config__autoConfig__isValidCandidateIp["isValidCandidateIp"]
+        src__config__autoConfig__interfaceScore("interfaceScore CC=9")
+        src__config__autoConfig__score["score"]
+        src__config__autoConfig__n["n"]
+        src__config__autoConfig__pickBestInterface["pickBestInterface"]
+        src__config__watchConfig__getWatchConfig["getWatchConfig"]
+        src__config__watchConfig__env["env"]
+        src__config__watchConfig__getAutoWatchConfig["getAutoWatchConfig"]
+        src__config__watchConfig__getPollingInterval["getPollingInterval"]
+        src__config__watchConfig__getChangeThreshold["getChangeThreshold"]
+        src__config__watchConfig__validateWatchConfig("validateWatchConfig CC=12")
+        src__config__watchConfig__mergeWatchConfig["mergeWatchConfig"]
+        src__config__configStore__configLogger{{configLogger CC=40}}
+        src__constructor["constructor"]
+        src__config__configStore__ConfigStoreImpl__load{{load CC=15}}
+        src__config__configStore__ConfigStoreImpl__raw["raw"]
+        src__config__configStore__ConfigStoreImpl__merged["merged"]
+        src__config__configStore__ConfigStoreImpl__env["env"]
+        src__config__configStore__ConfigStoreImpl__persist["persist"]
+        src__config__configStore__ConfigStoreImpl__getAll["getAll"]
+        src__config__configStore__ConfigStoreImpl__get["get"]
+        src__config__configStore__ConfigStoreImpl__set["set"]
+        src__config__configStore__ConfigStoreImpl__keys["keys"]
+        src__config__configStore__ConfigStoreImpl__lastKey["lastKey"]
+        src__oldValue["oldValue"]
+        src__config__configStore__ConfigStoreImpl__setMany["setMany"]
+        src__config__configStore__ConfigStoreImpl__reset["reset"]
+        src__onChange["onChange"]
+        src__config__configStore__ConfigStoreImpl__notify["notify"]
+        src__listener["listener"]
+        src__deepMerge("deepMerge CC=9")
+        src__detectMissingConfig["detectMissingConfig"]
+        src__isLlmAvailable["isLlmAvailable"]
+        src__isSttConfigured["isSttConfigured"]
+        src__getConfigStatus["getConfigStatus"]
+        src__config__configStore__configStore["configStore"]
+    end
+    subgraph src_contexts
+        src__contexts__CqrsContext__CqrsContext["CqrsContext"]
+        src__contexts__CqrsContext__CqrsProvider["CqrsProvider"]
+        src__contexts__CqrsContext__storeRef["storeRef"]
+        src__contexts__CqrsContext__aggregateRef["aggregateRef"]
+        src__contexts__CqrsContext__value["value"]
+        src__contexts__CqrsContext__store["store"]
+        src__contexts__CqrsContext__aggregate["aggregate"]
+        src__contexts__CqrsContext__browseAdapter["browseAdapter"]
+        src__contexts__CqrsContext__llmAdapter["llmAdapter"]
+        src__contexts__CqrsContext__useCqrs["useCqrs"]
+        src__contexts__CqrsContext__context["context"]
+        src__contexts__pluginContext__PluginCtx["PluginCtx"]
+        src__contexts__pluginContext__PluginProvider("PluginProvider CC=12")
+        src__contexts__pluginContext__value("value CC=12")
+        src__contexts__pluginContext__intent["intent"]
+        src__contexts__pluginContext__plugin["plugin"]
+        src__contexts__pluginContext__fallback["fallback"]
+        src__contexts__pluginContext__runtimeIsTauri["runtimeIsTauri"]
+        src__contexts__pluginContext__result["result"]
+        src__contexts__pluginContext__usePlugins["usePlugins"]
+        src__contexts__pluginContext__ctx["ctx"]
+    end
+    subgraph src_core
+        src__core__preferenceLearning__log["log"]
+        src__core__preferenceLearning__MAX_ENTRIES["MAX_ENTRIES"]
+        src__ensureLoaded["ensureLoaded"]
+        src__raw["raw"]
+        src__parsed["parsed"]
+        src__save["save"]
+        src__normalizeKey["normalizeKey"]
+        src__key["key"]
+        src__existing("existing CC=8")
+        src__entry["entry"]
+        src__score["score"]
+        src__frequency["frequency"]
+        src__ageMs["ageMs"]
+        src__SEVEN_DAYS["SEVEN_DAYS"]
+        src__recency["recency"]
+        src__successRate["successRate"]
+        src__combined["combined"]
+        src__getTopPreferences["getTopPreferences"]
+        src__getAll["getAll"]
+        src__reset["reset"]
+        src__core__preferenceLearning__preferenceLearning["preferenceLearning"]
+        src__core__plugin__types__isStreamable["isStreamable"]
+        src__core__plugin__types__isVisual["isVisual"]
+        src__core__plugin__types__isPersistent["isPersistent"]
+        src__core__queryBus__QueryBus__unregister["unregister"]
+        src__core__queryBus__QueryBus__use["use"]
+        src__core__queryBus__QueryBus__dispatch["dispatch"]
+        src__core__queryBus__QueryBus__handler["handler"]
+        src__core__queryBus__QueryBus__execute["execute"]
+        src__core__queryBus__QueryBus__index["index"]
+        src__core__queryBus__QueryBus__chain["chain"]
+        src__core__queryBus__QueryBus__mw["mw"]
+        src__core__queryBus__QueryBus__registeredQueries["registeredQueries"]
+        src__core__queryBus__cachingMiddleware["cachingMiddleware"]
+        src__core__queryBus__cache["cache"]
+        src__core__queryBus__key["key"]
+        src__core__queryBus__cached["cached"]
+        src__core__queryBus__result["result"]
+        src__register["register"]
+        src__pluginId["pluginId"]
+        src__unregister["unregister"]
+        src__core__pluginRegistry__PluginRegistry__plugin["plugin"]
+        src__core__pluginRegistry__PluginRegistry__get["get"]
+        src__core__pluginRegistry__PluginRegistry__getAll["getAll"]
+        src__findByIntent["findByIntent"]
+        src__legacyPlugins["legacyPlugins"]
+        src__dataSourcePlugins["dataSourcePlugins"]
+        src__initializeAll["initializeAll"]
+        src__legacyInitPromises["legacyInitPromises"]
+        src__dataSourceInitPromises["dataSourceInitPromises"]
+        src__disposeAll["disposeAll"]
+        src__legacyDisposePromises["legacyDisposePromises"]
+        src__dataSourceDisposePromises["dataSourceDisposePromises"]
+        src__core__realtimeSync__syncLogger["syncLogger"]
+        src__core__realtimeSync__RealtimeSync__constructor["constructor"]
+        src__generateSourceId["generateSourceId"]
+        src__checkSupport["checkSupport"]
+        src__core__realtimeSync__RealtimeSync__test["test"]
+        src__core__realtimeSync__RealtimeSync__initialize["initialize"]
+        src__initializeLocalStorageFallback["initializeLocalStorageFallback"]
+    end
+    subgraph src_discovery
+        src__constructor["constructor"]
+        src__probeDevice("probeDevice CC=10")
+        src__startTime("startTime CC=12")
+        src__results["results"]
+        src__probeDuration["probeDuration"]
+        src__probeHttpService("probeHttpService CC=12")
+        src__response["response"]
+        src__responseTime["responseTime"]
+        src__discovery__serviceProber__ServiceProber__html["html"]
+        src__titleMatch["titleMatch"]
+        src__probeRtspService["probeRtspService"]
+        src__probeMqttService["probeMqttService"]
+        src__probeSshService["probeSshService"]
+        src__probeApiService("probeApiService CC=12")
+        src__discovery__serviceProber__ServiceProber__json["json"]
+        src__discovery__serviceProber__ServiceProber__p["p"]
+        src__persistServices["persistServices"]
+        src__discovery__serviceProber__ServiceProber__db["db"]
+        src__discovery__serviceProber__ServiceProber__now["now"]
+        src__existingService["existingService"]
+        src__VALUES["VALUES"]
+        src__addEventListener["addEventListener"]
+        src__removeEventListener["removeEventListener"]
+        src__index["index"]
+        src__emitEvent["emitEvent"]
+        src__listener["listener"]
+        src__isActive["isActive"]
+        src__constructor["constructor"]
+        src__scanNetwork["scanNetwork"]
+        src__startTime["startTime"]
+        src__methodResults["methodResults"]
+        src__uniqueDevices["uniqueDevices"]
+        src__scanDuration["scanDuration"]
+        src__performScan["performScan"]
+        src__pingSweep["pingSweep"]
+        src__networkRanges["networkRanges"]
+        src__promises["promises"]
+        src__mdnsDiscovery["mdnsDiscovery"]
+        src__response["response"]
+        src__ssdpDiscovery["ssdpDiscovery"]
+        src__arpScan["arpScan"]
+        src__pingHost["pingHost"]
+        src__responseTime["responseTime"]
+        src__getLocalNetworkRanges["getLocalNetworkRanges"]
+        src__generateIpRange["generateIpRange"]
+        src__baseIp["baseIp"]
+        src__deduplicateDevices["deduplicateDevices"]
+        src__seen["seen"]
+        src__persistDevices["persistDevices"]
+        src__discovery__networkScanner__NetworkScanner__db["db"]
+        src__now["now"]
+        src__existingDevice["existingDevice"]
+        src__VALUES["VALUES"]
+        src__addEventListener["addEventListener"]
+        src__removeEventListener["removeEventListener"]
+        src__index["index"]
+        src__emitEvent["emitEvent"]
+        src__listener["listener"]
+        src__isActive["isActive"]
+    end
+    subgraph src_domain
+        src__withAudioSettingsDefaults["withAudioSettingsDefaults"]
+        src__domain__chatAggregate__ChatAggregate__apply["apply"]
+        src__replayAll["replayAll"]
+        src__getMessages["getMessages"]
+        src__getNextId["getNextId"]
+        src__getMessage["getMessage"]
+        src__getLastUserQuery["getLastUserQuery"]
+        src__domain__chatAggregate__ChatAggregate__idx["idx"]
+        src__messageCount["messageCount"]
+        src__domain__chatEvents__createEvent["createEvent"]
+        src__domain__chatEvents__projectChatMessages["projectChatMessages"]
+        src__domain__eventStore__esLogger{{esLogger CC=21}}
+        src__domain__eventStore__EventStore__append("append CC=9")
+        src__domain__eventStore__EventStore__realtimeSync["realtimeSync"]
+        src__domain__eventStore__EventStore__handlers["handlers"]
+        src__domain__eventStore__EventStore__handler["handler"]
+        src__domain__eventStore__EventStore__onAll["onAll"]
+        src__domain__eventStore__EventStore__result["result"]
+        src__domain__eventStore__EventStore__project["project"]
+        src__domain__eventStore__EventStore__size["size"]
+        src__domain__eventStore__EventStore__clear["clear"]
+    end
+    subgraph src_hooks
+        src__hooks__useChatPersistence__persistLogger["persistLogger"]
+        src__getSessionConversationId["getSessionConversationId"]
+        src__hooks__useChatPersistence__useChatPersistence{{useChatPersistence CC=16}}
+        src__hooks__useChatPersistence__repoRef{{repoRef CC=16}}
+        src__hooks__useChatPersistence__conversationIdRef{{conversationIdRef CC=16}}
+        src__hooks__useChatPersistence__repo["repo"]
+        src__hooks__useChatPersistence__conversationId["conversationId"]
+        src__hooks__useChatPersistence__unsubAdd["unsubAdd"]
+        src__hooks__useChatPersistence__msg["msg"]
+        src__hooks__useChatPersistence__unsubUpdate["unsubUpdate"]
+        src__hooks__useTts__ttsLogger["ttsLogger"]
+        src__hooks__useTts__MAX_TTS_SENTENCES["MAX_TTS_SENTENCES"]
+        src__hooks__useTts__getSpeechSynthesisApi["getSpeechSynthesisApi"]
+        src__hooks__useTts__preprocessForTts["preprocessForTts"]
+        src__hooks__useTts__normalized["normalized"]
+        src__estimateBackendSpeechDurationMs["estimateBackendSpeechDurationMs"]
+        src__hooks__useTts__words["words"]
+        src__hooks__useTts__wordsPerMinute["wordsPerMinute"]
+        src__hooks__useTts__minutes["minutes"]
+        src__hooks__useTts__useTts{{useTts CC=72}}
+        src__hooks__useTts__utteranceRef["utteranceRef"]
+        src__hooks__useTts__totalLenRef["totalLenRef"]
+        src__hooks__useTts__backendSupportedRef["backendSupportedRef"]
+        src__hooks__useTts__backendModeRef["backendModeRef"]
+        src__hooks__useTts__backendProgressTimerRef["backendProgressTimerRef"]
+        src__hooks__useTts__backendProgressIntervalRef["backendProgressIntervalRef"]
+        src__hooks__useTts__clearBackendProgress["clearBackendProgress"]
+        src__hooks__useTts__startBackendProgress["startBackendProgress"]
+        src__hooks__useTts__startedAt["startedAt"]
+        src__hooks__useTts__elapsed["elapsed"]
+        src__hooks__useTts__next["next"]
+        src__hooks__useTts__isMounted["isMounted"]
+        src__hooks__useTts__speechSynthesisApi["speechSynthesisApi"]
+        src__hooks__useTts__runtimeIsTauri["runtimeIsTauri"]
+        src__hooks__useTts__loadVoices["loadVoices"]
+        src__hooks__useTts__synthesis["synthesis"]
+        src__hooks__useTts__available["available"]
+        src__hooks__useTts__probeTauriBackendTts{{probeTauriBackendTts CC=25}}
+        src__hooks__useTts__engine["engine"]
+        src__hooks__useTts__backendSupported["backendSupported"]
+        src__hooks__useTts__speak{{speak CC=20}}
+        src__hooks__useTts__runSpeak{{runSpeak CC=20}}
+        src__hooks__useTts__preparedText["preparedText"]
+        src__hooks__useTts__estimatedDurationMs["estimatedDurationMs"]
+        src__hooks__useTts__runSpeakViaBackend["runSpeakViaBackend"]
+        src__hooks__useTts__utterance["utterance"]
+        src__hooks__useTts__found["found"]
+        src__hooks__useTts__plVoice["plVoice"]
+        src__hooks__useTts__pause["pause"]
+        src__hooks__useTts__runPause["runPause"]
+        src__hooks__useTts__resume["resume"]
+        src__hooks__useTts__runResume["runResume"]
+        src__hooks__useTts__stop["stop"]
+        src__hooks__useTts__runStop["runStop"]
+        src__hooks__useTts__runStopViaBackend["runStopViaBackend"]
+        src__DatabaseManagerContext["DatabaseManagerContext"]
+        src__hooks__useDatabaseManager__useDatabaseManager["useDatabaseManager"]
+        src__hooks__useChatDispatch__dispatchLogger{{dispatchLogger CC=19}}
+        src__hooks__useChatDispatch__handleConfigCommand{{handleConfigCommand CC=19}}
+        src__hooks__useChatDispatch__lower["lower"]
+    end
+    subgraph src_integration
+        src__processMessage("processMessage CC=8")
+        src__intentInfo["intentInfo"]
+        src__shouldWatch["shouldWatch"]
+        src__extractIntentInfo{{extractIntentInfo CC=15}}
+        src__lowerMessage["lowerMessage"]
+        src__cameraMatch["cameraMatch"]
+        src__location["location"]
+        src__messageText["messageText"]
+        src__hasRecentQuery["hasRecentQuery"]
+        src__db["db"]
+        src__timeWindowStart["timeWindowStart"]
+        src__recentMessages["recentMessages"]
+        src__AND["AND"]
+        src__conversationId["conversationId"]
+        src__getOrCreateConversation["getOrCreateConversation"]
+        src__now["now"]
+        src__conversation["conversation"]
+        src__VALUES["VALUES"]
+        src__getPollInterval["getPollInterval"]
+        src__getChangeThreshold["getChangeThreshold"]
+        src__updateConfig["updateConfig"]
+        src__getConfig["getConfig"]
+        src__getStats("getStats CC=10")
+        src__watchStats["watchStats"]
+        src__COUNT["COUNT"]
+        src__recentQueries["recentQueries"]
+    end
+    subgraph src_lib
+        src__lib__sttClient__sttLogger["sttLogger"]
+        src__lib__sttClient__buildSttRequestBody["buildSttRequestBody"]
+        src__lib__sttClient__getSttConfig["getSttConfig"]
+        src__lib__sttClient__cfg["cfg"]
+        src__lib__sttClient__transcribeAudio{{transcribeAudio CC=16}}
+        src__lib__sttClient__run{{run CC=16}}
+        src__lib__sttClient__isTauri["isTauri"]
+        src__lib__sttClient__result["result"]
+        src__lib__sttClient__appCfg["appCfg"]
+        src__lib__sttClient__resp["resp"]
+        src__lib__sttClient__body["body"]
+        src__lib__sttClient__data["data"]
+        src__lib__sttClient__text["text"]
+        src__lib__llmPrompts__getPrompt["getPrompt"]
+        src__lib__logger__isDebug["isDebug"]
+        src__lib__logger__normalizeLogArg["normalizeLogArg"]
+        src__lib__logger__safeStringify["safeStringify"]
+        src__lib__logger__emit("emit CC=8")
+        src__lib__logger__timestamp["timestamp"]
+        src__lib__logger__scopePrefix["scopePrefix"]
+        src__lib__logger__normalizedArgs["normalizedArgs"]
+        src__lib__logger__createScopedLogger["createScopedLogger"]
+        src__lib__logger__logSyncDecorator["logSyncDecorator"]
+        src__lib__logger__scoped["scoped"]
+        src__lib__logger__startedAt["startedAt"]
+        src__lib__logger__result["result"]
+        src__lib__logger__logAsyncDecorator["logAsyncDecorator"]
+        src__lib__resolver__levenshtein["levenshtein"]
+        src__lib__resolver__m["m"]
+        src__lib__resolver__n["n"]
+        src__lib__resolver__similarity["similarity"]
+        src__lib__resolver__dist["dist"]
+        src__lib__resolver__matches["matches"]
+        src__lib__resolver__fuzzyMatchDomain["fuzzyMatchDomain"]
+        src__lib__resolver__cleaned["cleaned"]
+        src__lib__resolver__stem["stem"]
+        src__lib__resolver__ratioFull["ratioFull"]
+        src__lib__resolver__ratioStem["ratioStem"]
+        src__lib__resolver__ratio["ratio"]
+        src__lib__resolver__resolve("resolve CC=11")
+        src__lib__resolver__text["text"]
+        src__lib__resolver__query["query"]
+        src__lib__resolver__normalized["normalized"]
+        src__lib__resolver__fuzzy["fuzzy"]
+        src__lib__resolver__suggestions["suggestions"]
+        src__lib__resolver__allSuggestions["allSuggestions"]
+        src__lib__llmClient__llmClientLogger["llmClientLogger"]
+        src__lib__llmClient__getConfig["getConfig"]
+        src__lib__llmClient__cfg["cfg"]
+        src__lib__llmClient__chat["chat"]
+        src__lib__llmClient__runChat["runChat"]
+        src__lib__llmClient__isTauri["isTauri"]
+        src__lib__llmClient__chatDirect("chatDirect CC=10")
+        src__lib__llmClient__runChatDirect("runChatDirect CC=10")
+        src__lib__llmClient__apiUrl["apiUrl"]
+        src__lib__llmClient__httpReferer["httpReferer"]
+        src__lib__llmClient__appTitle["appTitle"]
+        src__lib__llmClient__resp["resp"]
+        src__lib__llmClient__body["body"]
+        src__lib__llmClient__data["data"]
+    end
+    subgraph src_main
+        src__main__startupLogger["startupLogger"]
+        src__main__disableStrictModeForTauriDev["disableStrictModeForTauriDev"]
+        src__main__renderApp["renderApp"]
+        src__main__rootElement["rootElement"]
+    end
+    subgraph src_persistence
+        src__persistence__historyRepository__repoLogger["repoLogger"]
+        src__constructor["constructor"]
+        src__VALUES["VALUES"]
+        src__upsertCommand["upsertCommand"]
+        src__now["now"]
+        src__existing["existing"]
+        src__listCommands["listCommands"]
+        src__rows["rows"]
+        src__listNetworkHistory["listNetworkHistory"]
+        src__getNetworkEntryByAddress["getNetworkEntryByAddress"]
+        src__persistence__deviceRepository__repoLogger{{repoLogger CC=27}}
+        src__constructor["constructor"]
+        src__now["now"]
+        src__VALUES["VALUES"]
+        src__saveDevices["saveDevices"]
+        src__listDevices["listDevices"]
+        src__updateDeviceStatus["updateDeviceStatus"]
+        src__getDevicesWithStatus["getDevicesWithStatus"]
+        src__COALESCE["COALESCE"]
+        src__COUNT["COUNT"]
+        src__getRecentlyActiveDevices["getRecentlyActiveDevices"]
+        src__cutoff["cutoff"]
+        src__getOfflineDevices["getOfflineDevices"]
+        src__listServices["listServices"]
+        src__getByIp["getByIp"]
+        src__countDevices["countDevices"]
+        src__row["row"]
+        src__countServices["countServices"]
+        src__constructor["constructor"]
+        src__save["save"]
+        src__VALUES["VALUES"]
+        src__list["list"]
+        src__results["results"]
+        src__getLastSuccessfulBySubnet["getLastSuccessfulBySubnet"]
+        src__row["row"]
+        src__shouldUseIncrementalScan["shouldUseIncrementalScan"]
+        src__last["last"]
+        src__ageMs["ageMs"]
+        src__RECENT_MS["RECENT_MS"]
+        src__getByScope["getByScope"]
+        src__cleanup["cleanup"]
+        src__cutoff["cutoff"]
+        src__result["result"]
+        src__persistence__databaseManager__dbLogger["dbLogger"]
+        src__constructor["constructor"]
+        src__isOpen["isOpen"]
+        src__execute["execute"]
+        src__rows["rows"]
+        src__close["close"]
+        src__constructor["constructor"]
+        src__isOpen["isOpen"]
+        src__execute["execute"]
+        src__rows["rows"]
+        src__close["close"]
+        src__initialize["initialize"]
+        src__getDevicesDb["getDevicesDb"]
+        src__getChatDb["getChatDb"]
+        src__runMigrations("runMigrations CC=8")
+        src__applied["applied"]
+        src__appliedSet("appliedSet CC=8")
+    end
+    subgraph src_plugins
+        src__plugins__monitoringPlugin__log["log"]
+        src__initialize["initialize"]
+        src__isAvailable["isAvailable"]
+        src__execute["execute"]
+        src__start["start"]
+        src__question["question"]
+        src__elapsed["elapsed"]
+        src__text["text"]
+        src__msg["msg"]
+        src__dispose["dispose"]
+        src__plugins__monitoringPlugin__formatQueryResult("formatQueryResult CC=8")
+        src__plugins__monitoringPlugin__cols["cols"]
+        src__plugins__monitoringPlugin__widths["widths"]
+        src__plugins__monitoringPlugin__max["max"]
+        src__plugins__monitoringPlugin__val["val"]
+        src__plugins__monitoringPlugin__displayRows["displayRows"]
+        src__plugins__monitoringPlugin__cells["cells"]
+        src__plugins__monitoringPlugin__display["display"]
+        src__canHandle("canHandle CC=9")
+        src__lower["lower"]
+        src__execute["execute"]
+        src__start["start"]
+        src__cameras["cameras"]
+        src__browserProbe["browserProbe"]
+        src__subnet["subnet"]
+        src__probeIps["probeIps"]
+        src__resp["resp"]
+        src__formatCameras{{formatCameras CC=15}}
+        src__rtspUrl["rtspUrl"]
+        src__snapshotUrl["snapshotUrl"]
+        src__requiresAuth["requiresAuth"]
+        src__profiles["profiles"]
+        src__extractSubnet["extractSubnet"]
+        src__match["match"]
+        src__errorResult["errorResult"]
+        src__initialize["initialize"]
+        src__dispose["dispose"]
+        src__canHandle("canHandle CC=8")
+        src__lower["lower"]
+        src__execute["execute"]
+        src__start["start"]
+        src__mac["mac"]
+        src__extractMac["extractMac"]
+        src__macMatch["macMatch"]
+        src__errorResult["errorResult"]
+        src__initialize["initialize"]
+        src__dispose["dispose"]
+        src__canHandle["canHandle"]
+        src__lower["lower"]
+        src__execute["execute"]
+        src__start["start"]
+        src__services["services"]
+        src__formatServices["formatServices"]
+        src__grouped["grouped"]
+        src__txtStr["txtStr"]
+        src__groupByType["groupByType"]
+        src__plugins__network__mdnsPlugin__MdnsPlugin__key["key"]
+        src__friendlyType["friendlyType"]
+        src__extractServiceTypes("extractServiceTypes CC=8")
+        src__errorResult["errorResult"]
+    end
+    subgraph src_queries
+        src__queries__getSettingsQuery__logger["logger"]
+        src__execute["execute"]
+        src__constructor["constructor"]
+        src__execute["execute"]
+        src__getById["getById"]
+        src__getLastUserQuery["getLastUserQuery"]
+    end
+    subgraph src_reactive
+        src__reactive__alertBridge__alertLog["alertLog"]
+        src__constructor["constructor"]
+        src__attachWatchManager["attachWatchManager"]
+        src__detachWatchManager["detachWatchManager"]
+        src__reactive__alertBridge__AlertBridge__change["change"]
+        src__emitChangeAlert("emitChangeAlert CC=8")
+        src__reactive__alertBridge__AlertBridge__severity["severity"]
+        src__reactive__alertBridge__AlertBridge__icon["icon"]
+        src__changeTypeLabel["changeTypeLabel"]
+        src__notifyDeviceStatusChange("notifyDeviceStatusChange CC=9")
+        src__statusLabel["statusLabel"]
+        src__deviceLabel["deviceLabel"]
+        src__reactive__alertBridge__AlertBridge__typeLabel["typeLabel"]
+        src__notifyMotionDetection("notifyMotionDetection CC=10")
+        src__finalLabel["finalLabel"]
+        src__reactive__alertBridge__AlertBridge__dispose["dispose"]
+        src__clearInterval["clearInterval"]
+        src__isDuplicate["isDuplicate"]
+        src__reactive__alertBridge__AlertBridge__last["last"]
+        src__reactive__alertBridge__AlertBridge__markSeen["markSeen"]
+        src__isThrottled["isThrottled"]
+        src__getSeverity["getSeverity"]
+        src__injectMessage["injectMessage"]
+        src__constructor["constructor"]
+        src__previousSnapshot["previousSnapshot"]
+        src__changeScore["changeScore"]
+        src__hasChanged["hasChanged"]
+        src__changeType["changeType"]
+        src__newSnapshot["newSnapshot"]
+        src__reactive__changeDetector__ChangeDetector__db["db"]
+        src__reactive__changeDetector__ChangeDetector__row["row"]
+        src__reactive__changeDetector__ChangeDetector__now["now"]
+        src__hash["hash"]
+        src__size["size"]
+        src__snapshotId["snapshotId"]
+        src__VALUES["VALUES"]
+        src__calculateChangeScore["calculateChangeScore"]
+        src__previousWords["previousWords"]
+        src__currentWords["currentWords"]
+        src__previousSet["previousSet"]
+        src__currentSet["currentSet"]
+        src__intersection["intersection"]
+        src__union["union"]
+        src__jaccardSimilarity["jaccardSimilarity"]
+        src__determineChangeType("determineChangeType CC=9")
+        src__prevLower["prevLower"]
+        src__currLower["currLower"]
+        src__hasStatusChange["hasStatusChange"]
+        src__hasMetadataChange["hasMetadataChange"]
+        src__percentage["percentage"]
+        src__calculateHash["calculateHash"]
+        src__char["char"]
+        src__rows["rows"]
+        src__constructor["constructor"]
+        src__reactive__watchManager__WatchManager__start["start"]
+        src__reactive__watchManager__WatchManager__stop["stop"]
+        src__clearInterval["clearInterval"]
+        src__reactive__watchManager__WatchManager__now["now"]
+        src__recentQuery["recentQuery"]
+        src__cancelWatchRule["cancelWatchRule"]
+    end
+    subgraph src_services
+        src__fetch["fetch"]
+        src__chat["chat"]
+        src__response["response"]
+        src__ask["ask"]
+        src__summarize["summarize"]
+        src__summarizeSearch["summarizeSearch"]
+        src__detectIntent["detectIntent"]
+        src__describeImage["describeImage"]
+    end
+    subgraph src_utils
+        src__resolveQuickActions{{resolveQuickActions CC=58}}
+        src__utils__quickActionResolver__text("text CC=8")
+        src__utils__quickActionResolver__subnetMatch("subnetMatch CC=8")
+        src__utils__quickActionResolver__ip["ip"]
+        src__utils__quickActionResolver__feedUrl["feedUrl"]
+        src__utils__quickActionResolver__url["url"]
+        src__utils__quickActionResolver__seen["seen"]
+        src__utils__quickActionResolver__deduped["deduped"]
+        src__constructor["constructor"]
+        src__generateSessionId["generateSessionId"]
+        src__setupGlobalHandlers["setupGlobalHandlers"]
+        src__utils__errorReporting__ErrorReporting__target["target"]
+        src__getContext["getContext"]
+        src__captureError("captureError CC=9")
+        src__scopedLogger["scopedLogger"]
+        src__generateErrorId["generateErrorId"]
+        src__showCriticalErrorNotification["showCriticalErrorNotification"]
+        src__notification["notification"]
+        src__setTimeout["setTimeout"]
+        src__captureNetworkError["captureNetworkError"]
+        src__capturePluginError["capturePluginError"]
+        src__captureUserError["captureUserError"]
+        src__captureSystemError["captureSystemError"]
+        src__getErrorStats["getErrorStats"]
+        src__resolveError["resolveError"]
+        src__utils__errorReporting__ErrorReporting__error["error"]
+        src__clearErrors["clearErrors"]
+        src__exportErrors["exportErrors"]
+        src__utils__errorReporting__ErrorReporting__stats["stats"]
+        src__utils__errorReporting__ErrorReporting__errors["errors"]
+        src__utils__errorReporting__errorReporting["errorReporting"]
+        src__utils__errorReporting__captureError["captureError"]
+        src__utils__errorReporting__captureNetworkError["captureNetworkError"]
+        src__utils__errorReporting__capturePluginError["capturePluginError"]
+        src__utils__errorReporting__captureUserError["captureUserError"]
+        src__utils__errorReporting__captureSystemError["captureSystemError"]
+        src__utils__healthCheck__healthLogger["healthLogger"]
+        src__constructor["constructor"]
+        src__registerDefaultChecks{{registerDefaultChecks CC=49}}
+        src__utils__healthCheck__HealthChecker__version["version"]
+        src__utils__healthCheck__HealthChecker__major["major"]
+        src__utils__healthCheck__HealthChecker__platform["platform"]
+        src__utils__healthCheck__HealthChecker__arch["arch"]
+        src__utils__healthCheck__HealthChecker__isTauri("isTauri CC=10")
+        src__utils__healthCheck__HealthChecker__response["response"]
+        src__utils__healthCheck__HealthChecker__testMgr["testMgr"]
+        src__utils__healthCheck__HealthChecker__stats["stats"]
+        src__reactAvailable["reactAvailable"]
+        src__tauriAvailable["tauriAvailable"]
+        src__allAvailable["allAvailable"]
+        src__utils__healthCheck__HealthChecker__addCheck["addCheck"]
+        src__utils__healthCheck__HealthChecker__result["result"]
+        src__utils__healthCheck__HealthChecker__runChecks["runChecks"]
+        src__utils__healthCheck__HealthChecker__results["results"]
+        src__utils__healthCheck__HealthChecker__errorCount["errorCount"]
+        src__warningCount["warningCount"]
+        src__runQuickCheck["runQuickCheck"]
+        src__utils__healthCheck__HealthChecker__report["report"]
+        src__criticalErrors["criticalErrors"]
+        src__utils__healthCheck__healthChecker["healthChecker"]
+    end
+    subgraph vite_config
+        vite__config__host{{host CC=71}}
+        vite__config__chatApiPlugin{{chatApiPlugin CC=71}}
+        vite__config__run["run"]
+        vite__config__getLocalIp["getLocalIp"]
+        vite__config__detectIntent["detectIntent"]
+        vite__config__parseArpEntries("parseArpEntries CC=9")
+        vite__config__raw["raw"]
+        vite__config__ip["ip"]
+        vite__config__mac["mac"]
+        vite__config__parseNmapHosts["parseNmapHosts"]
+        vite__config__block["block"]
+        vite__config__handleQuery{{handleQuery CC=31}}
+        vite__config__intent{{intent CC=30}}
+        vite__config__localIp["localIp"]
+        vite__config__sub{{sub CC=30}}
+        vite__config__m["m"]
+        vite__config__out["out"]
+        vite__config__entries["entries"]
+        vite__config__arp["arp"]
+        vite__config__wifiArp["wifiArp"]
+        vite__config__nmapCmd["nmapCmd"]
+        vite__config__nmapOut["nmapOut"]
+        vite__config__hosts["hosts"]
+        vite__config__cameras["cameras"]
+        vite__config__others["others"]
+        vite__config__body["body"]
+        vite__config__result["result"]
+        vite__config__url["url"]
+        vite__config__parsedUrl["parsedUrl"]
+        vite__config__basicUser["basicUser"]
+        vite__config__basicPass["basicPass"]
+        vite__config__method["method"]
+        vite__config__upstream["upstream"]
+        vite__config__contentType["contentType"]
+        vite__config__buffer["buffer"]
+    end
+    e2e__voice_interface__spec__hasTtsButton --> e2e__voice_interface__spec__count
+    e2e__voice_interface__spec__speakCalled --> e2e__voice_interface__spec__orig
+    vite__config__host --> vite__config__run
+    vite__config__chatApiPlugin --> vite__config__run
+    vite__config__parseArpEntries --> vite__config__run
+    vite__config__handleQuery --> vite__config__detectIntent
+    vite__config__handleQuery --> vite__config__getLocalIp
+    vite__config__handleQuery --> vite__config__run
+    vite__config__handleQuery --> vite__config__parseArpEntries
+    vite__config__handleQuery --> vite__config__parseNmapHosts
+    vite__config__intent --> vite__config__run
+    vite__config__intent --> vite__config__parseArpEntries
+    vite__config__intent --> vite__config__parseNmapHosts
+    vite__config__sub --> vite__config__run
+    vite__config__sub --> vite__config__parseArpEntries
+    vite__config__sub --> vite__config__parseNmapHosts
+    vite__config__out --> vite__config__run
+    vite__config__nmapOut --> vite__config__parseNmapHosts
+    src__upsertCommand --> src__now
+    src__upsertCommand --> src__VALUES
+    src__now --> src__VALUES
+    src__persistence__deviceRepository__repoLogger --> src__constructor
+    src__persistence__deviceRepository__repoLogger --> src__now
+    src__persistence__deviceRepository__repoLogger --> src__VALUES
+    src__persistence__deviceRepository__repoLogger --> src__COALESCE
+    src__persistence__deviceRepository__repoLogger --> src__saveDevices
+    src__persistence__deviceRepository__repoLogger --> src__listDevices
+    src__updateDeviceStatus --> src__now
+    src__getDevicesWithStatus --> src__COALESCE
+    src__getDevicesWithStatus --> src__COUNT
+    src__getRecentlyActiveDevices --> src__now
+    src__getOfflineDevices --> src__now
+    src__save --> src__VALUES
+    src__shouldUseIncrementalScan --> src__getLastSuccessfulBySubnet
+    src__persistence__databaseManager__dbLogger --> src__execute
+    src__persistence__databaseManager__dbLogger --> src__close
+    src__rows --> src__close
+    src__initialize --> src__runMigrations
+    src__initialize --> src__close
+    src__runMigrations --> src__execute
+    src__appliedSet --> src__execute
+    src__getStats --> src__countTables
+    src__genId --> src__now
+    src__save --> src__now
+    src__save --> src__genId
+    src__id --> src__VALUES
+    src__getById --> src__rowToDevice
+    src__row --> src__count
+    src__getByIp --> src__rowToDevice
+    src__setMonitorEnabled --> src__now
+    src__setMonitorIntervalMs --> src__now
+    src__setMonitorChangeThreshold --> src__now
+    src__updateLastSnapshot --> src__now
+    src__commands__copyContextCommand__logger --> src__constructor
+    src__commands__copyContextCommand__logger --> src__execute
+    src__commands__sendMessageCommand__logger --> src__execute
+    src__persistence__chatRepository__repoLogger --> src__constructor
+    src__persistence__chatRepository__repoLogger --> src__ensureConversation
+    src__persistence__chatRepository__repoLogger --> src__now
+    src__persistence__chatRepository__repoLogger --> src__VALUES
+    src__persistence__chatRepository__repoLogger --> src__saveMessage
+    src__persistence__chatRepository__repoLogger --> src__saveMessages
+    src__ensureConversation --> src__now
+    src__ensureConversation --> src__VALUES
+    src__saveMessage --> src__now
+    src__saveMessage --> src__VALUES
+    src__saveMessages --> src__saveMessage
+    src__commands__saveSettingsCommand__logger --> src__constructor
+    src__commands__saveSettingsCommand__logger --> src__execute
+    src__execute --> src__commands__browseCommand__BrowseCommand__now
+    src__browseResult --> src__commands__browseCommand__BrowseCommand__now
+    src__content --> src__commands__browseCommand__BrowseCommand__now
+    src__summary --> src__commands__browseCommand__BrowseCommand__now
+    src__safeSummary --> src__commands__browseCommand__BrowseCommand__now
+    src__lib__sttClient__transcribeAudio --> src__lib__sttClient__getSttConfig
+    src__lib__sttClient__transcribeAudio --> src__lib__sttClient__buildSttRequestBody
+    src__lib__sttClient__transcribeAudio --> src__lib__sttClient__text
+    src__lib__sttClient__transcribeAudio --> src__lib__sttClient__run
+    src__lib__sttClient__run --> src__lib__sttClient__getSttConfig
+    src__lib__sttClient__run --> src__lib__sttClient__buildSttRequestBody
+    src__lib__sttClient__run --> src__lib__sttClient__text
+    src__lib__sttClient__appCfg --> src__lib__sttClient__buildSttRequestBody
+    src__lib__sttClient__resp --> src__lib__sttClient__buildSttRequestBody
+    src__lib__logger__emit --> src__lib__logger__safeStringify
+    src__lib__logger__createScopedLogger --> src__lib__logger__emit
+    src__lib__resolver__similarity --> src__lib__resolver__levenshtein
+    src__lib__resolver__fuzzyMatchDomain --> src__lib__resolver__stem
+    src__lib__resolver__fuzzyMatchDomain --> src__lib__resolver__similarity
+    src__lib__resolver__cleaned --> src__lib__resolver__stem
+    src__lib__resolver__cleaned --> src__lib__resolver__similarity
+    src__lib__resolver__resolve --> src__lib__resolver__fuzzyMatchDomain
+    src__lib__llmClient__chat --> src__lib__llmClient__getConfig
+    src__lib__llmClient__chat --> src__lib__llmClient__chatViaTauri
+    src__lib__llmClient__chat --> src__lib__llmClient__chatDirect
+    src__lib__llmClient__chat --> src__lib__llmClient__runChat
+    src__lib__llmClient__runChat --> src__lib__llmClient__getConfig
+    src__lib__llmClient__runChat --> src__lib__llmClient__chatViaTauri
+    src__lib__llmClient__runChat --> src__lib__llmClient__chatDirect
+    src__lib__llmClient__chatDirect --> src__lib__llmClient__text
+    src__lib__llmClient__chatDirect --> src__lib__llmClient__runChatDirect
+    src__lib__llmClient__runChatDirect --> src__lib__llmClient__text
+    src__lib__llmClient__chatViaTauri --> src__lib__llmClient__runChatViaTauri
+    src__lib__llmClient__CONTENT_TRIM --> src__lib__llmClient__chat
+    src__lib__llmClient__CONTENT_TRIM --> src__lib__llmClient__runAsk
+    src__lib__llmClient__TTS_TRIM --> src__lib__llmClient__chat
+    src__lib__llmClient__TTS_TRIM --> src__lib__llmClient__runAsk
+    src__lib__llmClient__askAboutContent --> src__lib__llmClient__chat
+    src__lib__llmClient__askAboutContent --> src__lib__llmClient__runAsk
+    src__lib__llmClient__runAsk --> src__lib__llmClient__chat
+    src__lib__llmClient__describeImage --> src__lib__llmClient__chat
+    src__lib__llmClient__describeImage --> src__lib__llmClient__runDescribe
+    src__lib__llmClient__runDescribe --> src__lib__llmClient__chat
+    src__lib__llmClient__describeImageChange --> src__lib__llmClient__chat
+    src__lib__llmClient__describeImageChange --> src__lib__llmClient__runDescribe
+    src__lib__llmClient__summarizeForTts --> src__lib__llmClient__chat
+    src__lib__llmClient__summarizeForTts --> src__lib__llmClient__runSummarize
+    src__lib__llmClient__runSummarize --> src__lib__llmClient__chat
+    src__lib__llmClient__detectIntent --> src__lib__llmClient__chat
+    src__lib__llmClient__detectIntent --> src__lib__llmClient__runDetect
+    src__lib__llmClient__runDetect --> src__lib__llmClient__chat
+    src__lib__llmClient__summarizeSearchResults --> src__lib__llmClient__chat
+    src__lib__llmClient__summarizeSearchResults --> src__lib__llmClient__runSummarize
+    src__hooks__useChatPersistence__useChatPersistence --> src__getSessionConversationId
+    src__hooks__useChatPersistence__useChatPersistence --> src__hooks__useChatPersistence__unsubAdd
+    src__hooks__useChatPersistence__useChatPersistence --> src__hooks__useChatPersistence__unsubUpdate
+    src__hooks__useChatPersistence__repoRef --> src__getSessionConversationId
+    src__hooks__useChatPersistence__repoRef --> src__hooks__useChatPersistence__unsubAdd
+    src__hooks__useChatPersistence__repoRef --> src__hooks__useChatPersistence__unsubUpdate
+    src__hooks__useChatPersistence__conversationIdRef --> src__getSessionConversationId
+    src__hooks__useChatPersistence__conversationIdRef --> src__hooks__useChatPersistence__unsubAdd
+    src__hooks__useChatPersistence__conversationIdRef --> src__hooks__useChatPersistence__unsubUpdate
+    src__hooks__useTts__useTts --> src__hooks__useTts__clearBackendProgress
+    src__hooks__useTts__startBackendProgress --> src__hooks__useTts__clearBackendProgress
+    src__hooks__useTts__loadVoices --> src__hooks__useTts__getSpeechSynthesisApi
+    src__hooks__useTts__synthesis --> src__hooks__useTts__runStopViaBackend
+    src__hooks__useTts__speak --> src__hooks__useTts__preprocessForTts
+    src__hooks__useTts__speak --> src__hooks__useTts__getSpeechSynthesisApi
+    src__hooks__useTts__speak --> src__hooks__useTts__clearBackendProgress
+    src__hooks__useTts__speak --> src__estimateBackendSpeechDurationMs
+    src__hooks__useTts__speak --> src__hooks__useTts__startBackendProgress
+    src__hooks__useTts__runSpeak --> src__hooks__useTts__preprocessForTts
+    src__hooks__useTts__runSpeak --> src__hooks__useTts__getSpeechSynthesisApi
+    src__hooks__useTts__runSpeak --> src__hooks__useTts__clearBackendProgress
+    src__hooks__useTts__runSpeak --> src__estimateBackendSpeechDurationMs
+    src__hooks__useTts__runSpeak --> src__hooks__useTts__startBackendProgress
+    src__hooks__useTts__estimatedDurationMs --> src__hooks__useTts__clearBackendProgress
+    src__hooks__useTts__runSpeakViaBackend --> src__hooks__useTts__clearBackendProgress
+    src__hooks__useTts__pause --> src__hooks__useTts__getSpeechSynthesisApi
+    src__hooks__useTts__pause --> src__hooks__useTts__runPause
+    src__hooks__useTts__runPause --> src__hooks__useTts__getSpeechSynthesisApi
+    src__hooks__useTts__runPause --> src__hooks__useTts__pause
+    src__hooks__useTts__resume --> src__hooks__useTts__getSpeechSynthesisApi
+    src__hooks__useTts__resume --> src__hooks__useTts__runResume
+    src__hooks__useTts__runResume --> src__hooks__useTts__getSpeechSynthesisApi
+    src__hooks__useTts__runResume --> src__hooks__useTts__resume
+    src__hooks__useTts__stop --> src__hooks__useTts__getSpeechSynthesisApi
+    src__hooks__useTts__stop --> src__hooks__useTts__clearBackendProgress
+    src__hooks__useTts__stop --> src__hooks__useTts__runStopViaBackend
+    src__hooks__useTts__stop --> src__hooks__useTts__runStop
+    src__hooks__useTts__runStop --> src__hooks__useTts__getSpeechSynthesisApi
+    src__hooks__useTts__runStop --> src__hooks__useTts__clearBackendProgress
+    src__hooks__useTts__runStop --> src__hooks__useTts__runStopViaBackend
+    src__lib__browseGateway__generateAdvancedHeaders --> src__lib__browseGateway__getRandomUserAgent
+    src__lib__browseGateway__generateAdvancedHeaders --> src__lib__browseGateway__getRandomAcceptLanguage
+    src__lib__browseGateway__generateAdvancedHeaders --> src__lib__browseGateway__getRandomReferer
+    src__lib__browseGateway__generateAdvancedHeaders --> src__lib__browseGateway__generateRandomIP
+    src__lib__browseGateway__generateAdvancedHeaders --> src__lib__browseGateway__generateWPPLCookies
+    src__lib__browseGateway__generateAdvancedHeaders --> src__lib__browseGateway__generateOnetCookies
+    src__lib__browseGateway__generateAdvancedHeaders --> src__lib__browseGateway__generateInteriaCookies
+    src__lib__browseGateway__generateWPPLCookies --> src__lib__browseGateway__now
+    src__lib__browseGateway__generateOnetCookies --> src__lib__browseGateway__now
+    src__lib__browseGateway__generateInteriaCookies --> src__lib__browseGateway__now
+    src__lib__browseGateway__requestTimestamps --> src__lib__browseGateway__now
+    src__lib__browseGateway__requestTimestamps --> src__lib__browseGateway__timestamps
+    src__lib__browseGateway__RATE_LIMIT_MS --> src__lib__browseGateway__now
+    src__lib__browseGateway__RATE_LIMIT_MS --> src__lib__browseGateway__timestamps
+    src__lib__browseGateway__shouldRateLimit --> src__lib__browseGateway__now
+    src__lib__browseGateway__shouldRateLimit --> src__lib__browseGateway__timestamps
+    src__lib__browseGateway__detectContentType --> src__lib__browseGateway__match
+    src__lib__browseGateway__productScore --> src__lib__browseGateway__match
+    src__lib__browseGateway__priceMatch --> src__lib__browseGateway__match
+    src__lib__browseGateway__brandMatch --> src__lib__browseGateway__match
+    src__lib__browseGateway__newsScore --> src__lib__browseGateway__match
+    src__lib__browseGateway__dateMatch --> src__lib__browseGateway__match
+    src__lib__browseGateway__authorMatch --> src__lib__browseGateway__match
+    src__lib__browseGateway__docScore --> src__lib__browseGateway__match
+    src__lib__browseGateway__versionMatch --> src__lib__browseGateway__match
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__detectContentType
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__summarizeProduct
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__summarizeNews
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__summarizeArticle
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__summarizeDocumentation
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__summarizeBlog
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__summarizeForum
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__summarizeShop
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__summarizeGeneral
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__getMetaInfo
+    src__lib__browseGateway__createHumanLikeSummary --> src__lib__browseGateway__getContentTypeLabel
+    src__lib__browseGateway__contentType --> src__lib__browseGateway__summarizeProduct
+    src__lib__browseGateway__contentType --> src__lib__browseGateway__summarizeNews
+    src__lib__browseGateway__contentType --> src__lib__browseGateway__summarizeArticle
+    src__lib__browseGateway__contentType --> src__lib__browseGateway__summarizeDocumentation
+    src__lib__browseGateway__contentType --> src__lib__browseGateway__summarizeBlog
+    src__lib__browseGateway__contentType --> src__lib__browseGateway__summarizeForum
+    src__lib__browseGateway__contentType --> src__lib__browseGateway__summarizeShop
+    src__lib__browseGateway__contentType --> src__lib__browseGateway__summarizeGeneral
+    src__lib__browseGateway__summarizeBlog --> src__lib__browseGateway__match
+    src__lib__browseGateway__intro --> src__lib__browseGateway__match
+    src__lib__browseGateway__conclusion --> src__lib__browseGateway__match
+    src__lib__browseGateway__takeaways --> src__lib__browseGateway__match
+    src__lib__browseGateway__summarizeShop --> src__lib__browseGateway__match
+    src__lib__browseGateway__categories --> src__lib__browseGateway__match
+    src__lib__browseGateway__featured --> src__lib__browseGateway__match
+    src__lib__browseGateway__summarizeProduct --> src__lib__browseGateway__match
+    src__lib__browseGateway__price --> src__lib__browseGateway__match
+    src__lib__browseGateway__brand --> src__lib__browseGateway__match
+    src__lib__browseGateway__description --> src__lib__browseGateway__match
+    src__lib__browseGateway__summarizeArticle --> src__lib__browseGateway__match
+    src__lib__browseGateway__listItems --> src__lib__browseGateway__match
+    src__lib__browseGateway__summarizeDocumentation --> src__lib__browseGateway__match
+    src__lib__browseGateway__installMatch --> src__lib__browseGateway__match
+    src__lib__browseGateway__configMatch --> src__lib__browseGateway__match
+    src__lib__browseGateway__usageMatch --> src__lib__browseGateway__match
+    src__lib__browseGateway__examples --> src__lib__browseGateway__match
+    src__lib__browseGateway__getMetaInfo --> src__lib__browseGateway__getMetadataLabel
+    src__lib__browseGateway__getMetaInfo --> src__lib__browseGateway__match
+    src__lib__browseGateway__stripCookieBannerText --> src__lib__browseGateway__text
+    src__lib__browseGateway__stripCookieBannerText --> src__lib__browseGateway__calculateBlockScore
+    src__lib__browseGateway__stripCookieBannerText --> src__lib__browseGateway__links
+    src__lib__browseGateway__stripCookieBannerText --> src__lib__browseGateway__match
+    src__lib__browseGateway__raw --> src__lib__browseGateway__text
+    src__lib__browseGateway__raw --> src__lib__browseGateway__calculateBlockScore
+    src__lib__browseGateway__raw --> src__lib__browseGateway__links
+    src__lib__browseGateway__raw --> src__lib__browseGateway__match
+    src__lib__browseGateway__normalized --> src__lib__browseGateway__looksLikeHtml
+    src__lib__browseGateway__blocks --> src__lib__browseGateway__text
+    src__lib__browseGateway__blocks --> src__lib__browseGateway__calculateBlockScore
+    src__lib__browseGateway__blocks --> src__lib__browseGateway__links
+    src__lib__browseGateway__blocks --> src__lib__browseGateway__match
+    src__lib__browseGateway__removedCount --> src__lib__browseGateway__text
+    src__lib__browseGateway__removedCount --> src__lib__browseGateway__calculateBlockScore
+    src__lib__browseGateway__removedCount --> src__lib__browseGateway__links
+    src__lib__browseGateway__removedCount --> src__lib__browseGateway__match
+    src__lib__browseGateway__processedBlock --> src__lib__browseGateway__text
+    src__lib__browseGateway__shouldRemove --> src__lib__browseGateway__text
+    src__extractBrowserReadableContent --> src__lib__browseGateway__normalizeText
+    src__extractBrowserReadableContent --> src__lib__browseGateway__links
+    src__lib__browseGateway__title --> src__lib__browseGateway__normalizeText
+    src__lib__browseGateway__title --> src__lib__browseGateway__links
+    src__lib__browseGateway__title --> src__lib__browseGateway__match
+    src__lib__browseGateway__title --> src__lib__browseGateway__sentences
+    src__lib__browseGateway__bestScore --> src__lib__browseGateway__normalizeText
+    src__lib__browseGateway__bestScore --> src__lib__browseGateway__links
+    src__lib__browseGateway__bestScore --> src__lib__browseGateway__match
+    src__lib__browseGateway__bestScore --> src__lib__browseGateway__sentences
+    src__lib__browseGateway__normalizeBrowseResult --> src__lib__browseGateway__normalizeText
+    src__lib__browseGateway__normalizeBrowseResult --> src__lib__browseGateway__looksLikeHtml
+    src__lib__browseGateway__normalizeBrowseResult --> src__extractBrowserReadableContent
+    src__lib__browseGateway__normalizeBrowseResult --> src__lib__browseGateway__stripCookieBannerText
+    src__lib__browseGateway__normalizeBrowseResult --> src__lib__browseGateway__createHumanLikeSummary
+    src__lib__browseGateway__rawUrl --> src__lib__browseGateway__createHumanLikeSummary
+    src__lib__browseGateway__safeUrl --> src__lib__browseGateway__createHumanLikeSummary
+    src__lib__browseGateway__rawTitle --> src__lib__browseGateway__looksLikeHtml
+    src__lib__browseGateway__contentWasHtml --> src__lib__browseGateway__createHumanLikeSummary
+    src__lib__browseGateway__extractedContent --> src__lib__browseGateway__createHumanLikeSummary
+    src__lib__browseGateway__cookieStripped --> src__lib__browseGateway__createHumanLikeSummary
+    src__lib__browseGateway__processedContent --> src__lib__browseGateway__createHumanLikeSummary
+    src__lib__browseGateway__fetchViaAdvancedProxy --> src__lib__browseGateway__withHttpScheme
+    src__lib__browseGateway__fetchViaAdvancedProxy --> src__lib__browseGateway__shouldRateLimit
+    src__lib__browseGateway__fetchViaAdvancedProxy --> src__lib__browseGateway__delay
+    src__lib__browseGateway__fetchViaAdvancedProxy --> src__lib__browseGateway__generateAdvancedHeaders
+    src__lib__browseGateway__controller --> src__lib__browseGateway__text
+    src__lib__browseGateway__timeout --> src__lib__browseGateway__text
+    src__lib__browseGateway__fetchViaAllOriginsRaw --> src__lib__browseGateway__text
+    src__lib__browseGateway__fetchViaCorsProxy --> src__lib__browseGateway__withHttpScheme
+    src__lib__browseGateway__fetchViaCorsProxy --> src__lib__browseGateway__text
+    src__lib__browseGateway__fetchViaJina --> src__lib__browseGateway__fetchViaAdvancedProxy
+    src__lib__browseGateway__jinaProxies --> src__lib__browseGateway__fetchViaAdvancedProxy
+    src__lib__browseGateway__wpProxies --> src__lib__browseGateway__fetchViaAdvancedProxy
+    src__lib__browseGateway__regularProxies --> src__lib__browseGateway__fetchViaAdvancedProxy
+    src__lib__browseGateway__browseInBrowser --> src__lib__browseGateway__getSmartFetchers
+    src__lib__browseGateway__browseInBrowser --> src__lib__browseGateway__isValidContent
+    src__lib__browseGateway__browseInBrowser --> src__lib__browseGateway__looksLikeHtml
+    src__lib__browseGateway__browseInBrowser --> src__extractBrowserReadableContent
+    src__lib__browseGateway__browseInBrowser --> src__lib__browseGateway__normalizeBrowseResult
+    src__lib__browseGateway__browseInBrowser --> src__lib__browseGateway__summarizeUnknownError
+    src__lib__browseGateway__runBrowseInBrowser --> src__lib__browseGateway__getSmartFetchers
+    src__lib__browseGateway__runBrowseInBrowser --> src__lib__browseGateway__isValidContent
+    src__lib__browseGateway__runBrowseInBrowser --> src__lib__browseGateway__looksLikeHtml
+    src__lib__browseGateway__runBrowseInBrowser --> src__extractBrowserReadableContent
+    src__lib__browseGateway__runBrowseInBrowser --> src__lib__browseGateway__normalizeBrowseResult
+    src__lib__browseGateway__runBrowseInBrowser --> src__lib__browseGateway__summarizeUnknownError
+    src__lib__browseGateway__fetchers --> src__lib__browseGateway__isValidContent
+    src__lib__browseGateway__fetchers --> src__lib__browseGateway__looksLikeHtml
+    src__lib__browseGateway__fetchers --> src__extractBrowserReadableContent
+    src__lib__browseGateway__fetchers --> src__lib__browseGateway__normalizeBrowseResult
+    src__lib__browseGateway__fetchers --> src__lib__browseGateway__summarizeUnknownError
+    src__lib__browseGateway__getSmartFetchers --> src__lib__browseGateway__fetchViaJina
+    src__lib__browseGateway__getSmartFetchers --> src__lib__browseGateway__fetchViaAllOriginsJson
+    src__lib__browseGateway__getSmartFetchers --> src__lib__browseGateway__fetchViaCorsProxy
+    src__lib__browseGateway__getSmartFetchers --> src__lib__browseGateway__fetchViaAllOriginsRaw
+    src__lib__browseGateway__executeBrowseCommand --> src__lib__browseGateway__normalizeBrowseResult
+    src__lib__browseGateway__executeBrowseCommand --> src__lib__browseGateway__looksLikeHtml
+    src__lib__browseGateway__executeBrowseCommand --> src__lib__browseGateway__browseInBrowser
+    src__lib__browseGateway__executeBrowseCommand --> src__lib__browseGateway__runExecuteBrowseCommand
+    src__lib__browseGateway__runExecuteBrowseCommand --> src__lib__browseGateway__normalizeBrowseResult
+    src__lib__browseGateway__runExecuteBrowseCommand --> src__lib__browseGateway__looksLikeHtml
+    src__lib__browseGateway__runExecuteBrowseCommand --> src__lib__browseGateway__browseInBrowser
+    src__hooks__useChatDispatch__useChatDispatch --> src__hooks__useChatDispatch__addScopePrefix
+    src__hooks__useChatDispatch__useChatDispatch --> src__hooks__useChatDispatch__originalQuery
+    src__hooks__useChatDispatch__useChatDispatch --> src__hooks__useChatDispatch__handleConfigCommand
+    src__hooks__useChatDispatch__handleSubmit --> src__hooks__useChatDispatch__addScopePrefix
+    src__hooks__useChatDispatch__handleSubmit --> src__hooks__useChatDispatch__originalQuery
+    src__hooks__useChatDispatch__handleSubmit --> src__hooks__useChatDispatch__handleConfigCommand
+    src__hooks__useChatDispatch__fallbackPrompt --> src__hooks__useChatDispatch__categorizeCommand
+    src__hooks__useChatDispatch__errorMessage --> src__looksLikeRecoverableError
+    src__handleCommandHistorySelect --> src__hooks__useChatDispatch__handleSubmit
+    src__hooks__useChatDispatch__handleSuggestionClick --> src__hooks__useChatDispatch__handleSubmit
+    src__handleNetworkOptionClick --> src__hooks__useChatDispatch__handleSubmit
+    src__sendAmbiguousQuerySuggestions --> src__hooks__useChatDispatch__getAmbiguousQueryText
+    src__sendAmbiguousQuerySuggestions --> src__getSuggestionsForQuery
+    src__hooks__useChatDispatch__suggestionsId --> src__hooks__useChatDispatch__getAmbiguousQueryText
+    src__hooks__useChatDispatch__suggestionsId --> src__getSuggestionsForQuery
+    src__sendNetworkSelectionMessage --> src__getNetworkSelectionText
+    src__hooks__useChatDispatch__networkSelectionId --> src__getNetworkSelectionText
+    src__useHistoryPersistence --> src__hooks__useHistoryPersistence__getRepo
+    src__useHistoryPersistence --> src__addToCommandHistoryLocalStorage
+    src__useHistoryPersistence --> src__loadCommandHistoryLocalStorage
+    src__useHistoryPersistence --> src__addToNetworkHistoryLocalStorage
+    src__addToCommandHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__addToCommandHistory --> src__addToCommandHistoryLocalStorage
+    src__loadCommandHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__loadCommandHistory --> src__loadCommandHistoryLocalStorage
+    src__addToNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__addToNetworkHistory --> src__addToNetworkHistoryLocalStorage
+    src__loadNetworkHistory --> src__hooks__useHistoryPersistence__getRepo
+    src__loadNetworkHistory --> src__loadNetworkHistoryLocalStorage
+    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub
+    src__previousLoadingWaitIdsRef --> src__hooks__useChatSpeech__unsub2
+    src__hooks__useLlm__useLlm --> src__hooks__useLlm__runSend
+    src__hooks__useLlm__useLlm --> src__hooks__useLlm__runDescribe
+    src__hooks__useLlm__historyRef --> src__hooks__useLlm__runSend
+    src__hooks__useLlm__send --> src__hooks__useLlm__runSend
+    src__hooks__useLlm__describe --> src__hooks__useLlm__runDescribe
+    src__hooks__useLlm__summarize --> src__hooks__useLlm__runSummarize
+    src__hooks__useLlm__summarizeSearch --> src__hooks__useLlm__runSummarizeSearch
+    src__hooks__useLlm__detectIntent --> src__hooks__useLlm__runDetectIntent
+    src__hooks__useStt__writeWavPcm16 --> src__hooks__useStt__writeString
+    src__hooks__useStt__blobToWavBase64 --> src__hooks__useStt__arrayBufferToBase64
+    src__hooks__useStt__blobToWavBase64 --> src__hooks__useStt__writeWavPcm16
+    src__hooks__useStt__buf --> src__hooks__useStt__arrayBufferToBase64
+    src__hooks__useStt__ctx --> src__hooks__useStt__writeWavPcm16
+    src__hooks__useStt__ctx --> src__hooks__useStt__arrayBufferToBase64
+    src__hooks__useStt__arr --> src__hooks__useStt__arrayBufferToBase64
+    src__hooks__useStt__audioBuffer --> src__hooks__useStt__arrayBufferToBase64
+    src__hooks__useStt__wav --> src__hooks__useStt__arrayBufferToBase64
+    src__hooks__useStt__useStt --> src__hooks__useStt__getUnsupportedReason
+    src__hooks__useStt__recorderRef --> src__hooks__useStt__getUnsupportedReason
+    src__hooks__useStt__chunksRef --> src__hooks__useStt__getUnsupportedReason
+    src__hooks__useStt__streamRef --> src__hooks__useStt__getUnsupportedReason
+    src__hooks__useStt__modeRef --> src__hooks__useStt__getUnsupportedReason
+    src__hooks__useStt__isRecordingRef --> src__hooks__useStt__getUnsupportedReason
+    src__hooks__useStt__startInFlightRef --> src__hooks__useStt__getUnsupportedReason
+    src__hooks__useStt__stopInFlightRef --> src__hooks__useStt__getUnsupportedReason
+    src__hooks__useStt__startTauriRecording --> src__hooks__useStt__runBackendStart
+    src__hooks__useStt__startRecording --> src__hooks__useStt__startTauriRecording
+    src__hooks__useStt__startRecording --> src__hooks__useStt__getUnsupportedReason
+    src__hooks__useStt__run --> src__hooks__useStt__getAudioSettings
+    src__hooks__useStt__runOnStop --> src__hooks__useStt__stopTracks
+    src__hooks__useStt__runOnStop --> src__hooks__useStt__blobToWavBase64
+    src__hooks__useStt__stopRecording --> src__hooks__useStt__getAudioSettings
+    src__hooks__useStt__runBackendStop --> src__hooks__useStt__getAudioSettings
+    src__hooks__useStt__rec --> src__hooks__useStt__stopTracks
+    src__useWatchNotifications --> src__mapChangeToNotification
+    src__hooks__useWatchNotifications__unsub --> src__mapChangeToNotification
+    src__response --> src__ask
+    src__core__preferenceLearning__log --> src__key
+    src__core__preferenceLearning__MAX_ENTRIES --> src__key
+    src__score --> src__ensureLoaded
+    src__score --> src__normalizeKey
+    src__getTopPreferences --> src__ensureLoaded
+    src__getTopPreferences --> src__score
+    src__getAll --> src__ensureLoaded
+    src__reset --> src__save
+    src__hooks__useSpeech__useSpeech --> src__hooks__useSpeech__getSpeechRecognitionCtor
+    src__hooks__useSpeech__useSpeech --> src__hooks__useSpeech__getUnsupportedReason
+    src__hooks__useSpeech__recognitionRef --> src__hooks__useSpeech__getSpeechRecognitionCtor
+    src__hooks__useSpeech__recognitionRef --> src__hooks__useSpeech__getUnsupportedReason
+    src__hooks__useSpeech__autoListenEnabledRef --> src__hooks__useSpeech__getSpeechRecognitionCtor
+    src__hooks__useSpeech__autoListenEnabledRef --> src__hooks__useSpeech__getUnsupportedReason
+    src__hooks__useSpeech__stopRequestedRef --> src__hooks__useSpeech__getSpeechRecognitionCtor
+    src__hooks__useSpeech__stopRequestedRef --> src__hooks__useSpeech__getUnsupportedReason
+    src__hooks__useSpeech__restartTimerRef --> src__hooks__useSpeech__getSpeechRecognitionCtor
+    src__hooks__useSpeech__restartTimerRef --> src__hooks__useSpeech__getUnsupportedReason
+    src__hooks__useSpeech__runtimeIsTauri --> src__hooks__useSpeech__getUnsupportedReason
+    src__hooks__useSpeech__SpeechRecognition --> src__hooks__useSpeech__getUnsupportedReason
+    src__hooks__useSpeech__startListening --> src__hooks__useSpeech__getSpeechRecognitionCtor
+    src__hooks__useSpeech__startListening --> src__hooks__useSpeech__getUnsupportedReason
+    src__hooks__useSpeech__startListening --> src__hooks__useSpeech__SpeechRecognition
+    src__hooks__useSpeech__runStartListening --> src__hooks__useSpeech__getSpeechRecognitionCtor
+    src__hooks__useSpeech__runStartListening --> src__hooks__useSpeech__getUnsupportedReason
+    src__hooks__useSpeech__runStartListening --> src__hooks__useSpeech__SpeechRecognition
+    src__hooks__useSpeech__stopListening --> src__hooks__useSpeech__runStopListening
+    src__hooks__useSpeech__enableAutoListen --> src__hooks__useSpeech__startListening
+    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__execute
+    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__mw
+    src__core__queryBus__QueryBus__dispatch --> src__core__queryBus__QueryBus__chain
+    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__mw
+    src__core__queryBus__QueryBus__index --> src__core__queryBus__QueryBus__execute
+    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__mw
+    src__core__queryBus__QueryBus__chain --> src__core__queryBus__QueryBus__execute
+    src__core__queryBus__QueryBus__mw --> src__core__queryBus__QueryBus__registeredQueries
+    src__unregister --> src__core__pluginRegistry__PluginRegistry__get
+    src__legacyPlugins --> src__initializeAll
+    src__dataSourcePlugins --> src__initializeAll
+    src__legacyInitPromises --> src__disposeAll
+    src__dataSourceInitPromises --> src__disposeAll
+    src__core__realtimeSync__RealtimeSync__constructor --> src__generateSourceId
+    src__core__realtimeSync__RealtimeSync__constructor --> src__checkSupport
+    src__core__realtimeSync__RealtimeSync__constructor --> src__core__realtimeSync__RealtimeSync__initialize
+    src__core__realtimeSync__RealtimeSync__initialize --> src__initializeLocalStorageFallback
+    src__handleBroadcastMessage --> src__processSyncEvent
+    src__handleStorageEvent --> src__processSyncEvent
+    src__processSyncEvent --> src__core__realtimeSync__RealtimeSync__handler
+    src__core__realtimeSync__RealtimeSync__handlers --> src__core__realtimeSync__RealtimeSync__handler
+    src__core__realtimeSync__RealtimeSync__broadcast --> src__fallbackToLocalStorage
+    src__fallbackToLocalStorage --> src__core__realtimeSync__RealtimeSync__setTimeout
+    src__core__realtimeSync__disposeRealtimeSync --> src__core__realtimeSync__RealtimeSync__dispose
+    src__core__cache__Cache__constructor --> src__core__cache__Cache__cleanup
+    src__core__cache__Cache__get --> src__core__cache__Cache__now
+    src__core__cache__Cache__get --> src__core__cache__Cache__set
+    src__core__cache__Cache__entry --> src__core__cache__Cache__now
+    src__core__cache__Cache__set --> src__core__cache__Cache__has
+    src__core__cache__Cache__set --> src__core__cache__Cache__evict
+    src__core__cache__Cache__set --> src__core__cache__Cache__now
+    src__core__cache__Cache__has --> src__core__cache__Cache__get
+    src__core__cache__Cache__has --> src__core__cache__Cache__now
+    src__core__cache__Cache__getStats --> src__core__cache__Cache__now
+    src__core__cache__Cache__getStats --> src__core__cache__Cache__estimateEntrySize
+    src__core__cache__Cache__memoryUsage --> src__core__cache__Cache__estimateEntrySize
+    src__core__cache__Cache__evict --> src__core__cache__Cache__findLRUKey
+    src__core__cache__Cache__evict --> src__core__cache__Cache__findLFUKey
+    src__core__cache__Cache__evict --> src__core__cache__Cache__findFIFOKey
+    src__core__cache__Cache__cleanup --> src__core__cache__Cache__now
+    src__core__cache__Cache__dispose --> src__core__cache__Cache__clearInterval
+    src__core__cache__Cache__dispose --> src__core__cache__Cache__clear
+    src__core__cache__CacheFactory__cache --> src__core__cache__Cache__dispose
+    src__core__cache__CacheFactory__delete --> src__core__cache__CacheFactory__get
+    src__core__cache__CacheFactory__delete --> src__core__cache__Cache__dispose
+    src__core__cache__CacheFactory__getAllStats --> src__core__cache__Cache__getStats
+    src__core__cache__CacheFactory__clearAll --> src__core__cache__Cache__clear
+    src__core__cache__CacheFactory__disposeAll --> src__core__cache__Cache__dispose
+    src__core__cache__CacheFactory__disposeAll --> src__core__cache__Cache__clear
+    src__core__bootstrap__registerCorePlugins --> src__core__bootstrap__safeRegister
+    src__core__systemContext__getSystemContext --> src__core__systemContext__detectOs
+    src__core__systemContext__getSystemContext --> src__core__systemContext__detectUser
+    src__core__systemContext__getSystemContext --> src__core__systemContext__detectHomeDir
+    src__core__systemContext__getSystemContext --> src__core__systemContext__detectShell
+    src__core__systemContext__getSystemContext --> src__core__systemContext__detectCapabilities
+    src__core__systemContext__updateSystemContext --> src__core__systemContext__getSystemContext
+    src__core__systemContext__buildSystemContextPrompt --> src__core__systemContext__getSystemContext
+    src__core__intentRouter__IntentRouter__constructor --> src__initializeDefaultPatterns
+    src__core__intentRouter__IntentRouter__detect --> src__calculateConfidence
+    src__core__intentRouter__IntentRouter__detect --> src__extractEntities
+    src__core__intentRouter__IntentRouter__keywords --> src__extractEntities
+    src__core__intentRouter__IntentRouter__matches --> src__extractEntities
+    src__baseConfidence --> src__extractEntities
+    src__complete --> src__setStatus
+    src__core__processRegistry__ProcessRegistry__fail --> src__setStatus
+    src__core__processRegistry__ProcessRegistry__stop --> src__setStatus
+    src__listActive --> src__listAll
+    src__setStatus --> src__core__processRegistry__ProcessRegistry__now
+    src__setStatus --> src__core__processRegistry__ProcessRegistry__get
+    src__core__retry__computeDelayMs --> src__core__retry__max
+    src__core__retry__computeDelayMs --> src__core__retry__min
+    src__core__retry__retry --> src__core__retry__resolveDecision
+    src__core__retry__retry --> src__core__retry__computeDelayMs
+    src__core__retry__retry --> src__core__retry__sleep
+    src__core__retry__maxDelayMs --> src__core__retry__resolveDecision
+    src__core__retry__maxDelayMs --> src__core__retry__computeDelayMs
+    src__core__retry__maxDelayMs --> src__core__retry__sleep
+    src__core__retry__jitterRatio --> src__core__retry__resolveDecision
+    src__core__retry__jitterRatio --> src__core__retry__computeDelayMs
+    src__core__retry__jitterRatio --> src__core__retry__sleep
+    src__core__retry__shouldRetryUnknownAsTransient --> src__core__retry__isProbablyTransientErrorMessage
+    src__core__retry__message --> src__core__retry__isProbablyTransientErrorMessage
+    src__core__actionSchema__findMatchingSchemas --> src__core__actionSchema__scoreMatch
+    src__core__actionSchema__findDomainSchemas --> src__core__actionSchema__getDomainHints
+    src__core__fallbackHandler__tryLlmFallback --> src__core__fallbackHandler__response
+    src__core__fallbackHandler__keywordFallback --> src__core__fallbackHandler__rankByPreference
+    src__core__fallbackHandler__keywordFallback --> src__core__fallbackHandler__injectFavorites
+    src__core__fallbackHandler__domainSchemas --> src__core__fallbackHandler__rankByPreference
+    src__core__fallbackHandler__scored --> src__core__fallbackHandler__rankByPreference
+    src__core__fallbackHandler__generateFallback --> src__core__fallbackHandler__tryLlmFallback
+    src__core__fallbackHandler__generateFallback --> src__core__fallbackHandler__keywordFallback
+    src__core__commandBus__CommandBus__register --> src__core__commandBus__CommandBus__has
+    src__core__commandBus__CommandBus__unregister --> src__core__commandBus__CommandBus__has
+    src__core__commandBus__CommandBus__execute --> src__core__commandBus__CommandBus__handler
+    src__core__intentSchema__registerIntentSchemas --> src__core__intentSchema__registerIntentSchema
+    src__core__intentSchema__getSchemasByPlugin --> src__core__intentSchema__getAllIntentSchemas
+    src__core__intentSchema__getSchemasByDomain --> src__core__intentSchema__getAllIntentSchemas
+    src__core__intentSchema__canPluginHandle --> src__core__intentSchema__getSchemasByPlugin
+    src__core__llmIntentClassifier__buildIntentPrompt --> src__core__llmIntentClassifier__context
+    src__core__llmIntentClassifier__classifyIntent --> src__core__llmIntentClassifier__getCacheKey
+    src__core__llmIntentClassifier__classifyIntent --> src__core__llmIntentClassifier__cacheGet
+    src__core__llmIntentClassifier__classifyIntent --> src__core__llmIntentClassifier__buildIntentPrompt
+    scripts__motion_pipeline__save_detection --> src__core__retry__max
+    scripts__motion_pipeline__get_statistics --> src__core__retry__max
+    scripts__motion_pipeline__extract_moving_objects --> src__core__retry__max
+    scripts__motion_pipeline__extract_moving_objects --> src__core__retry__min
+    scripts__classify --> src__core__retry__max
+    scripts__classify --> src__len
+    scripts___crop_to_b64 --> src__core__retry__max
+    scripts__motion_pipeline__LlmVerifier__verify --> src__len
+    scripts__motion_pipeline__MotionPipeline____init__ --> scripts__motion_pipeline__init_db
+    scripts__motion_pipeline__MotionPipeline____init__ --> scripts__motion_pipeline__create_bg_subtractor
+    scripts___emit_event --> scripts__install_openvino_pip__print
+    scripts___maybe_emit_stats --> scripts__motion_pipeline__get_statistics
+    scripts__process_frame --> scripts__motion_pipeline__extract_moving_objects
+    scripts__process_frame --> scripts__motion_pipeline__save_detection
+    scripts__process_frame --> scripts__motion_pipeline__should_send_to_llm
+    scripts__process_frame --> scripts__motion_pipeline__update_detection_llm
+    scripts__motion_pipeline__MotionPipeline__run --> scripts__motion_pipeline__get_statistics
+    scripts__motion_pipeline__main --> scripts__motion_pipeline__parse_args
+    src__probeDevice --> src__discovery__serviceProber__ServiceProber__now
+    src__probeDevice --> src__probeHttpService
+    src__probeDevice --> src__probeRtspService
+    src__probeDevice --> src__probeMqttService
+    src__probeDevice --> src__probeSshService
+    src__probeDevice --> src__probeApiService
+    src__probeDevice --> src__emitEvent
+    src__probeDevice --> src__persistServices
+    src__startTime --> src__discovery__serviceProber__ServiceProber__json
+    src__startTime --> src__discovery__serviceProber__ServiceProber__now
+    src__results --> src__emitEvent
+    src__probeHttpService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeRtspService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeMqttService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeSshService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeApiService --> src__discovery__serviceProber__ServiceProber__now
+    src__probeApiService --> src__discovery__serviceProber__ServiceProber__json
+    src__persistServices --> src__discovery__serviceProber__ServiceProber__now
+    src__persistServices --> src__VALUES
+    src__discovery__serviceProber__ServiceProber__db --> src__VALUES
+    src__discovery__serviceProber__ServiceProber__now --> src__VALUES
+    src__VALUES --> src__addEventListener
+    src__emitEvent --> src__listener
+    src__execute --> src__plugins__monitoringPlugin__formatQueryResult
+    src__plugins__monitoringPlugin__formatQueryResult --> src__plugins__monitoringPlugin__max
+    src__plugins__monitoringPlugin__cols --> src__plugins__monitoringPlugin__max
+    src__plugins__monitoringPlugin__widths --> src__plugins__monitoringPlugin__max
+    src__queries__getSettingsQuery__logger --> src__execute
+    src__scanNetwork --> src__now
+    src__scanNetwork --> src__performScan
+    src__scanNetwork --> src__deduplicateDevices
+    src__scanNetwork --> src__persistDevices
+    src__scanNetwork --> src__emitEvent
+    src__performScan --> src__pingSweep
+    src__performScan --> src__mdnsDiscovery
+    src__performScan --> src__ssdpDiscovery
+    src__performScan --> src__arpScan
+    src__pingSweep --> src__getLocalNetworkRanges
+    src__pingSweep --> src__generateIpRange
+    src__pingSweep --> src__pingHost
+    src__pingSweep --> src__emitEvent
+    src__networkRanges --> src__pingHost
+    src__networkRanges --> src__emitEvent
+    src__promises --> src__pingHost
+    src__promises --> src__emitEvent
+    src__pingHost --> src__now
+    src__persistDevices --> src__now
+    src__persistDevices --> src__VALUES
+    src__discovery__networkScanner__NetworkScanner__db --> src__VALUES
+    src__config__autoConfig__runAutoConfig --> src__config__autoConfig__pickBestInterface
+    src__config__autoConfig__runAutoConfig --> src__config__autoConfig__buildWelcomeMessage
+    src__config__autoConfig__status --> src__config__autoConfig__pickBestInterface
+    src__config__autoConfig__isTauri --> src__config__autoConfig__pickBestInterface
+    src__config__autoConfig__best --> src__config__autoConfig__interfaceScore
+    src__config__autoConfig__isValidCandidateIp --> src__config__autoConfig__isPrivateIp
+    src__config__autoConfig__interfaceScore --> src__config__autoConfig__isValidCandidateIp
+    src__config__autoConfig__pickBestInterface --> src__config__autoConfig__interfaceScore
+    src__replayAll --> src__domain__chatAggregate__ChatAggregate__apply
+    src__config__configStore__configLogger --> src__constructor
+    src__config__configStore__configLogger --> src__config__configStore__ConfigStoreImpl__load
+    src__config__configStore__configLogger --> src__deepMerge
+    src__config__configStore__configLogger --> src__config__configStore__ConfigStoreImpl__persist
+    src__constructor --> src__config__configStore__ConfigStoreImpl__load
+    src__config__configStore__ConfigStoreImpl__load --> src__deepMerge
+    src__config__configStore__ConfigStoreImpl__set --> src__config__configStore__ConfigStoreImpl__persist
+    src__config__configStore__ConfigStoreImpl__set --> src__config__configStore__ConfigStoreImpl__notify
+    src__config__configStore__ConfigStoreImpl__setMany --> src__config__configStore__ConfigStoreImpl__persist
+    src__config__configStore__ConfigStoreImpl__setMany --> src__config__configStore__ConfigStoreImpl__notify
+    src__config__configStore__ConfigStoreImpl__setMany --> src__config__configStore__ConfigStoreImpl__keys
+    src__config__configStore__ConfigStoreImpl__reset --> src__config__configStore__ConfigStoreImpl__persist
+    src__config__configStore__ConfigStoreImpl__reset --> src__config__configStore__ConfigStoreImpl__notify
+    src__config__configStore__ConfigStoreImpl__notify --> src__listener
+    src__deepMerge --> src__config__configStore__ConfigStoreImpl__keys
+    src__getConfigStatus --> src__isLlmAvailable
+    src__getConfigStatus --> src__isSttConfigured
+    src__getConfigStatus --> src__detectMissingConfig
+
+    classDef highCC fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    classDef medCC fill:#ffd43b,stroke:#f08c00,color:#000
+    class vite__config__host,vite__config__chatApiPlugin,vite__config__handleQuery,vite__config__intent,vite__config__sub,src__persistence__deviceRepository__repoLogger,src__execute,src__lib__sttClient__transcribeAudio,src__lib__sttClient__run,src__hooks__useChatPersistence__useChatPersistence,src__hooks__useChatPersistence__repoRef,src__hooks__useChatPersistence__conversationIdRef,src__hooks__useTts__useTts,src__hooks__useTts__probeTauriBackendTts,src__hooks__useTts__speak,src__hooks__useTts__runSpeak,src__lib__browseGateway__detectContentType,src__lib__browseGateway__stripCookieBannerText,src__lib__browseGateway__calculateBlockScore,src__extractBrowserReadableContent,src__lib__browseGateway__title,src__lib__browseGateway__bestScore,src__lib__browseGateway__normalizeBrowseResult,src__lib__browseGateway__fetchViaAllOriginsJson,src__lib__browseGateway__fetchViaJina,src__lib__browseGateway__jinaProxies,src__lib__browseGateway__isValidContent,src__hooks__useChatDispatch__dispatchLogger,src__hooks__useChatDispatch__handleConfigCommand,src__hooks__useChatDispatch__useChatDispatch highCC
+    class vite__config__parseArpEntries,src__runMigrations,src__appliedSet,src__save,src__persistence__chatRepository__repoLogger,src__lib__logger__emit,src__lib__resolver__resolve,src__lib__llmClient__chatDirect,src__lib__llmClient__runChatDirect,src__lib__browseGateway__text,src__lib__browseGateway__createHumanLikeSummary,src__lib__browseGateway__contentType,src__lib__browseGateway__summarizeShop,src__lib__browseGateway__summarizeNews,src__lib__browseGateway__summarizeDocumentation,src__lib__browseGateway__getMetaInfo,src__lib__browseGateway__raw,src__lib__browseGateway__blocks,src__lib__browseGateway__removedCount,src__lib__browseGateway__score,src__lib__browseGateway__node,src__lib__browseGateway__headings,src__lib__browseGateway__lists,src__lib__browseGateway__links,src__lib__browseGateway__linkRatio,src__lib__browseGateway__fetchViaAdvancedProxy,src__lib__browseGateway__browseInBrowser,src__lib__browseGateway__runBrowseInBrowser,src__lib__browseGateway__fetchers,src__lib__browseGateway__getSmartFetchers medCC

@@ -1,0 +1,9 @@
+# redup/duplication | 0 groups | 2f 753L | 2026-03-24
+
+SUMMARY:
+  files_scanned: 2
+  total_lines:   753
+  dup_groups:    0
+  dup_fragments: 0
+  saved_lines:   0
+  scan_ms:       2627

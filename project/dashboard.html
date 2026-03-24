@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>broxeen — Health Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  :root {
+    --bg: #0f172a; --surface: #1e293b; --border: #334155;
+    --text: #e2e8f0; --muted: #94a3b8;
+    --green: #22c55e; --yellow: #eab308; --red: #ef4444; --blue: #3b82f6;
+    --orange: #f97316;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f8fafc; --surface: #ffffff; --border: #e2e8f0;
+      --text: #1e293b; --muted: #64748b;
+    }
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); padding:2rem; }
+  h1 { font-size:1.5rem; margin-bottom:.5rem; }
+  h2 { font-size:1.1rem; color:var(--muted); margin:1.5rem 0 .75rem; border-bottom:1px solid var(--border); padding-bottom:.25rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1rem; margin:1rem 0; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:.5rem; padding:1rem; }
+  .card .value { font-size:1.8rem; font-weight:700; }
+  .card .label { color:var(--muted); font-size:.8rem; text-transform:uppercase; }
+  .chart-container { background:var(--surface); border:1px solid var(--border); border-radius:.5rem; padding:1rem; margin:1rem 0; }
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:.85rem; }
+  th { text-align:left; color:var(--muted); padding:.5rem; border-bottom:1px solid var(--border); white-space:nowrap; }
+  td { padding:.5rem; border-bottom:1px solid var(--border); }
+  .badge { padding:.15rem .5rem; border-radius:.25rem; font-size:.75rem; font-weight:600; }
+  .badge.critical { background:var(--red); color:#fff; }
+  .badge.error { background:var(--orange); color:#fff; }
+  .badge.warning { background:var(--yellow); color:#000; }
+  .badge.high { background:var(--red); color:#fff; }
+  .badge.medium { background:var(--yellow); color:#000; }
+  .badge.low { background:var(--green); color:#fff; }
+  tr.critical td { background:rgba(239,68,68,.08); }
+  tr.error td { background:rgba(249,115,22,.06); }
+  tr.warning td { background:rgba(234,179,8,.05); }
+  .health-indicator { display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:.5rem; }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; }
+  .evo-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:.75rem; }
+  .evo-cards .card { text-align:center; }
+  .trend { font-size:.75rem; color:var(--muted); }
+  .lang-tag { display:inline-block; padding:.1rem .4rem; border-radius:.2rem; font-size:.7rem; font-weight:600; margin-right:.25rem; color:#fff; }
+  @media (max-width:768px) { .two-col,.three-col { grid-template-columns:1fr; } }
+  footer { margin-top:2rem; color:var(--muted); font-size:.75rem; text-align:center; }
+</style>
+</head>
+<body>
+<h1>
+  <span class="health-indicator" style="background:#22c55e"></span>
+  broxeen — Good
+</h1>
+<p style="color:var(--muted);font-size:.85rem;">
+  Analyzed 2026-03-24 by code2llm
+  &nbsp;·&nbsp; Primary language: <strong>typescript</strong>
+  &nbsp;·&nbsp; TypeScript: 169, Rust: 43, Shell: 10, JavaScript: 5, Python: 2
+</p>
+
+<div class="grid">
+  <div class="card"><div class="value">3,725</div><div class="label">Functions</div></div>
+  <div class="card"><div class="value">444</div><div class="label">Classes</div></div>
+  <div class="card"><div class="value">206</div><div class="label">Files</div></div>
+  <div class="card"><div class="value">82,967</div><div class="label">Lines</div></div>
+  <div class="card"><div class="value">5</div><div class="label">Languages</div></div>
+  <div class="card"><div class="value">4.0</div><div class="label">Avg CC</div></div>
+  <div class="card"><div class="value">306</div><div class="label">Critical (CC≥10)</div></div>
+  <div class="card"><div class="value">54</div><div class="label">Duplicates</div></div>
+  <div class="card"><div class="value">0</div><div class="label">Cycles</div></div>
+</div>
+
+<div class="three-col">
+  <div class="chart-container">
+    <h2 style="border:none;margin:0 0 .5rem;">Language Distribution</h2>
+    <canvas id="langChart" height="200"></canvas>
+  </div>
+  <div class="chart-container">
+    <h2 style="border:none;margin:0 0 .5rem;">Largest Modules (lines)</h2>
+    <canvas id="modLinesChart" height="200"></canvas>
+  </div>
+  <div class="chart-container">
+    <h2 style="border:none;margin:0 0 .5rem;">Most Complex Modules (functions)</h2>
+    <canvas id="modFuncsChart" height="200"></canvas>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="chart-container">
+    <h2 style="border:none;margin:0 0 .5rem;">Evolution (2026-03-24)</h2>
+    <div class="evo-cards">
+      <div class="card"><div class="value">4.0</div><div class="label">CC̄ →</div></div>
+      <div class="card"><div class="value">306</div><div class="label">Critical →</div></div>
+      <div class="card"><div class="value">82967</div><div class="label">Lines</div></div>
+    </div>
+    <p class="trend" style="margin-top:.5rem;">Run analysis multiple times to build a trend chart (≥3 data points needed).</p>
+  </div>
+  <div>
+    <h2>Top Modules (229)</h2>
+    <div class="card"><div class="table-wrap">
+    <table>
+      <thead><tr><th>Module</th><th>Path</th><th style="text-align:right">Lines</th><th style="text-align:right">Funcs</th><th style="text-align:right">Classes</th><th style="text-align:right">CC max</th></tr></thead>
+      <tbody>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>monitorPlugin.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/plugins/monitor</td>
+                <td style="text-align:right">2,871</td>
+                <td style="text-align:right">229</td>
+                <td style="text-align:right">4</td>
+                <td style="text-align:right">93</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>browseGateway.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/lib</td>
+                <td style="text-align:right">1,741</td>
+                <td style="text-align:right">143</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">42</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>protocolBridgePlugin.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/plugins/protocol-bridge</td>
+                <td style="text-align:right">1,720</td>
+                <td style="text-align:right">98</td>
+                <td style="text-align:right">7</td>
+                <td style="text-align:right">24</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#dea584;margin-right:6px"></span>network_scan.rs</td>
+                <td style="color:var(--muted);font-size:.75rem">src-tauri/src</td>
+                <td style="text-align:right">1,655</td>
+                <td style="text-align:right">27</td>
+                <td style="text-align:right">16</td>
+                <td style="text-align:right">26</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>networkScanPlugin.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/plugins/discovery</td>
+                <td style="text-align:right">1,586</td>
+                <td style="text-align:right">135</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">40</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f7df1e;margin-right:6px"></span>chat-cli.mjs</td>
+                <td style="color:var(--muted);font-size:.75rem">scripts</td>
+                <td style="text-align:right">1,093</td>
+                <td style="text-align:right">109</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">32</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#dea584;margin-right:6px"></span>motion_detection.rs</td>
+                <td style="color:var(--muted);font-size:.75rem">src-tauri/src</td>
+                <td style="text-align:right">958</td>
+                <td style="text-align:right">8</td>
+                <td style="text-align:right">8</td>
+                <td style="text-align:right">12</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>useChatDispatch.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/hooks</td>
+                <td style="text-align:right">897</td>
+                <td style="text-align:right">50</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">78</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>intentRouter.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/core</td>
+                <td style="text-align:right">853</td>
+                <td style="text-align:right">21</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">55</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>ChatMessageList.tsx</td>
+                <td style="color:var(--muted);font-size:.75rem">src/components</td>
+                <td style="text-align:right">805</td>
+                <td style="text-align:right">25</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">107</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>CameraPreview.tsx</td>
+                <td style="color:var(--muted);font-size:.75rem">src/components</td>
+                <td style="text-align:right">774</td>
+                <td style="text-align:right">54</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">17</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>cameraLivePlugin.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/plugins/camera</td>
+                <td style="text-align:right">755</td>
+                <td style="text-align:right">57</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">95</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>Settings.tsx</td>
+                <td style="color:var(--muted);font-size:.75rem">src/components</td>
+                <td style="text-align:right">704</td>
+                <td style="text-align:right">16</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">4</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>ChatConfigPrompt.tsx</td>
+                <td style="color:var(--muted);font-size:.75rem">src/components</td>
+                <td style="text-align:right">674</td>
+                <td style="text-align:right">18</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">62</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>appConfig.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/config</td>
+                <td style="text-align:right">628</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">13</td>
+                <td style="text-align:right">3</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3572A5;margin-right:6px"></span>motion_pipeline.py</td>
+                <td style="color:var(--muted);font-size:.75rem">scripts</td>
+                <td style="text-align:right">624</td>
+                <td style="text-align:right">23</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">7</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>useChatSpeech.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/hooks</td>
+                <td style="text-align:right">594</td>
+                <td style="text-align:right">25</td>
+                <td style="text-align:right">2</td>
+                <td style="text-align:right">107</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>actionSchema.ts</td>
+                <td style="color:var(--muted);font-size:.75rem">src/core</td>
+                <td style="text-align:right">592</td>
+                <td style="text-align:right">17</td>
+                <td style="text-align:right">1</td>
+                <td style="text-align:right">8</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#dea584;margin-right:6px"></span>file_search.rs</td>
+                <td style="color:var(--muted);font-size:.75rem">src-tauri/src</td>
+                <td style="text-align:right">582</td>
+                <td style="text-align:right">10</td>
+                <td style="text-align:right">3</td>
+                <td style="text-align:right">16</td>
+            </tr>
+            <tr>
+                <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3178c6;margin-right:6px"></span>App.tsx</td>
+                <td style="color:var(--muted);font-size:.75rem">src</td>
+                <td style="text-align:right">571</td>
+                <td style="text-align:right">34</td>
+                <td style="text-align:right">0</td>
+                <td style="text-align:right">21</td>
+            </tr></tbody>
+    </table>
+    </div></div>
+  </div>
+</div>
+
+<h2>Alerts (20)</h2>
+<div class="card"><div class="table-wrap">
+<table>
+  <thead><tr><th>Severity</th><th>Target</th><th>Type</th><th>Value</th><th>Limit</th></tr></thead>
+  <tbody>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>useChatSpeech</td>
+                <td>cc_exceeded</td>
+                <td>107</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>ChatMessageList</td>
+                <td>cc_exceeded</td>
+                <td>107</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>ChatInput</td>
+                <td>cc_exceeded</td>
+                <td>101</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>CameraLivePlugin.execute</td>
+                <td>cc_exceeded</td>
+                <td>95</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>MonitorPlugin.handleStart</td>
+                <td>cc_exceeded</td>
+                <td>93</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>useChatDispatch</td>
+                <td>cc_exceeded</td>
+                <td>78</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>configLogger</td>
+                <td>cc_exceeded</td>
+                <td>76</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>useTts</td>
+                <td>cc_exceeded</td>
+                <td>72</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>handleSubmit</td>
+                <td>cc_exceeded</td>
+                <td>72</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>host</td>
+                <td>cc_exceeded</td>
+                <td>71</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>chatApiPlugin</td>
+                <td>cc_exceeded</td>
+                <td>71</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>ChatConfigPrompt</td>
+                <td>cc_exceeded</td>
+                <td>62</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>CameraLiveInline</td>
+                <td>cc_exceeded</td>
+                <td>61</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>resolveQuickActions</td>
+                <td>cc_exceeded</td>
+                <td>58</td>
+                <td>15</td>
+            </tr>
+            <tr class="critical">
+                <td><span class="badge critical">critical</span></td>
+                <td>useStt</td>
+                <td>cc_exceeded</td>
+                <td>55</td>
+                <td>15</td>
+            </tr></tbody>
+</table>
+</div></div>
+
+<div class="two-col">
+<div>
+<h2>Hotspots (10)</h2>
+<div class="card"><div class="table-wrap">
+<table>
+  <thead><tr><th>Function</th><th>Fan-out</th><th>Note</th></tr></thead>
+  <tbody>
+            <tr>
+                <td><strong>registerCorePlugins</strong></td>
+                <td>52</td>
+                <td>Orchestrates 52 calls</td>
+            </tr>
+            <tr>
+                <td><strong>useChatSpeech</strong></td>
+                <td>49</td>
+                <td>Orchestrates 49 calls</td>
+            </tr>
+            <tr>
+                <td><strong>useTts</strong></td>
+                <td>48</td>
+                <td>Orchestrates 48 calls</td>
+            </tr>
+            <tr>
+                <td><strong>useStt</strong></td>
+                <td>48</td>
+                <td>Orchestrates 48 calls</td>
+            </tr>
+            <tr>
+                <td><strong>host</strong></td>
+                <td>47</td>
+                <td>Orchestrates 47 calls</td>
+            </tr>
+            <tr>
+                <td><strong>chatApiPlugin</strong></td>
+                <td>47</td>
+                <td>Orchestrates 47 calls</td>
+            </tr>
+            <tr>
+                <td><strong>useChatDispatch</strong></td>
+                <td>46</td>
+                <td>46-way dispatch</td>
+            </tr>
+            <tr>
+                <td><strong>Pipeline.start</strong></td>
+                <td>46</td>
+                <td>Orchestrates 46 calls</td>
+            </tr>
+            <tr>
+                <td><strong>ensure_rtsp_worker</strong></td>
+                <td>44</td>
+                <td>Orchestrates 44 calls</td>
+            </tr>
+            <tr>
+                <td><strong>configLogger</strong></td>
+                <td>43</td>
+                <td>Orchestrates 43 calls</td>
+            </tr></tbody>
+</table>
+</div></div>
+</div>
+
+<div>
+<h2>Refactoring Priorities (15)</h2>
+<div class="card"><div class="table-wrap">
+<table>
+  <thead><tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th></tr></thead>
+  <tbody>
+            <tr>
+                <td>1</td>
+                <td>Split host (CC=71 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Split chatApiPlugin (CC=71 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Split handleQuery (CC=31 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Split intent (CC=30 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Split sub (CC=30 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Split repoLogger (CC=27 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Split useTts (CC=72 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Split probeTauriBackendTts (CC=25 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Split calculateBlockScore (CC=32 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Split extractBrowserReadableContent (CC=42 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Split title (CC=30 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Split bestScore (CC=30 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Split useChatDispatch (CC=78 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Split handleSubmit (CC=72 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Split useChatSpeech (CC=107 → target CC<10)</td>
+                <td><span class="badge high">high</span></td>
+                <td>low</td>
+            </tr></tbody>
+</table>
+</div></div>
+</div>
+</div>
+
+<footer>Generated by code2llm on 2026-03-24 11:03</footer>
+
+<script>
+// Evolution chart disabled — fewer than 3 data points
+
+// Language distribution pie chart
+const langCtx = document.getElementById('langChart').getContext('2d');
+new Chart(langCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['TypeScript', 'Rust', 'Shell', 'JavaScript', 'Python'],
+    datasets: [{
+      data: [169, 43, 10, 5, 2],
+      backgroundColor: ['#3178c6', '#dea584', '#89e051', '#f7df1e', '#3572A5'],
+      borderColor: 'var(--border)', borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'right', labels: { color: '#e2e8f0', font: {size: 11} } }
+    }
+  }
+});
+
+// Module lines bar chart
+const modLinesCtx = document.getElementById('modLinesChart').getContext('2d');
+new Chart(modLinesCtx, {
+  type: 'bar',
+  data: {
+    labels: ['monitorPlugin.ts', 'browseGateway.ts', 'protocolBridgePlugin.ts', 'network_scan.rs', 'networkScanPlugin.ts', 'chat-cli.mjs', 'motion_detection.rs', 'useChatDispatch.ts', 'intentRouter.ts', 'ChatMessageList.tsx', 'CameraPreview.tsx', 'cameraLivePlugin.ts', 'Settings.tsx', 'ChatConfigPrompt.tsx', 'appConfig.ts'],
+    datasets: [{ label: 'Lines', data: [2871, 1741, 1720, 1655, 1586, 1093, 958, 897, 853, 805, 774, 755, 704, 674, 628],
+      backgroundColor: '#3b82f6'
+    }]
+  },
+  options: {
+    responsive: true, indexAxis: 'y',
+    scales: {
+      x: { grid:{color:'#334155'}, ticks:{color:'#94a3b8'} },
+      y: { grid:{color:'#334155'}, ticks:{color:'#94a3b8',font:{size:10}} }
+    },
+    plugins: { legend: { display:false } }
+  }
+});
+
+// Module functions bar chart
+const modFuncsCtx = document.getElementById('modFuncsChart').getContext('2d');
+new Chart(modFuncsCtx, {
+  type: 'bar',
+  data: {
+    labels: ['monitorPlugin.ts', 'browseGateway.ts', 'networkScanPlugin.ts', 'chat-cli.mjs', 'protocolBridgePlugin.ts', 'cameraLivePlugin.ts', 'useStt.ts', 'CameraPreview.tsx', 'useChatDispatch.ts', 'net-diag.mjs', 'useTts.ts', 'motionDetectionPlugin.ts', 'Chat.tsx', 'deviceConfigPlugin.ts', 'toonicBridgePlugin.ts'],
+    datasets: [{ label: 'Functions', data: [229, 143, 135, 109, 98, 57, 56, 54, 50, 47, 45, 44, 40, 38, 38],
+      backgroundColor: '#22c55e'
+    }]
+  },
+  options: {
+    responsive: true, indexAxis: 'y',
+    scales: {
+      x: { grid:{color:'#334155'}, ticks:{color:'#94a3b8'} },
+      y: { grid:{color:'#334155'}, ticks:{color:'#94a3b8',font:{size:10}} }
+    },
+    plugins: { legend: { display:false } }
+  }
+});
+</script>
+</body>
+</html>

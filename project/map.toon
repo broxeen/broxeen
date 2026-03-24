@@ -1,814 +1,241 @@
-# code2llm | 229f 67163L | typescript:169,rust:43,shell:10,javascript:5,python:2 | 2026-03-24
-# CC̄=4.0 | critical:306/3725 | dups:0 | cycles:0
-
-HEALTH[20]:
-  🔴 GOD   src/config/appConfig.ts = 628L, 13 classes, 3m, max CC=3
-  🔴 GOD   src/plugins/remote-machine/remoteMachinePlugin.ts = 511L, 7 classes, 29m, max CC=26
-  🔴 GOD   src/plugins/files/fileSearchPlugin.ts = 560L, 4 classes, 30m, max CC=34
-  🔴 GOD   src/plugins/system/sshPlugin.ts = 544L, 4 classes, 29m, max CC=14
-  🔴 GOD   src/plugins/monitor/motionDetectionPlugin.ts = 512L, 4 classes, 44m, max CC=13
-  🔴 GOD   src/plugins/protocol-bridge/protocolBridgePlugin.ts = 1720L, 7 classes, 98m, max CC=24
-  🔴 GOD   src-tauri/src/motion_detection.rs = 958L, 8 classes, 8m, max CC=12
-  🔴 GOD   src/plugins/monitor/monitorPlugin.ts = 2871L, 4 classes, 229m, max CC=93
-  🔴 GOD   src-tauri/src/network_scan.rs = 1655L, 16 classes, 27m, max CC=26
-  🟡 CC    host CC=71 (limit:15)
-  🟡 CC    chatApiPlugin CC=71 (limit:15)
-  🟡 CC    handleQuery CC=31 (limit:15)
-  🟡 CC    intent CC=30 (limit:15)
-  🟡 CC    sub CC=30 (limit:15)
-  🟡 CC    repoLogger CC=27 (limit:15)
-  🟡 CC    execute CC=15 (limit:15)
-  🟡 CC    transcribeAudio CC=16 (limit:15)
-  🟡 CC    run CC=16 (limit:15)
-  🟡 CC    useChatPersistence CC=16 (limit:15)
-  🟡 CC    repoRef CC=16 (limit:15)
-
-REFACTOR[10]:
-  1. split src/config/appConfig.ts  (god module)
-  2. split src/plugins/remote-machine/remoteMachinePlugin.ts  (god module)
-  3. split src/plugins/files/fileSearchPlugin.ts  (god module)
-  4. split src/plugins/system/sshPlugin.ts  (god module)
-  5. split src/plugins/monitor/motionDetectionPlugin.ts  (god module)
-  6. split src/plugins/protocol-bridge/protocolBridgePlugin.ts  (god module)
-  7. split src-tauri/src/motion_detection.rs  (god module)
-  8. split src/plugins/monitor/monitorPlugin.ts  (god module)
-  9. split src-tauri/src/network_scan.rs  (god module)
-  10. split 11 high-CC methods  (CC>15)
-
-COUPLING:
-                   scripts     src.core  src.plugins     resolver      src.lib
-      scripts           ──           12            2                            !! fan-out
-     src.core          ←12           ──                                         hub
-  src.plugins           ←2                        ──                          
-     resolver                                                  ──            1
-      src.lib                                                  ←1           ──
-  CYCLES: none
-  HUB: src.core/ (fan-in=12)
-  SMELL: scripts/ fan-out=14 → split needed
-
-LAYERS:
-  ./                              CC̄=8.9    ←in:0  →out:0
-  │ !! vite.config.ts             280L  0C   35m  CC=71     ←0
-  │ !  resolver                   129L  1C    2m  CC=10     ←0
-  │ playwright.config.ts        54L  0C    1m  CC=1      ←0
-  │ tailwind.config.js          23L  0C    0m  CC=0.0    ←0
-  │ project.sh                  21L  0C    0m  CC=0.0    ←0
-  │ postcss.config.js            6L  0C    0m  CC=0.0    ←0
-  │
-  src-tauri/                      CC̄=4.1    ←in:0  →out:0
-  │ !! network_scan.rs           1655L  16C   27m  CC=26     ←0
-  │ !! motion_detection.rs        958L  8C    8m  CC=12     ←0
-  │ !! file_search.rs             582L  3C   10m  CC=16     ←0
-  │ !! tts_backend.rs             527L  0C   22m  CC=6      ←0
-  │ !! content_extraction.rs      506L  1C   10m  CC=32     ←0
-  │ !  main.rs                    495L  1C    1m  CC=10     ←0
-  │ email.rs                   488L  3C    1m  CC=2      ←0
-  │ audio_commands.rs          445L  6C   17m  CC=8      ←0
-  │ !  browse_rendered.rs         394L  0C    6m  CC=10     ←0
-  │ !! vision_db.rs               392L  4C   12m  CC=16     ←0
-  │ !  rss_parser.rs              369L  4C   13m  CC=10     ←0
-  │ !! vision_detector.rs         344L  3C    8m  CC=15     ←0
-  │ vision_llm.rs              336L  7C    7m  CC=4      ←0
-  │ vision_config.rs           335L  9C   29m  CC=6      ←0
-  │ toonic_sidecar.rs          332L  1C    3m  CC=8      ←0
-  │ stt.rs                     325L  1C    6m  CC=6      ←0
-  │ !! vision_pipeline.rs         311L  3C    3m  CC=30     ←0
-  │ docker.rs                  310L  5C    0m  CC=0.0    ←0
-  │ remote_machine.rs          309L  6C    0m  CC=0.0    ←0
-  │ local_llm.rs               297L  3C    7m  CC=9      ←0
-  │ file_search_bench.rs       295L  0C    2m  CC=6      ←0
-  │ !! query_schema.rs            272L  1C    9m  CC=46     ←0
-  │ ssh.rs                     266L  3C    2m  CC=6      ←0
-  │ !! vision_tracker.rs          258L  4C    4m  CC=20     ←0
-  │ llm_query.rs               245L  1C    2m  CC=8      ←0
-  │ audio_capture.rs           243L  1C    9m  CC=9      ←0
-  │ !  wake_word.rs               232L  1C    7m  CC=14     ←0
-  │ !  tts.rs                     223L  1C   10m  CC=14     ←0
-  │ settings.rs                221L  3C   17m  CC=7      ←0
-  │ disk_info.rs               206L  2C    6m  CC=7      ←0
-  │ !! vision_motion.rs           186L  2C    2m  CC=16     ←0
-  │ !  network.rs                 174L  0C    7m  CC=14     ←0
-  │ vision_scene_buffer.rs     165L  3C    7m  CC=9      ←0
-  │ frigate_mqtt.rs            155L  3C    0m  CC=0.0    ←0
-  │ !! content_cleaning.rs        147L  0C    4m  CC=33     ←0
-  │ setup-audio.sh             130L  0C    0m  CC=0.0    ←0
-  │ !! vision_movement.rs         128L  1C    4m  CC=18     ←0
-  │ llm.rs                     126L  1C    0m  CC=0.0    ←0
-  │ network_info.rs            123L  1C    5m  CC=5      ←0
-  │ vision_query_engine.rs     117L  2C    2m  CC=8      ←0
-  │ logging.rs                 116L  0C    6m  CC=5      ←0
-  │ vision_capture.rs          102L  1C    3m  CC=5      ←0
-  │ autostart.rs                90L  0C    7m  CC=5      ←0
-  │ main_changes.rs             56L  0C    1m  CC=4      ←0
-  │ linuxdeploy-plugin-gtk.sh    18L  0C    0m  CC=0.0    ←0
-  │
-  src/                            CC̄=4.0    ←in:0  →out:0
-  │ !! monitorPlugin.ts          2871L  4C  229m  CC=93     ←1
-  │ !! browseGateway.ts          1741L  3C  143m  CC=42     ←0
-  │ !! protocolBridgePlugin.ts   1720L  7C   98m  CC=24     ←0
-  │ !! networkScanPlugin.ts      1586L  3C  135m  CC=40     ←0
-  │ !! useChatDispatch.ts         897L  1C   50m  CC=78     ←0
-  │ !! intentRouter.ts            853L  2C   21m  CC=55     ←0
-  │ !! ChatMessageList.tsx        805L  2C   25m  CC=107    ←0
-  │ !! CameraPreview.tsx          774L  2C   54m  CC=17     ←0
-  │ !! cameraLivePlugin.ts        755L  1C   57m  CC=95     ←0
-  │ !! Settings.tsx               704L  1C   16m  CC=4      ←0
-  │ !! ChatConfigPrompt.tsx       674L  3C   18m  CC=62     ←0
-  │ !! appConfig.ts               628L  13C    3m  CC=3      ←0
-  │ !! useChatSpeech.ts           594L  2C   25m  CC=107    ←0
-  │ !! actionSchema.ts            592L  1C   17m  CC=8      ←0
-  │ !! App.tsx                    571L  0C   34m  CC=21     ←0
-  │ !! QuickCommands.tsx          569L  3C   25m  CC=13     ←0
-  │ !! fileSearchPlugin.ts        560L  4C   30m  CC=34     ←0
-  │ !! SetupWizardModal.tsx       550L  1C   13m  CC=4      ←0
-  │ !! ChatInput.tsx              550L  3C   18m  CC=101    ←0
-  │ !! sshPlugin.ts               544L  4C   29m  CC=14     ←0
-  │ !! watchManager.ts            537L  1C   37m  CC=7      ←0
-  │ !! useStt.ts                  534L  2C   56m  CC=55     ←0
-  │ !! useTts.ts                  533L  3C   45m  CC=72     ←0
-  │ !! Chat.tsx                   514L  1C   40m  CC=15     ←0
-  │ !! motionDetectionPlugin.ts   512L  4C   44m  CC=13     ←0
-  │ !! remoteMachinePlugin.ts     511L  7C   29m  CC=26     ←0
-  │ !  ActionSuggestions.tsx      497L  2C   22m  CC=11     ←0
-  │ !! dockerPlugin.ts            489L  6C   24m  CC=52     ←0
-  │ !! deviceConfigPlugin.ts      464L  1C   38m  CC=76     ←0
-  │ cache.ts                   448L  5C   36m  CC=7      ←0
-  │ !! cameraVendorDatabase.ts    441L  1C    8m  CC=29     ←0
-  │ !  serviceProber.ts           435L  1C   27m  CC=12     ←0
-  │ !! healthCheck.ts             422L  3C   26m  CC=49     ←0
-  │ !  emailPlugin.ts             419L  4C   34m  CC=10     ←0
-  │ rtspCameraPlugin.ts        416L  9C   35m  CC=8      ←0
-  │ !! toonicBridgePlugin.ts      411L  3C   38m  CC=18     ←0
-  │ !! bootstrap.ts               409L  0C   17m  CC=45     ←0
-  │ !  llmClient.ts               402L  3C   30m  CC=10     ←0
-  │ !! DeviceDashboardModal.tsx   397L  3C   29m  CC=16     ←0
-  │ CommandHistory.tsx         393L  2C   21m  CC=6      ←0
-  │ !  NetworkHistorySelector.tsx   387L  2C   24m  CC=11     ←0
-  │ networkScanner.ts          383L  1C   32m  CC=7      ←0
-  │ !  cameraDetection.ts         381L  3C   13m  CC=13     ←0
-  │ !! advancedPortScanPlugin.ts   379L  1C   34m  CC=18     ←0
-  │ !! autoWatchIntegration.ts    367L  3C   26m  CC=15     ←0
-  │ !! HealthDiagnostic.tsx       364L  1C   22m  CC=15     ←0
-  │ changeDetector.ts          362L  1C   30m  CC=9      ←0
-  │ !! FileResultsDisplay.tsx     355L  2C   11m  CC=20     ←0
-  │ marketplaceLoader.ts       346L  2C   22m  CC=6      ←0
-  │ mqttPlugin.ts              327L  4C   24m  CC=7      ←0
-  │ !! ErrorReportPanel.tsx       326L  2C   15m  CC=41     ←0
-  │ errorReporting.ts          323L  2C   28m  CC=9      ←0
-  │ !! autoScanScheduler.ts       322L  2C   30m  CC=18     ←0
-  │ diskInfoPlugin.ts          319L  4C   28m  CC=8      ←0
-  │ DiagnosticsModal.tsx       319L  1C   11m  CC=4      ←0
-  │ !! deviceStatusPlugin.ts      317L  1C   29m  CC=33     ←0
-  │ NetworkSelector.tsx        315L  2C    4m  CC=3      ←0
-  │ !! useSpeech.ts               313L  4C   21m  CC=23     ←0
-  │ MicSettingsModal.tsx       312L  1C   11m  CC=4      ←0
-  │ !  fallbackHandler.ts         305L  2C   25m  CC=11     ←0
-  │ !! frigateEventsPlugin.ts     305L  1C   37m  CC=33     ←0
-  │ TtsSettingsModal.tsx       303L  1C    7m  CC=3      ←0
-  │ migrations.ts              302L  0C    0m  CC=0.0    ←0
-  │ logsPlugin.ts              301L  2C   23m  CC=7      ←0
-  │ !  serviceProbePlugin.ts      283L  1C   20m  CC=14     ←0
-  │ !  resolver.ts                264L  1C   19m  CC=11     ←0
-  │ realtimeSync.ts            264L  3C   20m  CC=6      ←0
-  │ scopeRegistry.ts           253L  3C   19m  CC=7      ←0
-  │ !! deviceRepository.ts        252L  1C   18m  CC=27     ←0
-  │ configuredDeviceRepository.ts   251L  3C   21m  CC=8      ←0
-  │ !  useLlm.ts                  250L  2C   18m  CC=12     ←0
-  │ databaseManager.ts         233L  4C   23m  CC=8      ←0
-  │ !! quickActionResolver.ts     233L  1C    8m  CC=58     ←0
-  │ !  alertBridge.ts             232L  3C   23m  CC=10     ←0
-  │ MessageResultCard.tsx      232L  2C    7m  CC=7      ←0
-  │ plugin.types.ts            230L  19C    3m  CC=2      ←0
-  │ !! browsePlugin.ts            226L  1C   21m  CC=23     ←0
-  │ DeviceStrip.tsx            226L  1C   12m  CC=5      ←0
-  │ !! QuickActionButtons.tsx     223L  2C    5m  CC=20     ←0
-  │ !! useHistoryPersistence.ts   219L  2C   16m  CC=20     ←0
-  │ !! llmIntentClassifier.ts     218L  2C   24m  CC=16     ←0
-  │ !! configStore.ts             214L  2C   24m  CC=40     ←0
-  │ !  watchConfig.ts             211L  0C    7m  CC=12     ←0
-  │ chatEvents.ts              209L  1C    2m  CC=6      ←0
-  │ QuickCommandHistory.tsx    204L  1C   11m  CC=6      ←0
-  │ preferenceLearning.ts      201L  3C   21m  CC=8      ←0
-  │ systemContext.ts           201L  1C   20m  CC=9      ←0
-  │ !! browseCommand.ts           187L  2C    9m  CC=15     ←0
-  │ !! authBrowsePlugin.ts        187L  1C   13m  CC=34     ←0
-  │ WatchBadge.tsx             187L  1C    5m  CC=5      ←0
-  │ voiceCommandsPlugin.ts     186L  2C    8m  CC=7      ←0
-  │ monitoringPlugin.ts        183L  2C   18m  CC=8      ←0
-  │ !! CameraLiveInline.tsx       179L  0C   18m  CC=61     ←0
-  │ !! onvifPlugin.ts             178L  2C   19m  CC=15     ←0
-  │ historyRepository.ts       167L  3C   10m  CC=6      ←0
-  │ !! cameraPtzPlugin.ts         164L  2C   14m  CC=17     ←0
-  │ !  pluginContext.tsx          161L  2C   10m  CC=12     ←0
-  │ !  portScanPlugin.ts          156L  2C   21m  CC=12     ←0
-  │ scanHistoryRepository.ts   153L  3C   15m  CC=4      ←0
-  │ autoConfig.ts              153L  1C   13m  CC=9      ←0
-  │ !! eventStore.ts              152L  1C   10m  CC=21     ←0
-  │ mdnsPlugin.ts              152L  2C   15m  CC=8      ←0
-  │ !! sttClient.ts               145L  1C   13m  CC=16     ←0
-  │ !  arpPlugin.ts               143L  2C   16m  CC=10     ←0
-  │ useWatchNotifications.ts   140L  2C   10m  CC=6      ←0
-  │ !  cameraHealthPlugin.ts      140L  2C   15m  CC=11     ←0
-  │ intentSchema.ts            137L  2C   14m  CC=7      ←0
-  │ logger.ts                  129L  0C   13m  CC=8      ←0
-  │ !  chatRepository.ts          123L  1C   17m  CC=14     ←0
-  │ pingPlugin.ts              123L  2C   18m  CC=9      ←0
-  │ !  processesPlugin.ts         120L  1C   11m  CC=11     ←0
-  │ processRegistry.ts         118L  2C   13m  CC=4      ←0
-  │ retry.ts                   112L  1C   19m  CC=9      ←1
-  │ chatPlugin.ts              111L  1C    9m  CC=6      ←0
-  │ queryBus.ts                110L  4C   14m  CC=6      ←0
-  │ types.ts                   109L  10C    0m  CC=0.0    ←0
-  │ cameraSnapshotPlugin.ts    105L  1C   12m  CC=8      ←0
-  │ ThinkingMessage.tsx        104L  1C    6m  CC=6      ←0
-  │ !! MessageQuickActions.tsx     95L  1C    6m  CC=21     ←0
-  │ pluginRegistry.ts           94L  1C   15m  CC=6      ←0
-  │ !! useChatPersistence.ts       93L  0C   10m  CC=16     ←0
-  │ types.ts                    93L  9C    0m  CC=0.0    ←0
-  │ wakeOnLanPlugin.ts          86L  1C   10m  CC=8      ←0
-  │ !  useAlertBridge.ts           84L  0C    6m  CC=14     ←0
-  │ CqrsContext.tsx             79L  1C   11m  CC=4      ←0
-  │ phonetic.ts                 78L  0C    5m  CC=5      ←1
-  │ ChatOverlays.tsx            78L  3C    1m  CC=6      ←0
-  │ types.ts                    78L  8C    0m  CC=0.0    ←0
-  │ TtsControls.tsx             74L  1C    3m  CC=1      ←0
-  │ chatAggregate.ts            72L  1C    8m  CC=4      ←0
-  │ sendMessageCommand.ts       68L  1C    5m  CC=5      ←0
-  │ llmPrompts.ts               64L  0C    1m  CC=3      ←0
-  │ commandBus.ts               64L  1C    7m  CC=5      ←0
-  │ types.ts                    64L  6C    0m  CC=0.0    ←0
-  │ index.ts                    58L  1C    3m  CC=4      ←0
-  │ WatchBadge.simple.tsx       51L  1C    1m  CC=3      ←0
-  │ saveSettingsCommand.ts      47L  1C    4m  CC=4      ←0
-  │ audioSettings.ts            43L  1C    1m  CC=1      ←0
-  │ defaultLlmAdapter.ts        41L  1C    7m  CC=2      ←0
-  │ copyContextCommand.ts       37L  1C    6m  CC=5      ←0
-  │ main.tsx                    37L  0C    4m  CC=2      ←0
-  │ getSettingsQuery.ts         33L  1C    2m  CC=3      ←0
-  │ useChatMessages.ts          25L  0C    2m  CC=1      ←0
-  │ llmService.ts               25L  1C    0m  CC=0.0    ←0
-  │ getMessagesQuery.ts         22L  1C    4m  CC=1      ←0
-  │ index.ts                    19L  0C    2m  CC=1      ←0
-  │ ChatPersistenceBridge.tsx    19L  1C    1m  CC=1      ←0
-  │ AlertBridgeComponent.tsx    18L  1C    1m  CC=1      ←0
-  │ useDatabaseManager.ts       13L  0C    2m  CC=1      ←0
-  │ runtime.ts                  12L  0C    2m  CC=5      ←0
-  │ defaultBrowseAdapter.ts     12L  1C    1m  CC=1      ←0
-  │ index.ts                    12L  0C    0m  CC=0.0    ←0
-  │ browseService.ts             9L  1C    0m  CC=0.0    ←0
-  │ logs.index.ts                8L  0C    0m  CC=0.0    ←0
-  │ index.ts                     8L  0C    0m  CC=0.0    ←0
-  │ index.ts                     7L  0C    0m  CC=0.0    ←0
-  │ index.ts                     6L  0C    0m  CC=0.0    ←0
-  │ index.ts                     6L  0C    0m  CC=0.0    ←0
-  │ vite-env.d.ts                1L  0C    0m  CC=0.0    ←0
-  │
-  scripts/                        CC̄=3.1    ←in:0  →out:14  !! split
-  │ !! chat-cli.mjs              1093L  0C  109m  CC=32     ←0
-  │ !! motion_pipeline            624L  3C   23m  CC=7      ←0
-  │ detect-platform.sh         328L  0C    8m  CC=0.0    ←0
-  │ install-openvino-ubuntu.sh   279L  0C    9m  CC=0.0    ←0
-  │ !  net-diag.mjs               265L  0C   47m  CC=12     ←0
-  │ install-openvino-docker.sh   202L  0C    8m  CC=0.0    ←0
-  │ install-openvino.sh        188L  0C    4m  CC=0.0    ←0
-  │ add-reolink-camera.mjs     155L  0C    3m  CC=4      ←0
-  │ install-openvino-pip.sh    143L  0C    7m  CC=0.0    ←1
-  │ install-openvino-macos.sh   114L  0C    8m  CC=0.0    ←0
-  │ install-openvino-rhel.sh    95L  0C    7m  CC=0.0    ←0
-  │
-  e2e/                            CC̄=1.7    ←in:0  →out:0
-  │ network-scanning-flow.spec.ts   342L  0C   13m  CC=3      ←0
-  │ plugin-system.spec.ts      315L  0C    3m  CC=2      ←0
-  │ voice-interface.spec.ts    313L  0C   19m  CC=3      ←0
-  │ ssh-docker.spec.ts         216L  0C    5m  CC=6      ←0
-  │ new-plugins.spec.ts        191L  0C   14m  CC=5      ←0
-  │ ssh-integration.spec.ts    151L  0C    4m  CC=1      ←0
-  │ chat-features.spec.ts      141L  0C   11m  CC=6      ←0
-  │ logging.spec.ts             60L  0C    5m  CC=3      ←0
-  │
-
-DUPLICATES[0]: none
-
-FUNCTIONS (CC≥10, 306 of 3725):
-  107.0  useChatSpeech                               0n            !! split
-  107.0  ChatMessageList                             0n            !! split
-  101.0  ChatInput                                   0n            !! split
-   95.0  CameraLivePlugin.execute                    0n            !! split
-   93.0  MonitorPlugin.handleStart                   0n            !! split
-   78.0  useChatDispatch                             0n            !! split
-   76.0  configLogger                                0n            !! split
-   72.0  useTts                                      0n            !! split
-   72.0  handleSubmit                                0n            !! split
-   71.0  host                                        0n            !! split
-   71.0  chatApiPlugin                               0n            !! split
-   62.0  ChatConfigPrompt                            0n            !! split
-   61.0  CameraLiveInline                            0n            !! split
-   58.0  resolveQuickActions                         0n            !! split
-   55.0  useStt                                      0n            !! split
-   55.0  IntentRouter.initializeDefaultPatterns      0n            !! split
-   52.0  DockerPlugin.execute                        0n            !! split
-   52.0  DockerPlugin.intentLower                    0n            !! split
-   49.0  HealthChecker.registerDefaultChecks         0n            !! split
-   46.0  DataSource.detect_data_source_keywords      0n            !! split
-   45.0  registerCorePlugins                         0n            !! split
-   42.0  extractBrowserReadableContent               0n            !! split
-   42.0  rtspFailCountRef                            0n            !! split
-   42.0  RTSP_FAIL_THRESHOLD                         0n            !! split
-   42.0  timerRef                                    0n            !! split
-   42.0  inFlightRef                                 0n            !! split
-   41.0  ErrorReportPanel                            0n            !! split
-   40.0  configLogger                                0n            !! split
-   40.0  NetworkScanPlugin.execute                   0n            !! split
-   40.0  tick                                        0n            !! split
-   39.0  IntentRouter.extractEntities                0n            !! split
-   36.0  useHttp                                     0n            !! split
-   36.0  MonitorPlugin.handleLogs                    0n            !! split
-   34.0  FileSearchPlugin.parseSearchParams          0n            !! split
-   34.0  logger                                      0n            !! split
-   33.0  statusLogger                                0n            !! split
-   33.0  FrigateEventsPlugin.handleMqttEvent         0n            !! split
-   33.0  MonitorPlugin.poll                          0n            !! split
-   33.0  strip_cookie_banner_text                    0n            !! split
-   32.0  calculateBlockScore                         0n            !! split
-   32.0  handleKeyDown                               0n            !! split
-   32.0  MonitorPlugin.handleConfig                  0n            !! split
-   32.0  handleEmailInbox                            0n            !! split
-   32.0  extract_action_links                        0n            !! split
-   31.0  handleQuery                                 0n            !! split
-   30.0  intent                                      0n            !! split
-   30.0  sub                                         0n            !! split
-   30.0  title                                       0n            !! split
-   30.0  bestScore                                   0n            !! split
-   30.0  AuthBrowsePlugin.execute                    0n            !! split
-
-  summary:
-    critical(≥10): 306 | high(5-10): 539 | medium(2-5): 1477 | low(<2): 1403
-    8% CC≥10  23% CC≥5
-
-HOTSPOTS:
-  #1  registerCorePlugins                  fan=52   "calls 52 functions"
-  #2  useChatSpeech                        fan=49   "calls 49 functions"
-  #3  useTts                               fan=48   "calls 48 functions"
-  #4  useStt                               fan=48   "calls 48 functions"
-  #5  host                                 fan=47   "calls 47 functions"
-  #6  chatApiPlugin                        fan=47   "calls 47 functions"
-  #7  useChatDispatch                      fan=46   "46-way dispatch"
-  #8  Pipeline.start                       fan=46   "Pipeline method, fan-out=46"
-  #9  ensure_rtsp_worker                   fan=44   "calls 44 functions"
-  #10 configLogger                         fan=43   "calls 43 functions"
-
-CLASSES:
-  MonitorPlugin                  ████████████████████████  300m  CC̄=4.4   max=93    !!
-  NetworkScanPlugin              ███████████████           197m  CC̄=3.3   max=40    !!
-  ProtocolBridgePlugin           ████████████              151m  CC̄=3.8   max=24    !!
-  CameraLivePlugin               █████                     72m  CC̄=4.5   max=95    !!
-  MotionDetectionPlugin          ████                      57m  CC̄=4.1   max=13  
-  ToonicBridgePlugin             ████                      53m  CC̄=3.4   max=18    !!
-  WatchManager                   ███                       45m  CC̄=2.5   max=7   
-  AdvancedPortScanPlugin         ███                       42m  CC̄=2.7   max=18    !!
-  DeviceConfigPlugin             ███                       41m  CC̄=4.2   max=21    !!
-  DeviceStatusPlugin             ███                       40m  CC̄=2.9   max=8   
-  ChangeDetector                 ███                       38m  CC̄=1.7   max=9   
-  FrigateEventsPlugin            ███                       38m  CC̄=3.1   max=33    !!
-  FileSearchPlugin               ██                        36m  CC̄=4.1   max=34    !!
-  EmailPlugin                    ██                        36m  CC̄=3.2   max=10  
-  NetworkScanner                 ██                        34m  CC̄=2.2   max=7   
-  SshPlugin                      ██                        34m  CC̄=3.4   max=14  
-  ServiceProber                  ██                        33m  CC̄=4.8   max=12  
-  RemoteMachinePlugin            ██                        33m  CC̄=4.2   max=26    !!
-  DiskInfoPlugin                 ██                        33m  CC̄=2.5   max=8   
-  AutoScanScheduler              ██                        33m  CC̄=4.0   max=18    !!
-  Cache                          ██                        31m  CC̄=3.1   max=7   
-  AutoWatchIntegration           ██                        31m  CC̄=2.7   max=15    !!
-  DockerPlugin                   ██                        31m  CC̄=5.1   max=52    !!
-  MqttPlugin                     ██                        29m  CC̄=2.1   max=7   
-  AlertBridge                    ██                        27m  CC̄=2.5   max=10  
-  ConfiguredDeviceRepository     ██                        26m  CC̄=2.4   max=8   
-  RtspCameraPlugin               ██                        26m  CC̄=2.4   max=8   
-  LogsPlugin                     ██                        25m  CC̄=2.1   max=7   
-  HealthChecker                  █                         24m  CC̄=4.9   max=49    !!
-  ConfigStoreImpl                █                         23m  CC̄=3.0   max=15    !!
-  MarketplacePlugin              █                         23m  CC̄=2.9   max=6   
-  DeviceRepository               █                         22m  CC̄=2.2   max=5   
-  ErrorReporting                 █                         22m  CC̄=2.1   max=9   
-  ScopeRegistry                  █                         22m  CC̄=2.5   max=7   
-  PortScanPlugin                 █                         21m  CC̄=2.9   max=12  
-  ServiceProbePlugin             █                         21m  CC̄=3.1   max=14  
-  HttpBrowsePlugin               █                         21m  CC̄=4.6   max=23    !!
-  PreferenceLearningStore        █                         20m  CC̄=2.8   max=8   
-  IntentRouter                   █                         20m  CC̄=7.6   max=55    !!
-  OnvifPlugin                    █                         19m  CC̄=3.2   max=15    !!
-  PingPlugin                     █                         18m  CC̄=2.8   max=9   
-  ScanHistoryRepository          █                         17m  CC̄=2.2   max=4   
-  RealtimeSync                   █                         17m  CC̄=2.8   max=6   
-  ChatRepository                 █                         16m  CC̄=1.9   max=5   
-  MdnsPlugin                     █                         16m  CC̄=3.2   max=8   
-  ArpPlugin                      █                         16m  CC̄=3.7   max=10  
-  CameraPtzPlugin                █                         16m  CC̄=4.3   max=17    !!
-  PluginRegistry                 █                         15m  CC̄=2.2   max=6   
-  CameraHealthPlugin             █                         15m  CC̄=3.3   max=11  
-  ProcessRegistry                █                         14m  CC̄=1.7   max=4   
-  HistoryRepository              █                         13m  CC̄=2.5   max=6   
-  DatabaseManager                                          12m  CC̄=3.8   max=8   
-  ProcessesPlugin                                          12m  CC̄=3.8   max=11  
-  CameraSnapshotPlugin                                     12m  CC̄=3.5   max=8   
-  AuthBrowsePlugin                                         12m  CC̄=5.8   max=30    !!
-  EventStore                                               11m  CC̄=2.5   max=9   
-  WakeOnLanPlugin                                          10m  CC̄=2.5   max=8   
-  QueryBus                                                  9m  CC̄=2.2   max=6   
-  MonitoringPlugin                                          9m  CC̄=1.7   max=7   
-  ChatLlmPlugin                                             9m  CC̄=2.3   max=6   
-  BrowseCommand                                             8m  CC̄=3.1   max=15    !!
-  ChatAggregate                                             8m  CC̄=2.0   max=4   
-  VoiceCommandsPlugin                                       8m  CC̄=2.9   max=7   
-  DefaultLlmAdapter                                         7m  CC̄=1.3   max=2   
-  CacheFactory                                              7m  CC̄=1.9   max=2   
-  CommandBus                                                7m  CC̄=2.1   max=5   
-  MotionPipeline                                            7m  CC̄=3.3   max=6   
-  TauriDbAdapter                                            6m  CC̄=1.2   max=2   
-  HttpSnapshotGrabber                                       6m  CC̄=2.0   max=4   
-  InMemoryDbAdapter                                         5m  CC̄=1.2   max=2   
-  CopyContextCommand                                        5m  CC̄=2.4   max=5   
-  SendMessageCommand                                        4m  CC̄=2.0   max=5   
-  LocalClassifier                                           4m  CC̄=4.0   max=7   
-  GetMessagesQuery                                          4m  CC̄=1.0   max=1   
-  TauriRtspGrabber                                          4m  CC̄=1.5   max=2   
-  SaveSettingsCommand                                       3m  CC̄=2.0   max=4   
-  LlmVerifier                                               3m  CC̄=3.0   max=6   
-  DefaultBrowseAdapter                                      1m  CC̄=1.0   max=1   
-  GetSettingsQuery                                          1m  CC̄=3.0   max=3   
-  LlmSceneDescriber                                         1m  CC̄=3.0   max=3   
-  Device                                                    0m  CC̄=0.0   max=0.0 
-  DeviceService                                             0m  CC̄=0.0   max=0.0 
-  ContentSnapshot                                           0m  CC̄=0.0   max=0.0 
-  ChangeHistory                                             0m  CC̄=0.0   max=0.0 
-  Conversation                                              0m  CC̄=0.0   max=0.0 
-  Message                                                   0m  CC̄=0.0   max=0.0 
-  WatchRule                                                 0m  CC̄=0.0   max=0.0 
-  DatabaseConfig                                            0m  CC̄=0.0   max=0.0 
-  Migration                                                 0m  CC̄=0.0   max=0.0 
-  CommandHistoryRow                                         0m  CC̄=0.0   max=0.0 
-  NetworkHistoryRow                                         0m  CC̄=0.0   max=0.0 
-  ScanHistoryEntry                                          0m  CC̄=0.0   max=0.0 
-  IncrementalScanRecommendation                             0m  CC̄=0.0   max=0.0 
-  DbAdapter                                                 0m  CC̄=0.0   max=0.0 
-  ConfiguredDevice                                          0m  CC̄=0.0   max=0.0 
-  ConfiguredDeviceRow                                       0m  CC̄=0.0   max=0.0 
-  BrowseCommandParams                                       0m  CC̄=0.0   max=0.0 
-  SttConfig                                                 0m  CC̄=0.0   max=0.0 
-  ResolveResult                                             0m  CC̄=0.0   max=0.0 
-  LlmConfig                                                 0m  CC̄=0.0   max=0.0 
-  LlmMessage                                                0m  CC̄=0.0   max=0.0 
-  LlmResponse                                               0m  CC̄=0.0   max=0.0 
-  TtsOptions                                                0m  CC̄=0.0   max=0.0 
-  TauriTtsAvailability                                      0m  CC̄=0.0   max=0.0 
-  BackendTtsInfo                                            0m  CC̄=0.0   max=0.0 
-  BrowseResult                                              0m  CC̄=0.0   max=0.0 
-  AllOriginsResponse                                        0m  CC̄=0.0   max=0.0 
-  BrowserProxyPayload                                       0m  CC̄=0.0   max=0.0 
-  UseChatDispatchDeps                                       0m  CC̄=0.0   max=0.0 
-  CommandHistoryItem                                        0m  CC̄=0.0   max=0.0 
-  NetworkHistoryItem                                        0m  CC̄=0.0   max=0.0 
-  UseChatSpeechDeps                                         0m  CC̄=0.0   max=0.0 
-  UseChatSpeechReturn                                       0m  CC̄=0.0   max=0.0 
-  UseLlmOptions                                             0m  CC̄=0.0   max=0.0 
-  UseLlmReturn                                              0m  CC̄=0.0   max=0.0 
-  UseSttOptions                                             0m  CC̄=0.0   max=0.0 
-  UseSttReturn                                              0m  CC̄=0.0   max=0.0 
-  WatchNotification                                         0m  CC̄=0.0   max=0.0 
-  UseWatchNotificationsReturn                               0m  CC̄=0.0   max=0.0 
-  LlmService                                                0m  CC̄=0.0   max=0.0 
-  BrowseService                                             0m  CC̄=0.0   max=0.0 
-  PreferenceEntry                                           0m  CC̄=0.0   max=0.0 
-  PreferenceScore                                           0m  CC̄=0.0   max=0.0 
-  PluginContext                                             0m  CC̄=0.0   max=0.0 
-  CameraConfig                                              0m  CC̄=0.0   max=0.0 
-  MqttConfig                                                0m  CC̄=0.0   max=0.0 
-  MqttAdapter                                               0m  CC̄=0.0   max=0.0 
-  Plugin                                                    0m  CC̄=0.0   max=0.0 
-  IntentDetection                                           0m  CC̄=0.0   max=0.0 
-  IntentRouter                                              0m  CC̄=0.0   max=0.0 
-  PluginRegistry                                            0m  CC̄=0.0   max=0.0 
-  CommandBus                                                0m  CC̄=0.0   max=0.0 
-  AppContext                                                0m  CC̄=0.0   max=0.0 
-  PluginQuery                                               0m  CC̄=0.0   max=0.0 
-  QueryMetadata                                             0m  CC̄=0.0   max=0.0 
-  PluginResult                                              0m  CC̄=0.0   max=0.0 
-  ContentBlock                                              0m  CC̄=0.0   max=0.0 
-  ResultMetadata                                            0m  CC̄=0.0   max=0.0 
-  PluginCapabilities                                        0m  CC̄=0.0   max=0.0 
-  DataSourcePlugin                                          0m  CC̄=0.0   max=0.0 
-  StreamablePlugin                                          0m  CC̄=0.0   max=0.0 
-  VisualPlugin                                              0m  CC̄=0.0   max=0.0 
-  PersistentPlugin                                          0m  CC̄=0.0   max=0.0 
-  PluginEvent                                               0m  CC̄=0.0   max=0.0 
-  IPluginRegistry                                           0m  CC̄=0.0   max=0.0 
-  IIntentRouter                                             0m  CC̄=0.0   max=0.0 
-  ICommand                                                  0m  CC̄=0.0   max=0.0 
-  ICommandHandler                                           0m  CC̄=0.0   max=0.0 
-  ICommandBus                                               0m  CC̄=0.0   max=0.0 
-  IQuery                                                    0m  CC̄=0.0   max=0.0 
-  IQueryHandler                                             0m  CC̄=0.0   max=0.0 
-  IQueryBus                                                 0m  CC̄=0.0   max=0.0 
-  SpeechRecognitionEvent                                    0m  CC̄=0.0   max=0.0 
-  SpeechRecognitionErrorEvent                               0m  CC̄=0.0   max=0.0 
-  SpeechRecognitionInstance                                 0m  CC̄=0.0   max=0.0 
-  Window                                                    0m  CC̄=0.0   max=0.0 
-  ListPluginsQuery                                          0m  CC̄=0.0   max=0.0 
-  PluginInfo                                                0m  CC̄=0.0   max=0.0 
-  GetPluginStatusQuery                                      0m  CC̄=0.0   max=0.0 
-  RealtimeSyncConfig                                        0m  CC̄=0.0   max=0.0 
-  SyncMessage                                               0m  CC̄=0.0   max=0.0 
-  CacheEntry                                                0m  CC̄=0.0   max=0.0 
-  CacheConfig                                               0m  CC̄=0.0   max=0.0 
-  CacheStats                                                0m  CC̄=0.0   max=0.0 
-  SystemContext                                             0m  CC̄=0.0   max=0.0 
-  PluginQuery                                               0m  CC̄=0.0   max=0.0 
-  ProcessInfo                                               0m  CC̄=0.0   max=0.0 
-  RetryOptions                                              0m  CC̄=0.0   max=0.0 
-  ActionSchema                                              0m  CC̄=0.0   max=0.0 
-  FallbackResult                                            0m  CC̄=0.0   max=0.0 
-  FallbackOptions                                           0m  CC̄=0.0   max=0.0 
-  SubActionDef                                              0m  CC̄=0.0   max=0.0 
-  IntentSchema                                              0m  CC̄=0.0   max=0.0 
-  NetworkScanResult                                         0m  CC̄=0.0   max=0.0 
-  DiscoveredDevice                                          0m  CC̄=0.0   max=0.0 
-  ServiceProbeResult                                        0m  CC̄=0.0   max=0.0 
-  DiscoveredService                                         0m  CC̄=0.0   max=0.0 
-  ServiceMetadata                                           0m  CC̄=0.0   max=0.0 
-  NetworkScannerConfig                                      0m  CC̄=0.0   max=0.0 
-  ServiceProberConfig                                       0m  CC̄=0.0   max=0.0 
-  DiscoveryEvent                                            0m  CC̄=0.0   max=0.0 
-  LlmIntentResult                                           0m  CC̄=0.0   max=0.0 
-  LlmResponse                                               0m  CC̄=0.0   max=0.0 
-  VisionQueryResult                                         0m  CC̄=0.0   max=0.0 
-  LlmAppConfig                                              0m  CC̄=0.0   max=0.0 
-  SttAppConfig                                              0m  CC̄=0.0   max=0.0 
-  NetworkScanConfig                                         0m  CC̄=0.0   max=0.0 
-  ServiceProbeConfig                                        0m  CC̄=0.0   max=0.0 
-  SshAppConfig                                              0m  CC̄=0.0   max=0.0 
-  LocaleConfig                                              0m  CC̄=0.0   max=0.0 
-  CameraDefaults                                            0m  CC̄=0.0   max=0.0 
-  MonitorAppConfig                                          0m  CC̄=0.0   max=0.0 
-  EmailAppConfig                                            0m  CC̄=0.0   max=0.0 
-  FrigateAppConfig                                          0m  CC̄=0.0   max=0.0 
-  MotionDetectionConfig                                     0m  CC̄=0.0   max=0.0 
-  AppConfig                                                 0m  CC̄=0.0   max=0.0 
-  ConfigFieldMeta                                           0m  CC̄=0.0   max=0.0 
-  AutoConfigResult                                          0m  CC̄=0.0   max=0.0 
-  AudioSettings                                             0m  CC̄=0.0   max=0.0 
-  ChatMessage                                               0m  CC̄=0.0   max=0.0 
-  ConfigStatus                                              0m  CC̄=0.0   max=0.0 
-  QuickActionSet                                            0m  CC̄=0.0   max=0.0 
-  ErrorReport                                               0m  CC̄=0.0   max=0.0 
-  WatchRule                                                 0m  CC̄=0.0   max=0.0 
-  ChangeDetectedEvent                                       0m  CC̄=0.0   max=0.0 
-  WatchConfig                                               0m  CC̄=0.0   max=0.0 
-  ChangeDetectionResult                                     0m  CC̄=0.0   max=0.0 
-  WatchManagerEvent                                         0m  CC̄=0.0   max=0.0 
-  PollingStats                                              0m  CC̄=0.0   max=0.0 
-  ResolveResult                                             0m  CC̄=0.0   max=0.0 
-  AutoWatchConfig                                           0m  CC̄=0.0   max=0.0 
-  AutoWatchStats                                            0m  CC̄=0.0   max=0.0 
-  HealthCheckResult                                         0m  CC̄=0.0   max=0.0 
-  HealthReport                                              0m  CC̄=0.0   max=0.0 
-  DeviceStatusChange                                        0m  CC̄=0.0   max=0.0 
-  AlertBridgeOptions                                        0m  CC̄=0.0   max=0.0 
-  OnvifCamera                                               0m  CC̄=0.0   max=0.0 
-  MdnsService                                               0m  CC̄=0.0   max=0.0 
-  RemoteMachine                                             0m  CC̄=0.0   max=0.0 
-  RemoteCommandResult                                       0m  CC̄=0.0   max=0.0 
-  RemoteSystemInfo                                          0m  CC̄=0.0   max=0.0 
-  DiskUsage                                                 0m  CC̄=0.0   max=0.0 
-  NetworkInterface                                          0m  CC̄=0.0   max=0.0 
-  RemoteProcess                                             0m  CC̄=0.0   max=0.0 
-  ArpHost                                                   0m  CC̄=0.0   max=0.0 
-  PingResult                                                0m  CC̄=0.0   max=0.0 
-  PortScanResult                                            0m  CC̄=0.0   max=0.0 
-  DiskPartition                                             0m  CC̄=0.0   max=0.0 
-  DiskInfo                                                  0m  CC̄=0.0   max=0.0 
-  SshResult                                                 0m  CC̄=0.0   max=0.0 
-  FileSearchResult                                          0m  CC̄=0.0   max=0.0 
-  FileSearchResponse                                        0m  CC̄=0.0   max=0.0 
-  FileContentResponse                                       0m  CC̄=0.0   max=0.0 
-  DockerContainer                                           0m  CC̄=0.0   max=0.0 
-  DockerImage                                               0m  CC̄=0.0   max=0.0 
-  DockerVolume                                              0m  CC̄=0.0   max=0.0 
-  DockerNetwork                                             0m  CC̄=0.0   max=0.0 
-  DockerInfo                                                0m  CC̄=0.0   max=0.0 
-  SshExecResult                                             0m  CC̄=0.0   max=0.0 
-  SshTestResult                                             0m  CC̄=0.0   max=0.0 
-  KnownHost                                                 0m  CC̄=0.0   max=0.0 
-  LogCommand                                                0m  CC̄=0.0   max=0.0 
-  PipelineStatus                                            0m  CC̄=0.0   max=0.0 
-  DetectionStats                                            0m  CC̄=0.0   max=0.0 
-  DetectionRow                                              0m  CC̄=0.0   max=0.0 
-  CameraVendor                                              0m  CC̄=0.0   max=0.0 
-  PortScanResult                                            0m  CC̄=0.0   max=0.0 
-  CameraDetectionResult                                     0m  CC̄=0.0   max=0.0 
-  AutoScanConfig                                            0m  CC̄=0.0   max=0.0 
-  CameraConfig                                              0m  CC̄=0.0   max=0.0 
-  FrameGrabber                                              0m  CC̄=0.0   max=0.0 
-  CapturedFrame                                             0m  CC̄=0.0   max=0.0 
-  SceneDescriber                                            0m  CC̄=0.0   max=0.0 
-  RtspCameraPluginOptions                                   0m  CC̄=0.0   max=0.0 
-  RegisterRtspCameraOptions                                 0m  CC̄=0.0   max=0.0 
-  MarketplaceEntry                                          0m  CC̄=0.0   max=0.0 
-  PtzCommand                                                0m  CC̄=0.0   max=0.0 
-  CameraStatus                                              0m  CC̄=0.0   max=0.0 
-  MqttConfig                                                0m  CC̄=0.0   max=0.0 
-  MqttClientAdapter                                         0m  CC̄=0.0   max=0.0 
-  TopicValue                                                0m  CC̄=0.0   max=0.0 
-  ScopeDefinition                                           0m  CC̄=0.0   max=0.0 
-  RemotePluginManifest                                      0m  CC̄=0.0   max=0.0 
-  VoiceCommand                                              0m  CC̄=0.0   max=0.0 
-  CameraVendor                                              0m  CC̄=0.0   max=0.0 
-  ToonicStatus                                              0m  CC̄=0.0   max=0.0 
-  ToonicEvent                                               0m  CC̄=0.0   max=0.0 
-  EmailConfig                                               0m  CC̄=0.0   max=0.0 
-  EmailMessage                                              0m  CC̄=0.0   max=0.0 
-  InboxSummary                                              0m  CC̄=0.0   max=0.0 
-  NetworkDevice                                             0m  CC̄=0.0   max=0.0 
-  NetworkScanResult                                         0m  CC̄=0.0   max=0.0 
-  WatchBadgeProps                                           0m  CC̄=0.0   max=0.0 
-  NetworkConfig                                             0m  CC̄=0.0   max=0.0 
-  NetworkSelectorProps                                      0m  CC̄=0.0   max=0.0 
-  HealthDiagnosticProps                                     0m  CC̄=0.0   max=0.0 
-  AlertBridgeComponentProps                                 0m  CC̄=0.0   max=0.0 
-  ExpandedImageData                                         0m  CC̄=0.0   max=0.0 
-  ExpandedLiveData                                          0m  CC̄=0.0   max=0.0 
-  ChatOverlaysProps                                         0m  CC̄=0.0   max=0.0 
-  SettingsProps                                             0m  CC̄=0.0   max=0.0 
-  NetworkHistoryItem                                        0m  CC̄=0.0   max=0.0 
-  NetworkHistorySelectorProps                               0m  CC̄=0.0   max=0.0 
-  CameraPreviewProps                                        0m  CC̄=0.0   max=0.0 
-  FrameAnalysis                                             0m  CC̄=0.0   max=0.0 
-  SetupWizardModalProps                                     0m  CC̄=0.0   max=0.0 
-  DomainMeta                                                0m  CC̄=0.0   max=0.0 
-  MessageResultCardProps                                    0m  CC̄=0.0   max=0.0 
-  MicSettingsModalProps                                     0m  CC̄=0.0   max=0.0 
-  QuickActionButtonsProps                                   0m  CC̄=0.0   max=0.0 
-  ActionLink                                                0m  CC̄=0.0   max=0.0 
-  QuickCommand                                              0m  CC̄=0.0   max=0.0 
-  SavedCommandHistoryItem                                   0m  CC̄=0.0   max=0.0 
-  QuickCommandsProps                                        0m  CC̄=0.0   max=0.0 
-  WatchBadgeProps                                           0m  CC̄=0.0   max=0.0 
-  TtsControlsProps                                          0m  CC̄=0.0   max=0.0 
-  ChatProps                                                 0m  CC̄=0.0   max=0.0 
-  DeviceEntry                                               0m  CC̄=0.0   max=0.0 
-  DeviceServiceEntry                                        0m  CC̄=0.0   max=0.0 
-  DeviceDashboardModalProps                                 0m  CC̄=0.0   max=0.0 
-  CommandHistoryItem                                        0m  CC̄=0.0   max=0.0 
-  CommandHistoryProps                                       0m  CC̄=0.0   max=0.0 
-  MessageQuickActionsProps                                  0m  CC̄=0.0   max=0.0 
-  ActionSuggestion                                          0m  CC̄=0.0   max=0.0 
-  ActionSuggestionsProps                                    0m  CC̄=0.0   max=0.0 
-  BridgeEndpoint                                            0m  CC̄=0.0   max=0.0 
-  BridgeMessage                                             0m  CC̄=0.0   max=0.0 
-  ActionHint                                                0m  CC̄=0.0   max=0.0 
-  MqttCacheEntry                                            0m  CC̄=0.0   max=0.0 
-  WsConnection                                              0m  CC̄=0.0   max=0.0 
-  SseStream                                                 0m  CC̄=0.0   max=0.0 
-  DiagnosticsModalProps                                     0m  CC̄=0.0   max=0.0 
-  ThinkingMessageProps                                      0m  CC̄=0.0   max=0.0 
-  Props                                                     0m  CC̄=0.0   max=0.0 
-  ScopeOption                                               0m  CC̄=0.0   max=0.0 
-  SttState                                                  0m  CC̄=0.0   max=0.0 
-  ChatInputProps                                            0m  CC̄=0.0   max=0.0 
-  ConfigAction                                              0m  CC̄=0.0   max=0.0 
-  ConfigPromptData                                          0m  CC̄=0.0   max=0.0 
-  ChatConfigPromptProps                                     0m  CC̄=0.0   max=0.0 
-  TtsSettingsModalProps                                     0m  CC̄=0.0   max=0.0 
-  FileResult                                                0m  CC̄=0.0   max=0.0 
-  FileResultsDisplayProps                                   0m  CC̄=0.0   max=0.0 
-  DeviceStripProps                                          0m  CC̄=0.0   max=0.0 
-  QuickCommandHistoryProps                                  0m  CC̄=0.0   max=0.0 
-  Window                                                    0m  CC̄=0.0   max=0.0 
-  ErrorReportPanelProps                                     0m  CC̄=0.0   max=0.0 
-  CqrsContextValue                                          0m  CC̄=0.0   max=0.0 
-  PluginContextValue                                        0m  CC̄=0.0   max=0.0 
-  PluginProviderProps                                       0m  CC̄=0.0   max=0.0 
-  TtsState                                                  0m  CC̄=0.0   max=0.0 
-  ChatMessageListProps                                      0m  CC̄=0.0   max=0.0 
-  NetworkInfo                                               0m  CC̄=0.0   max=0.0 
-  VisionConfig                                              0m  CC̄=0.0   max=0.0 
-  CameraConfig                                              0m  CC̄=0.0   max=0.0 
-  DetectorConfig                                            0m  CC̄=0.0   max=0.0 
-  PipelineConfig                                            0m  CC̄=0.0   max=0.0 
-  TrackerConfig                                             0m  CC̄=0.0   max=0.0 
-  SceneConfig                                               0m  CC̄=0.0   max=0.0 
-  DatabaseConfig                                            0m  CC̄=0.0   max=0.0 
-  LlmConfig                                                 0m  CC̄=0.0   max=0.0 
-  ObjectEvent                                               0m  CC̄=0.0   max=0.0 
-  MinuteBatch                                               0m  CC̄=0.0   max=0.0 
-  MinuteBuffer                                              0m  CC̄=0.0   max=0.0 
-  CropSnapshot                                              0m  CC̄=0.0   max=0.0 
-  CompletedTrack                                            0m  CC̄=0.0   max=0.0 
-  ActiveTrack                                               0m  CC̄=0.0   max=0.0 
-  Tracker                                                   0m  CC̄=0.0   max=0.0 
-  LlmResponse                                               0m  CC̄=0.0   max=0.0 
-  TtsAvailability                                           0m  CC̄=0.0   max=0.0 
-  MovingObject                                              0m  CC̄=0.0   max=0.0 
-  MotionDetector                                            0m  CC̄=0.0   max=0.0 
-  NlQueryResult                                             0m  CC̄=0.0   max=0.0 
-  FrigateMqttEvent                                          0m  CC̄=0.0   max=0.0 
-  FrigateMqttConfig                                         0m  CC̄=0.0   max=0.0 
-  FrigateMqttRuntime                                        0m  CC̄=0.0   max=0.0 
-  VadResult                                                 0m  CC̄=0.0   max=0.0 
-  FileSearchResult                                          0m  CC̄=0.0   max=0.0 
-  FileSearchResponse                                        0m  CC̄=0.0   max=0.0 
-  FileContentResponse                                       0m  CC̄=0.0   max=0.0 
-  ChatRequest                                               0m  CC̄=0.0   max=0.0 
-  Message                                                   0m  CC̄=0.0   max=0.0 
-  ImageUrlData                                              0m  CC̄=0.0   max=0.0 
-  ObjectDescription                                         0m  CC̄=0.0   max=0.0 
-  SceneNarrativeResult                                      0m  CC̄=0.0   max=0.0 
-  LlmClient                                                 0m  CC̄=0.0   max=0.0 
-  RssItem                                                   0m  CC̄=0.0   max=0.0 
-  RssFeed                                                   0m  CC̄=0.0   max=0.0 
-  AtomEntry                                                 0m  CC̄=0.0   max=0.0 
-  AtomFeed                                                  0m  CC̄=0.0   max=0.0 
-  BrowseResult                                              0m  CC̄=0.0   max=0.0 
-  MovementSummary                                           0m  CC̄=0.0   max=0.0 
-  PipelineProcess                                           0m  CC̄=0.0   max=0.0 
-  NativePipeline                                            0m  CC̄=0.0   max=0.0 
-  StartPipelineRequest                                      0m  CC̄=0.0   max=0.0 
-  PipelineStatus                                            0m  CC̄=0.0   max=0.0 
-  PipelineListResult                                        0m  CC̄=0.0   max=0.0 
-  DetectionRow                                              0m  CC̄=0.0   max=0.0 
-  DetectionStats                                            0m  CC̄=0.0   max=0.0 
-  VisionQueryResult                                         0m  CC̄=0.0   max=0.0 
-  Detection                                                 0m  CC̄=0.0   max=0.0 
-  Detector                                                  0m  CC̄=0.0   max=0.0 
-  TrackMsg                                                  0m  CC̄=0.0   max=0.0 
-  PipelineHandle                                            0m  CC̄=0.0   max=0.0 
-  Pipeline                                                  0m  CC̄=0.0   max=0.0 
-  SshResult                                                 0m  CC̄=0.0   max=0.0 
-  SshTestResult                                             0m  CC̄=0.0   max=0.0 
-  KnownHost                                                 0m  CC̄=0.0   max=0.0 
-  LocalDetection                                            0m  CC̄=0.0   max=0.0 
-  LlmEvent                                                  0m  CC̄=0.0   max=0.0 
-  Statistics                                                0m  CC̄=0.0   max=0.0 
-  VisionDatabase                                            0m  CC̄=0.0   max=0.0 
-  EmailConfig                                               0m  CC̄=0.0   max=0.0 
-  EmailMessage                                              0m  CC̄=0.0   max=0.0 
-  InboxSummary                                              0m  CC̄=0.0   max=0.0 
-  MonitorTarget                                             0m  CC̄=0.0   max=0.0 
-  CaptureMetadata                                           0m  CC̄=0.0   max=0.0 
-  MonitorLogEntry                                           0m  CC̄=0.0   max=0.0 
-  ActiveStream                                              0m  CC̄=0.0   max=0.0 
-  ActiveTts                                                 0m  CC̄=0.0   max=0.0 
-  ActiveWakeWordStream                                      0m  CC̄=0.0   max=0.0 
-  SttStatus                                                 0m  CC̄=0.0   max=0.0 
-  TtsInfo                                                   0m  CC̄=0.0   max=0.0 
-  AudioDevices                                              0m  CC̄=0.0   max=0.0 
-  DiskPartition                                             0m  CC̄=0.0   max=0.0 
-  DiskInfo                                                  0m  CC̄=0.0   max=0.0 
-  DockerContainer                                           0m  CC̄=0.0   max=0.0 
-  DockerImage                                               0m  CC̄=0.0   max=0.0 
-  DockerVolume                                              0m  CC̄=0.0   max=0.0 
-  DockerNetwork                                             0m  CC̄=0.0   max=0.0 
-  DockerInfo                                                0m  CC̄=0.0   max=0.0 
-  QueryResult                                               0m  CC̄=0.0   max=0.0 
-  QueryEngine                                               0m  CC̄=0.0   max=0.0 
-  CaptureStream                                             0m  CC̄=0.0   max=0.0 
-  RemoteMachine                                             0m  CC̄=0.0   max=0.0 
-  RemoteCommandResult                                       0m  CC̄=0.0   max=0.0 
-  RemoteSystemInfo                                          0m  CC̄=0.0   max=0.0 
-  DiskUsage                                                 0m  CC̄=0.0   max=0.0 
-  NetworkInterface                                          0m  CC̄=0.0   max=0.0 
-  RemoteProcess                                             0m  CC̄=0.0   max=0.0 
-  WakeWordState                                             0m  CC̄=0.0   max=0.0 
-  ToonicStatus                                              0m  CC̄=0.0   max=0.0 
-  AudioSettings                                             0m  CC̄=0.0   max=0.0 
-  LegacyAudioSettings                                       0m  CC̄=0.0   max=0.0 
-  RecordingState                                            0m  CC̄=0.0   max=0.0 
-  CapturedFrame                                             0m  CC̄=0.0   max=0.0 
-  LiveFrameCache                                            0m  CC̄=0.0   max=0.0 
-  RtspWorker                                                0m  CC̄=0.0   max=0.0 
-  RtspWorkerStat                                            0m  CC̄=0.0   max=0.0 
-  HttpFetchBase64Result                                     0m  CC̄=0.0   max=0.0 
-  CameraHealthStatus                                        0m  CC̄=0.0   max=0.0 
-  PingResult                                                0m  CC̄=0.0   max=0.0 
-  SimplePingResult                                          0m  CC̄=0.0   max=0.0 
-  OpenPort                                                  0m  CC̄=0.0   max=0.0 
-  PortScanResult                                            0m  CC̄=0.0   max=0.0 
-  ArpHost                                                   0m  CC̄=0.0   max=0.0 
-  OnvifCamera                                               0m  CC̄=0.0   max=0.0 
-  MdnsService                                               0m  CC̄=0.0   max=0.0 
-  NetworkDevice                                             0m  CC̄=0.0   max=0.0 
-  NetworkScanResult                                         0m  CC̄=0.0   max=0.0 
-  ScanNetworkArgs                                           0m  CC̄=0.0   max=0.0 
-  LocalLlmConfig                                            0m  CC̄=0.0   max=0.0 
-  LocalLlm                                                  0m  CC̄=0.0   max=0.0 
-  ActionLinks                                               0m  CC̄=0.0   max=0.0 
-
+# broxeen | 229f 67163L | typescript:169,python:2,javascript:5,rust:43,shell:10
+# Keys: M=modules, D=details, i=imports, c=classes, f=functions, m=methods
+M[229]:
+  e2e/chat-features.spec.ts,141
+  e2e/logging.spec.ts,60
+  e2e/network-scanning-flow.spec.ts,342
+  e2e/new-plugins.spec.ts,191
+  e2e/plugin-system.spec.ts,315
+  e2e/ssh-docker.spec.ts,216
+  e2e/ssh-integration.spec.ts,151
+  e2e/voice-interface.spec.ts,313
+  playwright.config.ts,54
+  postcss.config.js,6
+  project.sh,21
+  resolver.py,129
+  scripts/add-reolink-camera.mjs,155
+  scripts/chat-cli.mjs,1093
+  scripts/detect-platform.sh,328
+  scripts/install-openvino.sh,188
+  scripts/install-openvino-docker.sh,202
+  scripts/install-openvino-macos.sh,114
+  scripts/install-openvino-pip.sh,143
+  scripts/install-openvino-rhel.sh,95
+  scripts/install-openvino-ubuntu.sh,279
+  scripts/motion_pipeline.py,624
+  scripts/net-diag.mjs,265
+  src-tauri/benches/file_search_bench.rs,295
+  src-tauri/src/audio_capture.rs,243
+  src-tauri/src/audio_commands.rs,445
+  src-tauri/src/autostart.rs,90
+  src-tauri/src/browse_rendered.rs,394
+  src-tauri/src/content_cleaning.rs,147
+  src-tauri/src/content_extraction.rs,506
+  src-tauri/src/disk_info.rs,206
+  src-tauri/src/docker.rs,310
+  src-tauri/src/email.rs,488
+  src-tauri/src/file_search.rs,582
+  src-tauri/src/frigate_mqtt.rs,155
+  src-tauri/src/llm.rs,126
+  src-tauri/src/llm_query.rs,245
+  src-tauri/src/local_llm.rs,297
+  src-tauri/src/logging.rs,116
+  src-tauri/src/main.rs,495
+  src-tauri/src/main_changes.rs,56
+  src-tauri/src/motion_detection.rs,958
+  src-tauri/src/network.rs,174
+  src-tauri/src/network_info.rs,123
+  src-tauri/src/network_scan.rs,1655
+  src-tauri/src/query_schema.rs,272
+  src-tauri/src/remote_machine.rs,309
+  src-tauri/src/rss_parser.rs,369
+  src-tauri/src/settings.rs,221
+  src-tauri/src/setup-audio.sh,130
+  src-tauri/src/ssh.rs,266
+  src-tauri/src/stt.rs,325
+  src-tauri/src/toonic_sidecar.rs,332
+  src-tauri/src/tts.rs,223
+  src-tauri/src/tts_backend.rs,527
+  src-tauri/src/vision_capture.rs,102
+  src-tauri/src/vision_config.rs,335
+  src-tauri/src/vision_db.rs,392
+  src-tauri/src/vision_detector.rs,344
+  src-tauri/src/vision_llm.rs,336
+  src-tauri/src/vision_motion.rs,186
+  src-tauri/src/vision_movement.rs,128
+  src-tauri/src/vision_pipeline.rs,311
+  src-tauri/src/vision_query_engine.rs,117
+  src-tauri/src/vision_scene_buffer.rs,165
+  src-tauri/src/vision_tracker.rs,258
+  src-tauri/src/wake_word.rs,232
+  src-tauri/target/release/bundle/appimage/Broxeen.AppDir/apprun-hooks/linuxdeploy-plugin-gtk.sh,18
+  src/App.tsx,571
+  src/commands/browseCommand.ts,187
+  src/commands/copyContextCommand.ts,37
+  src/commands/saveSettingsCommand.ts,47
+  src/commands/sendMessageCommand.ts,68
+  src/components/ActionSuggestions.tsx,497
+  src/components/AlertBridgeComponent.tsx,18
+  src/components/CameraLiveInline.tsx,179
+  src/components/CameraPreview.tsx,774
+  src/components/Chat.tsx,514
+  src/components/ChatConfigPrompt.tsx,674
+  src/components/ChatInput.tsx,550
+  src/components/ChatMessageList.tsx,805
+  src/components/ChatOverlays.tsx,78
+  src/components/ChatPersistenceBridge.tsx,19
+  src/components/CommandHistory.tsx,393
+  src/components/DeviceDashboardModal.tsx,397
+  src/components/DeviceStrip.tsx,226
+  src/components/DiagnosticsModal.tsx,319
+  src/components/ErrorReportPanel.tsx,326
+  src/components/FileResultsDisplay.tsx,355
+  src/components/HealthDiagnostic.tsx,364
+  src/components/MessageQuickActions.tsx,95
+  src/components/MessageResultCard.tsx,232
+  src/components/MicSettingsModal.tsx,312
+  src/components/NetworkHistorySelector.tsx,387
+  src/components/NetworkSelector.tsx,315
+  src/components/QuickActionButtons.tsx,223
+  src/components/QuickCommandHistory.tsx,204
+  src/components/QuickCommands.tsx,569
+  src/components/Settings.tsx,704
+  src/components/SetupWizardModal.tsx,550
+  src/components/ThinkingMessage.tsx,104
+  src/components/TtsControls.tsx,74
+  src/components/TtsSettingsModal.tsx,303
+  src/components/WatchBadge.tsx,187
+  src/components/WatchBadge.simple.tsx,51
+  src/config/appConfig.ts,628
+  src/config/autoConfig.ts,153
+  src/config/configStore.ts,214
+  src/config/watchConfig.ts,211
+  src/contexts/CqrsContext.tsx,79
+  src/contexts/pluginContext.tsx,161
+  src/core/actionSchema.ts,592
+  src/core/bootstrap.ts,409
+  src/core/cache.ts,448
+  src/core/commandBus.ts,64
+  src/core/fallbackHandler.ts,305
+  src/core/intentRouter.ts,853
+  src/core/intentSchema.ts,137
+  src/core/llmIntentClassifier.ts,218
+  src/core/plugin.types.ts,230
+  src/core/pluginRegistry.ts,94
+  src/core/preferenceLearning.ts,201
+  src/core/processRegistry.ts,118
+  src/core/queryBus.ts,110
+  src/core/realtimeSync.ts,264
+  src/core/retry.ts,112
+  src/core/systemContext.ts,201
+  src/core/types.ts,109
+  src/discovery/networkScanner.ts,383
+  src/discovery/serviceProber.ts,435
+  src/discovery/types.ts,78
+  src/domain/audioSettings.ts,43
+  src/domain/chatAggregate.ts,72
+  src/domain/chatEvents.ts,209
+  src/domain/eventStore.ts,152
+  src/hooks/useAlertBridge.ts,84
+  src/hooks/useChatDispatch.ts,897
+  src/hooks/useChatMessages.ts,25
+  src/hooks/useChatPersistence.ts,93
+  src/hooks/useChatSpeech.ts,594
+  src/hooks/useDatabaseManager.ts,13
+  src/hooks/useHistoryPersistence.ts,219
+  src/hooks/useLlm.ts,250
+  src/hooks/useSpeech.ts,313
+  src/hooks/useStt.ts,534
+  src/hooks/useTts.ts,533
+  src/hooks/useWatchNotifications.ts,140
+  src/integration/autoWatchIntegration.ts,367
+  src/lib/browseGateway.ts,1741
+  src/lib/llmClient.ts,402
+  src/lib/llmPrompts.ts,64
+  src/lib/logger.ts,129
+  src/lib/phonetic.ts,78
+  src/lib/resolver.ts,264
+  src/lib/runtime.ts,12
+  src/lib/sttClient.ts,145
+  src/main.tsx,37
+  src/persistence/chatRepository.ts,123
+  src/persistence/configuredDeviceRepository.ts,251
+  src/persistence/databaseManager.ts,233
+  src/persistence/deviceRepository.ts,252
+  src/persistence/historyRepository.ts,167
+  src/persistence/migrations.ts,302
+  src/persistence/scanHistoryRepository.ts,153
+  src/persistence/types.ts,93
+  src/plugins/authBrowse/authBrowsePlugin.ts,187
+  src/plugins/camera/cameraLivePlugin.ts,755
+  src/plugins/camera/cameraVendorDatabase.ts,441
+  src/plugins/cameras/index.ts,7
+  src/plugins/cameras/cameraHealthPlugin.ts,140
+  src/plugins/cameras/cameraPtzPlugin.ts,164
+  src/plugins/cameras/cameraSnapshotPlugin.ts,105
+  src/plugins/chat/chatPlugin.ts,111
+  src/plugins/discovery/advancedPortScanPlugin.ts,379
+  src/plugins/discovery/autoScanScheduler.ts,322
+  src/plugins/discovery/cameraDetection.ts,381
+  src/plugins/discovery/deviceConfigPlugin.ts,464
+  src/plugins/discovery/deviceStatusPlugin.ts,317
+  src/plugins/discovery/networkScanPlugin.ts,1586
+  src/plugins/discovery/serviceProbePlugin.ts,283
+  src/plugins/docker/dockerPlugin.ts,489
+  src/plugins/email/emailPlugin.ts,419
+  src/plugins/files/fileSearchPlugin.ts,560
+  src/plugins/frigate/frigateEventsPlugin.ts,305
+  src/plugins/http/browsePlugin.ts,226
+  src/plugins/marketplace/index.ts,6
+  src/plugins/marketplace/marketplaceLoader.ts,346
+  src/plugins/monitor/index.ts,6
+  src/plugins/monitor/monitorPlugin.ts,2871
+  src/plugins/monitor/motionDetectionPlugin.ts,512
+  src/plugins/monitoringPlugin.ts,183
+  src/plugins/mqtt/index.ts,19
+  src/plugins/mqtt/mqttPlugin.ts,327
+  src/plugins/network/arpPlugin.ts,143
+  src/plugins/network/mdnsPlugin.ts,152
+  src/plugins/network/onvifPlugin.ts,178
+  src/plugins/network/pingPlugin.ts,123
+  src/plugins/network/portScanPlugin.ts,156
+  src/plugins/network/wakeOnLanPlugin.ts,86
+  src/plugins/protocol-bridge/index.ts,12
+  src/plugins/protocol-bridge/protocolBridgePlugin.ts,1720
+  src/plugins/remote-machine/remoteMachinePlugin.ts,511
+  src/plugins/rtsp-camera/index.ts,58
+  src/plugins/rtsp-camera/rtspCameraPlugin.ts,416
+  src/plugins/scope/scopeRegistry.ts,253
+  src/plugins/system/diskInfoPlugin.ts,319
+  src/plugins/system/logs.index.ts,8
+  src/plugins/system/logsPlugin.ts,301
+  src/plugins/system/processesPlugin.ts,120
+  src/plugins/system/sshPlugin.ts,544
+  src/plugins/toonic/toonicBridgePlugin.ts,411
+  src/plugins/voice/index.ts,8
+  src/plugins/voice/voiceCommandsPlugin.ts,186
+  src/queries/getMessagesQuery.ts,22
+  src/queries/getSettingsQuery.ts,33
+  src/reactive/alertBridge.ts,232
+  src/reactive/changeDetector.ts,362
+  src/reactive/types.ts,64
+  src/reactive/watchManager.ts,537
+  src/services/browseService.ts,9
+  src/services/defaultBrowseAdapter.ts,12
+  src/services/defaultLlmAdapter.ts,41
+  src/services/llmService.ts,25
+  src/utils/errorReporting.ts,323
+  src/utils/healthCheck.ts,422
+  src/utils/quickActionResolver.ts,233
+  src/vite-env.d.ts,1
+  tailwind.config.js,23
+  vite.config.ts,280
 D:
   src/hooks/useChatSpeech.ts:
     i: ../components/ChatInput,../domain/audioSettings,../domain/eventStore,../lib/logger,../lib/runtime,./useSpeech,./useStt,./useTts,@tauri-apps/api/core,react
     e: UseChatSpeechDeps,UseChatSpeechReturn,speechLogger,useChatSpeech,stt,tts,micPhase,lastSpeechSubmitRef,sttAutoListenTimerRef,sttAutoListenStartedAtRef,sttAutoListenSilenceHitsRef,runtimeIsTauri,silenceMs,thresholdSeconds,requiredHits,startedAt,elapsedMs,silent,wakeWordTriggeredSttRef,unsub,previousLoadingWaitIdsRef,unsub,unsub2,setupWakeWordListener,payload,wakeWordRunningRef,wakeWordStoppedForSttRef,toggleMic
-    UseChatSpeechDeps
-    UseChatSpeechReturn
+    UseChatSpeechDeps:
+    UseChatSpeechReturn:
     speechLogger()
     useChatSpeech()
     stt()
@@ -838,8 +265,8 @@ D:
   src/components/ChatMessageList.tsx:
     i: ../domain/chatEvents,./ActionSuggestions,./CameraLiveInline,./CameraPreview,./ChatConfigPrompt,./CommandHistory,./MessageQuickActions,./MessageResultCard,./QuickActionButtons,./QuickCommands,./ThinkingMessage,./TtsControls,react,react-markdown,remark-breaks,remark-gfm
     e: TtsState,ChatMessageListProps,resolveIcon,getNetworkIcon,markdownComponents,codeText,inputElement,stripSuggestionMarker,idx,extractSuggestionSection,idx,CopyMessageButton,handleCopy,ChatMessageList,mdComponents,mdComponentsSimple,isSystem,prevIsSystem,nextIsSystem,inputElement,isDataUrl,canPreview,m,section,seen,query,label,inputElement,placeholderMatch,placeholderPos
-    TtsState
-    ChatMessageListProps
+    TtsState:
+    ChatMessageListProps:
     resolveIcon()
     getNetworkIcon()
     markdownComponents()
@@ -871,9 +298,9 @@ D:
   src/components/ChatInput.tsx:
     i: ../domain/audioSettings,../lib/logger,../lib/runtime,./NetworkSelector,./QuickCommandHistory,react
     e: ScopeOption,SttState,ChatInputProps,chatLogger,ChatInput,inputHistoryRef,historyIndexRef,autocompleteSuggestions,q,recent,seen,lower,handleInputFocus,handleInputBlur,handleAutocompleteSelect,inputElement,handleQuickHistorySelect,inputElement,handleKeyDown,choice,inputElement,choice,history,history,nextIndex
-    ScopeOption
-    SttState
-    ChatInputProps
+    ScopeOption:
+    SttState:
+    ChatInputProps:
     chatLogger()
     ChatInput()
     inputHistoryRef()
@@ -899,20 +326,18 @@ D:
   src/plugins/camera/cameraLivePlugin.ts:
     i: ../../core/types,./cameraVendorDatabase
     e: CameraLivePlugin
-    CameraLivePlugin
-      canHandle(-1)  CC=1.0
+    CameraLivePlugin: canHandle(-1),trimmed(-1),execute(-1),start(-1),sanitizedInput(-1),rtspMatch(-1),storedPath(-1),credMatch(-1),ipMatch(-1),isReachable(-1),storedUsername(-1),storedPassword(-1),storedRtspUrl(-1),sanitizedStored(-1),auth(-1),auth(-1),ipMatch(-1),userMatch(-1),passMatch(-1),ip(-1),username(-1),password(-1),rtspPathForDetection(-1),dbVendorId(-1),vendorId(-1),vendor(-1),auth(-1),snapshotCandidates(-1),result(-1),msg(-1),res(-1),okMark(-1),okMark(-1),resolveVendorFromDb(-1),repo(-1),device(-1),mapVendorStringToId(-1),v(-1),dbVendorId(-1),vendorId(-1),vendor(-1),auth(-1),working(-1),result(-1),workingStreams(-1),path(-1),handleCredentialTest(-1),hasMatch(-1),vendor(-1),blobToBase64(-1),reader(-1),result(-1),idx(-1),resolve(-1),sanitizeRtspInput(-1),extractRtspPath(-1),match(-1),truncateOneLine(-1),one(-1),verifyIpReachability(-1),timeout(-1),result(-1),timeoutId(-1),fetch(-1),fetch(-1),fetch(-1),results(-1),clearTimeout(-1),clearTimeout(-1),handleUnreachableIp(-1),initialize(-1),dispose(-1)
   src/plugins/monitor/monitorPlugin.ts:
     i: ../../components/ChatConfigPrompt,../../config/configStore,../../core/processRegistry,../../core/types,../../persistence/configuredDeviceRepository,../../persistence/configuredDeviceRepository,../../persistence/deviceRepository
     e: MonitorTarget,CaptureMetadata,MonitorLogEntry,MonitorPlugin
-    MonitorTarget
-    CaptureMetadata
-    MonitorLogEntry
-    MonitorPlugin
-      buildDbConflictPrompt(-1)  CC=4.0
+    MonitorTarget:
+    CaptureMetadata:
+    MonitorLogEntry:
+    MonitorPlugin: buildDbConflictPrompt(-1),canHandle(-1),lower(-1),execute(-1),start(-1),lower(-1),m(-1),toggle(-1),parseToggleMonitoring(-1),m(-1),verb(-1),rest(-1),idMatch(-1),ipMatch(-1),id(-1),ip(-1),label(-1),all(-1),existingTarget(-1),timer(-1),startedAt(-1),defaultThreshold(-1),defaultIntervalMs(-1),timer(-1),handleAddToMonitoring(-1),urlMatch(-1),url(-1),hostname(-1),existing(-1),defaultThreshold(-1),defaultIntervalMs(-1),timer(-1),handleStart(-1),parsed(-1),goalMatch(-1),whenMatch(-1),resolvedIp(-1),existing(-1),storedUser(-1),storedPass(-1),auth(-1),storedRtspPath(-1),vendorId(-1),vendor(-1),mainPath(-1),snapshotPath(-1),existing(-1),enabledExisting(-1),choices(-1),actions(-1),existingId(-1),savedId(-1),credentialsValid(-1),timer(-1),goal(-1),when(-1),watchBody(-1),resp(-1),data(-1),msg(-1),handleStop(-1),targetName(-1),timer(-1),names(-1),timer(-1),handleList(-1),conflictPrompt(-1),uptime(-1),lastCheck(-1),icon(-1),configPrompt(-1),handleLogs(-1),targetName(-1),ipMatch(-1),inputIp(-1),recent(-1),allChecks(-1),allErrors(-1),allChanges(-1),c(-1),time(-1),icon(-1),message(-1),authMatch(-1),timeoutMatch(-1),connMatch(-1),lastErr(-1),handleConfig(-1),lower(-1),scopeMatch(-1),targetScopeRaw(-1),targetScope(-1),thresholdMatch(-1),newThreshold(-1),updated(-1),intervalMatch(-1),value(-1),unit(-1),ms(-1),updated(-1),oldTimer(-1),newTimer(-1),handleExplain(-1),threshold(-1),interval(-1),llmMin(-1),poll(-1),snapshot(-1),previousSnapshot(-1),changeScore(-1),captureInfo(-1),llmMinChangeScore(-1),thumbMaxWidth(-1),thumbnail(-1),summary(-1),lastLog(-1),previousContent(-1),changeScore(-1),pollEndpoint(-1),response(-1),currentContent(-1),truncatedContent(-1),previousContent(-1),changeScore(-1),emitUiEvent(-1),isNoSignificantChangeSummary(-1),normalized(-1),captureStart(-1),result(-1),result(-1),storedUser(-1),seen(-1),uniqueCreds(-1),origUser(-1),origPass(-1),token(-1),result(-1),vendorId(-1),vendor(-1),auth(-1),result(-1),repo(-1),devices(-1),name(-1),rpi(-1),vendor(-1),hostname(-1),generic(-1),proxyUrl(-1),isDev(-1),fetchUrl(-1),resp(-1),blob(-1),base64(-1),mimeType(-1),summarizeCaptureFailure(-1),text(-1),isDev(-1),ensureApiToken(-1),loginPayload(-1),resp(-1),data(-1),tokenObj(-1),detectResolution(-1),img(-1),w(-1),h(-1),text(-1),formatCaptureDetails(-1),computeImageChangeScore(-1),len(-1),step(-1),same(-1),total(-1),pixelDiff(-1),COMPARE_WIDTH(-1),PIXEL_THRESHOLD(-1),wA(-1),hA(-1),scale(-1),w(-1),h(-1),canvasA(-1),ctxA(-1),dataA(-1),canvasB(-1),ctxB(-1),dataB(-1),totalPixels(-1),changedPixels(-1),dr(-1),dg(-1),db(-1),resizedBase64(-1),img(-1),width(-1),height(-1),scale(-1),targetW(-1),targetH(-1),canvas(-1),ctx(-1),outMime(-1),dataUrl(-1),outBase64(-1),computeTextChangeScore(-1),normalize(-1),prevNormalized(-1),currNormalized(-1),len(-1),differences(-1),lengthDiff(-1),totalDiff(-1),maxLength(-1),loadBase64Image(-1),img(-1),blobToBase64(-1),arrayBuffer(-1),bytes(-1),parseTarget(-1),lower(-1),intervalMs(-1),intervalMatch(-1),val(-1),threshold(-1),thresholdMatch(-1),userMatch(-1),passMatch(-1),ipMatch(-1),urlMatch(-1),targetText(-1),simulateContent(-1),now(-1),noise(-1),quickDiff(-1),wordsA(-1),wordsB(-1),union(-1),intersection(-1),formatTargetLogs(-1),recent(-1),checks(-1),errors(-1),changes(-1),c(-1),lastErr(-1),time(-1),icon(-1),message(-1),authMatch(-1),timeoutMatch(-1),connMatch(-1),lastErr(-1),logIcon(-1),addr(-1),isCamera(-1),isEndpoint(-1),credStr(-1),typeLabel(-1),toonicHint(-1),buildMonitoringConfigPrompt(-1),formatDuration(-1),s(-1),m(-1),h(-1),result(-1),response(-1),errorResult(-1),initialize(-1),v(-1),v(-1),oldTimer(-1),newTimer(-1),loadMonitoredDevices(-1),defaultThreshold(-1),configuredDevices(-1),byIp(-1),list(-1),device(-1),startedAt(-1),timer(-1),handleResolveDbConflict(-1),keep(-1),toDisable(-1),startedAt(-1),defaultThreshold(-1),timer(-1),handleVisionPipeline(-1),lower(-1),handleVisionStatus(-1),status(-1),handleVisionStop(-1),cameraId(-1),handleVisionStart(-1),rtspMatch(-1),ipMatch(-1),ip(-1),activeTargets(-1),target(-1),dispose(-1)
   src/hooks/useChatDispatch.ts:
     i: ../components/CameraPreview,../components/ChatConfigPrompt,../components/ChatInput,../components/CommandHistory,../components/NetworkSelector,../config/configStore,../core/processRegistry,../domain/audioSettings,../domain/eventStore,../lib/logger,../lib/phonetic,../lib/runtime,react
     e: UseChatDispatchDeps,dispatchLogger,handleConfigCommand,lower,intervalMs,threshold,thumb,status,subnet,status,addScopePrefix,prefix,categorizeCommand,lowerCommand,checkIfAmbiguousQuery,lowerQuery,checkIfNetworkQuery,containsUrl,getAmbiguousQueryText,getSuggestionsForQuery,lowerQuery,getNetworkSelectionText,parseCameraResults,lines,cameraMatch,camCfg,looksLikeRecoverableError,useChatDispatch,handleSubmit,originalQuery,query,configResult,thinkingId,isVoiceInput,result,fallback,fallbackPrompt,textData,hasCameraLiveBlock,parsed,contentBlocks,runtimeIsTauri,parsed,errorMessage,fallback,errorMessage,fallback,handleCommandHistorySelect,handleSuggestionClick,handleNetworkOptionClick,sendAmbiguousQuerySuggestions,suggestionsId,sendNetworkSelectionMessage,networkSelectionId,handleCameraSelect,handleCameraAnalysisComplete,handleCameraStreamStart
-    UseChatDispatchDeps
+    UseChatDispatchDeps:
     dispatchLogger()
     handleConfigCommand()
     lower()
@@ -972,15 +397,14 @@ D:
   src/plugins/discovery/deviceConfigPlugin.ts:
     i: ../../core/types,../../lib/logger,../../persistence/configuredDeviceRepository,../../persistence/configuredDeviceRepository
     e: DeviceConfigPlugin,configLogger
-    DeviceConfigPlugin
-      initialize(-1)  CC=3.0
+    DeviceConfigPlugin: initialize(-1),resolveRoute(-1),lower(-1),canHandle(-1),execute(-1),start(-1),lowerInput(-1),listConfiguredDevices(-1),devices(-1),cameras(-1),servers(-1),sensors(-1),others(-1),monitorIcon(-1),addDevice(-1),params(-1),savedDeviceId(-1),savedDevice(-1),saveDevice(-1),configureDevice(-1),params(-1),devices(-1),device(-1),showHelp(-1),parseAddCommand(-1),ipMatch(-1),ip(-1),rtspMatch(-1),rtspUrl(-1),httpMatch(-1),httpUrl(-1),credMatch(-1),afterIp(-1),beforeRtsp(-1),beforeHttp(-1),words(-1),lowerInput(-1),parseConfigureCommand(-1),match(-1),ipMatch(-1),getDeviceTypeLabel(-1)
     configLogger()
   src/hooks/useTts.ts:
     i: ../lib/logger,../lib/runtime,@tauri-apps/api/core,react
     e: TtsOptions,TauriTtsAvailability,BackendTtsInfo,ttsLogger,MAX_TTS_SENTENCES,getSpeechSynthesisApi,preprocessForTts,normalized,estimateBackendSpeechDurationMs,words,wordsPerMinute,minutes,useTts,utteranceRef,totalLenRef,backendSupportedRef,backendModeRef,backendProgressTimerRef,backendProgressIntervalRef,clearBackendProgress,startBackendProgress,startedAt,elapsed,next,isMounted,speechSynthesisApi,runtimeIsTauri,loadVoices,synthesis,available,probeTauriBackendTts,engine,backendSupported,synthesis,speak,runSpeak,preparedText,synthesis,runtimeIsTauri,estimatedDurationMs,runSpeakViaBackend,utterance,found,plVoice,pause,runPause,synthesis,resume,runResume,synthesis,stop,runStop,synthesis,runStopViaBackend
-    TtsOptions
-    TauriTtsAvailability
-    BackendTtsInfo
+    TtsOptions:
+    TauriTtsAvailability:
+    BackendTtsInfo:
     ttsLogger()
     MAX_TTS_SENTENCES()
     getSpeechSynthesisApi()
@@ -1080,9 +504,9 @@ D:
   src/components/ChatConfigPrompt.tsx:
     i: ../config/appConfig,../config/configStore,../core/preferenceLearning,lucide-react,react
     e: ConfigAction,ConfigPromptData,ChatConfigPromptProps,ChatConfigPrompt,handleAction,handleFieldSave,value,meta,getVariantClasses,layout,meta,currentValue,isCompleted,isCompleted,isClicked,isCompleted,isClicked,isCompleted,isClicked,buildApiKeyPrompt,buildNetworkConfigPrompt,buildModelSelectionPrompt,buildMonitorConfigPrompt,buildSshHostPrompt,buildCameraActionPrompt,buildConfigOverviewPrompt,status
-    ConfigAction
-    ConfigPromptData
-    ChatConfigPromptProps
+    ConfigAction:
+    ConfigPromptData:
+    ChatConfigPromptProps:
     ChatConfigPrompt()
     handleAction()
     handleFieldSave()
@@ -1132,7 +556,7 @@ D:
   src/utils/quickActionResolver.ts:
     i: ../components/ChatConfigPrompt,../domain/chatEvents
     e: QuickActionSet,resolveQuickActions,text,subnetMatch,ip,ip,ip,feedUrl,url,ip,ip,seen,deduped
-    QuickActionSet
+    QuickActionSet:
     resolveQuickActions()
     text()
     subnetMatch()
@@ -1148,8 +572,8 @@ D:
   src/hooks/useStt.ts:
     i: ../domain/audioSettings,../lib/logger,../lib/runtime,../lib/sttClient,@tauri-apps/api/core,react
     e: UseSttOptions,UseSttReturn,sttLogger,getAudioSettings,settings,arrayBufferToBase64,bytes,chunk,writeWavPcm16,numChannels,sampleRate,numFrames,bytesPerSample,blockAlign,byteRate,dataSize,buffer,view,writeString,offset,sample,clamped,blobToWavBase64,buf,ctx,arr,audioBuffer,wav,getUnsupportedReason,toErrorDetails,err,useStt,recorderRef,chunksRef,streamRef,modeRef,isRecordingRef,startInFlightRef,stopInFlightRef,reason,runtime,stopTracks,startTauriRecording,runBackendStart,msg,startRecording,run,reason,recorder,runOnStop,blob,text,msg,details,runtime,stopRecording,run,runBackendStop,settings,transcriptValue,normalized,msg,rec,cleanupSettings
-    UseSttOptions
-    UseSttReturn
+    UseSttOptions:
+    UseSttReturn:
     sttLogger()
     getAudioSettings()
     settings()
@@ -1215,30 +639,24 @@ D:
   src/core/intentRouter.ts:
     i: ../plugins/scope/scopeRegistry,./llmIntentClassifier,./types
     e: IntentRouter,PluginQuery,buildQuery
-    IntentRouter
-      constructor(-1)  CC=5.0
-        → initializeDefaultPatterns(-1)  CC=55.0  !
-    PluginQuery
+    IntentRouter: constructor(-1),initializeDefaultPatterns(-1),registerPlugin(-1),registerDataSourcePlugin(-1),detect(-1),normalizedInput(-1),llmResult(-1),route(-1),calculateConfidence(-1),keywords(-1),matches(-1),baseConfidence(-1),extractEntities(-1),urlMatch(-1),ipTarget(-1),macAddr(-1),diskPath(-1),diskHost(-1),sshIp(-1),sshUser(-1)
+    PluginQuery:
     buildQuery()
   src/plugins/docker/dockerPlugin.ts:
     i: ../../core/types
     e: DockerContainer,DockerImage,DockerVolume,DockerNetwork,DockerInfo,DockerPlugin
-    DockerContainer
-    DockerImage
-    DockerVolume
-    DockerNetwork
-    DockerInfo
-    DockerPlugin
-      initialize(-1)  CC=1.0
+    DockerContainer:
+    DockerImage:
+    DockerVolume:
+    DockerNetwork:
+    DockerInfo:
+    DockerPlugin: initialize(-1),dispose(-1),canHandle(-1),execute(-1),intentLower(-1),isAvailable(-1),info(-1),all(-1),containers(-1),containerList(-1),images(-1),imageList(-1),volumes(-1),volumeList(-1),networks(-1),networkList(-1),containerId(-1),result(-1),containerId(-1),result(-1),containerId(-1),result(-1),containerId(-1),force(-1),result(-1),containerId(-1),linesMatch(-1),lines(-1),logs(-1),extractContainerId(-1),match(-1)
   src/utils/healthCheck.ts:
     i: ../lib/logger,../persistence/databaseManager
     e: HealthCheckResult,HealthReport,HealthChecker,healthLogger,healthChecker,runHealthCheck,runQuickHealthCheck
-    HealthCheckResult
-    HealthReport
-    HealthChecker
-      constructor(-1)  CC=1.0
-        → registerDefaultChecks(-1)  CC=49.0  !
-        → addCheck(-1)  CC=4.0
+    HealthCheckResult:
+    HealthReport:
+    HealthChecker: constructor(-1),registerDefaultChecks(-1),version(-1),major(-1),platform(-1),arch(-1),isTauri(-1),response(-1),testMgr(-1),stats(-1),isTauri(-1),reactAvailable(-1),tauriAvailable(-1),allAvailable(-1),allAvailable(-1),addCheck(-1),result(-1),runChecks(-1),results(-1),errorCount(-1),warningCount(-1),runQuickCheck(-1),report(-1),criticalErrors(-1)
     healthLogger()
     healthChecker()
     runHealthCheck()
@@ -1270,9 +688,9 @@ D:
   src/lib/browseGateway.ts:
     i: ./logger,./runtime,@tauri-apps/api/core
     e: BrowseResult,AllOriginsResponse,BrowserProxyPayload,browseLogger,MAX_CONTENT_LENGTH,getRandomUserAgent,getRandomReferer,polishReferers,getRandomAcceptLanguage,generateAdvancedHeaders,generateWPPLCookies,generateOnetCookies,generateInteriaCookies,generateRandomIP,base,last,requestTimestamps,RATE_LIMIT_MS,shouldRateLimit,domain,now,timestamps,recent,delay,detectContentType,text,confidence,productScore,priceMatch,brandMatch,newsScore,dateMatch,authorMatch,docScore,versionMatch,blogScore,forumScore,shopScore,articleScore,createHumanLikeSummary,contentType,sentences,metaInfo,typeLabel,getContentTypeLabel,summarizeBlog,intro,conclusion,takeaways,summarizeForum,questionSentences,answerSentences,summarizeShop,categories,featured,summarizeProduct,price,brand,sentences,description,regex,match,summarizeNews,date,author,mainContent,conclusionSentences,summarizeArticle,intro,conclusion,listItems,summarizeDocumentation,installMatch,configMatch,usageMatch,examples,summarizeGeneral,substantialSentences,getMetaInfo,label,authorMatch,dateMatch,domain,getMetadataLabel,stripCookieBannerText,raw,normalized,blocks,removedCount,processedBlock,shouldRemove,score,linkCount,wordCount,result,calculateBlockScore,score,text,sentences,normalizeText,withHttpScheme,summarizeUnknownError,extractBrowserReadableContent,document,title,bestScore,node,text,score,paragraphs,headings,lists,links,linkRatio,sentences,avgSentenceLength,paragraphs,paragraphContent,bodyText,looksLikeHtml,probe,normalizeBrowseResult,rawUrl,safeUrl,rawTitle,rawContent,contentWasHtml,extractedContent,cookieStripped,processedContent,fetchViaAdvancedProxy,targetUrl,controller,timeout,delayMs,response,err,data,fetchViaAllOriginsJson,controller,timeout,response,err,data,statusCode,err,status,fetchViaAllOriginsRaw,controller,timeout,response,err,rawContent,status,fetchViaCorsProxy,targetUrl,controller,timeout,response,err,rawContent,status,fetchViaJina,jinaProxies,wpProxies,regularProxies,result,result,browseInBrowser,runBrowseInBrowser,fetchers,payload,rawContent,htmlPayload,extracted,normalized,message,getSmartFetchers,isValidContent,hasMeaningfulContent,executeBrowseCommand,runExecuteBrowseCommand,result,rawTitle,normalized,result
-    BrowseResult
-    AllOriginsResponse
-    BrowserProxyPayload
+    BrowseResult:
+    AllOriginsResponse:
+    BrowserProxyPayload:
     browseLogger()
     MAX_CONTENT_LENGTH()
     getRandomUserAgent()
@@ -1459,8 +877,8 @@ D:
   src/components/ErrorReportPanel.tsx:
     i: ../utils/errorReporting,react
     e: Window,ErrorReportPanelProps,ErrorReportPanel,refreshData,getFilterOptions,copyErrorReport,report,backendLogs,textArea,clearAllErrors,resolveError,showNotification,notification,bgColor,getSeverityColor,getSeverityIcon,getTypeIcon
-    Window
-    ErrorReportPanelProps
+    Window:
+    ErrorReportPanelProps:
     ErrorReportPanel()
     refreshData()
     getFilterOptions()
@@ -1479,50 +897,37 @@ D:
   src/config/configStore.ts:
     i: ../lib/logger,./appConfig
     e: ConfigStoreImpl,ConfigStatus,configLogger,configStore
-    ConfigStoreImpl
-      constructor(-1)  CC=1.0
-        → load(-1)  CC=15.0  !
-        → deepMerge(-1)  CC=9.0
-        → keys(-1)  CC=3.0
-    ConfigStatus
+    ConfigStoreImpl: constructor(-1),load(-1),raw(-1),merged(-1),env(-1),persist(-1),getAll(-1),get(-1),set(-1),keys(-1),lastKey(-1),oldValue(-1),setMany(-1),keys(-1),reset(-1),onChange(-1),notify(-1),listener(-1),deepMerge(-1),detectMissingConfig(-1),isLlmAvailable(-1),isSttConfigured(-1),getConfigStatus(-1)
+    ConfigStatus:
     configLogger()
     configStore()
   src/plugins/discovery/networkScanPlugin.ts:
     i: ../../config/configStore,../../core/cache,../../core/processRegistry,../../core/types,../../domain/chatEvents,../../persistence/deviceRepository,../../persistence/scanHistoryRepository
     e: NetworkScanPlugin,NetworkDevice,NetworkScanResult
-    NetworkScanPlugin
-      resolveRoute(-1)  CC=3.0
-    NetworkDevice
-    NetworkScanResult
+    NetworkScanPlugin: resolveRoute(-1),lower(-1),initialize(-1),canHandle(-1),isStatusQuery(-1),isFilterQuery(-1),isExportQuery(-1),extractExportFormat(-1),lower(-1),extractFilterType(-1),lower(-1),handleDeviceFilter(-1),cachedResult(-1),filterType(-1),repo(-1),allDevices(-1),byType(-1),t(-1),label(-1),filtered(-1),typeLabel(-1),now(-1),ONLINE_MS(-1),rows(-1),ageMs(-1),icon(-1),name(-1),ageFmt(-1),handleDeviceStatus(-1),repo(-1),devices(-1),now(-1),ONLINE_THRESHOLD_MS(-1),RECENT_THRESHOLD_MS(-1),rows(-1),ageMs(-1),ageFmt(-1),name(-1),online(-1),offline(-1),handleExport(-1),format(-1),repo(-1),devices(-1),now(-1),ONLINE_MS(-1),rows(-1),rows(-1),status(-1),ports(-1),esc(-1),execute(-1),start(-1),isCameraQuery(-1),scanLabel(-1),subnetMatch(-1),userSpecifiedSubnet(-1),scanStrategy(-1),cachedResult(-1),resultData(-1),cameraConfigPrompt(-1),scanStart(-1),result(-1),scanStats(-1),resultData(-1),cameraConfigPrompt(-1),scanCompletedEvent(-1),fallbackResult(-1),buildCameraActionsPrompt(-1),cameras(-1),ports(-1),hasRtsp(-1),hasWeb(-1),hasHikLike(-1),ip(-1),ports(-1),httpPort(-1),vendor(-1),detection(-1),interfaces(-1),subnet(-1),subnet(-1),action(-1),netCfg(-1),commonCameraIps(-1),commonDeviceIps(-1),allOffsets(-1),httpPorts(-1),probeHttp(-1),controller(-1),timer(-1),clearTimeout(-1),batchSize(-1),batch(-1),httpByIp(-1),rtspHosts(-1),hasRtsp(-1),isCamera(-1),rtspPort(-1),detectSubnet(-1),interfaces(-1),subnet(-1),best(-1),subnet(-1),subnet(-1),webrtcIp(-1),subnet(-1),candidateSubnets(-1),gatewayResult(-1),fallbackSubnet(-1),getCommonSubnets(-1),detectLocalIpViaWebRTC(-1),timeout(-1),resolve(-1),RTCPeerConnection(-1),clearTimeout(-1),resolve(-1),pc(-1),candidateCount(-1),clearTimeout(-1),resolve(-1),candidate(-1),ipMatch(-1),ip(-1),clearTimeout(-1),resolve(-1),clearTimeout(-1),resolve(-1),clearTimeout(-1),resolve(-1),probeGateways(-1),resolved(-1),tryResolve(-1),v(-1),resolve(-1),resolve(-1),tryResolve(-1),tryResolve(-1),probeGateway(-1),controller(-1),timer(-1),clearTimeout(-1),isPrivateIp(-1),isValidCandidateIp(-1),interfaceScore(-1),score(-1),n(-1),pickBestInterface(-1),scored(-1),best(-1),formatRaspberryPiResult(-1),devices(-1),vendor(-1),hostname(-1),content(-1),relevantDevices(-1),ports(-1),hasRtsp(-1),hasWeb(-1),hasHikLike(-1),devicesToShow(-1),hasRtsp(-1),hasHttp(-1),rtspPort(-1),httpPort(-1),persistDevices(-1),repo(-1),mapped(-1),event(-1),deviceId(-1),type(-1),subnet(-1),scanHistoryRepo(-1),recommendation(-1),targetRanges(-1),repo(-1),devices(-1),octets(-1),last(-1),n(-1),slowScan(-1),window(-1),last(-1),MAX_HOSTS(-1),hosts(-1),size(-1),allowedEnd(-1),scanDuration(-1),newDevices(-1),devicesUpdated(-1),devicesPerSecond(-1),repo(-1),getDefaultSubnet(-1),raw(-1),best(-1),picked(-1),dispose(-1)
+    NetworkDevice:
+    NetworkScanResult:
   src/plugins/files/fileSearchPlugin.ts:
     i: ../../core/systemContext,../../core/types
     e: FileSearchResult,FileSearchResponse,FileContentResponse,FileSearchPlugin
-    FileSearchResult
-    FileSearchResponse
-    FileContentResponse
-    FileSearchPlugin
-      canHandle(-1)  CC=2.0
+    FileSearchResult:
+    FileSearchResponse:
+    FileContentResponse:
+    FileSearchPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),lower(-1),response(-1),filePath(-1),response(-1),isImage(-1),truncNote(-1),buildGridResult(-1),sizeStr(-1),modStr(-1),dirPath(-1),buildListResult(-1),f(-1),dirPath(-1),sample(-1),extCounts(-1),ext(-1),extList(-1),parseSearchParams(-1),query(-1),ctx(-1),m(-1),m(-1),ext(-1),tokenRe(-1),extractFilePath(-1),m(-1),browserFallback(-1),extHint(-1),formatBytes(-1),errorResult(-1),initialize(-1),dispose(-1)
   src/plugins/authBrowse/authBrowsePlugin.ts:
     i: ../../core/types,../../lib/logger
     e: AuthBrowsePlugin,logger
-    AuthBrowsePlugin
-      canHandle(-1)  CC=4.0
+    AuthBrowsePlugin: canHandle(-1),lower(-1),hasBrowse(-1),hasAuth(-1),execute(-1),urlMatch(-1),url(-1),userMatch(-1),passMatch(-1),authMatch(-1),directMatch(-1),result(-1)
     logger()
   src/plugins/discovery/deviceStatusPlugin.ts:
     i: ../../core/types,../../lib/logger,../../persistence/deviceRepository
     e: DeviceStatusPlugin,statusLogger
-    DeviceStatusPlugin
-      initialize(-1)  CC=3.0
+    DeviceStatusPlugin: initialize(-1),canHandle(-1),lowerInput(-1),execute(-1),start(-1),lowerInput(-1),showGeneralStatus(-1),start(-1),devicesWithStatus(-1),recentlyActive(-1),offlineDevices(-1),totalDevices(-1),onlineCount(-1),offlineCount(-1),unknownCount(-1),minutesAgo(-1),hoursAgo(-1),showOnlineDevices(-1),start(-1),recentlyActive(-1),minutesAgo(-1),showOfflineDevices(-1),start(-1),offlineDevices(-1),hoursAgo(-1),showRecentActivity(-1),start(-1),devicesWithStatus(-1),lastSeen(-1),timeAgo(-1),statusIcon(-1),formatTimeAgo(-1),now(-1),diffMs(-1),diffMins(-1),diffHours(-1),diffDays(-1),getStatusIcon(-1),now(-1),minutesAgo(-1)
     statusLogger()
   src/plugins/frigate/frigateEventsPlugin.ts:
     i: ../../config/configStore,../../core/types,../../lib/logger
     e: FrigateEventsPlugin,frigateLogger
-    FrigateEventsPlugin
-      initialize(-1)  CC=7.0
-        → handleMqttEvent(-1)  CC=33.0  !
-        → id(-1)  CC=1.0
-        → now(-1)  CC=2.0
-        → emitMonitorChange(-1)  CC=3.0
+    FrigateEventsPlugin: initialize(-1),cfg(-1),unlisten(-1),dispose(-1),resolveRoute(-1),lower(-1),canHandle(-1),execute(-1),start(-1),route(-1),cfg(-1),handleMqttEvent(-1),cfg(-1),eventType(-1),after(-1),before(-1),label(-1),camera(-1),idRaw(-1),id(-1),allowed(-1),active(-1),now(-1),last(-1),current(-1),previous(-1),cleanBase(-1),url(-1),resp(-1),blob(-1),base64(-1),mimeType(-1),blobToBase64(-1),reader(-1),res(-1),idx(-1),resolve(-1),emitMonitorChange(-1)
     frigateLogger()
   src-tauri/src/content_cleaning.rs:
     i: crate::logging::
@@ -1693,7 +1098,7 @@ D:
   src-tauri/src/content_extraction.rs:
     i: crate::content_cleaning::,crate::logging::backend_info,scraper::Html,super::
     e: ActionLinks,extract_search_results,extract_content,extract_with_scraper,try_extract_search,extract_action_links,test_extract_action_links_comprehensive,test_extract_action_links_missing_links,test_extract_action_links_fallback_patterns,test_extract_action_links_polish_patterns,test_extract_action_links_priority
-    ActionLinks
+    ActionLinks:
     extract_search_results()
     extract_content()
     extract_with_scraper()
@@ -1707,12 +1112,12 @@ D:
   src-tauri/src/vision_pipeline.rs:
     i: anyhow::Result,crate::vision_capture::CaptureStream,crate::vision_config::VisionConfig,crate::vision_db::VisionDatabase,crate::vision_detector::Detector,crate::vision_llm::LlmClient,crate::vision_movement,crate::vision_scene_buffer::,crate::vision_tracker::Tracker,std::sync::Arc,tauri::Emitter,tauri::Emitter,tokio::sync::watch,tracing::
     e: TrackMsg,PipelineHandle,Pipeline
-    TrackMsg
-    PipelineHandle
-    Pipeline
+    TrackMsg:
+    PipelineHandle:
+    Pipeline:
   src/plugins/camera/cameraVendorDatabase.ts:
     e: CameraVendor,detectCameraVendor,oui,getVendorInfo,buildRtspUrl,vendor,auth,path,buildSnapshotUrl,vendor,auth,path
-    CameraVendor
+    CameraVendor:
     detectCameraVendor()
     oui()
     getVendorInfo()
@@ -1727,40 +1132,37 @@ D:
   src/persistence/deviceRepository.ts:
     i: ../lib/logger,./databaseManager,./types
     e: DeviceRepository,repoLogger
-    DeviceRepository
-      constructor(-1)  CC=1.0
+    DeviceRepository: constructor(-1),now(-1),VALUES(-1),saveDevices(-1),now(-1),VALUES(-1),listDevices(-1),updateDeviceStatus(-1),now(-1),getDevicesWithStatus(-1),COALESCE(-1),COUNT(-1),getRecentlyActiveDevices(-1),cutoff(-1),getOfflineDevices(-1),cutoff(-1),listServices(-1),getByIp(-1),countDevices(-1),row(-1),countServices(-1),row(-1)
     repoLogger()
   src/plugins/remote-machine/remoteMachinePlugin.ts:
     i: ../../core/types
     e: RemoteMachine,RemoteCommandResult,RemoteSystemInfo,DiskUsage,NetworkInterface,RemoteProcess,RemoteMachinePlugin
-    RemoteMachine
-    RemoteCommandResult
-    RemoteSystemInfo
-    DiskUsage
-    NetworkInterface
-    RemoteProcess
-    RemoteMachinePlugin
-      initialize(-1)  CC=1.0
-        → loadSavedMachines(-1)  CC=3.0
+    RemoteMachine:
+    RemoteCommandResult:
+    RemoteSystemInfo:
+    DiskUsage:
+    NetworkInterface:
+    RemoteProcess:
+    RemoteMachinePlugin: initialize(-1),dispose(-1),canHandle(-1),execute(-1),intentLower(-1),machine(-1),handleAddMachine(-1),hostMatch(-1),userMatch(-1),handleListMachines(-1),machineList(-1),handleTestConnection(-1),machine(-1),handleConnect(-1),machine(-1),handleSystemInfo(-1),systemInfo(-1),handleListProcesses(-1),processes(-1),processList(-1),handleCheckDocker(-1),hasDocker(-1),handleExecuteCommand(-1),commandMatch(-1),command(-1),result(-1),handleCopyFile(-1),extractMachineFromIntent(-1),hostMatch(-1),userMatch(-1),loadSavedMachines(-1),saved(-1),saveMachines(-1)
   src-tauri/src/network_scan.rs:
     i: base64::,base64::,base64::,crate::logging::,image::GenericImageView,serde::,std::collections::HashMap,std::collections::HashSet,std::collections::HashSet,std::io::Read,std::io::Read,std::io::Read,std::net::,std::net::ToSocketAddrs,std::path::Path,std::process::Command,std::process::Stdio,std::str::FromStr,std::sync::,std::sync::OnceLock,std::sync::atomic::,std::time::,super::
     e: CapturedFrame,LiveFrameCache,RtspWorker,RtspWorkerStat,HttpFetchBase64Result,CameraHealthStatus,PingResult,SimplePingResult,OpenPort,PortScanResult,ArpHost,OnvifCamera,MdnsService,NetworkDevice,NetworkScanResult,ScanNetworkArgs,anonymize_rtsp_url,test_anonymize_rtsp_url_with_password,test_anonymize_rtsp_url_with_numeric_password,test_anonymize_rtsp_url_without_password,test_anonymize_rtsp_url_no_auth,test_anonymize_non_rtsp_url,test_anonymize_rtsp_url_multiline,infer_vendor_from_ports,rtsp_workers,find_jpeg_frame,ensure_rtsp_worker,rtsp_stop_worker,rtsp_stop_all_workers,rtsp_worker_stats,resolve_db_path,parse_ping_output,resolve_host,try_read_banner,parse_arp_scan_output,parse_arp_cache,parse_avahi_output,parse_dns_sd_output,parse_target_range,detect_local_subnet,classify_device,enrich_with_arp,parse_arp_line
-    CapturedFrame
-    LiveFrameCache
-    RtspWorker
-    RtspWorkerStat
-    HttpFetchBase64Result
-    CameraHealthStatus
-    PingResult
-    SimplePingResult
-    OpenPort
-    PortScanResult
-    ArpHost
-    OnvifCamera
-    MdnsService
-    NetworkDevice
-    NetworkScanResult
-    ScanNetworkArgs
+    CapturedFrame:
+    LiveFrameCache:
+    RtspWorker:
+    RtspWorkerStat:
+    HttpFetchBase64Result:
+    CameraHealthStatus:
+    PingResult:
+    SimplePingResult:
+    OpenPort:
+    PortScanResult:
+    ArpHost:
+    OnvifCamera:
+    MdnsService:
+    NetworkDevice:
+    NetworkScanResult:
+    ScanNetworkArgs:
     anonymize_rtsp_url()
     test_anonymize_rtsp_url_with_password()
     test_anonymize_rtsp_url_with_numeric_password()
@@ -1791,22 +1193,21 @@ D:
   src/plugins/protocol-bridge/protocolBridgePlugin.ts:
     i: ../../core/types,../../lib/logger
     e: BridgeEndpoint,BridgeMessage,ActionHint,MqttCacheEntry,WsConnection,SseStream,ProtocolBridgePlugin,browseLogger
-    BridgeEndpoint
-    BridgeMessage
-    ActionHint
-    MqttCacheEntry
-    WsConnection
-    SseStream
-    ProtocolBridgePlugin
-      resolveRoute(-1)  CC=3.0
+    BridgeEndpoint:
+    BridgeMessage:
+    ActionHint:
+    MqttCacheEntry:
+    WsConnection:
+    SseStream:
+    ProtocolBridgePlugin: resolveRoute(-1),lower(-1),canHandle(-1),lower(-1),execute(-1),start(-1),route(-1),autoProtocol(-1),detectProtocolFromInput(-1),lower(-1),handleAdd(-1),lower(-1),autoProto(-1),urlMatch(-1),xmlUrlMatch(-1),label(-1),label(-1),afterUrl(-1),targets(-1),targetsStr(-1),label(-1),handleRemove(-1),idMatch(-1),ep(-1),ids(-1),handleList(-1),icon(-1),label(-1),age(-1),handleStatus(-1),byProtocol(-1),totalMessages(-1),label(-1),recent(-1),time(-1),dir(-1),label(-1),handleSend(-1),lower(-1),handleMqttSend(-1),match(-1),topic(-1),payload(-1),handleRestSend(-1),match(-1),method(-1),url(-1),body(-1),truncated(-1),formattedResponse(-1),parsed(-1),statusIcon(-1),handleWebSocket(-1),urlMatch(-1),url(-1),existing(-1),recent(-1),lines(-1),time(-1),dir(-1),result(-1),handleWsSend(-1),match(-1),url(-1),message(-1),result(-1),handleSse(-1),urlMatch(-1),url(-1),existing(-1),recent(-1),lines(-1),time(-1),result(-1),eventsText(-1),handleGraphQL(-1),urlMatch(-1),queryMatch(-1),url(-1),query(-1),gqlBody(-1),formattedResponse(-1),textSummary(-1),parsed(-1),truncated(-1),displayText(-1),statusIcon(-1),handleRead(-1),lower(-1),handleMqttRead(-1),topicMatch(-1),topic(-1),cached(-1),lines(-1),age(-1),value(-1),payload(-1),result(-1),available(-1),handleRestRead(-1),match(-1),method(-1),url(-1),formattedResponse(-1),textSummary(-1),parsed(-1),truncated(-1),displayText(-1),statusIcon(-1),fetchRest(-1),result(-1),resp(-1),findCachedMqtt(-1),filterParts(-1),mqttTopicMatches(-1),topicParts(-1),jsonToVoiceSummary(-1),entries(-1),summary(-1),recordMessage(-1),findEndpointForTarget(-1),updateEndpointActivity(-1),ep(-1),registerWsConnection(-1),findWsConnection(-1),addWsMessage(-1),conn(-1),c(-1),directionLabel(-1),formatDuration(-1),s(-1),m(-1),h(-1),urlExampleForProtocol(-1),nextStepsForProtocol(-1),suggestActionsForEndpoint(-1),withHints(-1),errorResult(-1),initialize(-1),val(-1),handleRss(-1),urlMatch(-1),url(-1),rawContent(-1),formattedContent(-1),handleAtom(-1),urlMatch(-1),url(-1),rawContent(-1),formattedContent(-1),dispose(-1)
     browseLogger()
   src/hooks/useSpeech.ts:
     i: ../lib/logger,../lib/runtime,react
     e: SpeechRecognitionEvent,SpeechRecognitionErrorEvent,SpeechRecognitionInstance,Window,speechLogger,getSpeechRecognitionCtor,getUnsupportedReason,useSpeech,recognitionRef,autoListenEnabledRef,stopRequestedRef,restartTimerRef,runtimeIsTauri,SpeechRecognition,reason,clearFinalTranscript,disableAutoListen,startListening,runStartListening,runtimeIsTauri,SpeechRecognition,reason,continuous,recognition,result,stopListening,runStopListening,enableAutoListen
-    SpeechRecognitionEvent
-    SpeechRecognitionErrorEvent
-    SpeechRecognitionInstance
-    Window
+    SpeechRecognitionEvent:
+    SpeechRecognitionErrorEvent:
+    SpeechRecognitionInstance:
+    Window:
     speechLogger()
     getSpeechRecognitionCtor()
     getUnsupportedReason()
@@ -1834,14 +1235,11 @@ D:
   src/plugins/http/browsePlugin.ts:
     i: ../../core/types
     e: HttpBrowsePlugin
-    HttpBrowsePlugin
-      isLanUrl(-1)  CC=2.0
+    HttpBrowsePlugin: isLanUrl(-1),extractUrlFromInput(-1),match(-1),sanitizeExtractedUrl(-1),clean(-1),canHandle(-1),execute(-1),startTime(-1),explicitUrl(-1),resolved(-1),query(-1),result(-1),naturalContent(-1),createNaturalPresentation(-1),content(-1),title(-1),isSearch(-1),isDirectUrl(-1),finalContent(-1),initialize(-1),dispose(-1)
   src/domain/eventStore.ts:
     i: ../core/realtimeSync,../lib/logger,./chatEvents
     e: EventStore,esLogger
-    EventStore
-      append(-1)  CC=9.0
-        → handler(-1)  CC=2.0
+    EventStore: append(-1),realtimeSync(-1),handlers(-1),handler(-1),handler(-1),onAll(-1),result(-1),project(-1),size(-1),clear(-1),realtimeSync(-1)
     esLogger()
   src/App.tsx:
     i: ./components/AlertBridgeComponent,./components/Chat,./components/ChatPersistenceBridge,./components/DeviceDashboardModal,./components/DeviceStrip,./components/DiagnosticsModal,./components/ErrorReportPanel,./components/HealthDiagnostic,./components/MicSettingsModal,./components/SetupWizardModal,./components/TtsSettingsModal,./config/configStore,./contexts/CqrsContext,./contexts/pluginContext,./core/bootstrap,./hooks/useDatabaseManager,./hooks/useTts,./lib/logger,./lib/runtime,./utils/errorReporting,./utils/healthCheck,@tauri-apps/api/core,react
@@ -1887,7 +1285,7 @@ D:
   src/components/MessageQuickActions.tsx:
     i: ../domain/chatEvents,../utils/quickActionResolver,./ChatConfigPrompt,lucide-react,react
     e: MessageQuickActionsProps,MessageQuickActions,result,handleAction,getIcon,getVariantClasses,isExecuted
-    MessageQuickActionsProps
+    MessageQuickActionsProps:
     MessageQuickActions()
     result()
     handleAction()
@@ -1897,8 +1295,8 @@ D:
   src/hooks/useHistoryPersistence.ts:
     i: ../lib/logger,../persistence/databaseManager,../persistence/historyRepository,react
     e: CommandHistoryItem,NetworkHistoryItem,histLogger,useHistoryPersistence,repoRef,getRepo,addToCommandHistory,repo,loadCommandHistory,repo,rows,addToNetworkHistory,repo,loadNetworkHistory,repo,rows,addToCommandHistoryLocalStorage,saved,existingIndex,loadCommandHistoryLocalStorage,saved,addToNetworkHistoryLocalStorage,saved,existingIndex,loadNetworkHistoryLocalStorage,saved
-    CommandHistoryItem
-    NetworkHistoryItem
+    CommandHistoryItem:
+    NetworkHistoryItem:
     histLogger()
     useHistoryPersistence()
     repoRef()
@@ -1926,8 +1324,8 @@ D:
   src/components/QuickActionButtons.tsx:
     i: ../domain/chatEvents,react
     e: QuickActionButtonsProps,ActionLink,QuickActionButtons,isEmail,handleActionClick,MessageWithQuickActions,hasQuickActions
-    QuickActionButtonsProps
-    ActionLink
+    QuickActionButtonsProps:
+    ActionLink:
     QuickActionButtons()
     isEmail()
     handleActionClick()
@@ -1936,8 +1334,8 @@ D:
   src/components/FileResultsDisplay.tsx:
     i: react
     e: FileResult,FileResultsDisplayProps,getFileIcon,lower,formatBytes,FileResultsDisplay,toggleSelect,next,handleSendSelected,ClarificationView,extCounts,ext,topExts
-    FileResult
-    FileResultsDisplayProps
+    FileResult:
+    FileResultsDisplayProps:
     getFileIcon()
     lower()
     formatBytes()
@@ -1952,35 +1350,32 @@ D:
   src-tauri/src/vision_tracker.rs:
     i: chrono::,crate::vision_detector::Detection,opencv::,tracing::debug,uuid::Uuid
     e: CropSnapshot,CompletedTrack,ActiveTrack,Tracker
-    CropSnapshot
-    CompletedTrack
-    ActiveTrack
-    Tracker
+    CropSnapshot:
+    CompletedTrack:
+    ActiveTrack:
+    Tracker:
   src/plugins/discovery/advancedPortScanPlugin.ts:
     i: ../../core/types
     e: AdvancedPortScanPlugin
-    AdvancedPortScanPlugin
-      canHandle(-1)  CC=1.0
+    AdvancedPortScanPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),ipMatch(-1),subnetMatch(-1),targetIp(-1),targetSubnet(-1),result(-1),results(-1),scanSingleHost(-1),allPorts(-1),result(-1),vendorConfidence(-1),response(-1),vendorResult(-1),vendorInfo(-1),scanSubnet(-1),result(-1),probePort(-1),t0(-1),controller(-1),timer(-1),protocol(-1),response(-1),clearTimeout(-1),responseTime(-1),elapsed(-1),fetchHttpContent(-1),controller(-1),timer(-1),response(-1),clearTimeout(-1),content(-1),formatSingleHostResult(-1),vendor(-1),icon(-1),user(-1),pass(-1),formatSubnetResults(-1),vendor(-1),cred(-1)
   src/plugins/discovery/autoScanScheduler.ts:
     i: ../../core/types,../../lib/logger,../../persistence/deviceRepository,../../persistence/scanHistoryRepository,../../reactive/alertBridge
     e: AutoScanConfig,AutoScanScheduler,schedLogger,autoScanScheduler
-    AutoScanConfig
-    AutoScanScheduler
-      constructor(-1)  CC=3.0
+    AutoScanConfig:
+    AutoScanScheduler: constructor(-1),setStatusChangeCallback(-1),start(-1),stop(-1),clearInterval(-1),clearInterval(-1),isRunning(-1),lastScanTimestamp(-1),tick(-1),tickStart(-1),subnet(-1),scanHistoryRepo(-1),recommendation(-1),incremental(-1),result(-1),detectSubnet(-1),ifaces(-1),ip(-1),buildIncrementalRanges(-1),repo(-1),devices(-1),octets(-1),WINDOW(-1),retryOfflineDevices(-1),subnet(-1),offlineOctets(-1),targetRanges(-1),result(-1),offlineDeviceCount(-1),seenIps(-1),prev(-1),repo(-1),scanHistoryRepo(-1)
     schedLogger()
     autoScanScheduler()
   src/plugins/toonic/toonicBridgePlugin.ts:
     i: ../../core/types,../../lib/logger
     e: ToonicStatus,ToonicEvent,ToonicBridgePlugin,log
-    ToonicStatus
-    ToonicEvent
-    ToonicBridgePlugin
-      canHandle(-1)  CC=1.0
+    ToonicStatus:
+    ToonicEvent:
+    ToonicBridgePlugin: canHandle(-1),execute(-1),start(-1),lower(-1),msg(-1),handleStart(-1),status(-1),handleStop(-1),msg(-1),handleStatus(-1),status(-1),icon(-1),handleSources(-1),json(-1),data(-1),sources(-1),icon(-1),handleEvents(-1),json(-1),data(-1),ts(-1),icon(-1),handleWatch(-1),urlMatch(-1),url(-1),catMatch(-1),category(-1),body(-1),json(-1),data(-1),handleUnwatch(-1),idMatch(-1),sourceId(-1),json(-1),data(-1),handleSnapshot(-1),json(-1),data(-1),handleDetect(-1),goal(-1),snapJson(-1),snap(-1),body(-1),json(-1),data(-1),handleHelp(-1),status(-1),proxyGet(-1),proxyPost(-1),proxyDelete(-1),result(-1),initialize(-1),dispose(-1)
     log()
   src-tauri/src/vision_movement.rs:
     i: crate::vision_tracker::CompletedTrack
     e: MovementSummary,classify_zone,bbox_center,analyse_movement,movement_tag
-    MovementSummary
+    MovementSummary:
     classify_zone()
     bbox_center()
     analyse_movement()
@@ -1988,14 +1383,13 @@ D:
   src/plugins/cameras/cameraPtzPlugin.ts:
     i: ../../core/types
     e: PtzCommand,CameraPtzPlugin
-    PtzCommand
-    CameraPtzPlugin
-      canHandle(-1)  CC=17.0  !
+    PtzCommand:
+    CameraPtzPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),cmd(-1),dirLabel(-1),dirLabel(-1),parseCommand(-1),lower(-1),presetMatch(-1),cameraId(-1),extractCameraId(-1),directionLabel(-1),errorResult(-1),initialize(-1),dispose(-1)
   src/components/CameraPreview.tsx:
     i: ../contexts/pluginContext,lucide-react,react
     e: CameraPreviewProps,FrameAnalysis,videoRef,canvasRef,streamRef,analysisIntervalRef,captureFrame,video,canvas,ctx,compareFrames,img1,img2,canvas1,canvas2,ctx1,ctx2,data1,data2,diff,rDiff,gDiff,bDiff,avgDiff,hasChanged,analyzeFrameChanges,result,analysis,startAnalysis,currentFrame,hasChanged,stopAnalysis,handlePlay,mockStream,handlePause,createRTSPStream,createMJPEGStream,canvas,ctx,frameCount,drawMJPEGFrame,response,blob,img,mjpegInterval,stream,createWebRTCStream,startStreamMonitoring,monitoringInterval,video,stopStreamMonitoring,handleMuteToggle,handleFullscreen,createMockVideoStream,canvas,ctx,frame,lastChange,frameCount,drawFrame,stream,videoTrack,interval,getStatusColor
-    CameraPreviewProps
-    FrameAnalysis
+    CameraPreviewProps:
+    FrameAnalysis:
     videoRef()
     canvasRef()
     streamRef()
@@ -2061,7 +1455,7 @@ D:
   src/lib/sttClient.ts:
     i: ../config/configStore,./logger,./runtime,@tauri-apps/api/core
     e: SttConfig,sttLogger,buildSttRequestBody,getSttConfig,cfg,transcribeAudio,run,isTauri,result,appCfg,resp,body,data,text
-    SttConfig
+    SttConfig:
     sttLogger()
     buildSttRequestBody()
     getSttConfig()
@@ -2091,8 +1485,8 @@ D:
   src/core/llmIntentClassifier.ts:
     i: ../lib/logger,./actionSchema,./systemContext
     e: LlmIntentResult,LlmResponse,log,intentCache,CACHE_TTL_MS,MAX_CACHE_SIZE,getCacheKey,cacheSet,firstKey,cacheGet,buildIntentPrompt,context,systemContext,classifyIntent,trimmed,cacheKey,cached,apiKey,systemPrompt,model,response,cleaned,knownIntents,isLlmClassifierAvailable,apiKey,clearIntentCache,getIntentCacheStats
-    LlmIntentResult
-    LlmResponse
+    LlmIntentResult:
+    LlmResponse:
     log()
     intentCache()
     CACHE_TTL_MS()
@@ -2121,9 +1515,9 @@ D:
   src/components/DeviceDashboardModal.tsx:
     i: lucide-react,react
     e: DeviceEntry,DeviceServiceEntry,DeviceDashboardModalProps,timeAgo,diff,mins,hours,days,statusColor,mins,inferDeviceType,v,h,deviceIcon,type,loadDevices,db,key,dispatchChatAction,buildDeviceActions,services,rtsp,http,scheme,ssh,filtered,mins,q,onlineCount,offlineCount,cameraCount,serverCount,deviceCount,mins,isOnline
-    DeviceEntry
-    DeviceServiceEntry
-    DeviceDashboardModalProps
+    DeviceEntry:
+    DeviceServiceEntry:
+    DeviceDashboardModalProps:
     timeAgo()
     diff()
     mins()
@@ -2159,14 +1553,14 @@ D:
   src-tauri/src/vision_motion.rs:
     i: anyhow::Result,opencv::
     e: MovingObject,MotionDetector
-    MovingObject
-    MotionDetector
+    MovingObject:
+    MotionDetector:
   src-tauri/src/file_search.rs:
     i: base64::Engine,crate::logging::backend_info,rust_search::SearchBuilder,serde::,std::fs,std::fs,std::path::,std::path::PathBuf,std::time::,std::time::SystemTime,super::,tempfile::TempDir
     e: FileSearchResult,FileSearchResponse,FileContentResponse,guess_mime_type,classify_file_type,is_text_file,format_time,search_with_rust_search,create_test_files,test_guess_mime_type,test_classify_file_type,test_is_text_file,test_format_time
-    FileSearchResult
-    FileSearchResponse
-    FileContentResponse
+    FileSearchResult:
+    FileSearchResponse:
+    FileContentResponse:
     guess_mime_type()
     classify_file_type()
     is_text_file()
@@ -2180,36 +1574,31 @@ D:
   src-tauri/src/vision_db.rs:
     i: anyhow::Result,chrono::,rusqlite::,serde::,std::path::Path
     e: LocalDetection,LlmEvent,Statistics,VisionDatabase
-    LocalDetection
-    LlmEvent
-    Statistics
-    VisionDatabase
+    LocalDetection:
+    LlmEvent:
+    Statistics:
+    VisionDatabase:
   src/commands/browseCommand.ts:
     i: ../domain/chatAggregate,../domain/eventStore,../lib/logger,../services/browseService,../services/llmService
     e: BrowseCommandParams,BrowseCommand,logger
-    BrowseCommandParams
-    BrowseCommand
-      execute(-1)  CC=15.0  !
-        → now(-1)  CC=1.0
+    BrowseCommandParams:
+    BrowseCommand: execute(-1),now(-1),loadingId(-1),browseResult(-1),content(-1),summary(-1),safeSummary(-1),errorMsg(-1)
     logger()
   src/integration/autoWatchIntegration.ts:
     i: ../domain/chatEvents,../lib/logger,../persistence/databaseManager,../reactive/watchManager
     e: AutoWatchConfig,AutoWatchStats,AutoWatchIntegration
-    AutoWatchConfig
-    AutoWatchStats
-    AutoWatchIntegration
-      processMessage(-1)  CC=8.0
-        → extractIntentInfo(-1)  CC=15.0  !
+    AutoWatchConfig:
+    AutoWatchStats:
+    AutoWatchIntegration: processMessage(-1),intentInfo(-1),shouldWatch(-1),extractIntentInfo(-1),lowerMessage(-1),cameraMatch(-1),location(-1),messageText(-1),hasRecentQuery(-1),db(-1),timeWindowStart(-1),recentMessages(-1),AND(-1),conversationId(-1),getOrCreateConversation(-1),db(-1),now(-1),conversation(-1),conversationId(-1),VALUES(-1),getPollInterval(-1),getChangeThreshold(-1),updateConfig(-1),getConfig(-1),getStats(-1),db(-1),timeWindowStart(-1),watchStats(-1),COUNT(-1),COUNT(-1),recentQueries(-1)
   src/plugins/network/onvifPlugin.ts:
     i: ../../core/types
     e: OnvifCamera,OnvifPlugin
-    OnvifCamera
-    OnvifPlugin
-      canHandle(-1)  CC=9.0
+    OnvifCamera:
+    OnvifPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),cameras(-1),browserProbe(-1),subnet(-1),probeIps(-1),resp(-1),formatCameras(-1),rtspUrl(-1),snapshotUrl(-1),requiresAuth(-1),profiles(-1),extractSubnet(-1),match(-1),errorResult(-1),initialize(-1),dispose(-1)
   src/components/HealthDiagnostic.tsx:
     i: ../utils/healthCheck,react
     e: HealthDiagnosticProps,copyErrorsToClipboard,currentReport,timestamp,errors,warnings,detailsStr,detailsStr,textArea,showNotification,notification,bgColor,runHealthCheck,result,interval,handleKeyDown,getStatusColor,getStatusIcon,getOverallStatus,overallStatus,categoryChecks,useHealthDiagnostic,checkHealth,status
-    HealthDiagnosticProps
+    HealthDiagnosticProps:
     copyErrorsToClipboard()
     currentReport()
     timestamp()
@@ -2236,7 +1625,7 @@ D:
   src/components/Chat.tsx:
     i: ../config/autoConfig,../config/configStore,../contexts/CqrsContext,../contexts/pluginContext,../domain/audioSettings,../domain/chatEvents,../hooks/useChatDispatch,../hooks/useChatMessages,../hooks/useChatSpeech,../hooks/useDatabaseManager,../hooks/useHistoryPersistence,../hooks/useLlm,../lib/llmClient,../lib/logger,./CameraPreview,./ChatInput,./ChatMessageList,./ChatOverlays,./NetworkHistorySelector,./NetworkSelector,react
     e: ChatProps,messages,dbManager,hasNonSystemMessages,showWelcomeScreen,userMessages,currentScopeRef,messagesEndRef,statusNoticeRef,statusNoticeIdRef,messageIdRef,chatLogger,nextMessageId,getRecentQueries,getCurrentContext,hour,lastQuery,handleSuggestionLearning,unsub,message,unsub,cancelled,llm,appendStatusNotice,prev,handleSubmitRef,dispatch,handler,custom,detail,inputElement,handler,custom,detail,pct,eventTime,mime,dataUrl,copyChatContent,chatContent,role,copyMessageContext,handleKeyDown,num,card
-    ChatProps
+    ChatProps:
     messages()
     dbManager()
     hasNonSystemMessages()
@@ -2284,13 +1673,12 @@ D:
   src-tauri/src/vision_detector.rs:
     i: anyhow::,ndarray::Array4,opencv::,opencv::core::,ort::session::Session,tracing::debug
     e: Detection,Detector
-    Detection
-    Detector
+    Detection:
+    Detector:
   src/persistence/chatRepository.ts:
     i: ../domain/chatEvents,../lib/logger,./databaseManager
     e: ChatRepository,repoLogger
-    ChatRepository
-      constructor(-1)  CC=1.0
+    ChatRepository: constructor(-1),ensureConversation(-1),now(-1),saveMessage(-1),role(-1),content(-1),ts(-1),metadata(-1),VALUES(-1),saveMessages(-1),loadMessages(-1),rows(-1),meta(-1),listConversations(-1),countMessages(-1),row(-1)
     repoLogger()
   src/hooks/useAlertBridge.ts:
     i: ../contexts/CqrsContext,../lib/logger,../plugins/discovery/autoScanScheduler,../reactive/alertBridge,react
@@ -2305,20 +1693,18 @@ D:
   src/plugins/system/sshPlugin.ts:
     i: ../../config/configStore,../../core/retry,../../core/types
     e: SshPlugin,SshExecResult,SshTestResult,KnownHost
-    SshPlugin
-      canHandle(-1)  CC=1.0
-    SshExecResult
-    SshTestResult
-    KnownHost
+    SshPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),lower(-1),testHost(-1),handleExecute(-1),host(-1),subnet(-1),sshCfg(-1),result(-1),async(-1),listKnownHosts(-1),hosts(-1),async(-1),sampleHosts(-1),result(-1),cmdPart(-1),looksLikeShellCommand(-1),stdout(-1),errorAnalysis(-1),analyzeSshError(-1),errorLower(-1),subnet(-1),extractHost(-1),ipMatch(-1),hostMatch(-1),extractUser(-1),m(-1),extractPort(-1),m(-1),errorResult(-1),initialize(-1),dispose(-1)
+    SshExecResult:
+    SshTestResult:
+    KnownHost:
   src/plugins/discovery/serviceProbePlugin.ts:
     i: ../../core/types,../../discovery/types
     e: ServiceProbePlugin
-    ServiceProbePlugin
-      initialize(-1)  CC=1.0
+    ServiceProbePlugin: initialize(-1),canHandle(-1),lowerInput(-1),execute(-1),target(-1),result(-1),content(-1),extractTarget(-1),ipMatch(-1),hostnameMatch(-1),lowerInput(-1),devicePattern(-1),match(-1),performSimpleProbe(-1),startTime(-1),url(-1),response(-1),getDeviceId(-1),formatProbeResult(-1),metadata(-1),dispose(-1)
   src-tauri/src/tts.rs:
     i: crate::settings::load_settings,serde::,std::process::,std::sync::
     e: TtsAvailability,active_tts_child,detect_backend,normalize_lang,map_rate,map_pitch,map_volume,stop_active_tts_child,tts_is_available,tts_speak,tts_stop
-    TtsAvailability
+    TtsAvailability:
     active_tts_child()
     detect_backend()
     normalize_lang()
@@ -2332,7 +1718,7 @@ D:
   src-tauri/src/wake_word.rs:
     i: cpal::traits::,std::collections::VecDeque,std::sync::,tauri::Emitter
     e: WakeWordState
-    WakeWordState
+    WakeWordState:
   src-tauri/src/network.rs:
     i: base64::Engine,std::collections::HashMap,std::path::Path,std::sync::Mutex
     e: db_execute,db_query,db_close,resolve_db_path,open_database_connection,json_to_sqlite_param,sqlite_to_json
@@ -2346,17 +1732,16 @@ D:
   src/plugins/monitor/motionDetectionPlugin.ts:
     i: ../../components/ChatConfigPrompt,../../config/configStore,../../core/types,../../lib/logger
     e: PipelineStatus,DetectionStats,DetectionRow,MotionDetectionPlugin,motionLog
-    PipelineStatus
-    DetectionStats
-    DetectionRow
-    MotionDetectionPlugin
-      initialize(-1)  CC=7.0
+    PipelineStatus:
+    DetectionStats:
+    DetectionRow:
+    MotionDetectionPlugin: initialize(-1),parsed(-1),dispose(-1),canHandle(-1),lower(-1),execute(-1),start(-1),lower(-1),handleStart(-1),rtspUrl(-1),cameraId(-1),cfg(-1),processEvery(-1),apiKey(-1),platformLabel(-1),msg(-1),handleStop(-1),cameraId(-1),handleStatus(-1),result(-1),lines(-1),uptime(-1),uptimeStr(-1),handleStats(-1),cameraId(-1),cfg(-1),hours(-1),stats(-1),byClassLines(-1),peakHour(-1),handleDetections(-1),cameraId(-1),cfg(-1),label(-1),hours(-1),rows(-1),lines(-1),ts(-1),conf(-1),llmInfo(-1),handleConfig(-1),cfg(-1),extractRtspUrl(-1),m(-1),extractCameraId(-1),withoutRtsp(-1),m(-1),ipM(-1),extractCameraIdGeneric(-1),m(-1),extractCameraIdFromStop(-1),m(-1),extractHours(-1),m(-1),extractLabel(-1),lower(-1),errorResult(-1)
     motionLog()
   src/plugins/discovery/cameraDetection.ts:
     e: CameraVendor,PortScanResult,CameraDetectionResult,getAllCameraPorts,allPorts,identifyVendor,confidence,matches,headerValue,generateRtspUrls,vendorInfo,vendorPaths,generateRecommendations,vendor,user,pass
-    CameraVendor
-    PortScanResult
-    CameraDetectionResult
+    CameraVendor:
+    PortScanResult:
+    CameraDetectionResult:
     getAllCameraPorts()
     allPorts()
     identifyVendor()
@@ -2373,9 +1758,9 @@ D:
   src/components/QuickCommands.tsx:
     i: lucide-react,react
     e: QuickCommand,SavedCommandHistoryItem,QuickCommandsProps,saved,parsed,formatCommandTitle,inferCategory,lower,getCategoryIcon,aggregation,command,category,existing,mergedCommands,seen,filteredCommands,categoryMatch,searchMatch,getCategoryColor,handleCommandClick,handleSearchChange,toggleFavorite,handleDragStart,handleDragOver,handleDragLeave,handleDrop,draggedIndex,handleDragEnd
-    QuickCommand
-    SavedCommandHistoryItem
-    QuickCommandsProps
+    QuickCommand:
+    SavedCommandHistoryItem:
+    QuickCommandsProps:
     saved()
     parsed()
     formatCommandTitle()
@@ -2404,8 +1789,8 @@ D:
   src/hooks/useLlm.ts:
     i: ../lib/llmClient,../lib/llmPrompts,../lib/logger,react
     e: UseLlmOptions,UseLlmReturn,llmLogger,useLlm,historyRef,send,runSend,resp,msg,describe,runDescribe,msg,summarize,runSummarize,msg,summarizeSearch,runSummarizeSearch,msg,detectIntent,runDetectIntent,raw,finalIntent,clearHistory
-    UseLlmOptions
-    UseLlmReturn
+    UseLlmOptions:
+    UseLlmReturn:
     llmLogger()
     useLlm()
     historyRef()
@@ -2430,8 +1815,7 @@ D:
   src/discovery/serviceProber.ts:
     i: ../persistence/databaseManager,../persistence/types
     e: ServiceProber
-    ServiceProber
-      constructor(-1)  CC=1.0
+    ServiceProber: constructor(-1),probeDevice(-1),startTime(-1),results(-1),probeDuration(-1),probeHttpService(-1),startTime(-1),response(-1),responseTime(-1),html(-1),titleMatch(-1),probeRtspService(-1),startTime(-1),probeMqttService(-1),startTime(-1),probeSshService(-1),startTime(-1),probeApiService(-1),startTime(-1),response(-1),json(-1),p(-1),persistServices(-1),db(-1),now(-1),existingService(-1),VALUES(-1),addEventListener(-1),removeEventListener(-1),index(-1),emitEvent(-1),listener(-1),isActive(-1)
   src/config/watchConfig.ts:
     i: ../discovery/types,../discovery/types,../integration/autoWatchIntegration,../persistence/types,../reactive/types
     e: getWatchConfig,env,getAutoWatchConfig,env,getPollingInterval,getChangeThreshold,validateWatchConfig,mergeWatchConfig
@@ -2446,14 +1830,13 @@ D:
   src/plugins/network/portScanPlugin.ts:
     i: ../../core/types
     e: PortScanPlugin,PortScanResult
-    PortScanPlugin
-      canHandle(-1)  CC=6.0
-    PortScanResult
+    PortScanPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),target(-1),ports(-1),result(-1),results(-1),t0(-1),resp(-1),openPorts(-1),extractTarget(-1),ipMatch(-1),hostMatch(-1),extractPorts(-1),portMatches(-1),formatResult(-1),service(-1),errorResult(-1),initialize(-1),dispose(-1)
+    PortScanResult:
   src/contexts/pluginContext.tsx:
     i: ../config/configStore,../core/bootstrap,../core/plugin.types,../core/types,../lib/runtime,@tauri-apps/api/core,react
     e: PluginContextValue,PluginProviderProps,PluginCtx,PluginProvider,value,intent,plugin,fallback,runtimeIsTauri,result,usePlugins,ctx
-    PluginContextValue
-    PluginProviderProps
+    PluginContextValue:
+    PluginProviderProps:
     PluginCtx()
     PluginProvider()
     value()
@@ -2521,14 +1904,14 @@ D:
   src-tauri/src/motion_detection.rs:
     i: crate::logging::,crate::vision_db::,crate::vision_llm::LlmClient,crate::vision_query_engine::QueryEngine,serde::,std::collections::HashMap,std::env,std::io::,std::process::,std::sync::Mutex,std::thread,tauri::Emitter
     e: PipelineProcess,NativePipeline,StartPipelineRequest,PipelineStatus,PipelineListResult,DetectionRow,DetectionStats,VisionQueryResult,now_ms,resolve_db_path,resolve_script_path,nl_to_sql,extract_time_filter,extract_number_before,extract_label_filter,extract_limit
-    PipelineProcess
-    NativePipeline
-    StartPipelineRequest
-    PipelineStatus
-    PipelineListResult
-    DetectionRow
-    DetectionStats
-    VisionQueryResult
+    PipelineProcess:
+    NativePipeline:
+    StartPipelineRequest:
+    PipelineStatus:
+    PipelineListResult:
+    DetectionRow:
+    DetectionStats:
+    VisionQueryResult:
     now_ms()
     resolve_db_path()
     resolve_script_path()
@@ -2540,7 +1923,7 @@ D:
   src/lib/resolver.ts:
     i: ./logger,./phonetic
     e: ResolveResult,levenshtein,m,n,similarity,dist,matches,fuzzyMatchDomain,cleaned,stem,ratioFull,ratioStem,ratio,resolve,text,query,normalized,fuzzy,suggestions,fuzzy,allSuggestions
-    ResolveResult
+    ResolveResult:
     levenshtein()
     m()
     n()
@@ -2564,8 +1947,8 @@ D:
   src/core/fallbackHandler.ts:
     i: ../components/ChatConfigPrompt,../lib/logger,./preferenceLearning,./systemContext
     e: FallbackResult,FallbackOptions,fallbackLogger,tryLlmFallback,cfg,schemasContext,sysCtx,response,text,jsonMatch,parsed,schemaMap,schema,actions,rankByPreference,scoreA,scoreB,injectFavorites,topPrefs,existingKeys,schemaMap,schema,keywordFallback,domainSchemas,actions,domainLabel,scored,actions,finalActions,generateFallback,llmResult
-    FallbackResult
-    FallbackOptions
+    FallbackResult:
+    FallbackOptions:
     fallbackLogger()
     tryLlmFallback()
     cfg()
@@ -2598,19 +1981,17 @@ D:
   src/plugins/system/processesPlugin.ts:
     i: ../../core/processRegistry,../../core/types
     e: ProcessesPlugin
-    ProcessesPlugin
-      canHandle(-1)  CC=2.0
+    ProcessesPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),trimmed(-1),lower(-1),id(-1),p(-1),active(-1),ageS(-1),plugin(-1),stopCandidates(-1)
   src/plugins/cameras/cameraHealthPlugin.ts:
     i: ../../core/types
     e: CameraStatus,CameraHealthPlugin
-    CameraStatus
-    CameraHealthPlugin
-      canHandle(-1)  CC=9.0
+    CameraStatus:
+    CameraHealthPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),targetCamera(-1),statuses(-1),filtered(-1),formatStatuses(-1),online(-1),offline(-1),icon(-1),extractCameraId(-1),errorResult(-1),initialize(-1),dispose(-1)
   src/components/NetworkHistorySelector.tsx:
     i: lucide-react,react
     e: NetworkHistoryItem,NetworkHistorySelectorProps,savedHistory,parsed,filtered,saveHistory,addToHistory,existingIndex,removeFromHistory,newHistory,clearHistory,startVoiceRecognition,SpeechRecognition,recognition,transcript,parsed,item,stopVoiceRecognition,parseVoiceCommand,numberMatch,numberWord,number,addressMatch,getScopeIcon,formatLastUsed,now,diff
-    NetworkHistoryItem
-    NetworkHistorySelectorProps
+    NetworkHistoryItem:
+    NetworkHistorySelectorProps:
     savedHistory()
     parsed()
     filtered()
@@ -2639,8 +2020,8 @@ D:
   src/components/ActionSuggestions.tsx:
     i: lucide-react,react
     e: ActionSuggestion,ActionSuggestionsProps,saved,getTimeOfDay,hour,generateContextualSuggestions,timeOfDay,generateSmartSuggestions,sortedLearning,aScore,bScore,category,getSmartTitle,getSmartIcon,trackSuggestionUsage,key,existing,contextual,smart,lastQuery,sortedSuggestions,getCategoryColor,getCategoryIcon,handleSuggestionClick
-    ActionSuggestion
-    ActionSuggestionsProps
+    ActionSuggestion:
+    ActionSuggestionsProps:
     saved()
     getTimeOfDay()
     hour()
@@ -2666,9 +2047,9 @@ D:
   src/lib/llmClient.ts:
     i: ../config/configStore,./logger,./runtime
     e: LlmConfig,LlmMessage,LlmResponse,llmClientLogger,getConfig,cfg,chat,runChat,isTauri,chatDirect,runChatDirect,apiUrl,httpReferer,appTitle,resp,body,data,text,chatViaTauri,runChatViaTauri,result,CONTENT_TRIM,TTS_TRIM,askAboutContent,runAsk,resp,describeImage,runDescribe,resp,describeImageChange,runDescribe,resp,summarizeForTts,runSummarize,resp,detectIntent,runDetect,resp,summarizeSearchResults,runSummarize,resp
-    LlmConfig
-    LlmMessage
-    LlmResponse
+    LlmConfig:
+    LlmMessage:
+    LlmResponse:
     llmClientLogger()
     getConfig()
     cfg()
@@ -2709,31 +2090,28 @@ D:
     resp()
   resolver.py:
     e: ResolveResult,fuzzy_match_domain,resolve
-    ResolveResult  # Result of URL resolution....
-    fuzzy_match_domain(input_str,threshold,max_results)
-    resolve(raw_input,threshold)
+    ResolveResult:  # Result of URL resolution...
+    fuzzy_match_domain(input_str;threshold;max_results)
+    resolve(raw_input;threshold)
   src/reactive/alertBridge.ts:
     i: ../domain/chatEvents,../domain/eventStore,../lib/logger,./types,./watchManager
     e: DeviceStatusChange,AlertBridgeOptions,AlertBridge,alertLog
-    DeviceStatusChange
-    AlertBridgeOptions
-    AlertBridge
-      constructor(-1)  CC=1.0
+    DeviceStatusChange:
+    AlertBridgeOptions:
+    AlertBridge: constructor(-1),attachWatchManager(-1),detachWatchManager(-1),change(-1),emitChangeAlert(-1),severity(-1),icon(-1),changeTypeLabel(-1),notifyDeviceStatusChange(-1),icon(-1),statusLabel(-1),deviceLabel(-1),typeLabel(-1),severity(-1),notifyMotionDetection(-1),icon(-1),finalLabel(-1),severity(-1),dispose(-1),clearInterval(-1),isDuplicate(-1),last(-1),markSeen(-1),isThrottled(-1),getSeverity(-1),changeTypeLabel(-1),injectMessage(-1)
     alertLog()
   src/plugins/network/arpPlugin.ts:
     i: ../../core/types
     e: ArpHost,ArpPlugin
-    ArpHost
-    ArpPlugin
-      canHandle(-1)  CC=8.0
+    ArpHost:
+    ArpPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),subnet(-1),hosts(-1),targetSubnet(-1),probeIps(-1),resp(-1),formatHosts(-1),extractSubnet(-1),match(-1),subnetMatch(-1),errorResult(-1),initialize(-1),dispose(-1)
   src/plugins/email/emailPlugin.ts:
     i: ../../config/configStore,../../core/types
     e: EmailConfig,EmailMessage,InboxSummary,EmailPlugin
-    EmailConfig
-    EmailMessage
-    InboxSummary
-    EmailPlugin
-      resolveRoute(-1)  CC=3.0
+    EmailConfig:
+    EmailMessage:
+    InboxSummary:
+    EmailPlugin: resolveRoute(-1),lower(-1),canHandle(-1),execute(-1),start(-1),route(-1),isPollConfigRequest(-1),handleConfig(-1),currentConfig(-1),emailConfig(-1),result(-1),emailConfig(-1),summary(-1),text(-1),handlePollConfig(-1),minuteMatch(-1),secondMatch(-1),minutes(-1),seconds(-1),startPolling(-1),config(-1),summary(-1),stopPolling(-1),clearInterval(-1),getEmailConfig(-1),parseSendParams(-1),emailMatch(-1),to(-1),subjectMatch(-1),subject(-1),bodyMatch(-1),body(-1),browserFallback(-1),errorResult(-1),initialize(-1),dispose(-1)
   src-tauri/src/browse_rendered.rs:
     i: base64::,base64::Engine,std::env,std::process::Command
     e: detect_chrome_binary,is_available,render_and_extract,extract_visible_text,capture_screenshot,normalize_text
@@ -2746,10 +2124,10 @@ D:
   src-tauri/src/rss_parser.rs:
     i: crate::logging::,serde::,super::,tauri::command
     e: RssItem,RssFeed,AtomEntry,AtomFeed,parse_rss_feed,parse_atom_feed,extract_text,extract_atom_link,extract_atom_author,format_rss_feed,format_atom_feed,clean_html_text,detect_feed_type,parse_and_format_feed,test_detect_feed_type,test_clean_html_text,parse_rss_feed_command
-    RssItem
-    RssFeed
-    AtomEntry
-    AtomFeed
+    RssItem:
+    RssFeed:
+    AtomEntry:
+    AtomFeed:
     parse_rss_feed()
     parse_atom_feed()
     extract_text()
@@ -2766,12 +2144,12 @@ D:
   src-tauri/src/main.rs:
     i: audio_capture::SharedRecordingState,crate::content_cleaning::,crate::content_extraction::,crate::logging::,serde::,std::sync::,wake_word::SharedWakeWordState
     e: BrowseResult,main
-    BrowseResult
+    BrowseResult:
     main()
   src/core/systemContext.ts:
     i: ../lib/logger,../lib/runtime
     e: SystemContext,log,detectOs,ua,platform,detectUser,detectHomeDir,detectShell,detectCapabilities,getSystemContext,os,user,homeDir,shell,hostname,capabilities,updateSystemContext,ctx,resetSystemContext,buildSystemContextPrompt,ctx,capsText
-    SystemContext
+    SystemContext:
     log()
     detectOs()
     ua()
@@ -2795,7 +2173,7 @@ D:
     capsText()
   src/core/retry.ts:
     e: RetryOptions,resolveDecision,sleep,computeDelayMs,expo,capped,jitter,min,max,retry,maxDelayMs,jitterRatio,isLastAttempt,decision,delayMs,isProbablyTransientHttpStatus,isProbablyTransientErrorMessage,m,shouldRetryUnknownAsTransient,message
-    RetryOptions
+    RetryOptions:
     resolveDecision()
     sleep()
     computeDelayMs()
@@ -2818,7 +2196,7 @@ D:
   src/config/autoConfig.ts:
     i: ../components/ChatConfigPrompt,../components/ChatConfigPrompt,../lib/logger,./configStore
     e: AutoConfigResult,autoConfigLogger,runAutoConfig,status,isTauri,interfaces,best,buildWelcomeMessage,isPrivateIp,isValidCandidateIp,interfaceScore,score,n,pickBestInterface,best
-    AutoConfigResult
+    AutoConfigResult:
     autoConfigLogger()
     runAutoConfig()
     status()
@@ -2836,17 +2214,8 @@ D:
   src/utils/errorReporting.ts:
     i: ../lib/logger
     e: ErrorReport,ErrorReporting,errorReporting,captureError,captureNetworkError,capturePluginError,captureUserError,captureSystemError
-    ErrorReport
-    ErrorReporting
-      constructor(-1)  CC=1.0
-        → generateSessionId(-1)  CC=1.0
-        → setupGlobalHandlers(-1)  CC=4.0
-        → captureError(-1)  CC=9.0
-        → generateErrorId(-1)  CC=1.0
-        → getContext(-1)  CC=1.0
-        → error(-1)  CC=2.0
-        → showCriticalErrorNotification(-1)  CC=2.0
-        → setTimeout(-1)  CC=2.0
+    ErrorReport:
+    ErrorReporting: constructor(-1),generateSessionId(-1),setupGlobalHandlers(-1),target(-1),getContext(-1),captureError(-1),scopedLogger(-1),generateErrorId(-1),showCriticalErrorNotification(-1),notification(-1),setTimeout(-1),captureNetworkError(-1),capturePluginError(-1),captureUserError(-1),captureSystemError(-1),getErrorStats(-1),resolveError(-1),error(-1),clearErrors(-1),exportErrors(-1),stats(-1),errors(-1)
     errorReporting()
     captureError()
     captureNetworkError()
@@ -2856,49 +2225,41 @@ D:
   src/reactive/changeDetector.ts:
     i: ../persistence/databaseManager,../persistence/types
     e: ChangeDetector
-    ChangeDetector
-      constructor(-1)  CC=1.0
+    ChangeDetector: constructor(-1),previousSnapshot(-1),changeScore(-1),hasChanged(-1),changeType(-1),newSnapshot(-1),db(-1),row(-1),db(-1),now(-1),hash(-1),size(-1),snapshotId(-1),VALUES(-1),VALUES(-1),db(-1),now(-1),VALUES(-1),calculateChangeScore(-1),previousWords(-1),currentWords(-1),previousSet(-1),currentSet(-1),intersection(-1),union(-1),jaccardSimilarity(-1),changeScore(-1),determineChangeType(-1),prevLower(-1),currLower(-1),hasStatusChange(-1),hasMetadataChange(-1),percentage(-1),calculateHash(-1),hash(-1),char(-1),db(-1),rows(-1)
   src/plugins/network/pingPlugin.ts:
     i: ../../core/types
     e: PingPlugin,PingResult
-    PingPlugin
-      canHandle(-1)  CC=7.0
-    PingResult
+    PingPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),target(-1),result(-1),t0(-1),resp(-1),rtt(-1),extractTarget(-1),ipMatch(-1),hostMatch(-1),words(-1),last(-1),formatResult(-1),errorResult(-1),initialize(-1),dispose(-1)
+    PingResult:
   src-tauri/src/vision_scene_buffer.rs:
     i: chrono::,crate::vision_movement::MovementSummary,crate::vision_tracker::CropSnapshot,std::collections::VecDeque,std::time::Instant,tracing::
     e: ObjectEvent,MinuteBatch,MinuteBuffer
-    ObjectEvent
-    MinuteBatch
-    MinuteBuffer
+    ObjectEvent:
+    MinuteBatch:
+    MinuteBuffer:
   src-tauri/src/audio_capture.rs:
     i: base64::Engine,cpal::,cpal::traits::,hound::,std::io::Cursor,std::sync::
     e: RecordingState
-    RecordingState
+    RecordingState:
   src-tauri/src/local_llm.rs:
     i: crate::query_schema::,std::env,std::sync::OnceLock,super::
     e: LocalLlmConfig,LocalLlm
-    LocalLlmConfig
-    LocalLlm
+    LocalLlmConfig:
+    LocalLlm:
   src/persistence/databaseManager.ts:
     i: ../lib/logger,./migrations,./types
     e: DbAdapter,TauriDbAdapter,InMemoryDbAdapter,DatabaseManager,dbLogger
-    DbAdapter
-    TauriDbAdapter
-      constructor(-1)  CC=2.0
-    InMemoryDbAdapter
-      constructor(-1)  CC=1.0
-    DatabaseManager
-      initialize(-1)  CC=5.0
-        → runMigrations(-1)  CC=8.0
-        → close(-1)  CC=3.0
+    DbAdapter:
+    TauriDbAdapter: constructor(-1),isOpen(-1),execute(-1),rows(-1),rows(-1),close(-1)
+    InMemoryDbAdapter: constructor(-1),isOpen(-1),execute(-1),rows(-1),close(-1)
+    DatabaseManager: initialize(-1),getDevicesDb(-1),getChatDb(-1),runMigrations(-1),applied(-1),appliedSet(-1),transaction(-1),getStats(-1),countTables(-1),rows(-1),close(-1),isReady(-1)
     dbLogger()
   src/persistence/configuredDeviceRepository.ts:
     i: ../lib/logger,./databaseManager
     e: ConfiguredDevice,ConfiguredDeviceRow,ConfiguredDeviceRepository,repoLogger,rowToDevice,genId
-    ConfiguredDevice
-    ConfiguredDeviceRow
-    ConfiguredDeviceRepository
-      constructor(-1)  CC=1.0
+    ConfiguredDevice:
+    ConfiguredDeviceRow:
+    ConfiguredDeviceRepository: constructor(-1),save(-1),now(-1),id(-1),VALUES(-1),listAll(-1),rows(-1),listMonitored(-1),rows(-1),getById(-1),row(-1),getByIp(-1),row(-1),listByIp(-1),rows(-1),remove(-1),setMonitorEnabled(-1),now(-1),setMonitorIntervalMs(-1),now(-1),setMonitorChangeThreshold(-1),now(-1),updateLastSnapshot(-1),now(-1),count(-1),row(-1)
     repoLogger()
     rowToDevice()
     genId()
@@ -2923,17 +2284,16 @@ D:
   src/core/preferenceLearning.ts:
     i: ../lib/logger,./actionSchema
     e: PreferenceEntry,PreferenceScore,PreferenceLearningStore,log,MAX_ENTRIES,preferenceLearning
-    PreferenceEntry
-    PreferenceScore
-    PreferenceLearningStore
-      ensureLoaded(-1)  CC=7.0
+    PreferenceEntry:
+    PreferenceScore:
+    PreferenceLearningStore: ensureLoaded(-1),raw(-1),parsed(-1),save(-1),normalizeKey(-1),key(-1),existing(-1),entry(-1),score(-1),key(-1),entry(-1),frequency(-1),ageMs(-1),SEVEN_DAYS(-1),recency(-1),successRate(-1),combined(-1),getTopPreferences(-1),getAll(-1),reset(-1)
     log()
     MAX_ENTRIES()
     preferenceLearning()
   src/core/actionSchema.ts:
     i: ../components/ChatConfigPrompt
     e: ActionSchema,getSchemasByDomain,getAllDomains,scoreMatch,lower,words,hits,maxPossible,findMatchingSchemas,_domainHintCache,getDomainHints,findDomainSchemas,lower,hints,matchedDomains,schemasToConfigActions,schemasToLlmContext,byDomain,list
-    ActionSchema
+    ActionSchema:
     getSchemasByDomain()
     getAllDomains()
     scoreMatch()
@@ -2955,9 +2315,8 @@ D:
   src/plugins/monitoringPlugin.ts:
     i: ../lib/logger,../lib/runtime
     e: VisionQueryResult,MonitoringPlugin,log,formatQueryResult,cols,widths,max,val,displayRows,cells,val,display
-    VisionQueryResult
-    MonitoringPlugin
-      initialize(-1)  CC=1.0
+    VisionQueryResult:
+    MonitoringPlugin: initialize(-1),isAvailable(-1),execute(-1),start(-1),question(-1),elapsed(-1),text(-1),msg(-1),dispose(-1)
     log()
     formatQueryResult()
     cols()
@@ -2971,38 +2330,30 @@ D:
   src/plugins/network/wakeOnLanPlugin.ts:
     i: ../../core/types
     e: WakeOnLanPlugin
-    WakeOnLanPlugin
-      canHandle(-1)  CC=8.0
+    WakeOnLanPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),mac(-1),extractMac(-1),macMatch(-1),errorResult(-1),initialize(-1),dispose(-1)
   src/plugins/network/mdnsPlugin.ts:
     i: ../../core/types
     e: MdnsService,MdnsPlugin
-    MdnsService
-    MdnsPlugin
-      canHandle(-1)  CC=7.0
+    MdnsService:
+    MdnsPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),services(-1),formatServices(-1),grouped(-1),txtStr(-1),groupByType(-1),key(-1),friendlyType(-1),extractServiceTypes(-1),lower(-1),errorResult(-1),initialize(-1),dispose(-1)
   src/plugins/system/diskInfoPlugin.ts:
     i: ../../core/types
     e: DiskInfoPlugin,DiskPartition,DiskInfo,SshResult
-    DiskInfoPlugin
-      canHandle(-1)  CC=1.0
-    DiskPartition
-    DiskInfo
-    SshResult
+    DiskInfoPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),lower(-1),remoteHost(-1),buildConfigPrompt(-1),highUsage(-1),buildProgressBar(-1),filled(-1),empty(-1),lower(-1),pathMatch(-1),targetPath(-1),usage(-1),info(-1),result(-1),browserFallback(-1),formatDiskInfo(-1),progressBar(-1),highUsage(-1),formatPartition(-1),formatBytes(-1),extractRemoteHost(-1),m(-1),candidate(-1),extractUser(-1),m(-1),extractPort(-1),m(-1),errorResult(-1),initialize(-1),dispose(-1)
+    DiskPartition:
+    DiskInfo:
+    SshResult:
   src/plugins/rtsp-camera/rtspCameraPlugin.ts:
     e: CameraConfig,FrameGrabber,CapturedFrame,HttpSnapshotGrabber,TauriRtspGrabber,SceneDescriber,LlmSceneDescriber,RtspCameraPluginOptions,RtspCameraPlugin,blobToBase64,reader,result,base64
-    CameraConfig
-    FrameGrabber
-    CapturedFrame
-    HttpSnapshotGrabber
-      isAvailable(-1)  CC=1.0
-    TauriRtspGrabber
-      isAvailable(-1)  CC=1.0
-    SceneDescriber
-    LlmSceneDescriber
-      describe(-1)  CC=3.0
-    RtspCameraPluginOptions
-    RtspCameraPlugin
-      constructor(-1)  CC=3.0
-        → isAvailable(-1)  CC=2.0
+    CameraConfig:
+    FrameGrabber:
+    CapturedFrame:
+    HttpSnapshotGrabber: isAvailable(-1),capture(-1),url(-1),response(-1),blob(-1),base64(-1)
+    TauriRtspGrabber: isAvailable(-1),capture(-1),url(-1),result(-1)
+    SceneDescriber:
+    LlmSceneDescriber: describe(-1)
+    RtspCameraPluginOptions:
+    RtspCameraPlugin: constructor(-1),initialize(-1),isAvailable(-1),execute(-1),start(-1),captureFrame(-1),camera(-1),frame(-1),describeScene(-1),camera(-1),frame(-1),dispose(-1),handleList(-1),list(-1),camera(-1),frame(-1),camera(-1),frame(-1),description(-1),resolveCamera(-1),byId(-1),lower(-1),first(-1),grabFrame(-1),meta(-1),errorResult(-1)
     blobToBase64()
     reader()
     result()
@@ -3010,23 +2361,22 @@ D:
   src/plugins/cameras/cameraSnapshotPlugin.ts:
     i: ../../core/types
     e: CameraSnapshotPlugin
-    CameraSnapshotPlugin
-      canHandle(-1)  CC=8.0
+    CameraSnapshotPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),cameraId(-1),result(-1),cameraName(-1),extractCameraId(-1),cameraLabel(-1),errorResult(-1),initialize(-1),dispose(-1)
   src-tauri/src/llm_query.rs:
     i: crate::query_schema::,std::env
     e: NlQueryResult,validate_sql_public,validate_sql
-    NlQueryResult
+    NlQueryResult:
     validate_sql_public()
     validate_sql()
   src-tauri/src/audio_commands.rs:
     i: crate::audio_capture::,crate::settings::load_settings,crate::stt,crate::tts_backend,crate::wake_word::,std::sync::
     e: ActiveStream,ActiveTts,ActiveWakeWordStream,SttStatus,TtsInfo,AudioDevices,is_wake_word_active,pause_wake_word,resume_wake_word,stt_start,stt_status,stt_get_mic_level,stt_is_silence,backend_tts_stop,backend_tts_pause,backend_tts_resume,backend_tts_speak_base64,backend_tts_info,backend_audio_devices,piper_is_installed,wake_word_start,wake_word_stop,wake_word_check_triggered
-    ActiveStream
-    ActiveTts
-    ActiveWakeWordStream
-    SttStatus
-    TtsInfo
-    AudioDevices
+    ActiveStream:
+    ActiveTts:
+    ActiveWakeWordStream:
+    SttStatus:
+    TtsInfo:
+    AudioDevices:
     is_wake_word_active()
     pause_wake_word()
     resume_wake_word()
@@ -3047,33 +2397,29 @@ D:
   src-tauri/src/vision_query_engine.rs:
     i: anyhow::Result,crate::vision_db::,crate::vision_llm::LlmClient,serde::,tracing::info
     e: QueryResult,QueryEngine
-    QueryResult
-    QueryEngine
+    QueryResult:
+    QueryEngine:
   src-tauri/src/toonic_sidecar.rs:
     i: crate::logging::,serde::,std::process::,std::sync::Mutex,std::time::Duration
     e: ToonicStatus,toonic_lock,find_toonic_path,find_python
-    ToonicStatus
+    ToonicStatus:
     toonic_lock()
     find_toonic_path()
     find_python()
   src/core/cache.ts:
     i: ../lib/logger
     e: CacheEntry,CacheConfig,CacheStats,Cache,CacheFactory,cacheLogger
-    CacheEntry
-    CacheConfig
-    CacheStats
-    Cache
-      constructor(-1)  CC=3.0
-        → cleanup(-1)  CC=6.0
-        → now(-1)  CC=4.0
-    CacheFactory
-      cache(-1)  CC=2.0
+    CacheEntry:
+    CacheConfig:
+    CacheStats:
+    Cache: constructor(-1),get(-1),entry(-1),set(-1),delete(-1),deleted(-1),has(-1),entry(-1),clear(-1),getStats(-1),now(-1),memoryUsage(-1),totalRequests(-1),hitRate(-1),keys(-1),entriesArray(-1),evict(-1),findLRUKey(-1),oldestAccess(-1),findLFUKey(-1),lowestFrequency(-1),findFIFOKey(-1),oldestInsertion(-1),cleanup(-1),now(-1),estimateEntrySize(-1),keySize(-1),valueSize(-1),metadataSize(-1),dispose(-1),clearInterval(-1)
+    CacheFactory: cache(-1),get(-1),delete(-1),cache(-1),getAllStats(-1),clearAll(-1),disposeAll(-1)
     cacheLogger()
   src/core/intentSchema.ts:
     i: ./actionSchema
     e: SubActionDef,IntentSchema,schemaRegistry,registerIntentSchema,registerIntentSchemas,getIntentSchema,getAllIntentSchemas,getSchemasByPlugin,getSchemasByDomain,clearIntentSchemas,matchIntentByPatterns,lower,matches,canPluginHandle,lower,schemas,defineIntent
-    SubActionDef
-    IntentSchema
+    SubActionDef:
+    IntentSchema:
     schemaRegistry()
     registerIntentSchema()
     registerIntentSchemas()
@@ -3091,65 +2437,54 @@ D:
     defineIntent()
   scripts/motion_pipeline.py:
     e: LocalClassifier,LlmVerifier,MotionPipeline,init_db,save_detection,update_detection_llm,get_statistics,create_bg_subtractor,extract_moving_objects,should_send_to_llm,parse_args,main
-    LocalClassifier
-      __init__(1)  CC=1.0
-        → _load_model(0)  CC=3.0
-        → _select_model_path(0)  CC=5.0
-    LlmVerifier
-      __init__(2)  CC=1.0
-    MotionPipeline
-      __init__(1)  CC=3.0
+    LocalClassifier: __init__(1),_load_model(0),_select_model_path(0),classify(2)
+    LlmVerifier: __init__(2),_crop_to_b64(2),verify(3)
+    MotionPipeline: __init__(1),_is_in_cooldown(1),_update_cooldown(1),_emit_event(1),_maybe_emit_stats(0),process_frame(1),run(0)
     init_db(db_path)
-    save_detection(conn,camera_id,label,confidence,crop_img,bbox,max_crop_px)
-    update_detection_llm(conn,det_id,llm_label,llm_description)
-    get_statistics(conn,camera_id,hours)
-    create_bg_subtractor(history,var_threshold)
-    extract_moving_objects(frame,bg_subtractor,min_area,max_area,target_width)
-    should_send_to_llm(label,confidence,threshold,night_mode,night_person_always)
+    save_detection(conn;camera_id;label;confidence;crop_img;bbox;max_crop_px)
+    update_detection_llm(conn;det_id;llm_label;llm_description)
+    get_statistics(conn;camera_id;hours)
+    create_bg_subtractor(history;var_threshold)
+    extract_moving_objects(frame;bg_subtractor;min_area;max_area;target_width)
+    should_send_to_llm(label;confidence;threshold;night_mode;night_person_always)
     parse_args()
     main()
   src/discovery/networkScanner.ts:
     i: ../persistence/databaseManager,../persistence/types
     e: NetworkScanner
-    NetworkScanner
-      constructor(-1)  CC=1.0
+    NetworkScanner: constructor(-1),scanNetwork(-1),startTime(-1),methodResults(-1),uniqueDevices(-1),scanDuration(-1),performScan(-1),pingSweep(-1),networkRanges(-1),promises(-1),mdnsDiscovery(-1),response(-1),ssdpDiscovery(-1),arpScan(-1),pingHost(-1),startTime(-1),response(-1),responseTime(-1),getLocalNetworkRanges(-1),generateIpRange(-1),baseIp(-1),deduplicateDevices(-1),seen(-1),persistDevices(-1),db(-1),now(-1),existingDevice(-1),VALUES(-1),addEventListener(-1),removeEventListener(-1),index(-1),emitEvent(-1),listener(-1),isActive(-1)
   src/reactive/watchManager.ts:
     i: ../persistence/databaseManager,../persistence/types,./changeDetector
     e: WatchManager
-    WatchManager
-      constructor(-1)  CC=1.0
+    WatchManager: constructor(-1),start(-1),stop(-1),clearInterval(-1),now(-1),recentQuery(-1),cancelWatchRule(-1),watchRule(-1),loadActiveWatches(-1),db(-1),now(-1),rows(-1),startPolling(-1),interval(-1),stopPolling(-1),interval(-1),clearInterval(-1),pollTarget(-1),startTime(-1),currentContent(-1),changeResult(-1),pollTime(-1),fetchTargetContent(-1),response(-1),startCleanupInterval(-1),setInterval(-1),cleanupExpiredWatches(-1),db(-1),now(-1),expiredRules(-1),oneHourAgo(-1),addEventListener(-1),removeEventListener(-1),index(-1),emitEvent(-1),listener(-1),getStats(-1),getActiveWatchCount(-1),saveWatchRule(-1),db(-1),getWatchRule(-1),db(-1),row(-1),updateWatchRule(-1),db(-1)
   src/plugins/system/logsPlugin.ts:
     i: ../../config/configStore,../../core/types,../../lib/logger
     e: LogCommand,LogsPlugin
-    LogCommand
-    LogsPlugin
-      initialize(-1)  CC=1.0
+    LogCommand:
+    LogsPlugin: initialize(-1),canHandle(-1),lowerQuery(-1),execute(-1),lowerQuery(-1),command(-1),result(-1),executeCommand(-1),downloadLogs(-1),currentLogLevel(-1),consoleLogs(-1),logContent(-1),blob(-1),url(-1),a(-1),collectConsoleLogs(-1),formatLogFile(-1),clearLogs(-1),showLogLevel(-1),currentLogLevel(-1),description(-1),upperLevel(-1),getAppVersion(-1),response(-1),dispose(-1)
   src/plugins/mqtt/mqttPlugin.ts:
     e: MqttConfig,MqttClientAdapter,TopicValue,MqttPlugin
-    MqttConfig
-    MqttClientAdapter
-    TopicValue
-    MqttPlugin
-      connected(-1)  CC=1.0
+    MqttConfig:
+    MqttClientAdapter:
+    TopicValue:
+    MqttPlugin: connected(-1),constructor(-1),initialize(-1),subs(-1),isAvailable(-1),execute(-1),start(-1),topic(-1),subs(-1),reconnect(-1),onDisconnect(-1),dispose(-1),handleList(-1),topics(-1),label(-1),age(-1),text(-1),handleRead(-1),topic(-1),label(-1),age(-1),handleSubscribeInfo(-1),topic(-1),extractTopic(-1),input(-1),findByPrefix(-1),getTopicLabel(-1),meta(-1),errorResult(-1)
   src/plugins/scope/scopeRegistry.ts:
     e: ScopeDefinition,RemotePluginManifest,ScopeRegistry,scopeRegistry
-    ScopeDefinition
-    RemotePluginManifest
-    ScopeRegistry
-      normalizeScopeId(-1)  CC=3.0
+    ScopeDefinition:
+    RemotePluginManifest:
+    ScopeRegistry: normalizeScopeId(-1),constructor(-1),getScope(-1),getAllScopes(-1),getActiveScope(-1),setActiveScope(-1),normalized(-1),isPluginAllowed(-1),scope(-1),installRemotePlugin(-1),scope(-1),existing(-1),updated(-1),uninstallRemotePlugin(-1),scope(-1),getRemotePlugins(-1),scope(-1),persist(-1),restore(-1),raw(-1),data(-1),scope(-1)
     scopeRegistry()
   src/plugins/voice/voiceCommandsPlugin.ts:
     i: ../../core/types,../../lib/logger
     e: VoiceCommand,VoiceCommandsPlugin,logger
-    VoiceCommand
-    VoiceCommandsPlugin
-      initialize(-1)  CC=1.0
+    VoiceCommand:
+    VoiceCommandsPlugin: initialize(-1),canHandle(-1),lowerQuery(-1),execute(-1),lowerQuery(-1),command(-1),executeCommand(-1),dispose(-1)
     logger()
   src/components/MessageResultCard.tsx:
     i: react
     e: DomainMeta,MessageResultCardProps,detectDomain,detectStatus,MessageResultCard,domain,meta,status,statusMeta
-    DomainMeta
-    MessageResultCardProps
+    DomainMeta:
+    MessageResultCardProps:
     detectDomain()
     detectStatus()
     MessageResultCard()
@@ -3160,8 +2495,8 @@ D:
   src-tauri/src/disk_info.rs:
     i: crate::logging::backend_info,serde::,std::process::Command,super::
     e: DiskPartition,DiskInfo,parse_df_output,parse_df_simple,parse_df_line,get_hostname,test_parse_df_line,test_get_hostname
-    DiskPartition
-    DiskInfo
+    DiskPartition:
+    DiskInfo:
     parse_df_output()
     parse_df_simple()
     parse_df_line()
@@ -3171,8 +2506,8 @@ D:
   src-tauri/src/settings.rs:
     i: crate::logging::,serde::,std::env,std::fs,std::path::PathBuf
     e: AudioSettings,LegacyAudioSettings,default_tts_enabled,default_tts_rate,default_tts_pitch,default_tts_volume,default_tts_lang,default_tts_engine,default_stt_enabled,default_stt_engine,default_stt_model,default_mic_enabled,default_device_id,default_auto_listen
-    AudioSettings
-    LegacyAudioSettings
+    AudioSettings:
+    LegacyAudioSettings:
     default_tts_enabled()
     default_tts_rate()
     default_tts_pitch()
@@ -3229,16 +2564,15 @@ D:
   src/persistence/historyRepository.ts:
     i: ../lib/logger,./databaseManager
     e: CommandHistoryRow,NetworkHistoryRow,HistoryRepository,repoLogger
-    CommandHistoryRow
-    NetworkHistoryRow
-    HistoryRepository
-      constructor(-1)  CC=1.0
+    CommandHistoryRow:
+    NetworkHistoryRow:
+    HistoryRepository: constructor(-1),VALUES(-1),upsertCommand(-1),now(-1),existing(-1),VALUES(-1),listCommands(-1),rows(-1),now(-1),existing(-1),VALUES(-1),listNetworkHistory(-1),getNetworkEntryByAddress(-1)
     repoLogger()
   src/hooks/useWatchNotifications.ts:
     i: ../reactive/types,../reactive/watchManager,react
     e: WatchNotification,UseWatchNotificationsReturn,useWatchNotifications,unsub,changeEvent,notif,timer,acknowledge,acknowledgeEndpoint,acknowledgeAll,stopWatch,mapChangeToNotification
-    WatchNotification
-    UseWatchNotificationsReturn
+    WatchNotification:
+    UseWatchNotificationsReturn:
     useWatchNotifications()
     unsub()
     changeEvent()
@@ -3252,11 +2586,10 @@ D:
   src/core/queryBus.ts:
     i: ./plugin.types
     e: QueryBus,ListPluginsQuery,PluginInfo,GetPluginStatusQuery,cachingMiddleware,cache,key,cached,result
-    QueryBus
-      unregister(-1)  CC=1.0
-    ListPluginsQuery
-    PluginInfo
-    GetPluginStatusQuery
+    QueryBus: unregister(-1),use(-1),dispatch(-1),handler(-1),execute(-1),index(-1),chain(-1),mw(-1),registeredQueries(-1)
+    ListPluginsQuery:
+    PluginInfo:
+    GetPluginStatusQuery:
     cachingMiddleware()
     cache()
     key()
@@ -3265,51 +2598,43 @@ D:
   src/core/pluginRegistry.ts:
     i: ./types
     e: PluginRegistry
-    PluginRegistry
-      register(-1)  CC=6.0
+    PluginRegistry: register(-1),pluginId(-1),unregister(-1),plugin(-1),get(-1),getAll(-1),findByIntent(-1),legacyPlugins(-1),dataSourcePlugins(-1),initializeAll(-1),legacyInitPromises(-1),dataSourceInitPromises(-1),disposeAll(-1),legacyDisposePromises(-1),dataSourceDisposePromises(-1)
   src/core/realtimeSync.ts:
     i: ../domain/chatEvents,../lib/logger
     e: RealtimeSyncConfig,SyncMessage,RealtimeSync,syncLogger,getRealtimeSync,disposeRealtimeSync
-    RealtimeSyncConfig
-    SyncMessage
-    RealtimeSync
-      constructor(-1)  CC=2.0
-        → generateSourceId(-1)  CC=1.0
-        → checkSupport(-1)  CC=4.0
-        → initialize(-1)  CC=3.0
-        → initializeLocalStorageFallback(-1)  CC=3.0
+    RealtimeSyncConfig:
+    SyncMessage:
+    RealtimeSync: constructor(-1),generateSourceId(-1),checkSupport(-1),test(-1),initialize(-1),initializeLocalStorageFallback(-1),handleBroadcastMessage(-1),message(-1),handleStorageEvent(-1),processSyncEvent(-1),handlers(-1),handler(-1),broadcast(-1),fallbackToLocalStorage(-1),setTimeout(-1),getStats(-1),dispose(-1)
     syncLogger()
     getRealtimeSync()
     disposeRealtimeSync()
   src/domain/chatEvents.ts:
     i: ./audioSettings
     e: ChatMessage,createEvent,projectChatMessages
-    ChatMessage
+    ChatMessage:
     createEvent()
     projectChatMessages()
   src/plugins/marketplace/marketplaceLoader.ts:
     i: ../../core/types,../scope/scopeRegistry,../scope/scopeRegistry
     e: MarketplaceEntry,MarketplacePlugin
-    MarketplaceEntry
-    MarketplacePlugin
-      resolveRoute(-1)  CC=3.0
+    MarketplaceEntry:
+    MarketplacePlugin: resolveRoute(-1),lower(-1),canHandle(-1),execute(-1),start(-1),route(-1),handleBrowse(-1),installed(-1),isInstalled(-1),status(-1),handleSearch(-1),query(-1),results(-1),handleInstall(-1),pluginName(-1),entry(-1),handleUninstall(-1),pluginName(-1),found(-1),getInstalledPluginIds(-1),ids(-1),initialize(-1),dispose(-1)
   src/plugins/chat/chatPlugin.ts:
     i: ../../core/systemContext,../../core/types
     e: ChatLlmPlugin
-    ChatLlmPlugin
-      canHandle(-1)  CC=1.0
+    ChatLlmPlugin: canHandle(-1),execute(-1),startTime(-1),llmModule(-1),config(-1),buildSystemContextPrompt(-1),response(-1),initialize(-1),dispose(-1)
   src/components/ChatOverlays.tsx:
     i: ./CameraLiveInline
     e: ExpandedImageData,ExpandedLiveData,ChatOverlaysProps,ChatOverlays
-    ExpandedImageData
-    ExpandedLiveData
-    ChatOverlaysProps
+    ExpandedImageData:
+    ExpandedLiveData:
+    ChatOverlaysProps:
     ChatOverlays()
   src/components/CommandHistory.tsx:
     i: lucide-react,react
     e: CommandHistoryItem,CommandHistoryProps,categoryCounts,savedHistory,parsed,filtered,q,saveHistory,addToHistory,existingIndex,removeFromHistory,newHistory,clearHistory,handleSelect,getCategoryInfo,formatTimestamp,now,diff,getSuccessIndicator,count,isActive,categoryInfo,successIndicator
-    CommandHistoryItem
-    CommandHistoryProps
+    CommandHistoryItem:
+    CommandHistoryProps:
     categoryCounts()
     savedHistory()
     parsed()
@@ -3334,7 +2659,7 @@ D:
   src/components/ThinkingMessage.tsx:
     i: lucide-react,react
     e: ThinkingMessageProps,ThinkingMessage,startRef,timer,now,remaining,showCountdown
-    ThinkingMessageProps
+    ThinkingMessageProps:
     ThinkingMessage()
     startRef()
     timer()
@@ -3344,7 +2669,7 @@ D:
   src/components/QuickCommandHistory.tsx:
     i: ./CommandHistory,lucide-react,react
     e: QuickCommandHistoryProps,savedHistory,parsed,getCategoryIcon,getSuccessIndicator,formatTimestamp,now,diff,getPopularCommands,popularCommands,categoryIcon,categoryIcon,successIndicator
-    QuickCommandHistoryProps
+    QuickCommandHistoryProps:
     savedHistory()
     parsed()
     getCategoryIcon()
@@ -3360,14 +2685,14 @@ D:
   src-tauri/src/vision_config.rs:
     i: serde::Deserialize,std::env
     e: VisionConfig,CameraConfig,DetectorConfig,PipelineConfig,TrackerConfig,SceneConfig,DatabaseConfig,LlmConfig,default_camera_id,default_model_path,default_confidence_threshold,default_nms_threshold,default_input_size,default_use_openvino,default_intra_threads
-    VisionConfig
-    CameraConfig
-    DetectorConfig
-    PipelineConfig
-    TrackerConfig
-    SceneConfig
-    DatabaseConfig
-    LlmConfig
+    VisionConfig:
+    CameraConfig:
+    DetectorConfig:
+    PipelineConfig:
+    TrackerConfig:
+    SceneConfig:
+    DatabaseConfig:
+    LlmConfig:
     default_camera_id()
     default_model_path()
     default_confidence_threshold()
@@ -3378,7 +2703,7 @@ D:
   src-tauri/src/stt.rs:
     i: base64::Engine,std::env
     e: VadResult,rms_energy,zero_crossing_rate,detect_voice_activity,parse_wav_samples,base64_decode,detect_artifacts
-    VadResult
+    VadResult:
     rms_energy()
     zero_crossing_rate()
     detect_voice_activity()
@@ -3388,9 +2713,9 @@ D:
   src-tauri/src/ssh.rs:
     i: crate::logging::,serde::,std::io::Read,std::net::TcpStream,std::process::Command,std::time::Instant,super::
     e: SshResult,SshTestResult,KnownHost,get_ssh_banner,test_ssh_banner_localhost
-    SshResult
-    SshTestResult
-    KnownHost
+    SshResult:
+    SshTestResult:
+    KnownHost:
     get_ssh_banner()
     test_ssh_banner_localhost()
   src-tauri/benches/file_search_bench.rs:
@@ -3453,14 +2778,12 @@ D:
   src/commands/copyContextCommand.ts:
     i: ../domain/chatAggregate,../lib/logger
     e: CopyContextCommand,logger
-    CopyContextCommand
-      constructor(-1)  CC=1.0
+    CopyContextCommand: constructor(-1),execute(-1),msg(-1),userQuery(-1),context(-1)
     logger()
   src/commands/sendMessageCommand.ts:
     i: ../domain/chatAggregate,../domain/eventStore,../lib/logger,../services/llmService
     e: SendMessageCommand,logger
-    SendMessageCommand
-      execute(-1)  CC=5.0
+    SendMessageCommand: execute(-1),loadingId(-1),answer(-1),errorMsg(-1)
     logger()
   src/lib/phonetic.ts:
     i: ./logger
@@ -3477,13 +2800,11 @@ D:
   src/core/commandBus.ts:
     i: ./types
     e: CommandBus
-    CommandBus
-      register(-1)  CC=2.0
-        → has(-1)  CC=1.0
+    CommandBus: register(-1),unregister(-1),execute(-1),handler(-1),getRegisteredCommands(-1),has(-1),clear(-1)
   src/components/WatchBadge.tsx:
     i: ../hooks/useWatchNotifications,../reactive/watchManager,react
     e: WatchBadgeProps,formatTime,now,diff,getNotificationIcon,getSeverityColor
-    WatchBadgeProps
+    WatchBadgeProps:
     formatTime()
     now()
     diff()
@@ -3492,7 +2813,7 @@ D:
   src/components/DeviceStrip.tsx:
     i: ../persistence/configuredDeviceRepository,../persistence/databaseManager,lucide-react,react
     e: DeviceStripProps,deviceTypeIcon,statusDot,age,loadDevices,repo,all,interval,handler,dispatchChatAction,handleDelete,extra,ok,repo
-    DeviceStripProps
+    DeviceStripProps:
     deviceTypeIcon()
     statusDot()
     age()
@@ -3509,7 +2830,7 @@ D:
   src-tauri/src/network_info.rs:
     i: local_ip_address::list_afinet_netifas,local_ip_address::list_afinet_netifas,serde::,std::net::IpAddr,super::
     e: NetworkInfo,get_local_network_info,get_interface_name,list_network_interfaces,test_get_local_network_info,test_list_network_interfaces
-    NetworkInfo
+    NetworkInfo:
     get_local_network_info()
     get_interface_name()
     list_network_interfaces()
@@ -3537,41 +2858,37 @@ D:
   src-tauri/src/vision_capture.rs:
     i: anyhow::,opencv::,std::time::Duration,tracing::
     e: CaptureStream
-    CaptureStream
+    CaptureStream:
   src/persistence/scanHistoryRepository.ts:
     e: ScanHistoryEntry,IncrementalScanRecommendation,ScanHistoryRepository
-    ScanHistoryEntry
-    IncrementalScanRecommendation
-    ScanHistoryRepository
-      constructor(-1)  CC=1.0
+    ScanHistoryEntry:
+    IncrementalScanRecommendation:
+    ScanHistoryRepository: constructor(-1),save(-1),VALUES(-1),list(-1),results(-1),getLastSuccessfulBySubnet(-1),results(-1),row(-1),shouldUseIncrementalScan(-1),last(-1),ageMs(-1),RECENT_MS(-1),getByScope(-1),results(-1),cleanup(-1),cutoff(-1),result(-1)
   src/commands/saveSettingsCommand.ts:
     i: ../domain/audioSettings,../domain/eventStore,../lib/logger,../lib/runtime
     e: SaveSettingsCommand,logger
-    SaveSettingsCommand
-      constructor(-1)  CC=1.0
+    SaveSettingsCommand: constructor(-1),execute(-1),errorMsg(-1)
     logger()
   src/core/processRegistry.ts:
     e: ProcessInfo,ProcessRegistry,processRegistry
-    ProcessInfo
-    ProcessRegistry
-      now(-1)  CC=2.0
+    ProcessInfo:
+    ProcessRegistry: now(-1),existing(-1),complete(-1),fail(-1),stop(-1),remove(-1),clear(-1),listActive(-1),listAll(-1),get(-1),p(-1),setStatus(-1),now(-1),existing(-1)
     processRegistry()
   src/domain/chatAggregate.ts:
     i: ./chatEvents,./chatEvents
     e: ChatAggregate
-    ChatAggregate
-      apply(-1)  CC=3.0
+    ChatAggregate: apply(-1),replayAll(-1),getMessages(-1),getNextId(-1),getMessage(-1),getLastUserQuery(-1),idx(-1),messageCount(-1)
   src/plugins/rtsp-camera/index.ts:
     i: ../../core/pluginRegistry
     e: RegisterRtspCameraOptions,registerRtspCameraPlugin,plugin,tauriPlugin
-    RegisterRtspCameraOptions
+    RegisterRtspCameraOptions:
     registerRtspCameraPlugin()
     plugin()
     tauriPlugin()
   src/components/Settings.tsx:
     i: ../config/appConfig,../hooks/useSpeech,../hooks/useStt,../hooks/useTts,../lib/logger,../lib/runtime,@tauri-apps/api/core,react
     e: SettingsProps,STT_MODELS,runtimeIsTauri,speech,stt,tts,permissionsApi,active,state,next,micDevices,speakerDevices,hasDeviceLabels,update,handleSave,result,msg
-    SettingsProps
+    SettingsProps:
     STT_MODELS()
     runtimeIsTauri()
     speech()
@@ -3591,7 +2908,7 @@ D:
   src/components/SetupWizardModal.tsx:
     i: ../config/appConfig,../config/configStore,../lib/llmClient,../lib/runtime,@tauri-apps/api/core,react
     e: SetupWizardModalProps,MODELS,toggleAutostart,handleSave,runtimeIsTauri,configStatus,apiKeyTrimmed,testApiKey,key,msg,canProceed,Icon,done,active
-    SetupWizardModalProps
+    SetupWizardModalProps:
     MODELS()
     toggleAutostart()
     handleSave()
@@ -3608,7 +2925,7 @@ D:
   src/components/MicSettingsModal.tsx:
     i: ../config/appConfig,../hooks/useSpeech,../hooks/useStt,../lib/logger,../lib/runtime,@tauri-apps/api/core,lucide-react,react
     e: MicSettingsModalProps,STT_MODELS,runtimeIsTauri,speech,stt,permissionsApi,active,state,next,micDevices,update,handleSave
-    MicSettingsModalProps
+    MicSettingsModalProps:
     STT_MODELS()
     runtimeIsTauri()
     speech()
@@ -3623,7 +2940,7 @@ D:
   src/components/DiagnosticsModal.tsx:
     i: ../domain/audioSettings,../hooks/useSpeech,../hooks/useStt,../hooks/useTts,../lib/runtime,lucide-react,react
     e: DiagnosticsModalProps,runtimeIsTauri,speech,stt,tts,permissionsApi,active,state,next,micDevices,speakerDevices,hasDeviceLabels
-    DiagnosticsModalProps
+    DiagnosticsModalProps:
     runtimeIsTauri()
     speech()
     stt()
@@ -3638,7 +2955,7 @@ D:
   src/contexts/CqrsContext.tsx:
     i: ../commands/browseCommand,../commands/copyContextCommand,../commands/sendMessageCommand,../domain/chatAggregate,../domain/eventStore,../queries/getMessagesQuery,../services/defaultBrowseAdapter,../services/defaultLlmAdapter,react
     e: CqrsContextValue,CqrsContext,CqrsProvider,storeRef,aggregateRef,value,store,aggregate,browseAdapter,llmAdapter,useCqrs,context
-    CqrsContextValue
+    CqrsContextValue:
     CqrsContext()
     CqrsProvider()
     storeRef()
@@ -3663,12 +2980,12 @@ D:
   src-tauri/src/vision_llm.rs:
     i: anyhow::,base64::,crate::vision_config::LlmConfig,serde::Serialize,serde_json::Value,super::,tracing::
     e: ChatRequest,Message,ImageUrlData,ObjectDescription,SceneNarrativeResult,LlmClient
-    ChatRequest
-    Message
-    ImageUrlData
-    ObjectDescription
-    SceneNarrativeResult
-    LlmClient
+    ChatRequest:
+    Message:
+    ImageUrlData:
+    ObjectDescription:
+    SceneNarrativeResult:
+    LlmClient:
   e2e/voice-interface.spec.ts:
     i: @playwright/test
     e: openApp,supported,input,ttsButton,hasTtsButton,assistantMessages,count,result,utt,voiceCount,voices,result,utt,supported,micButton,micButton,SR,orig,startCalled,micButton,SR,orig,input,input,input,assistantMessages,speakCalled,orig,input,result,input,sendBtn,input,copyBtn,settingsBtn,micButton
@@ -3740,32 +3057,31 @@ D:
   src/queries/getSettingsQuery.ts:
     i: ../domain/audioSettings,../lib/logger,../lib/runtime
     e: GetSettingsQuery,logger
-    GetSettingsQuery
-      execute(-1)  CC=3.0
+    GetSettingsQuery: execute(-1)
     logger()
   src/config/appConfig.ts:
     e: LlmAppConfig,SttAppConfig,NetworkScanConfig,ServiceProbeConfig,SshAppConfig,LocaleConfig,CameraDefaults,MonitorAppConfig,EmailAppConfig,FrigateAppConfig,MotionDetectionConfig,AppConfig,ConfigFieldMeta,getConfigFieldsByCategory,map,list
-    LlmAppConfig
-    SttAppConfig
-    NetworkScanConfig
-    ServiceProbeConfig
-    SshAppConfig
-    LocaleConfig
-    CameraDefaults
-    MonitorAppConfig
-    EmailAppConfig
-    FrigateAppConfig
-    MotionDetectionConfig
-    AppConfig
-    ConfigFieldMeta
+    LlmAppConfig:
+    SttAppConfig:
+    NetworkScanConfig:
+    ServiceProbeConfig:
+    SshAppConfig:
+    LocaleConfig:
+    CameraDefaults:
+    MonitorAppConfig:
+    EmailAppConfig:
+    FrigateAppConfig:
+    MotionDetectionConfig:
+    AppConfig:
+    ConfigFieldMeta:
     getConfigFieldsByCategory()
     map()
     list()
   src/components/NetworkSelector.tsx:
     i: ./NetworkHistorySelector,lucide-react,react
     e: NetworkConfig,NetworkSelectorProps,handleSelect,handleHistorySelect,config,handleNewNetwork
-    NetworkConfig
-    NetworkSelectorProps
+    NetworkConfig:
+    NetworkSelectorProps:
     handleSelect()
     handleHistorySelect()
     config()
@@ -3773,12 +3089,12 @@ D:
   src/components/WatchBadge.simple.tsx:
     i: lucide-react,react
     e: WatchBadgeProps,handleClick
-    WatchBadgeProps
+    WatchBadgeProps:
     handleClick()
   src/components/TtsSettingsModal.tsx:
     i: ../hooks/useTts,../lib/logger,../lib/runtime,@tauri-apps/api/core,lucide-react,react
     e: TtsSettingsModalProps,runtimeIsTauri,tts,speakerDevices,update,handleSave,result,msg
-    TtsSettingsModalProps
+    TtsSettingsModalProps:
     runtimeIsTauri()
     tts()
     speakerDevices()
@@ -3818,29 +3134,28 @@ D:
   src/services/defaultLlmAdapter.ts:
     i: ./llmService
     e: DefaultLlmAdapter
-    DefaultLlmAdapter
-      chat(-1)  CC=1.0
+    DefaultLlmAdapter: chat(-1),response(-1),ask(-1),summarize(-1),summarizeSearch(-1),detectIntent(-1),describeImage(-1)
   src/core/plugin.types.ts:
     e: PluginQuery,QueryMetadata,PluginResult,ContentBlock,ResultMetadata,PluginCapabilities,DataSourcePlugin,StreamablePlugin,VisualPlugin,PersistentPlugin,PluginEvent,IPluginRegistry,IIntentRouter,ICommand,ICommandHandler,ICommandBus,IQuery,IQueryHandler,IQueryBus,isStreamable,isVisual,isPersistent
-    PluginQuery
-    QueryMetadata
-    PluginResult
-    ContentBlock
-    ResultMetadata
-    PluginCapabilities
-    DataSourcePlugin
-    StreamablePlugin
-    VisualPlugin
-    PersistentPlugin
-    PluginEvent
-    IPluginRegistry
-    IIntentRouter
-    ICommand
-    ICommandHandler
-    ICommandBus
-    IQuery
-    IQueryHandler
-    IQueryBus
+    PluginQuery:
+    QueryMetadata:
+    PluginResult:
+    ContentBlock:
+    ResultMetadata:
+    PluginCapabilities:
+    DataSourcePlugin:
+    StreamablePlugin:
+    VisualPlugin:
+    PersistentPlugin:
+    PluginEvent:
+    IPluginRegistry:
+    IIntentRouter:
+    ICommand:
+    ICommandHandler:
+    ICommandBus:
+    IQuery:
+    IQueryHandler:
+    IQueryBus:
     isStreamable()
     isVisual()
     isPersistent()
@@ -3854,9 +3169,9 @@ D:
   src-tauri/src/email.rs:
     i: base64::Engine,crate::logging::,serde::,std::io::Write,std::path::Path,std::process::Command
     e: EmailConfig,EmailMessage,InboxSummary,load_email_config_from_env
-    EmailConfig
-    EmailMessage
-    InboxSummary
+    EmailConfig:
+    EmailMessage:
+    InboxSummary:
     load_email_config_from_env()
   playwright.config.ts:
     i: @playwright/test,vite
@@ -3895,16 +3210,14 @@ D:
   src/services/defaultBrowseAdapter.ts:
     i: ../lib/browseGateway,./browseService
     e: DefaultBrowseAdapter
-    DefaultBrowseAdapter
-      fetch(-1)  CC=1.0
+    DefaultBrowseAdapter: fetch(-1)
   src/queries/getMessagesQuery.ts:
     i: ../domain/chatAggregate,../domain/chatEvents
     e: GetMessagesQuery
-    GetMessagesQuery
-      constructor(-1)  CC=1.0
+    GetMessagesQuery: constructor(-1),execute(-1),getById(-1),getLastUserQuery(-1)
   src/domain/audioSettings.ts:
     e: AudioSettings,withAudioSettingsDefaults
-    AudioSettings
+    AudioSettings:
     withAudioSettingsDefaults()
   src/plugins/mqtt/index.ts:
     i: ../../core/pluginRegistry,./mqttPlugin
@@ -3914,73 +3227,73 @@ D:
   src/components/AlertBridgeComponent.tsx:
     i: ../hooks/useAlertBridge,../plugins/discovery/autoScanScheduler
     e: AlertBridgeComponentProps,AlertBridgeComponent
-    AlertBridgeComponentProps
+    AlertBridgeComponentProps:
     AlertBridgeComponent()
   src/components/TtsControls.tsx:
     i: ../lib/logger,lucide-react
     e: TtsControlsProps,handlePause,handleResume,handleStop
-    TtsControlsProps
+    TtsControlsProps:
     handlePause()
     handleResume()
     handleStop()
   src/components/ChatPersistenceBridge.tsx:
     i: ../contexts/CqrsContext,../hooks/useChatPersistence,../persistence/databaseManager
     e: Props,ChatPersistenceBridge
-    Props
+    Props:
     ChatPersistenceBridge()
   src/vite-env.d.ts:
   src/persistence/types.ts:
     e: Device,DeviceService,ContentSnapshot,ChangeHistory,Conversation,Message,WatchRule,DatabaseConfig,Migration
-    Device
-    DeviceService
-    ContentSnapshot
-    ChangeHistory
-    Conversation
-    Message
-    WatchRule
-    DatabaseConfig
-    Migration
+    Device:
+    DeviceService:
+    ContentSnapshot:
+    ChangeHistory:
+    Conversation:
+    Message:
+    WatchRule:
+    DatabaseConfig:
+    Migration:
   src/persistence/migrations.ts:
     i: ./types
   src/services/llmService.ts:
     i: ../lib/llmClient
     e: LlmService
-    LlmService
+    LlmService:
   src/services/browseService.ts:
     i: ../lib/browseGateway
     e: BrowseService
-    BrowseService
+    BrowseService:
   src/core/types.ts:
     i: ./plugin.types
     e: PluginContext,CameraConfig,MqttConfig,MqttAdapter,Plugin,IntentDetection,IntentRouter,PluginRegistry,CommandBus,AppContext
-    PluginContext
-    CameraConfig
-    MqttConfig
-    MqttAdapter
-    Plugin
-    IntentDetection
-    IntentRouter
-    PluginRegistry
-    CommandBus
-    AppContext
+    PluginContext:
+    CameraConfig:
+    MqttConfig:
+    MqttAdapter:
+    Plugin:
+    IntentDetection:
+    IntentRouter:
+    PluginRegistry:
+    CommandBus:
+    AppContext:
   src/discovery/types.ts:
     e: NetworkScanResult,DiscoveredDevice,ServiceProbeResult,DiscoveredService,ServiceMetadata,NetworkScannerConfig,ServiceProberConfig,DiscoveryEvent
-    NetworkScanResult
-    DiscoveredDevice
-    ServiceProbeResult
-    DiscoveredService
-    ServiceMetadata
-    NetworkScannerConfig
-    ServiceProberConfig
-    DiscoveryEvent
+    NetworkScanResult:
+    DiscoveredDevice:
+    ServiceProbeResult:
+    DiscoveredService:
+    ServiceMetadata:
+    NetworkScannerConfig:
+    ServiceProberConfig:
+    DiscoveryEvent:
   src/reactive/types.ts:
     e: WatchRule,ChangeDetectedEvent,WatchConfig,ChangeDetectionResult,WatchManagerEvent,PollingStats
-    WatchRule
-    ChangeDetectedEvent
-    WatchConfig
-    ChangeDetectionResult
-    WatchManagerEvent
-    PollingStats
+    WatchRule:
+    ChangeDetectedEvent:
+    WatchConfig:
+    ChangeDetectionResult:
+    WatchManagerEvent:
+    PollingStats:
   src/plugins/system/logs.index.ts:
   src/plugins/monitor/index.ts:
   src/plugins/marketplace/index.ts:
@@ -3992,30 +3305,30 @@ D:
   src-tauri/src/llm.rs:
     i: serde::,std::env
     e: LlmResponse
-    LlmResponse
+    LlmResponse:
   src-tauri/src/frigate_mqtt.rs:
     i: crate::logging::,rumqttc::,serde::,std::sync::,std::time::Duration,tauri::AppHandle,tauri::Emitter,tokio::sync::oneshot,tokio::task::JoinHandle
     e: FrigateMqttEvent,FrigateMqttConfig,FrigateMqttRuntime
-    FrigateMqttEvent
-    FrigateMqttConfig
-    FrigateMqttRuntime
+    FrigateMqttEvent:
+    FrigateMqttConfig:
+    FrigateMqttRuntime:
   src-tauri/src/docker.rs:
     i: serde::,std::process::Command
     e: DockerContainer,DockerImage,DockerVolume,DockerNetwork,DockerInfo
-    DockerContainer
-    DockerImage
-    DockerVolume
-    DockerNetwork
-    DockerInfo
+    DockerContainer:
+    DockerImage:
+    DockerVolume:
+    DockerNetwork:
+    DockerInfo:
   src-tauri/src/remote_machine.rs:
     i: serde::,std::process::Command
     e: RemoteMachine,RemoteCommandResult,RemoteSystemInfo,DiskUsage,NetworkInterface,RemoteProcess
-    RemoteMachine
-    RemoteCommandResult
-    RemoteSystemInfo
-    DiskUsage
-    NetworkInterface
-    RemoteProcess
+    RemoteMachine:
+    RemoteCommandResult:
+    RemoteSystemInfo:
+    DiskUsage:
+    NetworkInterface:
+    RemoteProcess:
   project.sh:
   scripts/detect-platform.sh:
     e: detect_os,detect_arch,detect_cpu,detect_gpu,recommend_openvino_ep,print_report,export_vars,main

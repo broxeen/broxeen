@@ -1,0 +1,9138 @@
+version: '1'
+project:
+  name: broxeen
+  repo: /home/tom/github/broxeen/broxeen
+  language: typescript
+  analyzed_at: '2026-03-24T11:03:47Z'
+  tool: code2llm
+  stats:
+    files: 206
+    lines: 82967
+    functions: 3725
+    classes: 444
+health:
+  cc_avg: 4.0
+  critical_count: 306
+  critical_limit: 10
+  duplicates: 54
+  cycles: 0
+  alerts:
+  - type: cc_exceeded
+    target: useChatSpeech
+    value: 107
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: ChatMessageList
+    value: 107
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: ChatInput
+    value: 101
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: CameraLivePlugin.execute
+    value: 95
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: MonitorPlugin.handleStart
+    value: 93
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: useChatDispatch
+    value: 78
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: configLogger
+    value: 76
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: useTts
+    value: 72
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: handleSubmit
+    value: 72
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: host
+    value: 71
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: chatApiPlugin
+    value: 71
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: ChatConfigPrompt
+    value: 62
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: CameraLiveInline
+    value: 61
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: resolveQuickActions
+    value: 58
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: useStt
+    value: 55
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: IntentRouter.initializeDefaultPatterns
+    value: 55
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: DockerPlugin.execute
+    value: 52
+    limit: 15
+    severity: critical
+  - type: cc_exceeded
+    target: DockerPlugin.intentLower
+    value: 52
+    limit: 15
+    severity: critical
+  - type: high_fan_out
+    target: registerCorePlugins
+    value: 52
+    limit: 10
+    severity: critical
+  - type: cc_exceeded
+    target: HealthChecker.registerDefaultChecks
+    value: 49
+    limit: 15
+    severity: critical
+modules:
+- path: src/components/ChatMessageList.tsx
+  lines: 805
+  classes: 2
+  methods: 25
+  cc_max: 107
+  inbound_deps: 0
+  exports:
+  - name: TtsState
+    type: class
+    cc_avg: 0.0
+  - name: ChatMessageListProps
+    type: class
+    cc_avg: 0.0
+  - name: resolveIcon
+    type: function
+    cc: 6
+  - name: getNetworkIcon
+    type: function
+    cc: 7
+  - name: markdownComponents
+    type: function
+    cc: 7
+  - name: codeText
+    type: function
+    cc: 3
+  - name: inputElement
+    type: function
+    cc: 3
+  - name: stripSuggestionMarker
+    type: function
+    cc: 3
+  - name: idx
+    type: function
+    cc: 2
+  - name: extractSuggestionSection
+    type: function
+    cc: 3
+  - name: CopyMessageButton
+    type: function
+    cc: 5
+  - name: handleCopy
+    type: function
+    cc: 2
+  - name: ChatMessageList
+    type: function
+    cc: 107
+    flag: split
+    fan_out: 33
+  - name: mdComponents
+    type: function
+    cc: 1
+  - name: mdComponentsSimple
+    type: function
+    cc: 1
+  - name: isSystem
+    type: function
+    cc: 1
+  - name: prevIsSystem
+    type: function
+    cc: 1
+  - name: nextIsSystem
+    type: function
+    cc: 1
+  - name: isDataUrl
+    type: function
+    cc: 1
+  - name: canPreview
+    type: function
+    cc: 1
+  - name: m
+    type: function
+    cc: 1
+  - name: section
+    type: function
+    cc: 1
+  - name: seen
+    type: function
+    cc: 9
+  - name: query
+    type: function
+    cc: 1
+  - name: label
+    type: function
+    cc: 1
+  - name: placeholderMatch
+    type: function
+    cc: 2
+  - name: placeholderPos
+    type: function
+    cc: 1
+- path: src/hooks/useChatSpeech.ts
+  lines: 594
+  classes: 2
+  methods: 25
+  cc_max: 107
+  inbound_deps: 0
+  exports:
+  - name: UseChatSpeechDeps
+    type: class
+    cc_avg: 0.0
+  - name: UseChatSpeechReturn
+    type: class
+    cc_avg: 0.0
+  - name: speechLogger
+    type: function
+    cc: 1
+  - name: useChatSpeech
+    type: function
+    cc: 107
+    flag: split
+    fan_out: 49
+  - name: stt
+    type: function
+    cc: 1
+  - name: tts
+    type: function
+    cc: 1
+  - name: micPhase
+    type: function
+    cc: 4
+  - name: lastSpeechSubmitRef
+    type: function
+    cc: 12
+  - name: sttAutoListenTimerRef
+    type: function
+    cc: 12
+  - name: sttAutoListenStartedAtRef
+    type: function
+    cc: 12
+  - name: sttAutoListenSilenceHitsRef
+    type: function
+    cc: 12
+  - name: runtimeIsTauri
+    type: function
+    cc: 3
+  - name: silenceMs
+    type: function
+    cc: 8
+  - name: thresholdSeconds
+    type: function
+    cc: 8
+  - name: requiredHits
+    type: function
+    cc: 8
+  - name: startedAt
+    type: function
+    cc: 2
+  - name: elapsedMs
+    type: function
+    cc: 2
+  - name: silent
+    type: function
+    cc: 1
+  - name: wakeWordTriggeredSttRef
+    type: function
+    cc: 5
+  - name: unsub
+    type: function
+    cc: 4
+  - name: previousLoadingWaitIdsRef
+    type: function
+    cc: 6
+  - name: unsub2
+    type: function
+    cc: 2
+  - name: setupWakeWordListener
+    type: function
+    cc: 2
+  - name: payload
+    type: function
+    cc: 1
+  - name: wakeWordRunningRef
+    type: function
+    cc: 13
+    fan_out: 11
+  - name: wakeWordStoppedForSttRef
+    type: function
+    cc: 13
+    fan_out: 11
+  - name: toggleMic
+    type: function
+    cc: 7
+    fan_out: 10
+- path: src/components/ChatInput.tsx
+  lines: 550
+  classes: 3
+  methods: 18
+  cc_max: 101
+  inbound_deps: 0
+  exports:
+  - name: ScopeOption
+    type: class
+    cc_avg: 0.0
+  - name: SttState
+    type: class
+    cc_avg: 0.0
+  - name: ChatInputProps
+    type: class
+    cc_avg: 0.0
+  - name: chatLogger
+    type: function
+    cc: 1
+  - name: ChatInput
+    type: function
+    cc: 101
+    flag: split
+    fan_out: 38
+  - name: inputHistoryRef
+    type: function
+    cc: 13
+  - name: historyIndexRef
+    type: function
+    cc: 13
+  - name: autocompleteSuggestions
+    type: function
+    cc: 13
+  - name: q
+    type: function
+    cc: 7
+  - name: recent
+    type: function
+    cc: 7
+  - name: seen
+    type: function
+    cc: 7
+  - name: lower
+    type: function
+    cc: 1
+  - name: handleInputFocus
+    type: function
+    cc: 1
+  - name: handleInputBlur
+    type: function
+    cc: 1
+  - name: handleAutocompleteSelect
+    type: function
+    cc: 2
+  - name: inputElement
+    type: function
+    cc: 2
+  - name: handleQuickHistorySelect
+    type: function
+    cc: 2
+  - name: handleKeyDown
+    type: function
+    cc: 32
+    flag: split
+    fan_out: 12
+  - name: choice
+    type: function
+    cc: 2
+  - name: history
+    type: function
+    cc: 3
+  - name: nextIndex
+    type: function
+    cc: 2
+- path: src/plugins/camera/cameraLivePlugin.ts
+  lines: 755
+  classes: 1
+  methods: 57
+  cc_max: 95
+  inbound_deps: 0
+  exports:
+  - name: CameraLivePlugin
+    type: class
+    cc_avg: 4.5
+    methods:
+    - name: execute
+      cc: 95
+      flag: split
+      fan_out: 43
+    - name: start
+      cc: 23
+      flag: split
+      fan_out: 13
+    - name: sanitizedInput
+      cc: 23
+      flag: split
+      fan_out: 13
+    - name: rtspMatch
+      cc: 23
+      flag: split
+      fan_out: 13
+    - name: handleCredentialTest
+      cc: 10
+    - name: verifyIpReachability
+      cc: 7
+      fan_out: 10
+- path: src/plugins/monitor/monitorPlugin.ts
+  lines: 2871
+  classes: 4
+  methods: 229
+  cc_max: 93
+  inbound_deps: 1
+  exports:
+  - name: MonitorTarget
+    type: class
+    cc_avg: 0.0
+  - name: CaptureMetadata
+    type: class
+    cc_avg: 0.0
+  - name: MonitorLogEntry
+    type: class
+    cc_avg: 0.0
+  - name: MonitorPlugin
+    type: class
+    cc_avg: 4.4
+    methods:
+    - name: execute
+      cc: 16
+      flag: split
+      fan_out: 16
+    - name: start
+      cc: 16
+      flag: split
+      fan_out: 13
+    - name: handleAddToMonitoring
+      cc: 15
+      flag: split
+      fan_out: 15
+    - name: handleStart
+      cc: 93
+      flag: split
+      fan_out: 41
+    - name: goal
+      cc: 15
+      flag: split
+    - name: when
+      cc: 15
+      flag: split
+    - name: handleStop
+      cc: 25
+      flag: split
+      fan_out: 21
+    - name: handleLogs
+      cc: 36
+      flag: split
+      fan_out: 21
+    - name: inputIp
+      cc: 11
+    - name: handleConfig
+      cc: 32
+      flag: split
+      fan_out: 18
+    - name: scopeMatch
+      cc: 14
+    - name: targetScopeRaw
+      cc: 14
+    - name: targetScope
+      cc: 14
+    - name: newThreshold
+      cc: 11
+    - name: updated
+      cc: 12
+    - name: value
+      cc: 12
+    - name: unit
+      cc: 12
+    - name: ms
+      cc: 12
+    - name: updated
+      cc: 12
+    - name: handleExplain
+      cc: 10
+      fan_out: 12
+    - name: poll
+      cc: 33
+      flag: split
+      fan_out: 22
+    - name: pollEndpoint
+      cc: 12
+      fan_out: 13
+    - name: repo
+      cc: 10
+    - name: devices
+      cc: 10
+    - name: name
+      cc: 10
+    - name: summarizeCaptureFailure
+      cc: 19
+      flag: split
+    - name: ensureApiToken
+      cc: 18
+      flag: split
+    - name: pixelDiff
+      cc: 9
+      fan_out: 10
+    - name: parseTarget
+      cc: 26
+      flag: split
+    - name: formatTargetLogs
+      cc: 21
+      flag: split
+      fan_out: 12
+    - name: initialize
+      cc: 17
+      flag: split
+      fan_out: 14
+    - name: loadMonitoredDevices
+      cc: 17
+      flag: split
+      fan_out: 12
+    - name: handleResolveDbConflict
+      cc: 19
+      flag: split
+      fan_out: 14
+    - name: handleVisionStart
+      cc: 13
+      fan_out: 11
+- path: src/hooks/useChatDispatch.ts
+  lines: 897
+  classes: 1
+  methods: 50
+  cc_max: 78
+  inbound_deps: 0
+  exports:
+  - name: UseChatDispatchDeps
+    type: class
+    cc_avg: 0.0
+  - name: dispatchLogger
+    type: function
+    cc: 19
+    flag: split
+    fan_out: 14
+  - name: handleConfigCommand
+    type: function
+    cc: 19
+    flag: split
+    fan_out: 14
+  - name: lower
+    type: function
+    cc: 5
+  - name: intervalMs
+    type: function
+    cc: 2
+  - name: threshold
+    type: function
+    cc: 2
+  - name: thumb
+    type: function
+    cc: 2
+  - name: status
+    type: function
+    cc: 1
+  - name: subnet
+    type: function
+    cc: 1
+  - name: addScopePrefix
+    type: function
+    cc: 3
+  - name: prefix
+    type: function
+    cc: 2
+  - name: categorizeCommand
+    type: function
+    cc: 11
+  - name: lowerCommand
+    type: function
+    cc: 3
+  - name: checkIfAmbiguousQuery
+    type: function
+    cc: 3
+  - name: lowerQuery
+    type: function
+    cc: 1
+  - name: checkIfNetworkQuery
+    type: function
+    cc: 1
+  - name: containsUrl
+    type: function
+    cc: 2
+  - name: getAmbiguousQueryText
+    type: function
+    cc: 1
+  - name: getSuggestionsForQuery
+    type: function
+    cc: 10
+  - name: getNetworkSelectionText
+    type: function
+    cc: 1
+  - name: parseCameraResults
+    type: function
+    cc: 7
+  - name: lines
+    type: function
+    cc: 6
+  - name: cameraMatch
+    type: function
+    cc: 2
+  - name: camCfg
+    type: function
+    cc: 1
+  - name: looksLikeRecoverableError
+    type: function
+    cc: 1
+  - name: useChatDispatch
+    type: function
+    cc: 78
+    flag: split
+    fan_out: 46
+  - name: handleSubmit
+    type: function
+    cc: 72
+    flag: split
+    fan_out: 34
+  - name: originalQuery
+    type: function
+    cc: 2
+  - name: query
+    type: function
+    cc: 1
+  - name: configResult
+    type: function
+    cc: 2
+  - name: thinkingId
+    type: function
+    cc: 1
+  - name: isVoiceInput
+    type: function
+    cc: 1
+  - name: result
+    type: function
+    cc: 1
+  - name: fallback
+    type: function
+    cc: 1
+  - name: fallbackPrompt
+    type: function
+    cc: 5
+  - name: textData
+    type: function
+    cc: 1
+  - name: hasCameraLiveBlock
+    type: function
+    cc: 7
+  - name: parsed
+    type: function
+    cc: 10
+  - name: contentBlocks
+    type: function
+    cc: 4
+  - name: runtimeIsTauri
+    type: function
+    cc: 4
+  - name: errorMessage
+    type: function
+    cc: 3
+  - name: handleCommandHistorySelect
+    type: function
+    cc: 1
+  - name: handleSuggestionClick
+    type: function
+    cc: 1
+  - name: handleNetworkOptionClick
+    type: function
+    cc: 2
+  - name: sendAmbiguousQuerySuggestions
+    type: function
+    cc: 2
+  - name: suggestionsId
+    type: function
+    cc: 1
+  - name: sendNetworkSelectionMessage
+    type: function
+    cc: 1
+  - name: networkSelectionId
+    type: function
+    cc: 1
+  - name: handleCameraSelect
+    type: function
+    cc: 1
+  - name: handleCameraAnalysisComplete
+    type: function
+    cc: 3
+  - name: handleCameraStreamStart
+    type: function
+    cc: 1
+- path: src/plugins/discovery/deviceConfigPlugin.ts
+  lines: 464
+  classes: 1
+  methods: 38
+  cc_max: 76
+  inbound_deps: 0
+  exports:
+  - name: DeviceConfigPlugin
+    type: class
+    cc_avg: 4.2
+    methods:
+    - name: execute
+      cc: 15
+      flag: split
+    - name: listConfiguredDevices
+      cc: 10
+      fan_out: 10
+    - name: addDevice
+      cc: 13
+    - name: configureDevice
+      cc: 11
+    - name: parseAddCommand
+      cc: 21
+      flag: split
+      fan_out: 10
+  - name: configLogger
+    type: function
+    cc: 76
+    flag: split
+    fan_out: 43
+- path: src/hooks/useTts.ts
+  lines: 533
+  classes: 3
+  methods: 45
+  cc_max: 72
+  inbound_deps: 0
+  exports:
+  - name: TtsOptions
+    type: class
+    cc_avg: 0.0
+  - name: TauriTtsAvailability
+    type: class
+    cc_avg: 0.0
+  - name: BackendTtsInfo
+    type: class
+    cc_avg: 0.0
+  - name: ttsLogger
+    type: function
+    cc: 4
+  - name: MAX_TTS_SENTENCES
+    type: function
+    cc: 4
+  - name: getSpeechSynthesisApi
+    type: function
+    cc: 2
+  - name: preprocessForTts
+    type: function
+    cc: 3
+  - name: normalized
+    type: function
+    cc: 2
+  - name: estimateBackendSpeechDurationMs
+    type: function
+    cc: 1
+  - name: words
+    type: function
+    cc: 1
+  - name: wordsPerMinute
+    type: function
+    cc: 1
+  - name: minutes
+    type: function
+    cc: 1
+  - name: useTts
+    type: function
+    cc: 72
+    flag: split
+    fan_out: 48
+  - name: utteranceRef
+    type: function
+    cc: 1
+  - name: totalLenRef
+    type: function
+    cc: 1
+  - name: backendSupportedRef
+    type: function
+    cc: 1
+  - name: backendModeRef
+    type: function
+    cc: 1
+  - name: backendProgressTimerRef
+    type: function
+    cc: 1
+  - name: backendProgressIntervalRef
+    type: function
+    cc: 1
+  - name: clearBackendProgress
+    type: function
+    cc: 3
+  - name: startBackendProgress
+    type: function
+    cc: 1
+  - name: startedAt
+    type: function
+    cc: 1
+  - name: elapsed
+    type: function
+    cc: 1
+  - name: next
+    type: function
+    cc: 1
+  - name: isMounted
+    type: function
+    cc: 2
+  - name: speechSynthesisApi
+    type: function
+    cc: 2
+  - name: runtimeIsTauri
+    type: function
+    cc: 4
+  - name: loadVoices
+    type: function
+    cc: 2
+  - name: synthesis
+    type: function
+    cc: 7
+  - name: available
+    type: function
+    cc: 1
+  - name: probeTauriBackendTts
+    type: function
+    cc: 25
+    flag: split
+  - name: engine
+    type: function
+    cc: 2
+  - name: backendSupported
+    type: function
+    cc: 2
+  - name: speak
+    type: function
+    cc: 20
+    flag: split
+    fan_out: 25
+  - name: runSpeak
+    type: function
+    cc: 20
+    flag: split
+    fan_out: 25
+  - name: preparedText
+    type: function
+    cc: 3
+  - name: estimatedDurationMs
+    type: function
+    cc: 6
+  - name: runSpeakViaBackend
+    type: function
+    cc: 6
+  - name: utterance
+    type: function
+    cc: 4
+  - name: found
+    type: function
+    cc: 2
+  - name: plVoice
+    type: function
+    cc: 2
+  - name: pause
+    type: function
+    cc: 7
+  - name: runPause
+    type: function
+    cc: 7
+  - name: resume
+    type: function
+    cc: 7
+  - name: runResume
+    type: function
+    cc: 7
+  - name: stop
+    type: function
+    cc: 7
+    fan_out: 15
+  - name: runStop
+    type: function
+    cc: 7
+    fan_out: 13
+  - name: runStopViaBackend
+    type: function
+    cc: 4
+- path: vite.config.ts
+  lines: 280
+  classes: 0
+  methods: 35
+  cc_max: 71
+  inbound_deps: 0
+  exports:
+  - name: host
+    type: function
+    cc: 71
+    flag: split
+    fan_out: 47
+  - name: chatApiPlugin
+    type: function
+    cc: 71
+    flag: split
+    fan_out: 47
+  - name: run
+    type: function
+    cc: 2
+  - name: getLocalIp
+    type: function
+    cc: 5
+  - name: detectIntent
+    type: function
+    cc: 3
+  - name: parseArpEntries
+    type: function
+    cc: 9
+  - name: raw
+    type: function
+    cc: 7
+  - name: ip
+    type: function
+    cc: 2
+  - name: mac
+    type: function
+    cc: 2
+  - name: parseNmapHosts
+    type: function
+    cc: 5
+  - name: block
+    type: function
+    cc: 1
+  - name: handleQuery
+    type: function
+    cc: 31
+    flag: split
+    fan_out: 18
+  - name: intent
+    type: function
+    cc: 30
+    flag: split
+    fan_out: 13
+  - name: localIp
+    type: function
+    cc: 1
+  - name: sub
+    type: function
+    cc: 30
+    flag: split
+    fan_out: 13
+  - name: m
+    type: function
+    cc: 2
+  - name: out
+    type: function
+    cc: 1
+  - name: entries
+    type: function
+    cc: 4
+  - name: arp
+    type: function
+    cc: 1
+  - name: wifiArp
+    type: function
+    cc: 4
+  - name: nmapCmd
+    type: function
+    cc: 1
+  - name: nmapOut
+    type: function
+    cc: 7
+  - name: hosts
+    type: function
+    cc: 6
+  - name: cameras
+    type: function
+    cc: 6
+  - name: others
+    type: function
+    cc: 6
+  - name: body
+    type: function
+    cc: 1
+  - name: result
+    type: function
+    cc: 1
+  - name: url
+    type: function
+    cc: 2
+  - name: parsedUrl
+    type: function
+    cc: 2
+  - name: basicUser
+    type: function
+    cc: 2
+  - name: basicPass
+    type: function
+    cc: 2
+  - name: method
+    type: function
+    cc: 3
+  - name: upstream
+    type: function
+    cc: 2
+  - name: contentType
+    type: function
+    cc: 1
+  - name: buffer
+    type: function
+    cc: 1
+- path: src/components/ChatConfigPrompt.tsx
+  lines: 674
+  classes: 3
+  methods: 18
+  cc_max: 62
+  inbound_deps: 0
+  exports:
+  - name: ConfigAction
+    type: class
+    cc_avg: 0.0
+  - name: ConfigPromptData
+    type: class
+    cc_avg: 0.0
+  - name: ChatConfigPromptProps
+    type: class
+    cc_avg: 0.0
+  - name: ChatConfigPrompt
+    type: function
+    cc: 62
+    flag: split
+    fan_out: 24
+  - name: handleAction
+    type: function
+    cc: 13
+    fan_out: 10
+  - name: handleFieldSave
+    type: function
+    cc: 8
+    fan_out: 11
+  - name: value
+    type: function
+    cc: 8
+    fan_out: 11
+  - name: meta
+    type: function
+    cc: 1
+  - name: getVariantClasses
+    type: function
+    cc: 6
+  - name: layout
+    type: function
+    cc: 1
+  - name: currentValue
+    type: function
+    cc: 1
+  - name: isCompleted
+    type: function
+    cc: 1
+  - name: isClicked
+    type: function
+    cc: 1
+  - name: buildApiKeyPrompt
+    type: function
+    cc: 1
+  - name: buildNetworkConfigPrompt
+    type: function
+    cc: 5
+  - name: buildModelSelectionPrompt
+    type: function
+    cc: 3
+  - name: buildMonitorConfigPrompt
+    type: function
+    cc: 1
+  - name: buildSshHostPrompt
+    type: function
+    cc: 3
+  - name: buildCameraActionPrompt
+    type: function
+    cc: 3
+  - name: buildConfigOverviewPrompt
+    type: function
+    cc: 5
+  - name: status
+    type: function
+    cc: 5
+- path: src/components/CameraLiveInline.tsx
+  lines: 179
+  classes: 0
+  methods: 18
+  cc_max: 61
+  inbound_deps: 0
+  exports:
+  - name: FRAME_CACHE
+    type: function
+    cc: 1
+  - name: CameraLiveInline
+    type: function
+    cc: 61
+    flag: split
+    fan_out: 24
+  - name: fps
+    type: function
+    cc: 1
+  - name: intervalMs
+    type: function
+    cc: 1
+  - name: cacheKey
+    type: function
+    cc: 1
+  - name: cached
+    type: function
+    cc: 1
+  - name: rtspFailCountRef
+    type: function
+    cc: 42
+    flag: split
+    fan_out: 16
+  - name: RTSP_FAIL_THRESHOLD
+    type: function
+    cc: 42
+    flag: split
+    fan_out: 16
+  - name: timerRef
+    type: function
+    cc: 42
+    flag: split
+    fan_out: 16
+  - name: inFlightRef
+    type: function
+    cc: 42
+    flag: split
+    fan_out: 16
+  - name: cancelled
+    type: function
+    cc: 2
+  - name: tick
+    type: function
+    cc: 40
+    flag: split
+    fan_out: 12
+  - name: useHttp
+    type: function
+    cc: 36
+    flag: split
+    fan_out: 12
+  - name: res
+    type: function
+    cc: 4
+  - name: now
+    type: function
+    cc: 5
+  - name: dt
+    type: function
+    cc: 3
+  - name: nextFps
+    type: function
+    cc: 3
+  - name: msg
+    type: function
+    cc: 5
+- path: src/utils/quickActionResolver.ts
+  lines: 233
+  classes: 1
+  methods: 8
+  cc_max: 58
+  inbound_deps: 0
+  exports:
+  - name: QuickActionSet
+    type: class
+    cc_avg: 0.0
+  - name: resolveQuickActions
+    type: function
+    cc: 58
+    flag: split
+    fan_out: 15
+  - name: text
+    type: function
+    cc: 8
+  - name: subnetMatch
+    type: function
+    cc: 8
+  - name: ip
+    type: function
+    cc: 1
+  - name: feedUrl
+    type: function
+    cc: 5
+  - name: url
+    type: function
+    cc: 2
+  - name: seen
+    type: function
+    cc: 2
+  - name: deduped
+    type: function
+    cc: 2
+- path: src/core/intentRouter.ts
+  lines: 853
+  classes: 2
+  methods: 21
+  cc_max: 55
+  inbound_deps: 0
+  exports:
+  - name: IntentRouter
+    type: class
+    cc_avg: 7.6
+    methods:
+    - name: initializeDefaultPatterns
+      cc: 55
+      flag: split
+    - name: detect
+      cc: 11
+    - name: route
+      cc: 18
+      flag: split
+    - name: extractEntities
+      cc: 39
+      flag: split
+  - name: PluginQuery
+    type: class
+    cc_avg: 0.0
+  - name: buildQuery
+    type: function
+    cc: 1
+- path: src/hooks/useStt.ts
+  lines: 534
+  classes: 2
+  methods: 56
+  cc_max: 55
+  inbound_deps: 0
+  exports:
+  - name: UseSttOptions
+    type: class
+    cc_avg: 0.0
+  - name: UseSttReturn
+    type: class
+    cc_avg: 0.0
+  - name: sttLogger
+    type: function
+    cc: 3
+  - name: getAudioSettings
+    type: function
+    cc: 3
+  - name: settings
+    type: function
+    cc: 1
+  - name: arrayBufferToBase64
+    type: function
+    cc: 2
+  - name: bytes
+    type: function
+    cc: 2
+  - name: chunk
+    type: function
+    cc: 2
+  - name: writeWavPcm16
+    type: function
+    cc: 5
+    fan_out: 12
+  - name: numChannels
+    type: function
+    cc: 2
+  - name: sampleRate
+    type: function
+    cc: 2
+  - name: numFrames
+    type: function
+    cc: 2
+  - name: bytesPerSample
+    type: function
+    cc: 2
+  - name: blockAlign
+    type: function
+    cc: 2
+  - name: byteRate
+    type: function
+    cc: 2
+  - name: dataSize
+    type: function
+    cc: 2
+  - name: buffer
+    type: function
+    cc: 2
+  - name: view
+    type: function
+    cc: 2
+  - name: writeString
+    type: function
+    cc: 2
+  - name: offset
+    type: function
+    cc: 4
+  - name: sample
+    type: function
+    cc: 1
+  - name: clamped
+    type: function
+    cc: 1
+  - name: blobToWavBase64
+    type: function
+    cc: 3
+  - name: buf
+    type: function
+    cc: 1
+  - name: ctx
+    type: function
+    cc: 2
+  - name: arr
+    type: function
+    cc: 1
+  - name: audioBuffer
+    type: function
+    cc: 1
+  - name: wav
+    type: function
+    cc: 1
+  - name: getUnsupportedReason
+    type: function
+    cc: 7
+  - name: toErrorDetails
+    type: function
+    cc: 9
+  - name: err
+    type: function
+    cc: 9
+  - name: useStt
+    type: function
+    cc: 55
+    flag: split
+    fan_out: 48
+  - name: recorderRef
+    type: function
+    cc: 9
+  - name: chunksRef
+    type: function
+    cc: 9
+  - name: streamRef
+    type: function
+    cc: 9
+  - name: modeRef
+    type: function
+    cc: 9
+  - name: isRecordingRef
+    type: function
+    cc: 9
+  - name: startInFlightRef
+    type: function
+    cc: 9
+  - name: stopInFlightRef
+    type: function
+    cc: 9
+  - name: reason
+    type: function
+    cc: 1
+  - name: runtime
+    type: function
+    cc: 4
+  - name: stopTracks
+    type: function
+    cc: 2
+  - name: startTauriRecording
+    type: function
+    cc: 8
+    fan_out: 15
+  - name: runBackendStart
+    type: function
+    cc: 1
+  - name: msg
+    type: function
+    cc: 1
+  - name: startRecording
+    type: function
+    cc: 20
+    flag: split
+    fan_out: 33
+  - name: run
+    type: function
+    cc: 13
+    fan_out: 19
+  - name: recorder
+    type: function
+    cc: 3
+  - name: runOnStop
+    type: function
+    cc: 5
+    fan_out: 12
+  - name: blob
+    type: function
+    cc: 2
+  - name: text
+    type: function
+    cc: 1
+  - name: details
+    type: function
+    cc: 4
+  - name: stopRecording
+    type: function
+    cc: 13
+    fan_out: 21
+  - name: runBackendStop
+    type: function
+    cc: 10
+    fan_out: 14
+  - name: transcriptValue
+    type: function
+    cc: 1
+  - name: normalized
+    type: function
+    cc: 3
+  - name: rec
+    type: function
+    cc: 2
+  - name: cleanupSettings
+    type: function
+    cc: 2
+- path: src/plugins/docker/dockerPlugin.ts
+  lines: 489
+  classes: 6
+  methods: 24
+  cc_max: 52
+  inbound_deps: 0
+  exports:
+  - name: DockerContainer
+    type: class
+    cc_avg: 0.0
+  - name: DockerImage
+    type: class
+    cc_avg: 0.0
+  - name: DockerVolume
+    type: class
+    cc_avg: 0.0
+  - name: DockerNetwork
+    type: class
+    cc_avg: 0.0
+  - name: DockerInfo
+    type: class
+    cc_avg: 0.0
+  - name: DockerPlugin
+    type: class
+    cc_avg: 5.1
+    methods:
+    - name: execute
+      cc: 52
+      flag: split
+      fan_out: 11
+    - name: intentLower
+      cc: 52
+      flag: split
+      fan_out: 10
+- path: src/utils/healthCheck.ts
+  lines: 422
+  classes: 3
+  methods: 26
+  cc_max: 49
+  inbound_deps: 0
+  exports:
+  - name: HealthCheckResult
+    type: class
+    cc_avg: 0.0
+  - name: HealthReport
+    type: class
+    cc_avg: 0.0
+  - name: HealthChecker
+    type: class
+    cc_avg: 4.9
+    methods:
+    - name: registerDefaultChecks
+      cc: 49
+      flag: split
+      fan_out: 20
+    - name: isTauri
+      cc: 10
+    - name: isTauri
+      cc: 10
+  - name: healthLogger
+    type: function
+    cc: 2
+  - name: healthChecker
+    type: function
+    cc: 5
+  - name: runHealthCheck
+    type: function
+    cc: 5
+  - name: runQuickHealthCheck
+    type: function
+    cc: 5
+- path: src-tauri/src/query_schema.rs
+  lines: 272
+  classes: 0
+  methods: 9
+  cc_max: 46
+  inbound_deps: 0
+  exports:
+  - name: build_text_to_sql_prompt
+    type: function
+    cc: 4
+  - name: db_filename
+    type: function
+    cc: 2
+  - name: schema
+    type: function
+    cc: 2
+  - name: detect_data_source
+    type: function
+    cc: 1
+- path: src/core/bootstrap.ts
+  lines: 409
+  classes: 0
+  methods: 17
+  cc_max: 45
+  inbound_deps: 0
+  exports:
+  - name: log
+    type: function
+    cc: 1
+  - name: bootstrapApp
+    type: function
+    cc: 7
+  - name: pluginRegistry
+    type: function
+    cc: 2
+  - name: useLlmClassifier
+    type: function
+    cc: 2
+  - name: intentRouter
+    type: function
+    cc: 1
+  - name: commandBus
+    type: function
+    cc: 1
+  - name: eventStore
+    type: function
+    cc: 1
+  - name: dbManager
+    type: function
+    cc: 1
+  - name: status
+    type: function
+    cc: 2
+  - name: sharedTauriInvoke
+    type: function
+    cc: 3
+  - name: safeRegister
+    type: function
+    cc: 3
+  - name: registerCorePlugins
+    type: function
+    cc: 45
+    flag: split
+    fan_out: 52
+  - name: grabbers
+    type: function
+    cc: 1
+  - name: rtspPlugin
+    type: function
+    cc: 1
+  - name: intent
+    type: function
+    cc: 2
+  - name: activeScope
+    type: function
+    cc: 2
+  - name: plugin
+    type: function
+    cc: 2
+- path: src/lib/browseGateway.ts
+  lines: 1741
+  classes: 3
+  methods: 143
+  cc_max: 42
+  inbound_deps: 0
+  exports:
+  - name: BrowseResult
+    type: class
+    cc_avg: 0.0
+  - name: AllOriginsResponse
+    type: class
+    cc_avg: 0.0
+  - name: BrowserProxyPayload
+    type: class
+    cc_avg: 0.0
+  - name: browseLogger
+    type: function
+    cc: 1
+  - name: MAX_CONTENT_LENGTH
+    type: function
+    cc: 1
+  - name: getRandomUserAgent
+    type: function
+    cc: 1
+  - name: getRandomReferer
+    type: function
+    cc: 7
+  - name: polishReferers
+    type: function
+    cc: 2
+  - name: getRandomAcceptLanguage
+    type: function
+    cc: 1
+  - name: generateAdvancedHeaders
+    type: function
+    cc: 7
+  - name: generateWPPLCookies
+    type: function
+    cc: 3
+  - name: generateOnetCookies
+    type: function
+    cc: 2
+  - name: generateInteriaCookies
+    type: function
+    cc: 2
+  - name: generateRandomIP
+    type: function
+    cc: 2
+  - name: base
+    type: function
+    cc: 1
+  - name: last
+    type: function
+    cc: 1
+  - name: requestTimestamps
+    type: function
+    cc: 5
+  - name: RATE_LIMIT_MS
+    type: function
+    cc: 5
+  - name: shouldRateLimit
+    type: function
+    cc: 5
+  - name: domain
+    type: function
+    cc: 4
+  - name: now
+    type: function
+    cc: 3
+  - name: timestamps
+    type: function
+    cc: 3
+  - name: recent
+    type: function
+    cc: 3
+  - name: delay
+    type: function
+    cc: 1
+  - name: detectContentType
+    type: function
+    cc: 22
+    flag: split
+  - name: text
+    type: function
+    cc: 11
+  - name: confidence
+    type: function
+    cc: 1
+  - name: productScore
+    type: function
+    cc: 6
+  - name: priceMatch
+    type: function
+    cc: 3
+  - name: brandMatch
+    type: function
+    cc: 1
+  - name: newsScore
+    type: function
+    cc: 5
+  - name: dateMatch
+    type: function
+    cc: 1
+  - name: authorMatch
+    type: function
+    cc: 1
+  - name: docScore
+    type: function
+    cc: 3
+  - name: versionMatch
+    type: function
+    cc: 1
+  - name: blogScore
+    type: function
+    cc: 2
+  - name: forumScore
+    type: function
+    cc: 2
+  - name: shopScore
+    type: function
+    cc: 2
+  - name: articleScore
+    type: function
+    cc: 3
+  - name: createHumanLikeSummary
+    type: function
+    cc: 13
+    fan_out: 14
+  - name: contentType
+    type: function
+    cc: 9
+  - name: sentences
+    type: function
+    cc: 2
+  - name: metaInfo
+    type: function
+    cc: 2
+  - name: typeLabel
+    type: function
+    cc: 1
+  - name: getContentTypeLabel
+    type: function
+    cc: 2
+  - name: summarizeBlog
+    type: function
+    cc: 6
+  - name: intro
+    type: function
+    cc: 2
+  - name: conclusion
+    type: function
+    cc: 2
+  - name: takeaways
+    type: function
+    cc: 2
+  - name: summarizeForum
+    type: function
+    cc: 5
+  - name: questionSentences
+    type: function
+    cc: 1
+  - name: answerSentences
+    type: function
+    cc: 1
+  - name: summarizeShop
+    type: function
+    cc: 8
+  - name: categories
+    type: function
+    cc: 2
+  - name: featured
+    type: function
+    cc: 2
+  - name: summarizeProduct
+    type: function
+    cc: 7
+  - name: price
+    type: function
+    cc: 3
+  - name: brand
+    type: function
+    cc: 3
+  - name: description
+    type: function
+    cc: 3
+  - name: regex
+    type: function
+    cc: 1
+  - name: match
+    type: function
+    cc: 1
+  - name: summarizeNews
+    type: function
+    cc: 10
+  - name: date
+    type: function
+    cc: 1
+  - name: author
+    type: function
+    cc: 1
+  - name: mainContent
+    type: function
+    cc: 1
+  - name: conclusionSentences
+    type: function
+    cc: 2
+  - name: summarizeArticle
+    type: function
+    cc: 6
+  - name: listItems
+    type: function
+    cc: 2
+  - name: summarizeDocumentation
+    type: function
+    cc: 9
+  - name: installMatch
+    type: function
+    cc: 1
+  - name: configMatch
+    type: function
+    cc: 1
+  - name: usageMatch
+    type: function
+    cc: 1
+  - name: examples
+    type: function
+    cc: 2
+  - name: summarizeGeneral
+    type: function
+    cc: 2
+  - name: substantialSentences
+    type: function
+    cc: 1
+  - name: getMetaInfo
+    type: function
+    cc: 14
+  - name: label
+    type: function
+    cc: 1
+  - name: getMetadataLabel
+    type: function
+    cc: 2
+  - name: stripCookieBannerText
+    type: function
+    cc: 16
+    flag: split
+    fan_out: 17
+  - name: raw
+    type: function
+    cc: 10
+    fan_out: 13
+  - name: normalized
+    type: function
+    cc: 1
+  - name: blocks
+    type: function
+    cc: 10
+    fan_out: 13
+  - name: removedCount
+    type: function
+    cc: 10
+    fan_out: 13
+  - name: processedBlock
+    type: function
+    cc: 4
+  - name: shouldRemove
+    type: function
+    cc: 4
+  - name: score
+    type: function
+    cc: 11
+  - name: linkCount
+    type: function
+    cc: 3
+  - name: wordCount
+    type: function
+    cc: 3
+  - name: result
+    type: function
+    cc: 1
+  - name: calculateBlockScore
+    type: function
+    cc: 32
+    flag: split
+  - name: normalizeText
+    type: function
+    cc: 1
+  - name: withHttpScheme
+    type: function
+    cc: 3
+  - name: summarizeUnknownError
+    type: function
+    cc: 2
+  - name: extractBrowserReadableContent
+    type: function
+    cc: 42
+    flag: split
+    fan_out: 26
+  - name: document
+    type: function
+    cc: 5
+  - name: title
+    type: function
+    cc: 30
+    flag: split
+    fan_out: 16
+  - name: bestScore
+    type: function
+    cc: 30
+    flag: split
+    fan_out: 16
+  - name: node
+    type: function
+    cc: 11
+  - name: paragraphs
+    type: function
+    cc: 2
+  - name: headings
+    type: function
+    cc: 11
+  - name: lists
+    type: function
+    cc: 11
+  - name: links
+    type: function
+    cc: 11
+  - name: linkRatio
+    type: function
+    cc: 11
+  - name: avgSentenceLength
+    type: function
+    cc: 2
+  - name: paragraphContent
+    type: function
+    cc: 1
+  - name: bodyText
+    type: function
+    cc: 2
+  - name: looksLikeHtml
+    type: function
+    cc: 2
+  - name: probe
+    type: function
+    cc: 2
+  - name: normalizeBrowseResult
+    type: function
+    cc: 20
+    flag: split
+  - name: rawUrl
+    type: function
+    cc: 4
+  - name: safeUrl
+    type: function
+    cc: 4
+  - name: rawTitle
+    type: function
+    cc: 1
+  - name: rawContent
+    type: function
+    cc: 1
+  - name: contentWasHtml
+    type: function
+    cc: 4
+  - name: extractedContent
+    type: function
+    cc: 4
+  - name: cookieStripped
+    type: function
+    cc: 4
+  - name: processedContent
+    type: function
+    cc: 4
+  - name: fetchViaAdvancedProxy
+    type: function
+    cc: 10
+    fan_out: 20
+  - name: targetUrl
+    type: function
+    cc: 1
+  - name: controller
+    type: function
+    cc: 6
+    fan_out: 10
+  - name: timeout
+    type: function
+    cc: 6
+    fan_out: 10
+  - name: delayMs
+    type: function
+    cc: 1
+  - name: response
+    type: function
+    cc: 1
+  - name: err
+    type: function
+    cc: 1
+  - name: data
+    type: function
+    cc: 3
+  - name: fetchViaAllOriginsJson
+    type: function
+    cc: 21
+    flag: split
+    fan_out: 13
+  - name: statusCode
+    type: function
+    cc: 3
+  - name: status
+    type: function
+    cc: 2
+  - name: fetchViaAllOriginsRaw
+    type: function
+    cc: 7
+    fan_out: 14
+  - name: fetchViaCorsProxy
+    type: function
+    cc: 7
+    fan_out: 15
+  - name: fetchViaJina
+    type: function
+    cc: 19
+    flag: split
+  - name: jinaProxies
+    type: function
+    cc: 18
+    flag: split
+  - name: wpProxies
+    type: function
+    cc: 7
+  - name: regularProxies
+    type: function
+    cc: 7
+  - name: browseInBrowser
+    type: function
+    cc: 8
+    fan_out: 16
+  - name: runBrowseInBrowser
+    type: function
+    cc: 8
+    fan_out: 14
+  - name: fetchers
+    type: function
+    cc: 8
+    fan_out: 12
+  - name: payload
+    type: function
+    cc: 1
+  - name: htmlPayload
+    type: function
+    cc: 1
+  - name: extracted
+    type: function
+    cc: 1
+  - name: message
+    type: function
+    cc: 1
+  - name: getSmartFetchers
+    type: function
+    cc: 10
+  - name: isValidContent
+    type: function
+    cc: 19
+    flag: split
+  - name: hasMeaningfulContent
+    type: function
+    cc: 3
+  - name: executeBrowseCommand
+    type: function
+    cc: 5
+  - name: runExecuteBrowseCommand
+    type: function
+    cc: 5
+- path: src/components/ErrorReportPanel.tsx
+  lines: 326
+  classes: 2
+  methods: 15
+  cc_max: 41
+  inbound_deps: 0
+  exports:
+  - name: Window
+    type: class
+    cc_avg: 0.0
+  - name: ErrorReportPanelProps
+    type: class
+    cc_avg: 0.0
+  - name: ErrorReportPanel
+    type: function
+    cc: 41
+    flag: split
+    fan_out: 33
+  - name: refreshData
+    type: function
+    cc: 1
+  - name: getFilterOptions
+    type: function
+    cc: 4
+  - name: copyErrorReport
+    type: function
+    cc: 8
+    fan_out: 11
+  - name: report
+    type: function
+    cc: 5
+  - name: backendLogs
+    type: function
+    cc: 3
+  - name: textArea
+    type: function
+    cc: 2
+  - name: clearAllErrors
+    type: function
+    cc: 2
+  - name: resolveError
+    type: function
+    cc: 1
+  - name: showNotification
+    type: function
+    cc: 2
+  - name: notification
+    type: function
+    cc: 1
+  - name: bgColor
+    type: function
+    cc: 1
+  - name: getSeverityColor
+    type: function
+    cc: 6
+  - name: getSeverityIcon
+    type: function
+    cc: 6
+  - name: getTypeIcon
+    type: function
+    cc: 7
+- path: src/config/configStore.ts
+  lines: 214
+  classes: 2
+  methods: 24
+  cc_max: 40
+  inbound_deps: 0
+  exports:
+  - name: ConfigStoreImpl
+    type: class
+    cc_avg: 3.0
+    methods:
+    - name: load
+      cc: 15
+      flag: split
+  - name: ConfigStatus
+    type: class
+    cc_avg: 0.0
+  - name: configLogger
+    type: function
+    cc: 40
+    flag: split
+    fan_out: 34
+  - name: configStore
+    type: function
+    cc: 1
+- path: src/plugins/discovery/networkScanPlugin.ts
+  lines: 1586
+  classes: 3
+  methods: 135
+  cc_max: 40
+  inbound_deps: 0
+  exports:
+  - name: NetworkScanPlugin
+    type: class
+    cc_avg: 3.3
+    methods:
+    - name: extractFilterType
+      cc: 14
+    - name: handleDeviceFilter
+      cc: 17
+      flag: split
+      fan_out: 19
+    - name: cachedResult
+      cc: 8
+      fan_out: 11
+    - name: now
+      cc: 11
+    - name: ONLINE_MS
+      cc: 11
+    - name: handleDeviceStatus
+      cc: 8
+      fan_out: 12
+    - name: now
+      cc: 11
+    - name: handleExport
+      cc: 15
+      flag: split
+      fan_out: 16
+    - name: now
+      cc: 11
+    - name: ONLINE_MS
+      cc: 11
+    - name: execute
+      cc: 40
+      flag: split
+      fan_out: 38
+    - name: cachedResult
+      cc: 8
+      fan_out: 11
+    - name: buildCameraActionsPrompt
+      cc: 12
+    - name: detectSubnet
+      cc: 18
+      flag: split
+      fan_out: 14
+    - name: detectLocalIpViaWebRTC
+      cc: 10
+      fan_out: 16
+    - name: formatRaspberryPiResult
+      cc: 11
+    - name: relevantDevices
+      cc: 11
+    - name: persistDevices
+      cc: 24
+      flag: split
+      fan_out: 13
+    - name: getDefaultSubnet
+      cc: 16
+      flag: split
+      fan_out: 11
+  - name: NetworkDevice
+    type: class
+    cc_avg: 0.0
+  - name: NetworkScanResult
+    type: class
+    cc_avg: 0.0
+- path: src/plugins/authBrowse/authBrowsePlugin.ts
+  lines: 187
+  classes: 1
+  methods: 13
+  cc_max: 34
+  inbound_deps: 0
+  exports:
+  - name: AuthBrowsePlugin
+    type: class
+    cc_avg: 5.8
+    methods:
+    - name: execute
+      cc: 30
+      flag: split
+  - name: logger
+    type: function
+    cc: 34
+    flag: split
+    fan_out: 13
+- path: src/plugins/files/fileSearchPlugin.ts
+  lines: 560
+  classes: 4
+  methods: 30
+  cc_max: 34
+  inbound_deps: 0
+  exports:
+  - name: FileSearchResult
+    type: class
+    cc_avg: 0.0
+  - name: FileSearchResponse
+    type: class
+    cc_avg: 0.0
+  - name: FileContentResponse
+    type: class
+    cc_avg: 0.0
+  - name: FileSearchPlugin
+    type: class
+    cc_avg: 4.1
+    methods:
+    - name: parseSearchParams
+      cc: 34
+      flag: split
+      fan_out: 12
+- path: src-tauri/src/content_cleaning.rs
+  lines: 147
+  classes: 0
+  methods: 4
+  cc_max: 33
+  inbound_deps: 0
+  exports:
+  - name: strip_cookie_banner_text
+    type: function
+    cc: 33
+    flag: split
+    fan_out: 10
+  - name: truncate_to_chars
+    type: function
+    cc: 2
+  - name: normalize_whitespace
+    type: function
+    cc: 1
+  - name: is_bot_protection_text
+    type: function
+    cc: 3
+- path: src/plugins/discovery/deviceStatusPlugin.ts
+  lines: 317
+  classes: 1
+  methods: 29
+  cc_max: 33
+  inbound_deps: 0
+  exports:
+  - name: DeviceStatusPlugin
+    type: class
+    cc_avg: 2.9
+    methods:
+    - name: showGeneralStatus
+      cc: 8
+      fan_out: 11
+  - name: statusLogger
+    type: function
+    cc: 33
+    flag: split
+    fan_out: 32
+- path: src/plugins/frigate/frigateEventsPlugin.ts
+  lines: 305
+  classes: 1
+  methods: 37
+  cc_max: 33
+  inbound_deps: 0
+  exports:
+  - name: FrigateEventsPlugin
+    type: class
+    cc_avg: 3.1
+    methods:
+    - name: handleMqttEvent
+      cc: 33
+      flag: split
+      fan_out: 17
+  - name: frigateLogger
+    type: function
+    cc: 1
+- path: scripts/chat-cli.mjs
+  lines: 1093
+  classes: 0
+  methods: 109
+  cc_max: 32
+  inbound_deps: 0
+  exports:
+  - name: col
+    type: function
+    cc: 2
+  - name: run
+    type: function
+    cc: 2
+  - name: hasCmd
+    type: function
+    cc: 1
+  - name: getLocalIp
+    type: function
+    cc: 5
+  - name: subnet
+    type: function
+    cc: 7
+  - name: getLocalCidrs
+    type: function
+    cc: 7
+  - name: out
+    type: function
+    cc: 6
+  - name: cidrs
+    type: function
+    cc: 2
+  - name: m
+    type: function
+    cc: 3
+  - name: ip
+    type: function
+    cc: 2
+  - name: detectIntent
+    type: function
+    cc: 3
+  - name: handlePing
+    type: function
+    cc: 4
+  - name: host
+    type: function
+    cc: 3
+  - name: parseArpEntries
+    type: function
+    cc: 9
+  - name: raw
+    type: function
+    cc: 6
+  - name: mac
+    type: function
+    cc: 2
+  - name: parseNmapHosts
+    type: function
+    cc: 3
+  - name: block
+    type: function
+    cc: 1
+  - name: hasCam
+    type: function
+    cc: 1
+  - name: handleFindRpi
+    type: function
+    cc: 18
+    flag: split
+    fan_out: 11
+  - name: blocks
+    type: function
+    cc: 7
+  - name: hits
+    type: function
+    cc: 7
+  - name: vendor
+    type: function
+    cc: 2
+  - name: handleScan
+    type: function
+    cc: 18
+    flag: split
+    fan_out: 19
+  - name: localIp
+    type: function
+    cc: 2
+  - name: sub
+    type: function
+    cc: 8
+  - name: arp
+    type: function
+    cc: 4
+  - name: wifiArp
+    type: function
+    cc: 4
+  - name: nmapCmd
+    type: function
+    cc: 1
+  - name: nmapOut
+    type: function
+    cc: 9
+  - name: hosts
+    type: function
+    cc: 6
+  - name: cameras
+    type: function
+    cc: 6
+  - name: others
+    type: function
+    cc: 6
+  - name: handlePortScan
+    type: function
+    cc: 8
+  - name: r
+    type: function
+    cc: 2
+  - name: handleArp
+    type: function
+    cc: 3
+  - name: entries
+    type: function
+    cc: 2
+  - name: handleBrowse
+    type: function
+    cc: 8
+  - name: url
+    type: function
+    cc: 5
+  - name: res
+    type: function
+    cc: 1
+  - name: text
+    type: function
+    cc: 1
+  - name: title
+    type: function
+    cc: 1
+  - name: plain
+    type: function
+    cc: 1
+  - name: showHelp
+    type: function
+    cc: 2
+    fan_out: 12
+  - name: findDbPath
+    type: function
+    cc: 2
+  - name: hasSqlite3Cli
+    type: function
+    cc: 1
+  - name: sqliteQuery
+    type: function
+    cc: 3
+  - name: handleDevices
+    type: function
+    cc: 7
+  - name: dbPath
+    type: function
+    cc: 1
+  - name: device
+    type: function
+    cc: 1
+  - name: services
+    type: function
+    cc: 1
+  - name: count
+    type: function
+    cc: 1
+  - name: handlePlugins
+    type: function
+    cc: 10
+    fan_out: 12
+  - name: data
+    type: function
+    cc: 2
+  - name: plugins
+    type: function
+    cc: 5
+  - name: name
+    type: function
+    cc: 1
+  - name: handleDbCommand
+    type: function
+    cc: 12
+    fan_out: 13
+  - name: devicesDb
+    type: function
+    cc: 7
+    fan_out: 10
+  - name: chatDb
+    type: function
+    cc: 7
+    fan_out: 10
+  - name: tables
+    type: function
+    cc: 1
+  - name: size
+    type: function
+    cc: 1
+  - name: sql
+    type: function
+    cc: 1
+  - name: handleConfig
+    type: function
+    cc: 11
+    fan_out: 11
+  - name: envFile
+    type: function
+    cc: 8
+  - name: val
+    type: function
+    cc: 3
+  - name: fromFile
+    type: function
+    cc: 3
+  - name: display
+    type: function
+    cc: 1
+  - name: masked
+    type: function
+    cc: 1
+  - name: getEmailConfig
+    type: function
+    cc: 11
+  - name: runPythonScript
+    type: function
+    cc: 5
+  - name: cmd
+    type: function
+    cc: 1
+  - name: handleEmailTest
+    type: function
+    cc: 14
+    fan_out: 18
+  - name: c
+    type: function
+    cc: 1
+  - name: handleEmailSend
+    type: function
+    cc: 14
+    fan_out: 22
+  - name: to
+    type: function
+    cc: 2
+  - name: subject
+    type: function
+    cc: 2
+  - name: body
+    type: function
+    cc: 2
+  - name: handleEmailInbox
+    type: function
+    cc: 32
+    flag: split
+    fan_out: 37
+  - name: max
+    type: function
+    cc: 15
+    flag: split
+  - name: msgs
+    type: function
+    cc: 1
+  - name: total
+    type: function
+    cc: 1
+  - name: icon
+    type: function
+    cc: 1
+  - name: showEmailHelp
+    type: function
+    cc: 1
+  - name: APP_URL
+    type: function
+    cc: 7
+  - name: askApp
+    type: function
+    cc: 7
+  - name: handleMonitorCommand
+    type: function
+    cc: 6
+  - name: query
+    type: function
+    cc: 2
+  - name: result
+    type: function
+    cc: 1
+  - name: isRealResult
+    type: function
+    cc: 2
+  - name: getFrigateConfig
+    type: function
+    cc: 7
+  - name: handleFrigateCommand
+    type: function
+    cc: 12
+    fan_out: 11
+  - name: mqttReach
+    type: function
+    cc: 1
+  - name: mqttOk
+    type: function
+    cc: 2
+  - name: frigateApi
+    type: function
+    cc: 1
+  - name: appResult
+    type: function
+    cc: 1
+  - name: isReal
+    type: function
+    cc: 1
+  - name: runComparison
+    type: function
+    cc: 2
+  - name: rl
+    type: function
+    cc: 1
+  - name: showPrompt
+    type: function
+    cc: 1
+  - name: input
+    type: function
+    cc: 2
+  - name: lip
+    type: function
+    cc: 2
+  - name: arg
+    type: function
+    cc: 2
+  - name: args
+    type: function
+    cc: 2
+  - name: s
+    type: function
+    cc: 2
+  - name: parts
+    type: function
+    cc: 8
+  - name: rest
+    type: function
+    cc: 8
+  - name: intent
+    type: function
+    cc: 20
+    flag: split
+    fan_out: 11
+  - name: waitAndExit
+    type: function
+    cc: 2
+- path: src-tauri/src/content_extraction.rs
+  lines: 506
+  classes: 1
+  methods: 10
+  cc_max: 32
+  inbound_deps: 0
+  exports:
+  - name: ActionLinks
+    type: class
+    cc_avg: 0.0
+  - name: extract_search_results
+    type: function
+    cc: 15
+    flag: split
+    fan_out: 23
+  - name: extract_content
+    type: function
+    cc: 11
+    fan_out: 21
+  - name: extract_with_scraper
+    type: function
+    cc: 2
+    fan_out: 14
+  - name: try_extract_search
+    type: function
+    cc: 3
+    fan_out: 12
+  - name: extract_action_links
+    type: function
+    cc: 32
+    flag: split
+    fan_out: 13
+- path: src-tauri/src/vision_pipeline.rs
+  lines: 311
+  classes: 3
+  methods: 3
+  cc_max: 30
+  inbound_deps: 0
+  exports:
+  - name: TrackMsg
+    type: class
+    cc_avg: 0.0
+  - name: PipelineHandle
+    type: class
+    cc_avg: 0.0
+  - name: Pipeline
+    type: class
+    cc_avg: 0.0
+  - name: stop
+    type: function
+    cc: 1
+  - name: new
+    type: function
+    cc: 1
+  - name: start
+    type: function
+    cc: 30
+    flag: split
+    fan_out: 46
+- path: src/plugins/camera/cameraVendorDatabase.ts
+  lines: 441
+  classes: 1
+  methods: 8
+  cc_max: 29
+  inbound_deps: 0
+  exports:
+  - name: CameraVendor
+    type: class
+    cc_avg: 0.0
+  - name: detectCameraVendor
+    type: function
+    cc: 29
+    flag: split
+  - name: oui
+    type: function
+    cc: 1
+  - name: getVendorInfo
+    type: function
+    cc: 2
+  - name: buildRtspUrl
+    type: function
+    cc: 8
+  - name: vendor
+    type: function
+    cc: 4
+  - name: auth
+    type: function
+    cc: 4
+  - name: path
+    type: function
+    cc: 1
+  - name: buildSnapshotUrl
+    type: function
+    cc: 6
+- path: src/persistence/deviceRepository.ts
+  lines: 252
+  classes: 1
+  methods: 18
+  cc_max: 27
+  inbound_deps: 0
+  exports:
+  - name: DeviceRepository
+    type: class
+    cc_avg: 2.2
+  - name: repoLogger
+    type: function
+    cc: 27
+    flag: split
+    fan_out: 28
+- path: src-tauri/src/network_scan.rs
+  lines: 1655
+  classes: 16
+  methods: 27
+  cc_max: 26
+  inbound_deps: 0
+  exports:
+  - name: CapturedFrame
+    type: class
+    cc_avg: 0.0
+  - name: LiveFrameCache
+    type: class
+    cc_avg: 0.0
+  - name: RtspWorker
+    type: class
+    cc_avg: 0.0
+  - name: RtspWorkerStat
+    type: class
+    cc_avg: 0.0
+  - name: HttpFetchBase64Result
+    type: class
+    cc_avg: 0.0
+  - name: CameraHealthStatus
+    type: class
+    cc_avg: 0.0
+  - name: PingResult
+    type: class
+    cc_avg: 0.0
+  - name: SimplePingResult
+    type: class
+    cc_avg: 0.0
+  - name: OpenPort
+    type: class
+    cc_avg: 0.0
+  - name: PortScanResult
+    type: class
+    cc_avg: 0.0
+  - name: ArpHost
+    type: class
+    cc_avg: 0.0
+  - name: OnvifCamera
+    type: class
+    cc_avg: 0.0
+  - name: MdnsService
+    type: class
+    cc_avg: 0.0
+  - name: NetworkDevice
+    type: class
+    cc_avg: 0.0
+  - name: NetworkScanResult
+    type: class
+    cc_avg: 0.0
+  - name: ScanNetworkArgs
+    type: class
+    cc_avg: 0.0
+  - name: anonymize_rtsp_url
+    type: function
+    cc: 7
+  - name: rtsp_stop_worker
+    type: function
+    cc: 3
+  - name: rtsp_stop_all_workers
+    type: function
+    cc: 3
+  - name: rtsp_worker_stats
+    type: function
+    cc: 1
+- path: src/plugins/remote-machine/remoteMachinePlugin.ts
+  lines: 511
+  classes: 7
+  methods: 29
+  cc_max: 26
+  inbound_deps: 0
+  exports:
+  - name: RemoteMachine
+    type: class
+    cc_avg: 0.0
+  - name: RemoteCommandResult
+    type: class
+    cc_avg: 0.0
+  - name: RemoteSystemInfo
+    type: class
+    cc_avg: 0.0
+  - name: DiskUsage
+    type: class
+    cc_avg: 0.0
+  - name: NetworkInterface
+    type: class
+    cc_avg: 0.0
+  - name: RemoteProcess
+    type: class
+    cc_avg: 0.0
+  - name: RemoteMachinePlugin
+    type: class
+    cc_avg: 4.2
+    methods:
+    - name: execute
+      cc: 26
+      flag: split
+      fan_out: 13
+    - name: intentLower
+      cc: 26
+      flag: split
+      fan_out: 12
+- path: src/plugins/protocol-bridge/protocolBridgePlugin.ts
+  lines: 1720
+  classes: 7
+  methods: 98
+  cc_max: 24
+  inbound_deps: 0
+  exports:
+  - name: BridgeEndpoint
+    type: class
+    cc_avg: 0.0
+  - name: BridgeMessage
+    type: class
+    cc_avg: 0.0
+  - name: ActionHint
+    type: class
+    cc_avg: 0.0
+  - name: MqttCacheEntry
+    type: class
+    cc_avg: 0.0
+  - name: WsConnection
+    type: class
+    cc_avg: 0.0
+  - name: SseStream
+    type: class
+    cc_avg: 0.0
+  - name: ProtocolBridgePlugin
+    type: class
+    cc_avg: 3.8
+    methods:
+    - name: execute
+      cc: 24
+      flag: split
+      fan_out: 16
+    - name: detectProtocolFromInput
+      cc: 17
+      flag: split
+    - name: handleAdd
+      cc: 21
+      flag: split
+      fan_out: 22
+    - name: handleRemove
+      cc: 6
+      fan_out: 11
+    - name: handleStatus
+      cc: 8
+      fan_out: 10
+    - name: handleMqttSend
+      cc: 10
+      fan_out: 13
+    - name: handleRestSend
+      cc: 16
+      flag: split
+      fan_out: 12
+    - name: handleWebSocket
+      cc: 21
+      flag: split
+      fan_out: 20
+    - name: handleWsSend
+      cc: 14
+      fan_out: 11
+    - name: message
+      cc: 10
+    - name: handleSse
+      cc: 20
+      flag: split
+      fan_out: 20
+    - name: handleGraphQL
+      cc: 18
+      flag: split
+      fan_out: 12
+    - name: handleMqttRead
+      cc: 15
+      flag: split
+      fan_out: 17
+    - name: handleRestRead
+      cc: 14
+      fan_out: 12
+    - name: fetchRest
+      cc: 10
+    - name: jsonToVoiceSummary
+      cc: 12
+    - name: handleRss
+      cc: 11
+      fan_out: 11
+    - name: handleAtom
+      cc: 10
+      fan_out: 10
+  - name: browseLogger
+    type: function
+    cc: 2
+- path: src/hooks/useSpeech.ts
+  lines: 313
+  classes: 4
+  methods: 21
+  cc_max: 23
+  inbound_deps: 0
+  exports:
+  - name: SpeechRecognitionEvent
+    type: class
+    cc_avg: 0.0
+  - name: SpeechRecognitionErrorEvent
+    type: class
+    cc_avg: 0.0
+  - name: SpeechRecognitionInstance
+    type: class
+    cc_avg: 0.0
+  - name: Window
+    type: class
+    cc_avg: 0.0
+  - name: speechLogger
+    type: function
+    cc: 3
+  - name: getSpeechRecognitionCtor
+    type: function
+    cc: 3
+  - name: getUnsupportedReason
+    type: function
+    cc: 3
+  - name: useSpeech
+    type: function
+    cc: 23
+    flag: split
+    fan_out: 29
+  - name: recognitionRef
+    type: function
+    cc: 5
+  - name: autoListenEnabledRef
+    type: function
+    cc: 5
+  - name: stopRequestedRef
+    type: function
+    cc: 5
+  - name: restartTimerRef
+    type: function
+    cc: 5
+  - name: runtimeIsTauri
+    type: function
+    cc: 3
+  - name: SpeechRecognition
+    type: function
+    cc: 3
+  - name: reason
+    type: function
+    cc: 2
+  - name: clearFinalTranscript
+    type: function
+    cc: 1
+  - name: disableAutoListen
+    type: function
+    cc: 3
+  - name: startListening
+    type: function
+    cc: 13
+    fan_out: 23
+  - name: runStartListening
+    type: function
+    cc: 13
+    fan_out: 21
+  - name: continuous
+    type: function
+    cc: 1
+  - name: recognition
+    type: function
+    cc: 1
+  - name: result
+    type: function
+    cc: 2
+  - name: stopListening
+    type: function
+    cc: 3
+  - name: runStopListening
+    type: function
+    cc: 3
+  - name: enableAutoListen
+    type: function
+    cc: 1
+- path: src/plugins/http/browsePlugin.ts
+  lines: 226
+  classes: 1
+  methods: 21
+  cc_max: 23
+  inbound_deps: 0
+  exports:
+  - name: HttpBrowsePlugin
+    type: class
+    cc_avg: 4.6
+    methods:
+    - name: execute
+      cc: 11
+      fan_out: 10
+    - name: startTime
+      cc: 11
+    - name: explicitUrl
+      cc: 11
+    - name: createNaturalPresentation
+      cc: 23
+      flag: split
+- path: src/App.tsx
+  lines: 571
+  classes: 0
+  methods: 34
+  cc_max: 21
+  inbound_deps: 0
+  exports:
+  - name: startupLogger
+    type: function
+    cc: 1
+  - name: tts
+    type: function
+    cc: 1
+  - name: micStreamRef
+    type: function
+    cc: 21
+    flag: split
+    fan_out: 28
+  - name: micAudioCtxRef
+    type: function
+    cc: 21
+    flag: split
+    fan_out: 28
+  - name: micAnimationFrameRef
+    type: function
+    cc: 21
+    flag: split
+    fan_out: 28
+  - name: runtimeIsTauri
+    type: function
+    cc: 2
+  - name: runHealthCheck
+    type: function
+    cc: 4
+  - name: healthStatus
+    type: function
+    cc: 1
+  - name: initializePlugins
+    type: function
+    cc: 2
+  - name: context
+    type: function
+    cc: 2
+  - name: loadSettings
+    type: function
+    cc: 2
+  - name: loadVoices
+    type: function
+    cc: 2
+  - name: availableVoices
+    type: function
+    cc: 1
+  - name: warmupMicrophone
+    type: function
+    cc: 1
+  - name: stream
+    type: function
+    cc: 1
+  - name: md
+    type: function
+    cc: 4
+  - name: cancelled
+    type: function
+    cc: 3
+  - name: cleanup
+    type: function
+    cc: 5
+  - name: interval
+    type: function
+    cc: 4
+  - name: level
+    type: function
+    cc: 2
+  - name: ctx
+    type: function
+    cc: 3
+  - name: src
+    type: function
+    cc: 3
+  - name: analyser
+    type: function
+    cc: 3
+  - name: buf
+    type: function
+    cc: 3
+  - name: loop
+    type: function
+    cc: 3
+  - name: sum
+    type: function
+    cc: 3
+  - name: v
+    type: function
+    cc: 2
+  - name: rms
+    type: function
+    cc: 2
+  - name: micDevices
+    type: function
+    cc: 5
+  - name: speakerDevices
+    type: function
+    cc: 5
+  - name: activeMic
+    type: function
+    cc: 5
+  - name: activeSpeaker
+    type: function
+    cc: 5
+  - name: persistSettings
+    type: function
+    cc: 2
+  - name: updateSettings
+    type: function
+    cc: 2
+- path: src/components/MessageQuickActions.tsx
+  lines: 95
+  classes: 1
+  methods: 6
+  cc_max: 21
+  inbound_deps: 0
+  exports:
+  - name: MessageQuickActionsProps
+    type: class
+    cc_avg: 0.0
+  - name: MessageQuickActions
+    type: function
+    cc: 21
+    flag: split
+    fan_out: 13
+  - name: result
+    type: function
+    cc: 8
+  - name: handleAction
+    type: function
+    cc: 8
+  - name: getIcon
+    type: function
+    cc: 5
+  - name: getVariantClasses
+    type: function
+    cc: 6
+  - name: isExecuted
+    type: function
+    cc: 1
+- path: src/domain/eventStore.ts
+  lines: 152
+  classes: 1
+  methods: 10
+  cc_max: 21
+  inbound_deps: 0
+  exports:
+  - name: EventStore
+    type: class
+    cc_avg: 2.5
+  - name: esLogger
+    type: function
+    cc: 21
+    flag: split
+    fan_out: 21
+- path: src-tauri/src/vision_tracker.rs
+  lines: 258
+  classes: 4
+  methods: 4
+  cc_max: 20
+  inbound_deps: 0
+  exports:
+  - name: CropSnapshot
+    type: class
+    cc_avg: 0.0
+  - name: CompletedTrack
+    type: class
+    cc_avg: 0.0
+  - name: ActiveTrack
+    type: class
+    cc_avg: 0.0
+  - name: Tracker
+    type: class
+    cc_avg: 0.0
+  - name: new
+    type: function
+    cc: 1
+  - name: update
+    type: function
+    cc: 20
+    flag: split
+    fan_out: 20
+- path: src/components/FileResultsDisplay.tsx
+  lines: 355
+  classes: 2
+  methods: 11
+  cc_max: 20
+  inbound_deps: 0
+  exports:
+  - name: FileResult
+    type: class
+    cc_avg: 0.0
+  - name: FileResultsDisplayProps
+    type: class
+    cc_avg: 0.0
+  - name: getFileIcon
+    type: function
+    cc: 10
+  - name: lower
+    type: function
+    cc: 2
+  - name: formatBytes
+    type: function
+    cc: 4
+  - name: FileResultsDisplay
+    type: function
+    cc: 20
+    flag: split
+    fan_out: 17
+  - name: toggleSelect
+    type: function
+    cc: 2
+  - name: next
+    type: function
+    cc: 1
+  - name: handleSendSelected
+    type: function
+    cc: 2
+  - name: ClarificationView
+    type: function
+    cc: 6
+    fan_out: 11
+  - name: extCounts
+    type: function
+    cc: 4
+  - name: ext
+    type: function
+    cc: 1
+  - name: topExts
+    type: function
+    cc: 1
+- path: src/components/QuickActionButtons.tsx
+  lines: 223
+  classes: 2
+  methods: 5
+  cc_max: 20
+  inbound_deps: 0
+  exports:
+  - name: QuickActionButtonsProps
+    type: class
+    cc_avg: 0.0
+  - name: ActionLink
+    type: class
+    cc_avg: 0.0
+  - name: QuickActionButtons
+    type: function
+    cc: 20
+    flag: split
+  - name: isEmail
+    type: function
+    cc: 2
+  - name: handleActionClick
+    type: function
+    cc: 6
+  - name: MessageWithQuickActions
+    type: function
+    cc: 13
+  - name: hasQuickActions
+    type: function
+    cc: 1
+- path: src/hooks/useHistoryPersistence.ts
+  lines: 219
+  classes: 2
+  methods: 16
+  cc_max: 20
+  inbound_deps: 0
+  exports:
+  - name: CommandHistoryItem
+    type: class
+    cc_avg: 0.0
+  - name: NetworkHistoryItem
+    type: class
+    cc_avg: 0.0
+  - name: histLogger
+    type: function
+    cc: 2
+  - name: useHistoryPersistence
+    type: function
+    cc: 20
+    flag: split
+    fan_out: 16
+  - name: repoRef
+    type: function
+    cc: 5
+  - name: getRepo
+    type: function
+    cc: 5
+  - name: addToCommandHistory
+    type: function
+    cc: 4
+  - name: repo
+    type: function
+    cc: 4
+  - name: loadCommandHistory
+    type: function
+    cc: 4
+  - name: rows
+    type: function
+    cc: 2
+  - name: addToNetworkHistory
+    type: function
+    cc: 7
+  - name: loadNetworkHistory
+    type: function
+    cc: 4
+  - name: addToCommandHistoryLocalStorage
+    type: function
+    cc: 5
+    fan_out: 10
+  - name: saved
+    type: function
+    cc: 2
+  - name: existingIndex
+    type: function
+    cc: 2
+  - name: loadCommandHistoryLocalStorage
+    type: function
+    cc: 3
+  - name: addToNetworkHistoryLocalStorage
+    type: function
+    cc: 4
+  - name: loadNetworkHistoryLocalStorage
+    type: function
+    cc: 3
+- path: src-tauri/src/vision_movement.rs
+  lines: 128
+  classes: 1
+  methods: 4
+  cc_max: 18
+  inbound_deps: 0
+  exports:
+  - name: MovementSummary
+    type: class
+    cc_avg: 0.0
+  - name: analyse_movement
+    type: function
+    cc: 18
+    flag: split
+    fan_out: 17
+  - name: movement_tag
+    type: function
+    cc: 1
+- path: src/plugins/discovery/advancedPortScanPlugin.ts
+  lines: 379
+  classes: 1
+  methods: 34
+  cc_max: 18
+  inbound_deps: 0
+  exports:
+  - name: AdvancedPortScanPlugin
+    type: class
+    cc_avg: 2.7
+    methods:
+    - name: scanSingleHost
+      cc: 14
+      fan_out: 13
+    - name: formatSingleHostResult
+      cc: 18
+      flag: split
+- path: src/plugins/discovery/autoScanScheduler.ts
+  lines: 322
+  classes: 2
+  methods: 30
+  cc_max: 18
+  inbound_deps: 0
+  exports:
+  - name: AutoScanConfig
+    type: class
+    cc_avg: 0.0
+  - name: AutoScanScheduler
+    type: class
+    cc_avg: 4.0
+    methods:
+    - name: tick
+      cc: 18
+      flag: split
+      fan_out: 12
+    - name: tickStart
+      cc: 14
+      fan_out: 12
+    - name: detectSubnet
+      cc: 10
+    - name: buildIncrementalRanges
+      cc: 10
+      fan_out: 12
+    - name: retryOfflineDevices
+      cc: 17
+      flag: split
+      fan_out: 12
+  - name: schedLogger
+    type: function
+    cc: 1
+  - name: autoScanScheduler
+    type: function
+    cc: 1
+- path: src/plugins/toonic/toonicBridgePlugin.ts
+  lines: 411
+  classes: 3
+  methods: 38
+  cc_max: 18
+  inbound_deps: 0
+  exports:
+  - name: ToonicStatus
+    type: class
+    cc_avg: 0.0
+  - name: ToonicEvent
+    type: class
+    cc_avg: 0.0
+  - name: ToonicBridgePlugin
+    type: class
+    cc_avg: 3.4
+    methods:
+    - name: execute
+      cc: 18
+      flag: split
+      fan_out: 17
+    - name: start
+      cc: 18
+      flag: split
+      fan_out: 14
+    - name: lower
+      cc: 18
+      flag: split
+      fan_out: 14
+    - name: handleSources
+      cc: 10
+    - name: handleEvents
+      cc: 13
+  - name: log
+    type: function
+    cc: 1
+- path: src/components/CameraPreview.tsx
+  lines: 774
+  classes: 2
+  methods: 54
+  cc_max: 17
+  inbound_deps: 0
+  exports:
+  - name: CameraPreviewProps
+    type: class
+    cc_avg: 0.0
+  - name: FrameAnalysis
+    type: class
+    cc_avg: 0.0
+  - name: videoRef
+    type: function
+    cc: 1
+  - name: canvasRef
+    type: function
+    cc: 1
+  - name: streamRef
+    type: function
+    cc: 1
+  - name: analysisIntervalRef
+    type: function
+    cc: 1
+  - name: captureFrame
+    type: function
+    cc: 5
+  - name: video
+    type: function
+    cc: 3
+  - name: canvas
+    type: function
+    cc: 2
+    fan_out: 12
+  - name: ctx
+    type: function
+    cc: 2
+    fan_out: 12
+  - name: compareFrames
+    type: function
+    cc: 7
+  - name: img1
+    type: function
+    cc: 4
+  - name: img2
+    type: function
+    cc: 4
+  - name: canvas1
+    type: function
+    cc: 2
+  - name: canvas2
+    type: function
+    cc: 2
+  - name: ctx1
+    type: function
+    cc: 2
+  - name: ctx2
+    type: function
+    cc: 2
+  - name: data1
+    type: function
+    cc: 2
+  - name: data2
+    type: function
+    cc: 2
+  - name: diff
+    type: function
+    cc: 2
+  - name: rDiff
+    type: function
+    cc: 1
+  - name: gDiff
+    type: function
+    cc: 1
+  - name: bDiff
+    type: function
+    cc: 1
+  - name: avgDiff
+    type: function
+    cc: 1
+  - name: hasChanged
+    type: function
+    cc: 2
+  - name: analyzeFrameChanges
+    type: function
+    cc: 10
+    fan_out: 13
+  - name: result
+    type: function
+    cc: 4
+  - name: analysis
+    type: function
+    cc: 1
+  - name: startAnalysis
+    type: function
+    cc: 7
+  - name: currentFrame
+    type: function
+    cc: 3
+  - name: stopAnalysis
+    type: function
+    cc: 2
+  - name: handlePlay
+    type: function
+    cc: 17
+    flag: split
+    fan_out: 14
+  - name: mockStream
+    type: function
+    cc: 3
+  - name: handlePause
+    type: function
+    cc: 3
+  - name: createRTSPStream
+    type: function
+    cc: 2
+  - name: createMJPEGStream
+    type: function
+    cc: 5
+    fan_out: 18
+  - name: frameCount
+    type: function
+    cc: 2
+    fan_out: 12
+  - name: drawMJPEGFrame
+    type: function
+    cc: 2
+  - name: response
+    type: function
+    cc: 1
+  - name: blob
+    type: function
+    cc: 1
+  - name: img
+    type: function
+    cc: 1
+  - name: mjpegInterval
+    type: function
+    cc: 1
+  - name: stream
+    type: function
+    cc: 1
+  - name: createWebRTCStream
+    type: function
+    cc: 3
+  - name: startStreamMonitoring
+    type: function
+    cc: 6
+  - name: monitoringInterval
+    type: function
+    cc: 5
+  - name: stopStreamMonitoring
+    type: function
+    cc: 2
+  - name: handleMuteToggle
+    type: function
+    cc: 2
+  - name: handleFullscreen
+    type: function
+    cc: 3
+  - name: createMockVideoStream
+    type: function
+    cc: 3
+    fan_out: 19
+  - name: frame
+    type: function
+    cc: 2
+    fan_out: 12
+  - name: lastChange
+    type: function
+    cc: 2
+    fan_out: 12
+  - name: drawFrame
+    type: function
+    cc: 2
+    fan_out: 12
+  - name: videoTrack
+    type: function
+    cc: 1
+  - name: interval
+    type: function
+    cc: 1
+  - name: getStatusColor
+    type: function
+    cc: 4
+- path: src/plugins/cameras/cameraPtzPlugin.ts
+  lines: 164
+  classes: 2
+  methods: 14
+  cc_max: 17
+  inbound_deps: 0
+  exports:
+  - name: PtzCommand
+    type: class
+    cc_avg: 0.0
+  - name: CameraPtzPlugin
+    type: class
+    cc_avg: 4.3
+    methods:
+    - name: canHandle
+      cc: 17
+      flag: split
+    - name: execute
+      cc: 10
+    - name: parseCommand
+      cc: 14
+- path: src-tauri/src/file_search.rs
+  lines: 582
+  classes: 3
+  methods: 10
+  cc_max: 16
+  inbound_deps: 0
+  exports:
+  - name: FileSearchResult
+    type: class
+    cc_avg: 0.0
+  - name: FileSearchResponse
+    type: class
+    cc_avg: 0.0
+  - name: FileContentResponse
+    type: class
+    cc_avg: 0.0
+- path: src-tauri/src/vision_db.rs
+  lines: 392
+  classes: 4
+  methods: 12
+  cc_max: 16
+  inbound_deps: 0
+  exports:
+  - name: LocalDetection
+    type: class
+    cc_avg: 0.0
+  - name: LlmEvent
+    type: class
+    cc_avg: 0.0
+  - name: Statistics
+    type: class
+    cc_avg: 0.0
+  - name: VisionDatabase
+    type: class
+    cc_avg: 0.0
+  - name: open
+    type: function
+    cc: 4
+  - name: insert_detection
+    type: function
+    cc: 16
+    flag: split
+    fan_out: 11
+  - name: insert_llm_event
+    type: function
+    cc: 11
+    fan_out: 10
+  - name: get_statistics
+    type: function
+    cc: 11
+    fan_out: 13
+  - name: execute_query
+    type: function
+    cc: 8
+    fan_out: 26
+  - name: get_thumbnail
+    type: function
+    cc: 3
+  - name: get_recent_llm_events
+    type: function
+    cc: 12
+- path: src-tauri/src/vision_motion.rs
+  lines: 186
+  classes: 2
+  methods: 2
+  cc_max: 16
+  inbound_deps: 0
+  exports:
+  - name: MovingObject
+    type: class
+    cc_avg: 0.0
+  - name: MotionDetector
+    type: class
+    cc_avg: 0.0
+  - name: new
+    type: function
+    cc: 4
+  - name: process_frame
+    type: function
+    cc: 16
+    flag: split
+    fan_out: 19
+- path: src/components/DeviceDashboardModal.tsx
+  lines: 397
+  classes: 3
+  methods: 29
+  cc_max: 16
+  inbound_deps: 0
+  exports:
+  - name: DeviceEntry
+    type: class
+    cc_avg: 0.0
+  - name: DeviceServiceEntry
+    type: class
+    cc_avg: 0.0
+  - name: DeviceDashboardModalProps
+    type: class
+    cc_avg: 0.0
+  - name: timeAgo
+    type: function
+    cc: 4
+  - name: diff
+    type: function
+    cc: 2
+  - name: mins
+    type: function
+    cc: 1
+  - name: hours
+    type: function
+    cc: 2
+  - name: days
+    type: function
+    cc: 2
+  - name: statusColor
+    type: function
+    cc: 4
+  - name: inferDeviceType
+    type: function
+    cc: 14
+  - name: v
+    type: function
+    cc: 1
+  - name: h
+    type: function
+    cc: 1
+  - name: deviceIcon
+    type: function
+    cc: 3
+  - name: type
+    type: function
+    cc: 2
+  - name: loadDevices
+    type: function
+    cc: 7
+    fan_out: 10
+  - name: db
+    type: function
+    cc: 1
+  - name: key
+    type: function
+    cc: 2
+  - name: dispatchChatAction
+    type: function
+    cc: 1
+  - name: buildDeviceActions
+    type: function
+    cc: 9
+  - name: services
+    type: function
+    cc: 1
+  - name: rtsp
+    type: function
+    cc: 3
+  - name: http
+    type: function
+    cc: 4
+  - name: scheme
+    type: function
+    cc: 2
+  - name: ssh
+    type: function
+    cc: 2
+  - name: filtered
+    type: function
+    cc: 16
+    flag: split
+  - name: q
+    type: function
+    cc: 1
+  - name: onlineCount
+    type: function
+    cc: 1
+  - name: offlineCount
+    type: function
+    cc: 1
+  - name: cameraCount
+    type: function
+    cc: 1
+  - name: serverCount
+    type: function
+    cc: 1
+  - name: deviceCount
+    type: function
+    cc: 1
+  - name: isOnline
+    type: function
+    cc: 1
+- path: src/core/llmIntentClassifier.ts
+  lines: 218
+  classes: 2
+  methods: 24
+  cc_max: 16
+  inbound_deps: 0
+  exports:
+  - name: LlmIntentResult
+    type: class
+    cc_avg: 0.0
+  - name: LlmResponse
+    type: class
+    cc_avg: 0.0
+  - name: log
+    type: function
+    cc: 2
+  - name: intentCache
+    type: function
+    cc: 1
+  - name: CACHE_TTL_MS
+    type: function
+    cc: 1
+  - name: MAX_CACHE_SIZE
+    type: function
+    cc: 1
+  - name: getCacheKey
+    type: function
+    cc: 1
+  - name: cacheSet
+    type: function
+    cc: 3
+  - name: firstKey
+    type: function
+    cc: 1
+  - name: cacheGet
+    type: function
+    cc: 2
+  - name: buildIntentPrompt
+    type: function
+    cc: 2
+  - name: context
+    type: function
+    cc: 1
+  - name: systemContext
+    type: function
+    cc: 1
+  - name: classifyIntent
+    type: function
+    cc: 16
+    flag: split
+    fan_out: 22
+  - name: trimmed
+    type: function
+    cc: 2
+  - name: cacheKey
+    type: function
+    cc: 2
+  - name: cached
+    type: function
+    cc: 2
+  - name: apiKey
+    type: function
+    cc: 2
+  - name: systemPrompt
+    type: function
+    cc: 2
+  - name: model
+    type: function
+    cc: 2
+  - name: response
+    type: function
+    cc: 1
+  - name: cleaned
+    type: function
+    cc: 3
+  - name: knownIntents
+    type: function
+    cc: 2
+  - name: isLlmClassifierAvailable
+    type: function
+    cc: 2
+  - name: clearIntentCache
+    type: function
+    cc: 1
+  - name: getIntentCacheStats
+    type: function
+    cc: 1
+- path: src/hooks/useChatPersistence.ts
+  lines: 93
+  classes: 0
+  methods: 10
+  cc_max: 16
+  inbound_deps: 0
+  exports:
+  - name: persistLogger
+    type: function
+    cc: 2
+  - name: getSessionConversationId
+    type: function
+    cc: 2
+  - name: useChatPersistence
+    type: function
+    cc: 16
+    flag: split
+    fan_out: 13
+  - name: repoRef
+    type: function
+    cc: 16
+    flag: split
+    fan_out: 13
+  - name: conversationIdRef
+    type: function
+    cc: 16
+    flag: split
+    fan_out: 13
+  - name: repo
+    type: function
+    cc: 3
+  - name: conversationId
+    type: function
+    cc: 3
+  - name: unsubAdd
+    type: function
+    cc: 4
+  - name: msg
+    type: function
+    cc: 2
+  - name: unsubUpdate
+    type: function
+    cc: 5
+- path: src/lib/sttClient.ts
+  lines: 145
+  classes: 1
+  methods: 13
+  cc_max: 16
+  inbound_deps: 0
+  exports:
+  - name: SttConfig
+    type: class
+    cc_avg: 0.0
+  - name: sttLogger
+    type: function
+    cc: 1
+  - name: buildSttRequestBody
+    type: function
+    cc: 1
+  - name: getSttConfig
+    type: function
+    cc: 1
+  - name: cfg
+    type: function
+    cc: 1
+  - name: transcribeAudio
+    type: function
+    cc: 16
+    flag: split
+    fan_out: 15
+  - name: run
+    type: function
+    cc: 16
+    flag: split
+    fan_out: 14
+  - name: isTauri
+    type: function
+    cc: 2
+  - name: result
+    type: function
+    cc: 2
+  - name: appCfg
+    type: function
+    cc: 1
+  - name: resp
+    type: function
+    cc: 1
+  - name: body
+    type: function
+    cc: 1
+  - name: data
+    type: function
+    cc: 1
+  - name: text
+    type: function
+    cc: 1
+- path: src-tauri/src/vision_detector.rs
+  lines: 344
+  classes: 2
+  methods: 8
+  cc_max: 15
+  inbound_deps: 0
+  exports:
+  - name: Detection
+    type: class
+    cc_avg: 0.0
+  - name: Detector
+    type: class
+    cc_avg: 0.0
+  - name: as_str
+    type: function
+    cc: 2
+  - name: new
+    type: function
+    cc: 5
+  - name: detect_from_jpeg
+    type: function
+    cc: 5
+    fan_out: 10
+  - name: detect_frame
+    type: function
+    cc: 13
+    fan_out: 16
+  - name: detect
+    type: function
+    cc: 15
+    flag: split
+    fan_out: 19
+- path: src/commands/browseCommand.ts
+  lines: 187
+  classes: 2
+  methods: 9
+  cc_max: 15
+  inbound_deps: 0
+  exports:
+  - name: BrowseCommandParams
+    type: class
+    cc_avg: 0.0
+  - name: BrowseCommand
+    type: class
+    cc_avg: 3.1
+    methods:
+    - name: execute
+      cc: 15
+      flag: split
+      fan_out: 11
+  - name: logger
+    type: function
+    cc: 1
+- path: src/components/Chat.tsx
+  lines: 514
+  classes: 1
+  methods: 40
+  cc_max: 15
+  inbound_deps: 0
+  exports:
+  - name: ChatProps
+    type: class
+    cc_avg: 0.0
+  - name: messages
+    type: function
+    cc: 1
+  - name: dbManager
+    type: function
+    cc: 1
+  - name: hasNonSystemMessages
+    type: function
+    cc: 4
+  - name: showWelcomeScreen
+    type: function
+    cc: 4
+  - name: userMessages
+    type: function
+    cc: 1
+  - name: currentScopeRef
+    type: function
+    cc: 1
+  - name: messagesEndRef
+    type: function
+    cc: 1
+  - name: statusNoticeRef
+    type: function
+    cc: 1
+  - name: statusNoticeIdRef
+    type: function
+    cc: 1
+  - name: messageIdRef
+    type: function
+    cc: 1
+  - name: chatLogger
+    type: function
+    cc: 1
+  - name: nextMessageId
+    type: function
+    cc: 1
+  - name: getRecentQueries
+    type: function
+    cc: 1
+  - name: getCurrentContext
+    type: function
+    cc: 14
+  - name: hour
+    type: function
+    cc: 1
+  - name: lastQuery
+    type: function
+    cc: 1
+  - name: handleSuggestionLearning
+    type: function
+    cc: 1
+  - name: unsub
+    type: function
+    cc: 1
+  - name: message
+    type: function
+    cc: 3
+  - name: cancelled
+    type: function
+    cc: 4
+  - name: llm
+    type: function
+    cc: 1
+  - name: appendStatusNotice
+    type: function
+    cc: 2
+  - name: prev
+    type: function
+    cc: 1
+  - name: handleSubmitRef
+    type: function
+    cc: 1
+  - name: dispatch
+    type: function
+    cc: 1
+  - name: handler
+    type: function
+    cc: 12
+    fan_out: 10
+  - name: custom
+    type: function
+    cc: 3
+  - name: detail
+    type: function
+    cc: 3
+  - name: inputElement
+    type: function
+    cc: 2
+  - name: pct
+    type: function
+    cc: 1
+  - name: eventTime
+    type: function
+    cc: 1
+  - name: mime
+    type: function
+    cc: 2
+  - name: dataUrl
+    type: function
+    cc: 2
+  - name: copyChatContent
+    type: function
+    cc: 4
+  - name: chatContent
+    type: function
+    cc: 3
+  - name: role
+    type: function
+    cc: 1
+  - name: copyMessageContext
+    type: function
+    cc: 1
+  - name: handleKeyDown
+    type: function
+    cc: 15
+    flag: split
+  - name: num
+    type: function
+    cc: 7
+  - name: card
+    type: function
+    cc: 4
+- path: src/components/HealthDiagnostic.tsx
+  lines: 364
+  classes: 1
+  methods: 22
+  cc_max: 15
+  inbound_deps: 0
+  exports:
+  - name: HealthDiagnosticProps
+    type: class
+    cc_avg: 0.0
+  - name: copyErrorsToClipboard
+    type: function
+    cc: 15
+    flag: split
+    fan_out: 18
+  - name: currentReport
+    type: function
+    cc: 1
+  - name: timestamp
+    type: function
+    cc: 1
+  - name: errors
+    type: function
+    cc: 1
+  - name: warnings
+    type: function
+    cc: 1
+  - name: detailsStr
+    type: function
+    cc: 1
+  - name: textArea
+    type: function
+    cc: 2
+  - name: showNotification
+    type: function
+    cc: 2
+  - name: notification
+    type: function
+    cc: 1
+  - name: bgColor
+    type: function
+    cc: 1
+  - name: runHealthCheck
+    type: function
+    cc: 2
+  - name: result
+    type: function
+    cc: 2
+  - name: interval
+    type: function
+    cc: 1
+  - name: handleKeyDown
+    type: function
+    cc: 4
+  - name: getStatusColor
+    type: function
+    cc: 5
+  - name: getStatusIcon
+    type: function
+    cc: 5
+  - name: getOverallStatus
+    type: function
+    cc: 6
+  - name: overallStatus
+    type: function
+    cc: 1
+  - name: categoryChecks
+    type: function
+    cc: 1
+  - name: useHealthDiagnostic
+    type: function
+    cc: 2
+  - name: checkHealth
+    type: function
+    cc: 2
+  - name: status
+    type: function
+    cc: 2
+- path: src/integration/autoWatchIntegration.ts
+  lines: 367
+  classes: 3
+  methods: 26
+  cc_max: 15
+  inbound_deps: 0
+  exports:
+  - name: AutoWatchConfig
+    type: class
+    cc_avg: 0.0
+  - name: AutoWatchStats
+    type: class
+    cc_avg: 0.0
+  - name: AutoWatchIntegration
+    type: class
+    cc_avg: 2.7
+    methods:
+    - name: extractIntentInfo
+      cc: 15
+      flag: split
+    - name: getStats
+      cc: 10
+- path: src/plugins/network/onvifPlugin.ts
+  lines: 178
+  classes: 2
+  methods: 19
+  cc_max: 15
+  inbound_deps: 0
+  exports:
+  - name: OnvifCamera
+    type: class
+    cc_avg: 0.0
+  - name: OnvifPlugin
+    type: class
+    cc_avg: 3.2
+    methods:
+    - name: browserProbe
+      cc: 6
+      fan_out: 12
+    - name: formatCameras
+      cc: 15
+      flag: split
+- path: src-tauri/src/network.rs
+  lines: 174
+  classes: 0
+  methods: 7
+  cc_max: 14
+  inbound_deps: 0
+  exports:
+  - name: db_execute
+    type: function
+    cc: 11
+    fan_out: 20
+  - name: db_query
+    type: function
+    cc: 14
+    fan_out: 24
+  - name: db_close
+    type: function
+    cc: 3
+- path: src-tauri/src/tts.rs
+  lines: 223
+  classes: 1
+  methods: 10
+  cc_max: 14
+  inbound_deps: 0
+  exports:
+  - name: TtsAvailability
+    type: class
+    cc_avg: 0.0
+  - name: tts_is_available
+    type: function
+    cc: 2
+  - name: tts_speak
+    type: function
+    cc: 14
+    fan_out: 32
+  - name: tts_stop
+    type: function
+    cc: 1
+- path: src-tauri/src/wake_word.rs
+  lines: 232
+  classes: 1
+  methods: 7
+  cc_max: 14
+  inbound_deps: 0
+  exports:
+  - name: WakeWordState
+    type: class
+    cc_avg: 0.0
+  - name: new
+    type: function
+    cc: 1
+  - name: reset
+    type: function
+    cc: 1
+  - name: start_wake_word_listening
+    type: function
+    cc: 14
+    fan_out: 38
+  - name: stop_wake_word_listening
+    type: function
+    cc: 1
+  - name: check_wake_word_triggered
+    type: function
+    cc: 2
+  - name: wake_word_get_level
+    type: function
+    cc: 2
+- path: src/hooks/useAlertBridge.ts
+  lines: 84
+  classes: 0
+  methods: 6
+  cc_max: 14
+  inbound_deps: 0
+  exports:
+  - name: hookLog
+    type: function
+    cc: 14
+    fan_out: 10
+  - name: useAlertBridge
+    type: function
+    cc: 14
+    fan_out: 10
+  - name: bridgeRef
+    type: function
+    cc: 2
+  - name: bridge
+    type: function
+    cc: 6
+  - name: handler
+    type: function
+    cc: 6
+  - name: detail
+    type: function
+    cc: 1
+- path: src/persistence/chatRepository.ts
+  lines: 123
+  classes: 1
+  methods: 17
+  cc_max: 14
+  inbound_deps: 0
+  exports:
+  - name: ChatRepository
+    type: class
+    cc_avg: 1.9
+  - name: repoLogger
+    type: function
+    cc: 14
+    fan_out: 23
+- path: src/plugins/discovery/serviceProbePlugin.ts
+  lines: 283
+  classes: 1
+  methods: 20
+  cc_max: 14
+  inbound_deps: 0
+  exports:
+  - name: ServiceProbePlugin
+    type: class
+    cc_avg: 3.1
+    methods:
+    - name: formatProbeResult
+      cc: 14
+- path: src/plugins/system/sshPlugin.ts
+  lines: 544
+  classes: 4
+  methods: 29
+  cc_max: 14
+  inbound_deps: 0
+  exports:
+  - name: SshPlugin
+    type: class
+    cc_avg: 3.4
+    methods:
+    - name: lower
+      cc: 11
+    - name: execute
+      cc: 11
+    - name: start
+      cc: 11
+    - name: lower
+      cc: 11
+    - name: handleExecute
+      cc: 6
+      fan_out: 10
+    - name: analyzeSshError
+      cc: 14
+  - name: SshExecResult
+    type: class
+    cc_avg: 0.0
+  - name: SshTestResult
+    type: class
+    cc_avg: 0.0
+  - name: KnownHost
+    type: class
+    cc_avg: 0.0
+- path: src/components/QuickCommands.tsx
+  lines: 569
+  classes: 3
+  methods: 25
+  cc_max: 13
+  inbound_deps: 0
+  exports:
+  - name: QuickCommand
+    type: class
+    cc_avg: 0.0
+  - name: SavedCommandHistoryItem
+    type: class
+    cc_avg: 0.0
+  - name: QuickCommandsProps
+    type: class
+    cc_avg: 0.0
+  - name: saved
+    type: function
+    cc: 2
+  - name: parsed
+    type: function
+    cc: 2
+  - name: formatCommandTitle
+    type: function
+    cc: 2
+  - name: inferCategory
+    type: function
+    cc: 13
+  - name: lower
+    type: function
+    cc: 1
+  - name: getCategoryIcon
+    type: function
+    cc: 6
+  - name: aggregation
+    type: function
+    cc: 1
+  - name: command
+    type: function
+    cc: 2
+  - name: category
+    type: function
+    cc: 2
+  - name: existing
+    type: function
+    cc: 2
+  - name: mergedCommands
+    type: function
+    cc: 2
+  - name: seen
+    type: function
+    cc: 2
+  - name: filteredCommands
+    type: function
+    cc: 6
+  - name: categoryMatch
+    type: function
+    cc: 1
+  - name: searchMatch
+    type: function
+    cc: 1
+  - name: getCategoryColor
+    type: function
+    cc: 6
+  - name: handleCommandClick
+    type: function
+    cc: 1
+  - name: handleSearchChange
+    type: function
+    cc: 1
+  - name: toggleFavorite
+    type: function
+    cc: 2
+  - name: handleDragStart
+    type: function
+    cc: 1
+  - name: handleDragOver
+    type: function
+    cc: 1
+  - name: handleDragLeave
+    type: function
+    cc: 1
+  - name: handleDrop
+    type: function
+    cc: 5
+  - name: draggedIndex
+    type: function
+    cc: 2
+  - name: handleDragEnd
+    type: function
+    cc: 1
+- path: src/plugins/discovery/cameraDetection.ts
+  lines: 381
+  classes: 3
+  methods: 13
+  cc_max: 13
+  inbound_deps: 0
+  exports:
+  - name: CameraVendor
+    type: class
+    cc_avg: 0.0
+  - name: PortScanResult
+    type: class
+    cc_avg: 0.0
+  - name: CameraDetectionResult
+    type: class
+    cc_avg: 0.0
+  - name: getAllCameraPorts
+    type: function
+    cc: 1
+  - name: allPorts
+    type: function
+    cc: 1
+  - name: identifyVendor
+    type: function
+    cc: 13
+  - name: confidence
+    type: function
+    cc: 4
+  - name: matches
+    type: function
+    cc: 4
+  - name: headerValue
+    type: function
+    cc: 3
+  - name: generateRtspUrls
+    type: function
+    cc: 9
+  - name: vendorInfo
+    type: function
+    cc: 2
+  - name: vendorPaths
+    type: function
+    cc: 3
+  - name: generateRecommendations
+    type: function
+    cc: 10
+  - name: vendor
+    type: function
+    cc: 1
+  - name: user
+    type: function
+    cc: 1
+  - name: pass
+    type: function
+    cc: 1
+- path: src/plugins/monitor/motionDetectionPlugin.ts
+  lines: 512
+  classes: 4
+  methods: 44
+  cc_max: 13
+  inbound_deps: 0
+  exports:
+  - name: PipelineStatus
+    type: class
+    cc_avg: 0.0
+  - name: DetectionStats
+    type: class
+    cc_avg: 0.0
+  - name: DetectionRow
+    type: class
+    cc_avg: 0.0
+  - name: MotionDetectionPlugin
+    type: class
+    cc_avg: 4.1
+    methods:
+    - name: canHandle
+      cc: 11
+    - name: execute
+      cc: 8
+      fan_out: 10
+    - name: handleStart
+      cc: 9
+      fan_out: 11
+    - name: cameraId
+      cc: 10
+    - name: cameraId
+      cc: 10
+    - name: handleStats
+      cc: 10
+      fan_out: 16
+    - name: cameraId
+      cc: 10
+    - name: hours
+      cc: 10
+    - name: handleDetections
+      cc: 13
+      fan_out: 13
+    - name: cameraId
+      cc: 10
+    - name: label
+      cc: 10
+    - name: hours
+      cc: 10
+  - name: motionLog
+    type: function
+    cc: 1
+- path: scripts/net-diag.mjs
+  lines: 265
+  classes: 0
+  methods: 47
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: ARGS
+    type: function
+    cc: 1
+  - name: MODE_CAM
+    type: function
+    cc: 1
+  - name: MODE_CMP
+    type: function
+    cc: 1
+  - name: APP_URL
+    type: function
+    cc: 1
+  - name: col
+    type: function
+    cc: 2
+  - name: sep
+    type: function
+    cc: 2
+  - name: run
+    type: function
+    cc: 2
+  - name: has
+    type: function
+    cc: 1
+  - name: getLocalIp
+    type: function
+    cc: 5
+  - name: printTools
+    type: function
+    cc: 3
+  - name: printLocalInfo
+    type: function
+    cc: 6
+  - name: ifaces
+    type: function
+    cc: 4
+  - name: getArpEntries
+    type: function
+    cc: 11
+  - name: raw
+    type: function
+    cc: 8
+  - name: ip
+    type: function
+    cc: 1
+  - name: mac
+    type: function
+    cc: 1
+  - name: printArp
+    type: function
+    cc: 12
+  - name: stateColor
+    type: function
+    cc: 8
+  - name: printRoutes
+    type: function
+    cc: 3
+  - name: out
+    type: function
+    cc: 2
+  - name: pingBroadcast
+    type: function
+    cc: 4
+    fan_out: 10
+  - name: targets
+    type: function
+    cc: 1
+  - name: results
+    type: function
+    cc: 2
+  - name: nmapScan
+    type: function
+    cc: 4
+  - name: cmd
+    type: function
+    cc: 1
+  - name: parseNmapResult
+    type: function
+    cc: 10
+  - name: hostname
+    type: function
+    cc: 1
+  - name: block
+    type: function
+    cc: 1
+  - name: vendor
+    type: function
+    cc: 1
+  - name: hasCam
+    type: function
+    cc: 1
+  - name: printNmapHosts
+    type: function
+    cc: 11
+  - name: icon
+    type: function
+    cc: 2
+  - name: label
+    type: function
+    cc: 2
+  - name: printMdns
+    type: function
+    cc: 3
+  - name: compareWithApp
+    type: function
+    cc: 7
+    fan_out: 10
+  - name: res
+    type: function
+    cc: 1
+  - name: data
+    type: function
+    cc: 2
+  - name: content
+    type: function
+    cc: 2
+  - name: main
+    type: function
+    cc: 11
+    fan_out: 26
+  - name: localIp
+    type: function
+    cc: 3
+  - name: sub
+    type: function
+    cc: 3
+  - name: arpEntries
+    type: function
+    cc: 2
+  - name: pingAlive
+    type: function
+    cc: 2
+  - name: nmapOut
+    type: function
+    cc: 2
+  - name: nmapHosts
+    type: function
+    cc: 2
+  - name: allIps
+    type: function
+    cc: 1
+  - name: cameras
+    type: function
+    cc: 1
+- path: src-tauri/src/motion_detection.rs
+  lines: 958
+  classes: 8
+  methods: 8
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: PipelineProcess
+    type: class
+    cc_avg: 0.0
+  - name: NativePipeline
+    type: class
+    cc_avg: 0.0
+  - name: StartPipelineRequest
+    type: class
+    cc_avg: 0.0
+  - name: PipelineStatus
+    type: class
+    cc_avg: 0.0
+  - name: PipelineListResult
+    type: class
+    cc_avg: 0.0
+  - name: DetectionRow
+    type: class
+    cc_avg: 0.0
+  - name: DetectionStats
+    type: class
+    cc_avg: 0.0
+  - name: VisionQueryResult
+    type: class
+    cc_avg: 0.0
+  - name: resolve_db_path
+    type: function
+    cc: 4
+- path: src/config/watchConfig.ts
+  lines: 211
+  classes: 0
+  methods: 7
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: getWatchConfig
+    type: function
+    cc: 4
+  - name: env
+    type: function
+    cc: 1
+  - name: getAutoWatchConfig
+    type: function
+    cc: 4
+  - name: getPollingInterval
+    type: function
+    cc: 2
+  - name: getChangeThreshold
+    type: function
+    cc: 2
+  - name: validateWatchConfig
+    type: function
+    cc: 12
+  - name: mergeWatchConfig
+    type: function
+    cc: 1
+- path: src/contexts/pluginContext.tsx
+  lines: 161
+  classes: 2
+  methods: 10
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: PluginContextValue
+    type: class
+    cc_avg: 0.0
+  - name: PluginProviderProps
+    type: class
+    cc_avg: 0.0
+  - name: PluginCtx
+    type: function
+    cc: 1
+  - name: PluginProvider
+    type: function
+    cc: 12
+    fan_out: 13
+  - name: value
+    type: function
+    cc: 12
+    fan_out: 13
+  - name: intent
+    type: function
+    cc: 1
+  - name: plugin
+    type: function
+    cc: 3
+  - name: fallback
+    type: function
+    cc: 1
+  - name: runtimeIsTauri
+    type: function
+    cc: 2
+  - name: result
+    type: function
+    cc: 2
+  - name: usePlugins
+    type: function
+    cc: 2
+  - name: ctx
+    type: function
+    cc: 2
+- path: src/discovery/serviceProber.ts
+  lines: 435
+  classes: 1
+  methods: 27
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: ServiceProber
+    type: class
+    cc_avg: 4.8
+    methods:
+    - name: probeDevice
+      cc: 10
+      fan_out: 13
+    - name: startTime
+      cc: 12
+    - name: probeHttpService
+      cc: 12
+    - name: startTime
+      cc: 12
+    - name: startTime
+      cc: 12
+    - name: startTime
+      cc: 12
+    - name: startTime
+      cc: 12
+    - name: probeApiService
+      cc: 12
+    - name: startTime
+      cc: 12
+- path: src/hooks/useLlm.ts
+  lines: 250
+  classes: 2
+  methods: 18
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: UseLlmOptions
+    type: class
+    cc_avg: 0.0
+  - name: UseLlmReturn
+    type: class
+    cc_avg: 0.0
+  - name: llmLogger
+    type: function
+    cc: 4
+  - name: useLlm
+    type: function
+    cc: 12
+    fan_out: 23
+  - name: historyRef
+    type: function
+    cc: 4
+    fan_out: 10
+  - name: send
+    type: function
+    cc: 4
+    fan_out: 10
+  - name: runSend
+    type: function
+    cc: 4
+  - name: resp
+    type: function
+    cc: 1
+  - name: msg
+    type: function
+    cc: 1
+  - name: describe
+    type: function
+    cc: 3
+  - name: runDescribe
+    type: function
+    cc: 3
+  - name: summarize
+    type: function
+    cc: 3
+  - name: runSummarize
+    type: function
+    cc: 3
+  - name: summarizeSearch
+    type: function
+    cc: 3
+  - name: runSummarizeSearch
+    type: function
+    cc: 3
+  - name: detectIntent
+    type: function
+    cc: 3
+  - name: runDetectIntent
+    type: function
+    cc: 3
+  - name: raw
+    type: function
+    cc: 1
+  - name: finalIntent
+    type: function
+    cc: 1
+  - name: clearHistory
+    type: function
+    cc: 1
+- path: src/plugins/network/portScanPlugin.ts
+  lines: 156
+  classes: 2
+  methods: 21
+  cc_max: 12
+  inbound_deps: 0
+  exports:
+  - name: PortScanPlugin
+    type: class
+    cc_avg: 2.9
+    methods:
+    - name: execute
+      cc: 12
+      fan_out: 17
+  - name: PortScanResult
+    type: class
+    cc_avg: 0.0
+- path: src/components/ActionSuggestions.tsx
+  lines: 497
+  classes: 2
+  methods: 22
+  cc_max: 11
+  inbound_deps: 0
+  exports:
+  - name: ActionSuggestion
+    type: class
+    cc_avg: 0.0
+  - name: ActionSuggestionsProps
+    type: class
+    cc_avg: 0.0
+  - name: saved
+    type: function
+    cc: 2
+  - name: getTimeOfDay
+    type: function
+    cc: 7
+  - name: hour
+    type: function
+    cc: 1
+  - name: generateContextualSuggestions
+    type: function
+    cc: 11
+  - name: timeOfDay
+    type: function
+    cc: 2
+  - name: generateSmartSuggestions
+    type: function
+    cc: 1
+    fan_out: 12
+  - name: sortedLearning
+    type: function
+    cc: 1
+  - name: aScore
+    type: function
+    cc: 1
+  - name: bScore
+    type: function
+    cc: 1
+  - name: category
+    type: function
+    cc: 1
+  - name: getSmartTitle
+    type: function
+    cc: 10
+  - name: getSmartIcon
+    type: function
+    cc: 7
+  - name: trackSuggestionUsage
+    type: function
+    cc: 6
+  - name: key
+    type: function
+    cc: 2
+  - name: existing
+    type: function
+    cc: 2
+  - name: contextual
+    type: function
+    cc: 11
+  - name: smart
+    type: function
+    cc: 11
+  - name: lastQuery
+    type: function
+    cc: 3
+  - name: sortedSuggestions
+    type: function
+    cc: 11
+  - name: getCategoryColor
+    type: function
+    cc: 9
+  - name: getCategoryIcon
+    type: function
+    cc: 9
+  - name: handleSuggestionClick
+    type: function
+    cc: 2
+- path: src/components/NetworkHistorySelector.tsx
+  lines: 387
+  classes: 2
+  methods: 24
+  cc_max: 11
+  inbound_deps: 0
+  exports:
+  - name: NetworkHistoryItem
+    type: class
+    cc_avg: 0.0
+  - name: NetworkHistorySelectorProps
+    type: class
+    cc_avg: 0.0
+  - name: savedHistory
+    type: function
+    cc: 3
+  - name: parsed
+    type: function
+    cc: 8
+  - name: filtered
+    type: function
+    cc: 1
+  - name: saveHistory
+    type: function
+    cc: 1
+  - name: addToHistory
+    type: function
+    cc: 6
+  - name: existingIndex
+    type: function
+    cc: 2
+  - name: removeFromHistory
+    type: function
+    cc: 1
+  - name: newHistory
+    type: function
+    cc: 1
+  - name: clearHistory
+    type: function
+    cc: 1
+  - name: startVoiceRecognition
+    type: function
+    cc: 11
+    fan_out: 12
+  - name: SpeechRecognition
+    type: function
+    cc: 1
+  - name: recognition
+    type: function
+    cc: 1
+  - name: transcript
+    type: function
+    cc: 8
+  - name: item
+    type: function
+    cc: 3
+  - name: stopVoiceRecognition
+    type: function
+    cc: 1
+  - name: parseVoiceCommand
+    type: function
+    cc: 9
+  - name: numberMatch
+    type: function
+    cc: 4
+  - name: numberWord
+    type: function
+    cc: 1
+  - name: number
+    type: function
+    cc: 3
+  - name: addressMatch
+    type: function
+    cc: 2
+  - name: getScopeIcon
+    type: function
+    cc: 7
+  - name: formatLastUsed
+    type: function
+    cc: 4
+  - name: now
+    type: function
+    cc: 2
+  - name: diff
+    type: function
+    cc: 2
+- path: src/core/fallbackHandler.ts
+  lines: 305
+  classes: 2
+  methods: 25
+  cc_max: 11
+  inbound_deps: 0
+  exports:
+  - name: FallbackResult
+    type: class
+    cc_avg: 0.0
+  - name: FallbackOptions
+    type: class
+    cc_avg: 0.0
+  - name: fallbackLogger
+    type: function
+    cc: 1
+  - name: tryLlmFallback
+    type: function
+    cc: 11
+    fan_out: 22
+  - name: cfg
+    type: function
+    cc: 3
+  - name: schemasContext
+    type: function
+    cc: 1
+  - name: sysCtx
+    type: function
+    cc: 1
+  - name: response
+    type: function
+    cc: 1
+  - name: text
+    type: function
+    cc: 1
+  - name: jsonMatch
+    type: function
+    cc: 1
+  - name: parsed
+    type: function
+    cc: 1
+  - name: schemaMap
+    type: function
+    cc: 4
+  - name: schema
+    type: function
+    cc: 2
+  - name: actions
+    type: function
+    cc: 2
+  - name: rankByPreference
+    type: function
+    cc: 3
+  - name: scoreA
+    type: function
+    cc: 1
+  - name: scoreB
+    type: function
+    cc: 1
+  - name: injectFavorites
+    type: function
+    cc: 7
+    fan_out: 11
+  - name: topPrefs
+    type: function
+    cc: 4
+  - name: existingKeys
+    type: function
+    cc: 4
+  - name: keywordFallback
+    type: function
+    cc: 8
+  - name: domainSchemas
+    type: function
+    cc: 6
+  - name: domainLabel
+    type: function
+    cc: 1
+  - name: scored
+    type: function
+    cc: 3
+  - name: finalActions
+    type: function
+    cc: 1
+  - name: generateFallback
+    type: function
+    cc: 3
+  - name: llmResult
+    type: function
+    cc: 1
+- path: src/lib/resolver.ts
+  lines: 264
+  classes: 1
+  methods: 19
+  cc_max: 11
+  inbound_deps: 0
+  exports:
+  - name: ResolveResult
+    type: class
+    cc_avg: 0.0
+  - name: levenshtein
+    type: function
+    cc: 6
+  - name: m
+    type: function
+    cc: 1
+  - name: n
+    type: function
+    cc: 1
+  - name: similarity
+    type: function
+    cc: 4
+  - name: dist
+    type: function
+    cc: 1
+  - name: matches
+    type: function
+    cc: 1
+  - name: fuzzyMatchDomain
+    type: function
+    cc: 5
+    fan_out: 10
+  - name: cleaned
+    type: function
+    cc: 4
+  - name: stem
+    type: function
+    cc: 2
+  - name: ratioFull
+    type: function
+    cc: 2
+  - name: ratioStem
+    type: function
+    cc: 2
+  - name: ratio
+    type: function
+    cc: 2
+  - name: resolve
+    type: function
+    cc: 11
+    fan_out: 11
+  - name: text
+    type: function
+    cc: 1
+  - name: query
+    type: function
+    cc: 2
+  - name: normalized
+    type: function
+    cc: 1
+  - name: fuzzy
+    type: function
+    cc: 3
+  - name: suggestions
+    type: function
+    cc: 1
+  - name: allSuggestions
+    type: function
+    cc: 1
+- path: src/plugins/cameras/cameraHealthPlugin.ts
+  lines: 140
+  classes: 2
+  methods: 15
+  cc_max: 11
+  inbound_deps: 0
+  exports:
+  - name: CameraStatus
+    type: class
+    cc_avg: 0.0
+  - name: CameraHealthPlugin
+    type: class
+    cc_avg: 3.3
+    methods:
+    - name: execute
+      cc: 6
+      fan_out: 11
+    - name: formatStatuses
+      cc: 11
+- path: src/plugins/system/processesPlugin.ts
+  lines: 120
+  classes: 1
+  methods: 11
+  cc_max: 11
+  inbound_deps: 0
+  exports:
+  - name: ProcessesPlugin
+    type: class
+    cc_avg: 3.8
+    methods:
+    - name: lower
+      cc: 5
+      fan_out: 10
+    - name: execute
+      cc: 11
+      fan_out: 16
+    - name: start
+      cc: 5
+      fan_out: 10
+    - name: trimmed
+      cc: 5
+      fan_out: 10
+    - name: lower
+      cc: 5
+      fan_out: 10
+- path: resolver.py
+  lines: 129
+  classes: 1
+  methods: 2
+  cc_max: 10
+  inbound_deps: 0
+  exports:
+  - name: ResolveResult
+    type: class
+    cc_avg: 0.0
+  - name: fuzzy_match_domain
+    type: function
+    cc: 3
+  - name: resolve
+    type: function
+    cc: 10
+- path: src-tauri/src/browse_rendered.rs
+  lines: 394
+  classes: 0
+  methods: 6
+  cc_max: 10
+  inbound_deps: 0
+  exports:
+  - name: is_available
+    type: function
+    cc: 1
+  - name: render_and_extract
+    type: function
+    cc: 7
+    fan_out: 29
+  - name: capture_screenshot
+    type: function
+    cc: 9
+    fan_out: 23
+- path: src-tauri/src/main.rs
+  lines: 495
+  classes: 1
+  methods: 1
+  cc_max: 10
+  inbound_deps: 0
+  exports:
+  - name: BrowseResult
+    type: class
+    cc_avg: 0.0
+- path: src-tauri/src/rss_parser.rs
+  lines: 369
+  classes: 4
+  methods: 13
+  cc_max: 10
+  inbound_deps: 0
+  exports:
+  - name: RssItem
+    type: class
+    cc_avg: 0.0
+  - name: RssFeed
+    type: class
+    cc_avg: 0.0
+  - name: AtomEntry
+    type: class
+    cc_avg: 0.0
+  - name: AtomFeed
+    type: class
+    cc_avg: 0.0
+  - name: parse_rss_feed
+    type: function
+    cc: 8
+    fan_out: 17
+  - name: parse_atom_feed
+    type: function
+    cc: 7
+    fan_out: 20
+  - name: format_rss_feed
+    type: function
+    cc: 10
+  - name: format_atom_feed
+    type: function
+    cc: 10
+    fan_out: 10
+  - name: detect_feed_type
+    type: function
+    cc: 5
+  - name: parse_and_format_feed
+    type: function
+    cc: 6
+  - name: parse_rss_feed_command
+    type: function
+    cc: 3
+- path: src/lib/llmClient.ts
+  lines: 402
+  classes: 3
+  methods: 30
+  cc_max: 10
+  inbound_deps: 0
+  exports:
+  - name: LlmConfig
+    type: class
+    cc_avg: 0.0
+  - name: LlmMessage
+    type: class
+    cc_avg: 0.0
+  - name: LlmResponse
+    type: class
+    cc_avg: 0.0
+  - name: llmClientLogger
+    type: function
+    cc: 1
+  - name: getConfig
+    type: function
+    cc: 1
+  - name: cfg
+    type: function
+    cc: 1
+  - name: chat
+    type: function
+    cc: 4
+  - name: runChat
+    type: function
+    cc: 4
+  - name: isTauri
+    type: function
+    cc: 2
+  - name: chatDirect
+    type: function
+    cc: 10
+    fan_out: 11
+  - name: runChatDirect
+    type: function
+    cc: 10
+  - name: apiUrl
+    type: function
+    cc: 1
+  - name: httpReferer
+    type: function
+    cc: 1
+  - name: appTitle
+    type: function
+    cc: 1
+  - name: resp
+    type: function
+    cc: 1
+  - name: body
+    type: function
+    cc: 1
+  - name: data
+    type: function
+    cc: 4
+  - name: text
+    type: function
+    cc: 4
+  - name: chatViaTauri
+    type: function
+    cc: 1
+  - name: runChatViaTauri
+    type: function
+    cc: 1
+  - name: result
+    type: function
+    cc: 1
+  - name: CONTENT_TRIM
+    type: function
+    cc: 1
+  - name: TTS_TRIM
+    type: function
+    cc: 1
+  - name: askAboutContent
+    type: function
+    cc: 1
+  - name: runAsk
+    type: function
+    cc: 1
+  - name: describeImage
+    type: function
+    cc: 1
+  - name: runDescribe
+    type: function
+    cc: 1
+  - name: describeImageChange
+    type: function
+    cc: 1
+  - name: summarizeForTts
+    type: function
+    cc: 1
+  - name: runSummarize
+    type: function
+    cc: 1
+  - name: detectIntent
+    type: function
+    cc: 1
+  - name: runDetect
+    type: function
+    cc: 1
+  - name: summarizeSearchResults
+    type: function
+    cc: 1
+- path: src/plugins/email/emailPlugin.ts
+  lines: 419
+  classes: 4
+  methods: 34
+  cc_max: 10
+  inbound_deps: 0
+  exports:
+  - name: EmailConfig
+    type: class
+    cc_avg: 0.0
+  - name: EmailMessage
+    type: class
+    cc_avg: 0.0
+  - name: InboxSummary
+    type: class
+    cc_avg: 0.0
+  - name: EmailPlugin
+    type: class
+    cc_avg: 3.2
+    methods:
+    - name: startPolling
+      cc: 10
+- path: src/plugins/network/arpPlugin.ts
+  lines: 143
+  classes: 2
+  methods: 16
+  cc_max: 10
+  inbound_deps: 0
+  exports:
+  - name: ArpHost
+    type: class
+    cc_avg: 0.0
+  - name: ArpPlugin
+    type: class
+    cc_avg: 3.7
+    methods:
+    - name: execute
+      cc: 10
+      fan_out: 15
+    - name: start
+      cc: 10
+      fan_out: 14
+    - name: subnet
+      cc: 10
+      fan_out: 14
+- path: src/reactive/alertBridge.ts
+  lines: 232
+  classes: 3
+  methods: 23
+  cc_max: 10
+  inbound_deps: 0
+  exports:
+  - name: DeviceStatusChange
+    type: class
+    cc_avg: 0.0
+  - name: AlertBridgeOptions
+    type: class
+    cc_avg: 0.0
+  - name: AlertBridge
+    type: class
+    cc_avg: 2.5
+    methods:
+    - name: emitChangeAlert
+      cc: 8
+      fan_out: 11
+    - name: notifyMotionDetection
+      cc: 10
+  - name: alertLog
+    type: function
+    cc: 3
+- path: src-tauri/src/audio_capture.rs
+  lines: 243
+  classes: 1
+  methods: 9
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: RecordingState
+    type: class
+    cc_avg: 0.0
+  - name: new
+    type: function
+    cc: 1
+  - name: list_input_devices
+    type: function
+    cc: 2
+  - name: start_recording
+    type: function
+    cc: 9
+    fan_out: 21
+  - name: stop_and_encode_wav
+    type: function
+    cc: 9
+    fan_out: 17
+  - name: get_mic_level
+    type: function
+    cc: 7
+    fan_out: 10
+  - name: is_silence
+    type: function
+    cc: 4
+- path: src-tauri/src/local_llm.rs
+  lines: 297
+  classes: 2
+  methods: 7
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: LocalLlmConfig
+    type: class
+    cc_avg: 0.0
+  - name: LocalLlm
+    type: class
+    cc_avg: 0.0
+  - name: new
+    type: function
+    cc: 1
+  - name: with_config
+    type: function
+    cc: 1
+  - name: from_env
+    type: function
+    cc: 9
+  - name: get_local_llm
+    type: function
+    cc: 1
+- path: src-tauri/src/vision_scene_buffer.rs
+  lines: 165
+  classes: 3
+  methods: 7
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: ObjectEvent
+    type: class
+    cc_avg: 0.0
+  - name: MinuteBatch
+    type: class
+    cc_avg: 0.0
+  - name: MinuteBuffer
+    type: class
+    cc_avg: 0.0
+  - name: build_timeline
+    type: function
+    cc: 3
+    fan_out: 15
+  - name: select_crops
+    type: function
+    cc: 9
+    fan_out: 10
+  - name: new
+    type: function
+    cc: 1
+  - name: push
+    type: function
+    cc: 2
+  - name: should_flush
+    type: function
+    cc: 4
+  - name: drain
+    type: function
+    cc: 2
+  - name: force_drain
+    type: function
+    cc: 1
+- path: src/config/autoConfig.ts
+  lines: 153
+  classes: 1
+  methods: 13
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: AutoConfigResult
+    type: class
+    cc_avg: 0.0
+  - name: autoConfigLogger
+    type: function
+    cc: 3
+  - name: runAutoConfig
+    type: function
+    cc: 6
+    fan_out: 12
+  - name: status
+    type: function
+    cc: 4
+  - name: isTauri
+    type: function
+    cc: 4
+  - name: interfaces
+    type: function
+    cc: 2
+  - name: best
+    type: function
+    cc: 1
+  - name: buildWelcomeMessage
+    type: function
+    cc: 8
+  - name: isPrivateIp
+    type: function
+    cc: 3
+  - name: isValidCandidateIp
+    type: function
+    cc: 4
+  - name: interfaceScore
+    type: function
+    cc: 9
+  - name: score
+    type: function
+    cc: 1
+  - name: n
+    type: function
+    cc: 1
+  - name: pickBestInterface
+    type: function
+    cc: 3
+- path: src/core/retry.ts
+  lines: 112
+  classes: 1
+  methods: 19
+  cc_max: 9
+  inbound_deps: 1
+  exports:
+  - name: RetryOptions
+    type: class
+    cc_avg: 0.0
+  - name: resolveDecision
+    type: function
+    cc: 5
+  - name: sleep
+    type: function
+    cc: 1
+  - name: computeDelayMs
+    type: function
+    cc: 1
+  - name: expo
+    type: function
+    cc: 1
+  - name: capped
+    type: function
+    cc: 1
+  - name: jitter
+    type: function
+    cc: 1
+  - name: min
+    type: function
+    cc: 1
+  - name: max
+    type: function
+    cc: 1
+  - name: retry
+    type: function
+    cc: 9
+  - name: maxDelayMs
+    type: function
+    cc: 7
+  - name: jitterRatio
+    type: function
+    cc: 7
+  - name: isLastAttempt
+    type: function
+    cc: 2
+  - name: decision
+    type: function
+    cc: 2
+  - name: delayMs
+    type: function
+    cc: 2
+  - name: isProbablyTransientHttpStatus
+    type: function
+    cc: 4
+  - name: isProbablyTransientErrorMessage
+    type: function
+    cc: 8
+  - name: m
+    type: function
+    cc: 1
+  - name: shouldRetryUnknownAsTransient
+    type: function
+    cc: 3
+  - name: message
+    type: function
+    cc: 2
+- path: src/core/systemContext.ts
+  lines: 201
+  classes: 1
+  methods: 20
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: SystemContext
+    type: class
+    cc_avg: 0.0
+  - name: log
+    type: function
+    cc: 2
+  - name: detectOs
+    type: function
+    cc: 9
+  - name: ua
+    type: function
+    cc: 1
+  - name: platform
+    type: function
+    cc: 1
+  - name: detectUser
+    type: function
+    cc: 5
+  - name: detectHomeDir
+    type: function
+    cc: 8
+  - name: detectShell
+    type: function
+    cc: 9
+  - name: detectCapabilities
+    type: function
+    cc: 2
+  - name: getSystemContext
+    type: function
+    cc: 4
+  - name: os
+    type: function
+    cc: 1
+  - name: user
+    type: function
+    cc: 1
+  - name: homeDir
+    type: function
+    cc: 1
+  - name: shell
+    type: function
+    cc: 1
+  - name: hostname
+    type: function
+    cc: 1
+  - name: capabilities
+    type: function
+    cc: 1
+  - name: updateSystemContext
+    type: function
+    cc: 1
+  - name: ctx
+    type: function
+    cc: 1
+  - name: resetSystemContext
+    type: function
+    cc: 1
+  - name: buildSystemContextPrompt
+    type: function
+    cc: 6
+    fan_out: 13
+  - name: capsText
+    type: function
+    cc: 2
+- path: src/plugins/network/pingPlugin.ts
+  lines: 123
+  classes: 2
+  methods: 18
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: PingPlugin
+    type: class
+    cc_avg: 2.8
+  - name: PingResult
+    type: class
+    cc_avg: 0.0
+- path: src/reactive/changeDetector.ts
+  lines: 362
+  classes: 1
+  methods: 30
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: ChangeDetector
+    type: class
+    cc_avg: 1.7
+- path: src/utils/errorReporting.ts
+  lines: 323
+  classes: 2
+  methods: 28
+  cc_max: 9
+  inbound_deps: 0
+  exports:
+  - name: ErrorReport
+    type: class
+    cc_avg: 0.0
+  - name: ErrorReporting
+    type: class
+    cc_avg: 2.1
+  - name: errorReporting
+    type: function
+    cc: 1
+  - name: captureError
+    type: function
+    cc: 1
+  - name: captureNetworkError
+    type: function
+    cc: 1
+  - name: capturePluginError
+    type: function
+    cc: 1
+  - name: captureUserError
+    type: function
+    cc: 1
+  - name: captureSystemError
+    type: function
+    cc: 1
+- path: src-tauri/src/audio_commands.rs
+  lines: 445
+  classes: 6
+  methods: 17
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: ActiveStream
+    type: class
+    cc_avg: 0.0
+  - name: ActiveTts
+    type: class
+    cc_avg: 0.0
+  - name: ActiveWakeWordStream
+    type: class
+    cc_avg: 0.0
+  - name: SttStatus
+    type: class
+    cc_avg: 0.0
+  - name: TtsInfo
+    type: class
+    cc_avg: 0.0
+  - name: AudioDevices
+    type: class
+    cc_avg: 0.0
+  - name: stt_start
+    type: function
+    cc: 8
+    fan_out: 15
+  - name: stt_status
+    type: function
+    cc: 2
+  - name: stt_get_mic_level
+    type: function
+    cc: 1
+  - name: stt_is_silence
+    type: function
+    cc: 1
+  - name: backend_tts_stop
+    type: function
+    cc: 1
+  - name: backend_tts_pause
+    type: function
+    cc: 2
+  - name: backend_tts_resume
+    type: function
+    cc: 2
+  - name: backend_tts_speak_base64
+    type: function
+    cc: 2
+  - name: backend_tts_info
+    type: function
+    cc: 2
+  - name: backend_audio_devices
+    type: function
+    cc: 2
+  - name: piper_is_installed
+    type: function
+    cc: 1
+  - name: wake_word_start
+    type: function
+    cc: 5
+  - name: wake_word_stop
+    type: function
+    cc: 1
+  - name: wake_word_check_triggered
+    type: function
+    cc: 1
+- path: src-tauri/src/llm_query.rs
+  lines: 245
+  classes: 1
+  methods: 2
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: NlQueryResult
+    type: class
+    cc_avg: 0.0
+  - name: validate_sql_public
+    type: function
+    cc: 1
+- path: src-tauri/src/toonic_sidecar.rs
+  lines: 332
+  classes: 1
+  methods: 3
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: ToonicStatus
+    type: class
+    cc_avg: 0.0
+- path: src-tauri/src/vision_query_engine.rs
+  lines: 117
+  classes: 2
+  methods: 2
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: QueryResult
+    type: class
+    cc_avg: 0.0
+  - name: QueryEngine
+    type: class
+    cc_avg: 0.0
+  - name: format_table
+    type: function
+    cc: 8
+    fan_out: 18
+  - name: new
+    type: function
+    cc: 1
+- path: src/core/actionSchema.ts
+  lines: 592
+  classes: 1
+  methods: 17
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: ActionSchema
+    type: class
+    cc_avg: 0.0
+  - name: getSchemasByDomain
+    type: function
+    cc: 1
+  - name: getAllDomains
+    type: function
+    cc: 1
+  - name: scoreMatch
+    type: function
+    cc: 8
+  - name: lower
+    type: function
+    cc: 3
+  - name: words
+    type: function
+    cc: 3
+  - name: hits
+    type: function
+    cc: 3
+  - name: maxPossible
+    type: function
+    cc: 1
+  - name: findMatchingSchemas
+    type: function
+    cc: 1
+  - name: getDomainHints
+    type: function
+    cc: 7
+  - name: findDomainSchemas
+    type: function
+    cc: 4
+  - name: hints
+    type: function
+    cc: 3
+  - name: matchedDomains
+    type: function
+    cc: 3
+  - name: schemasToConfigActions
+    type: function
+    cc: 1
+  - name: schemasToLlmContext
+    type: function
+    cc: 6
+  - name: byDomain
+    type: function
+    cc: 3
+  - name: list
+    type: function
+    cc: 1
+- path: src/core/preferenceLearning.ts
+  lines: 201
+  classes: 3
+  methods: 21
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: PreferenceEntry
+    type: class
+    cc_avg: 0.0
+  - name: PreferenceScore
+    type: class
+    cc_avg: 0.0
+  - name: PreferenceLearningStore
+    type: class
+    cc_avg: 2.8
+  - name: log
+    type: function
+    cc: 1
+  - name: MAX_ENTRIES
+    type: function
+    cc: 1
+  - name: preferenceLearning
+    type: function
+    cc: 1
+- path: src/lib/logger.ts
+  lines: 129
+  classes: 0
+  methods: 13
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: isDebug
+    type: function
+    cc: 2
+  - name: normalizeLogArg
+    type: function
+    cc: 2
+  - name: safeStringify
+    type: function
+    cc: 3
+  - name: emit
+    type: function
+    cc: 8
+  - name: timestamp
+    type: function
+    cc: 2
+  - name: scopePrefix
+    type: function
+    cc: 2
+  - name: normalizedArgs
+    type: function
+    cc: 2
+  - name: createScopedLogger
+    type: function
+    cc: 2
+  - name: logSyncDecorator
+    type: function
+    cc: 2
+  - name: scoped
+    type: function
+    cc: 2
+  - name: startedAt
+    type: function
+    cc: 1
+  - name: result
+    type: function
+    cc: 1
+  - name: logAsyncDecorator
+    type: function
+    cc: 2
+- path: src/persistence/configuredDeviceRepository.ts
+  lines: 251
+  classes: 3
+  methods: 21
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: ConfiguredDevice
+    type: class
+    cc_avg: 0.0
+  - name: ConfiguredDeviceRow
+    type: class
+    cc_avg: 0.0
+  - name: ConfiguredDeviceRepository
+    type: class
+    cc_avg: 2.4
+  - name: repoLogger
+    type: function
+    cc: 1
+  - name: rowToDevice
+    type: function
+    cc: 1
+  - name: genId
+    type: function
+    cc: 1
+- path: src/persistence/databaseManager.ts
+  lines: 233
+  classes: 4
+  methods: 23
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: DbAdapter
+    type: class
+    cc_avg: 0.0
+  - name: TauriDbAdapter
+    type: class
+    cc_avg: 1.2
+  - name: InMemoryDbAdapter
+    type: class
+    cc_avg: 1.2
+  - name: DatabaseManager
+    type: class
+    cc_avg: 3.8
+    methods:
+    - name: runMigrations
+      cc: 8
+      fan_out: 11
+  - name: dbLogger
+    type: function
+    cc: 4
+- path: src/plugins/cameras/cameraSnapshotPlugin.ts
+  lines: 105
+  classes: 1
+  methods: 12
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: CameraSnapshotPlugin
+    type: class
+    cc_avg: 3.5
+- path: src/plugins/monitoringPlugin.ts
+  lines: 183
+  classes: 2
+  methods: 18
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: VisionQueryResult
+    type: class
+    cc_avg: 0.0
+  - name: MonitoringPlugin
+    type: class
+    cc_avg: 1.7
+  - name: log
+    type: function
+    cc: 1
+  - name: formatQueryResult
+    type: function
+    cc: 8
+    fan_out: 10
+  - name: cols
+    type: function
+    cc: 3
+  - name: widths
+    type: function
+    cc: 3
+  - name: max
+    type: function
+    cc: 3
+  - name: val
+    type: function
+    cc: 2
+  - name: displayRows
+    type: function
+    cc: 4
+  - name: cells
+    type: function
+    cc: 3
+  - name: display
+    type: function
+    cc: 2
+- path: src/plugins/network/mdnsPlugin.ts
+  lines: 152
+  classes: 2
+  methods: 15
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: MdnsService
+    type: class
+    cc_avg: 0.0
+  - name: MdnsPlugin
+    type: class
+    cc_avg: 3.2
+    methods:
+    - name: execute
+      cc: 6
+      fan_out: 11
+    - name: start
+      cc: 6
+      fan_out: 11
+- path: src/plugins/network/wakeOnLanPlugin.ts
+  lines: 86
+  classes: 1
+  methods: 10
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: WakeOnLanPlugin
+    type: class
+    cc_avg: 2.5
+- path: src/plugins/rtsp-camera/rtspCameraPlugin.ts
+  lines: 416
+  classes: 9
+  methods: 35
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: CameraConfig
+    type: class
+    cc_avg: 0.0
+  - name: FrameGrabber
+    type: class
+    cc_avg: 0.0
+  - name: CapturedFrame
+    type: class
+    cc_avg: 0.0
+  - name: HttpSnapshotGrabber
+    type: class
+    cc_avg: 2.0
+  - name: TauriRtspGrabber
+    type: class
+    cc_avg: 1.5
+  - name: SceneDescriber
+    type: class
+    cc_avg: 0.0
+  - name: LlmSceneDescriber
+    type: class
+    cc_avg: 3.0
+  - name: RtspCameraPluginOptions
+    type: class
+    cc_avg: 0.0
+  - name: RtspCameraPlugin
+    type: class
+    cc_avg: 2.4
+  - name: blobToBase64
+    type: function
+    cc: 2
+  - name: reader
+    type: function
+    cc: 2
+  - name: result
+    type: function
+    cc: 1
+  - name: base64
+    type: function
+    cc: 1
+- path: src/plugins/system/diskInfoPlugin.ts
+  lines: 319
+  classes: 4
+  methods: 28
+  cc_max: 8
+  inbound_deps: 0
+  exports:
+  - name: DiskInfoPlugin
+    type: class
+    cc_avg: 2.5
+  - name: DiskPartition
+    type: class
+    cc_avg: 0.0
+  - name: DiskInfo
+    type: class
+    cc_avg: 0.0
+  - name: SshResult
+    type: class
+    cc_avg: 0.0
+- path: scripts/motion_pipeline.py
+  lines: 624
+  classes: 3
+  methods: 23
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: LocalClassifier
+    type: class
+    cc_avg: 4.0
+  - name: LlmVerifier
+    type: class
+    cc_avg: 3.0
+  - name: MotionPipeline
+    type: class
+    cc_avg: 3.3
+    methods:
+    - name: process_frame
+      cc: 6
+      fan_out: 13
+    - name: run
+      cc: 6
+      fan_out: 13
+  - name: init_db
+    type: function
+    cc: 1
+  - name: save_detection
+    type: function
+    cc: 3
+    fan_out: 14
+  - name: update_detection_llm
+    type: function
+    cc: 1
+  - name: get_statistics
+    type: function
+    cc: 5
+  - name: create_bg_subtractor
+    type: function
+    cc: 1
+  - name: extract_moving_objects
+    type: function
+    cc: 4
+    fan_out: 11
+  - name: should_send_to_llm
+    type: function
+    cc: 5
+  - name: parse_args
+    type: function
+    cc: 1
+  - name: main
+    type: function
+    cc: 2
+- path: src-tauri/src/disk_info.rs
+  lines: 206
+  classes: 2
+  methods: 6
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: DiskPartition
+    type: class
+    cc_avg: 0.0
+  - name: DiskInfo
+    type: class
+    cc_avg: 0.0
+- path: src-tauri/src/settings.rs
+  lines: 221
+  classes: 2
+  methods: 17
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: AudioSettings
+    type: class
+    cc_avg: 0.0
+  - name: LegacyAudioSettings
+    type: class
+    cc_avg: 0.0
+  - name: settings_path
+    type: function
+    cc: 3
+  - name: load_settings
+    type: function
+    cc: 4
+  - name: get_settings
+    type: function
+    cc: 7
+    fan_out: 14
+  - name: save_settings
+    type: function
+    cc: 3
+- path: src/components/MessageResultCard.tsx
+  lines: 232
+  classes: 2
+  methods: 7
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: DomainMeta
+    type: class
+    cc_avg: 0.0
+  - name: MessageResultCardProps
+    type: class
+    cc_avg: 0.0
+  - name: detectDomain
+    type: function
+    cc: 7
+  - name: detectStatus
+    type: function
+    cc: 6
+  - name: MessageResultCard
+    type: function
+    cc: 4
+  - name: domain
+    type: function
+    cc: 3
+  - name: meta
+    type: function
+    cc: 1
+  - name: status
+    type: function
+    cc: 1
+  - name: statusMeta
+    type: function
+    cc: 1
+- path: src/core/cache.ts
+  lines: 448
+  classes: 5
+  methods: 36
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: CacheEntry
+    type: class
+    cc_avg: 0.0
+  - name: CacheConfig
+    type: class
+    cc_avg: 0.0
+  - name: CacheStats
+    type: class
+    cc_avg: 0.0
+  - name: Cache
+    type: class
+    cc_avg: 3.1
+  - name: CacheFactory
+    type: class
+    cc_avg: 1.9
+  - name: cacheLogger
+    type: function
+    cc: 2
+- path: src/core/intentSchema.ts
+  lines: 137
+  classes: 2
+  methods: 14
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: SubActionDef
+    type: class
+    cc_avg: 0.0
+  - name: IntentSchema
+    type: class
+    cc_avg: 0.0
+  - name: schemaRegistry
+    type: function
+    cc: 1
+  - name: registerIntentSchema
+    type: function
+    cc: 1
+  - name: registerIntentSchemas
+    type: function
+    cc: 2
+  - name: getIntentSchema
+    type: function
+    cc: 1
+  - name: getAllIntentSchemas
+    type: function
+    cc: 1
+  - name: getSchemasByPlugin
+    type: function
+    cc: 1
+  - name: getSchemasByDomain
+    type: function
+    cc: 1
+  - name: clearIntentSchemas
+    type: function
+    cc: 1
+  - name: matchIntentByPatterns
+    type: function
+    cc: 7
+  - name: lower
+    type: function
+    cc: 1
+  - name: matches
+    type: function
+    cc: 4
+  - name: canPluginHandle
+    type: function
+    cc: 1
+  - name: schemas
+    type: function
+    cc: 1
+  - name: defineIntent
+    type: function
+    cc: 3
+- path: src/discovery/networkScanner.ts
+  lines: 383
+  classes: 1
+  methods: 32
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: NetworkScanner
+    type: class
+    cc_avg: 2.2
+    methods:
+    - name: scanNetwork
+      cc: 4
+      fan_out: 10
+    - name: pingSweep
+      cc: 2
+      fan_out: 12
+- path: src/plugins/mqtt/mqttPlugin.ts
+  lines: 327
+  classes: 4
+  methods: 24
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: MqttConfig
+    type: class
+    cc_avg: 0.0
+  - name: MqttClientAdapter
+    type: class
+    cc_avg: 0.0
+  - name: TopicValue
+    type: class
+    cc_avg: 0.0
+  - name: MqttPlugin
+    type: class
+    cc_avg: 2.1
+    methods:
+    - name: handleRead
+      cc: 3
+      fan_out: 10
+- path: src/plugins/scope/scopeRegistry.ts
+  lines: 253
+  classes: 3
+  methods: 19
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: ScopeDefinition
+    type: class
+    cc_avg: 0.0
+  - name: RemotePluginManifest
+    type: class
+    cc_avg: 0.0
+  - name: ScopeRegistry
+    type: class
+    cc_avg: 2.5
+  - name: scopeRegistry
+    type: function
+    cc: 1
+- path: src/plugins/system/logsPlugin.ts
+  lines: 301
+  classes: 2
+  methods: 23
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: LogCommand
+    type: class
+    cc_avg: 0.0
+  - name: LogsPlugin
+    type: class
+    cc_avg: 2.1
+    methods:
+    - name: downloadLogs
+      cc: 7
+      fan_out: 18
+- path: src/plugins/voice/voiceCommandsPlugin.ts
+  lines: 186
+  classes: 2
+  methods: 8
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: VoiceCommand
+    type: class
+    cc_avg: 0.0
+  - name: VoiceCommandsPlugin
+    type: class
+    cc_avg: 2.9
+  - name: logger
+    type: function
+    cc: 1
+- path: src/reactive/watchManager.ts
+  lines: 537
+  classes: 1
+  methods: 37
+  cc_max: 7
+  inbound_deps: 0
+  exports:
+  - name: WatchManager
+    type: class
+    cc_avg: 2.5
+    methods:
+    - name: pollTarget
+      cc: 6
+      fan_out: 10
+    - name: startTime
+      cc: 6
+      fan_out: 10
+- path: e2e/chat-features.spec.ts
+  lines: 141
+  classes: 0
+  methods: 11
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: openApp
+    type: function
+    cc: 1
+  - name: url
+    type: function
+    cc: 6
+  - name: input
+    type: function
+    cc: 1
+  - name: assistantMessages
+    type: function
+    cc: 1
+  - name: settingsBtn
+    type: function
+    cc: 1
+  - name: btn
+    type: function
+    cc: 1
+  - name: ttsCheckbox
+    type: function
+    cc: 1
+  - name: saveBtn
+    type: function
+    cc: 1
+  - name: closeBtn
+    type: function
+    cc: 1
+  - name: copyMainBtn
+    type: function
+    cc: 1
+  - name: clipboardText
+    type: function
+    cc: 1
+- path: e2e/ssh-docker.spec.ts
+  lines: 216
+  classes: 0
+  methods: 5
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: SSH_TEST_PORT
+    type: function
+    cc: 6
+    fan_out: 18
+  - name: input
+    type: function
+    cc: 1
+  - name: response
+    type: function
+    cc: 1
+  - name: messages
+    type: function
+    cc: 1
+  - name: apiKey
+    type: function
+    cc: 2
+- path: src-tauri/benches/file_search_bench.rs
+  lines: 295
+  classes: 0
+  methods: 2
+  cc_max: 6
+  inbound_deps: 0
+- path: src-tauri/src/ssh.rs
+  lines: 266
+  classes: 3
+  methods: 2
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: SshResult
+    type: class
+    cc_avg: 0.0
+  - name: SshTestResult
+    type: class
+    cc_avg: 0.0
+  - name: KnownHost
+    type: class
+    cc_avg: 0.0
+- path: src-tauri/src/stt.rs
+  lines: 325
+  classes: 1
+  methods: 6
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: VadResult
+    type: class
+    cc_avg: 0.0
+  - name: detect_voice_activity
+    type: function
+    cc: 6
+    fan_out: 15
+- path: src-tauri/src/tts_backend.rs
+  lines: 527
+  classes: 0
+  methods: 22
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: detect_tts_engine
+    type: function
+    cc: 5
+  - name: tts_engine_info
+    type: function
+    cc: 2
+  - name: select_tts_engine
+    type: function
+    cc: 4
+  - name: synthesize_to_wav
+    type: function
+    cc: 2
+  - name: synthesize_to_wav_with_engine
+    type: function
+    cc: 2
+  - name: play_wav_blocking
+    type: function
+    cc: 4
+    fan_out: 10
+  - name: play_wav_async
+    type: function
+    cc: 3
+  - name: play_wav_stoppable
+    type: function
+    cc: 4
+  - name: speak
+    type: function
+    cc: 4
+  - name: speak_with_engine
+    type: function
+    cc: 4
+  - name: speak_to_base64
+    type: function
+    cc: 2
+  - name: speak_to_base64_with_engine
+    type: function
+    cc: 2
+  - name: piper_setup_instructions
+    type: function
+    cc: 3
+  - name: piper_is_installed
+    type: function
+    cc: 2
+- path: src-tauri/src/vision_config.rs
+  lines: 335
+  classes: 8
+  methods: 29
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: VisionConfig
+    type: class
+    cc_avg: 0.0
+  - name: CameraConfig
+    type: class
+    cc_avg: 0.0
+  - name: DetectorConfig
+    type: class
+    cc_avg: 0.0
+  - name: PipelineConfig
+    type: class
+    cc_avg: 0.0
+  - name: TrackerConfig
+    type: class
+    cc_avg: 0.0
+  - name: SceneConfig
+    type: class
+    cc_avg: 0.0
+  - name: DatabaseConfig
+    type: class
+    cc_avg: 0.0
+  - name: LlmConfig
+    type: class
+    cc_avg: 0.0
+  - name: load_config
+    type: function
+    cc: 6
+    fan_out: 13
+  - name: default_config
+    type: function
+    cc: 1
+- path: src/components/ChatOverlays.tsx
+  lines: 78
+  classes: 3
+  methods: 1
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: ExpandedImageData
+    type: class
+    cc_avg: 0.0
+  - name: ExpandedLiveData
+    type: class
+    cc_avg: 0.0
+  - name: ChatOverlaysProps
+    type: class
+    cc_avg: 0.0
+  - name: ChatOverlays
+    type: function
+    cc: 6
+- path: src/components/CommandHistory.tsx
+  lines: 393
+  classes: 2
+  methods: 21
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: CommandHistoryItem
+    type: class
+    cc_avg: 0.0
+  - name: CommandHistoryProps
+    type: class
+    cc_avg: 0.0
+  - name: categoryCounts
+    type: function
+    cc: 3
+  - name: savedHistory
+    type: function
+    cc: 3
+  - name: parsed
+    type: function
+    cc: 2
+  - name: filtered
+    type: function
+    cc: 4
+  - name: q
+    type: function
+    cc: 1
+  - name: saveHistory
+    type: function
+    cc: 1
+  - name: addToHistory
+    type: function
+    cc: 3
+  - name: existingIndex
+    type: function
+    cc: 2
+  - name: removeFromHistory
+    type: function
+    cc: 1
+  - name: newHistory
+    type: function
+    cc: 1
+  - name: clearHistory
+    type: function
+    cc: 1
+  - name: handleSelect
+    type: function
+    cc: 1
+  - name: getCategoryInfo
+    type: function
+    cc: 6
+  - name: formatTimestamp
+    type: function
+    cc: 4
+  - name: now
+    type: function
+    cc: 2
+  - name: diff
+    type: function
+    cc: 2
+  - name: getSuccessIndicator
+    type: function
+    cc: 4
+  - name: count
+    type: function
+    cc: 1
+  - name: isActive
+    type: function
+    cc: 1
+  - name: categoryInfo
+    type: function
+    cc: 1
+  - name: successIndicator
+    type: function
+    cc: 1
+- path: src/components/QuickCommandHistory.tsx
+  lines: 204
+  classes: 1
+  methods: 11
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: QuickCommandHistoryProps
+    type: class
+    cc_avg: 0.0
+  - name: savedHistory
+    type: function
+    cc: 3
+  - name: parsed
+    type: function
+    cc: 2
+  - name: getCategoryIcon
+    type: function
+    cc: 6
+  - name: getSuccessIndicator
+    type: function
+    cc: 4
+  - name: formatTimestamp
+    type: function
+    cc: 3
+  - name: now
+    type: function
+    cc: 2
+  - name: diff
+    type: function
+    cc: 2
+  - name: getPopularCommands
+    type: function
+    cc: 2
+  - name: popularCommands
+    type: function
+    cc: 3
+  - name: categoryIcon
+    type: function
+    cc: 1
+  - name: successIndicator
+    type: function
+    cc: 1
+- path: src/components/ThinkingMessage.tsx
+  lines: 104
+  classes: 1
+  methods: 6
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: ThinkingMessageProps
+    type: class
+    cc_avg: 0.0
+  - name: ThinkingMessage
+    type: function
+    cc: 6
+    fan_out: 10
+  - name: startRef
+    type: function
+    cc: 2
+  - name: timer
+    type: function
+    cc: 1
+  - name: now
+    type: function
+    cc: 1
+  - name: remaining
+    type: function
+    cc: 1
+  - name: showCountdown
+    type: function
+    cc: 1
+- path: src/core/pluginRegistry.ts
+  lines: 94
+  classes: 1
+  methods: 15
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: PluginRegistry
+    type: class
+    cc_avg: 2.2
+- path: src/core/queryBus.ts
+  lines: 110
+  classes: 4
+  methods: 14
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: QueryBus
+    type: class
+    cc_avg: 2.2
+  - name: ListPluginsQuery
+    type: class
+    cc_avg: 0.0
+  - name: PluginInfo
+    type: class
+    cc_avg: 0.0
+  - name: GetPluginStatusQuery
+    type: class
+    cc_avg: 0.0
+  - name: cachingMiddleware
+    type: function
+    cc: 3
+  - name: cache
+    type: function
+    cc: 1
+  - name: key
+    type: function
+    cc: 3
+  - name: cached
+    type: function
+    cc: 3
+  - name: result
+    type: function
+    cc: 1
+- path: src/core/realtimeSync.ts
+  lines: 264
+  classes: 3
+  methods: 20
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: RealtimeSyncConfig
+    type: class
+    cc_avg: 0.0
+  - name: SyncMessage
+    type: class
+    cc_avg: 0.0
+  - name: RealtimeSync
+    type: class
+    cc_avg: 2.8
+  - name: syncLogger
+    type: function
+    cc: 1
+  - name: getRealtimeSync
+    type: function
+    cc: 2
+  - name: disposeRealtimeSync
+    type: function
+    cc: 2
+- path: src/domain/chatEvents.ts
+  lines: 209
+  classes: 1
+  methods: 2
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: ChatMessage
+    type: class
+    cc_avg: 0.0
+  - name: createEvent
+    type: function
+    cc: 2
+  - name: projectChatMessages
+    type: function
+    cc: 6
+- path: src/hooks/useWatchNotifications.ts
+  lines: 140
+  classes: 2
+  methods: 10
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: WatchNotification
+    type: class
+    cc_avg: 0.0
+  - name: UseWatchNotificationsReturn
+    type: class
+    cc_avg: 0.0
+  - name: useWatchNotifications
+    type: function
+    cc: 6
+    fan_out: 13
+  - name: unsub
+    type: function
+    cc: 2
+  - name: changeEvent
+    type: function
+    cc: 1
+  - name: notif
+    type: function
+    cc: 1
+  - name: timer
+    type: function
+    cc: 1
+  - name: acknowledge
+    type: function
+    cc: 1
+  - name: acknowledgeEndpoint
+    type: function
+    cc: 1
+  - name: acknowledgeAll
+    type: function
+    cc: 1
+  - name: stopWatch
+    type: function
+    cc: 1
+  - name: mapChangeToNotification
+    type: function
+    cc: 4
+- path: src/persistence/historyRepository.ts
+  lines: 167
+  classes: 3
+  methods: 10
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: CommandHistoryRow
+    type: class
+    cc_avg: 0.0
+  - name: NetworkHistoryRow
+    type: class
+    cc_avg: 0.0
+  - name: HistoryRepository
+    type: class
+    cc_avg: 2.5
+  - name: repoLogger
+    type: function
+    cc: 1
+- path: src/plugins/chat/chatPlugin.ts
+  lines: 111
+  classes: 1
+  methods: 9
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: ChatLlmPlugin
+    type: class
+    cc_avg: 2.3
+- path: src/plugins/marketplace/marketplaceLoader.ts
+  lines: 346
+  classes: 2
+  methods: 22
+  cc_max: 6
+  inbound_deps: 0
+  exports:
+  - name: MarketplaceEntry
+    type: class
+    cc_avg: 0.0
+  - name: MarketplacePlugin
+    type: class
+    cc_avg: 2.9
+- path: e2e/new-plugins.spec.ts
+  lines: 191
+  classes: 0
+  methods: 14
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: llmStatus
+    type: function
+    cc: 3
+  - name: env
+    type: function
+    cc: 3
+  - name: llmClassifierStatus
+    type: function
+    cc: 4
+  - name: configStore
+    type: function
+    cc: 3
+  - name: apiKey
+    type: function
+    cc: 2
+  - name: text
+    type: function
+    cc: 5
+  - name: messages
+    type: function
+    cc: 1
+  - name: lastMessage
+    type: function
+    cc: 1
+  - name: updatedMessages
+    type: function
+    cc: 1
+  - name: newLastMessage
+    type: function
+    cc: 1
+  - name: input
+    type: function
+    cc: 2
+  - name: autocomplete
+    type: function
+    cc: 2
+  - name: suggestions
+    type: function
+    cc: 1
+  - name: currentValue
+    type: function
+    cc: 1
+- path: src-tauri/src/autostart.rs
+  lines: 90
+  classes: 0
+  methods: 7
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: autostart_enable
+    type: function
+    cc: 5
+    fan_out: 11
+  - name: autostart_disable
+    type: function
+    cc: 4
+    fan_out: 11
+  - name: autostart_status
+    type: function
+    cc: 2
+- path: src-tauri/src/logging.rs
+  lines: 116
+  classes: 0
+  methods: 6
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: init_logging
+    type: function
+    cc: 5
+    fan_out: 27
+  - name: backend_info
+    type: function
+    cc: 1
+  - name: backend_warn
+    type: function
+    cc: 1
+  - name: backend_error
+    type: function
+    cc: 1
+- path: src-tauri/src/network_info.rs
+  lines: 123
+  classes: 1
+  methods: 5
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: NetworkInfo
+    type: class
+    cc_avg: 0.0
+  - name: get_local_network_info
+    type: function
+    cc: 5
+    fan_out: 12
+  - name: list_network_interfaces
+    type: function
+    cc: 4
+    fan_out: 10
+- path: src-tauri/src/vision_capture.rs
+  lines: 102
+  classes: 1
+  methods: 3
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: CaptureStream
+    type: class
+    cc_avg: 0.0
+  - name: open
+    type: function
+    cc: 5
+  - name: next_frame
+    type: function
+    cc: 5
+  - name: reconnect
+    type: function
+    cc: 5
+    fan_out: 11
+- path: src/commands/copyContextCommand.ts
+  lines: 37
+  classes: 1
+  methods: 6
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: CopyContextCommand
+    type: class
+    cc_avg: 2.4
+  - name: logger
+    type: function
+    cc: 5
+- path: src/commands/sendMessageCommand.ts
+  lines: 68
+  classes: 1
+  methods: 5
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: SendMessageCommand
+    type: class
+    cc_avg: 2.0
+  - name: logger
+    type: function
+    cc: 5
+    fan_out: 10
+- path: src/components/DeviceStrip.tsx
+  lines: 226
+  classes: 1
+  methods: 12
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: DeviceStripProps
+    type: class
+    cc_avg: 0.0
+  - name: deviceTypeIcon
+    type: function
+    cc: 4
+  - name: statusDot
+    type: function
+    cc: 5
+  - name: age
+    type: function
+    cc: 1
+  - name: loadDevices
+    type: function
+    cc: 3
+  - name: repo
+    type: function
+    cc: 1
+  - name: all
+    type: function
+    cc: 2
+  - name: interval
+    type: function
+    cc: 1
+  - name: handler
+    type: function
+    cc: 2
+  - name: dispatchChatAction
+    type: function
+    cc: 1
+  - name: handleDelete
+    type: function
+    cc: 4
+  - name: extra
+    type: function
+    cc: 1
+  - name: ok
+    type: function
+    cc: 1
+- path: src/components/WatchBadge.tsx
+  lines: 187
+  classes: 1
+  methods: 5
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: WatchBadgeProps
+    type: class
+    cc_avg: 0.0
+  - name: formatTime
+    type: function
+    cc: 4
+  - name: now
+    type: function
+    cc: 4
+  - name: diff
+    type: function
+    cc: 4
+  - name: getNotificationIcon
+    type: function
+    cc: 5
+  - name: getSeverityColor
+    type: function
+    cc: 5
+- path: src/core/commandBus.ts
+  lines: 64
+  classes: 1
+  methods: 7
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: CommandBus
+    type: class
+    cc_avg: 2.1
+- path: src/lib/phonetic.ts
+  lines: 78
+  classes: 0
+  methods: 5
+  cc_max: 5
+  inbound_deps: 1
+  exports:
+  - name: SORTED_RULES
+    type: function
+    cc: 5
+  - name: normalize
+    type: function
+    cc: 5
+  - name: result
+    type: function
+    cc: 3
+  - name: original
+    type: function
+    cc: 3
+  - name: looksLikeUrl
+    type: function
+    cc: 2
+- path: src/lib/runtime.ts
+  lines: 12
+  classes: 0
+  methods: 2
+  cc_max: 5
+  inbound_deps: 0
+  exports:
+  - name: isTauriRuntime
+    type: function
+    cc: 5
+  - name: runtimeWindow
+    type: function
+    cc: 3
+- path: scripts/add-reolink-camera.mjs
+  lines: 155
+  classes: 0
+  methods: 3
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: addCamera
+    type: function
+    cc: 4
+  - name: dbManager
+    type: function
+    cc: 1
+  - name: deviceRepo
+    type: function
+    cc: 1
+- path: src-tauri/src/main_changes.rs
+  lines: 56
+  classes: 0
+  methods: 1
+  cc_max: 4
+  inbound_deps: 0
+- path: src-tauri/src/vision_llm.rs
+  lines: 336
+  classes: 6
+  methods: 7
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: ChatRequest
+    type: class
+    cc_avg: 0.0
+  - name: Message
+    type: class
+    cc_avg: 0.0
+  - name: ImageUrlData
+    type: class
+    cc_avg: 0.0
+  - name: ObjectDescription
+    type: class
+    cc_avg: 0.0
+  - name: SceneNarrativeResult
+    type: class
+    cc_avg: 0.0
+  - name: LlmClient
+    type: class
+    cc_avg: 0.0
+  - name: label
+    type: function
+    cc: 2
+  - name: from_config
+    type: function
+    cc: 3
+    fan_out: 14
+- path: src/commands/saveSettingsCommand.ts
+  lines: 47
+  classes: 1
+  methods: 4
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: SaveSettingsCommand
+    type: class
+    cc_avg: 2.0
+  - name: logger
+    type: function
+    cc: 4
+- path: src/components/DiagnosticsModal.tsx
+  lines: 319
+  classes: 1
+  methods: 11
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: DiagnosticsModalProps
+    type: class
+    cc_avg: 0.0
+  - name: runtimeIsTauri
+    type: function
+    cc: 1
+  - name: speech
+    type: function
+    cc: 1
+  - name: stt
+    type: function
+    cc: 1
+  - name: tts
+    type: function
+    cc: 1
+  - name: permissionsApi
+    type: function
+    cc: 3
+  - name: active
+    type: function
+    cc: 1
+  - name: state
+    type: function
+    cc: 4
+  - name: next
+    type: function
+    cc: 4
+  - name: micDevices
+    type: function
+    cc: 1
+  - name: speakerDevices
+    type: function
+    cc: 1
+  - name: hasDeviceLabels
+    type: function
+    cc: 1
+- path: src/components/MicSettingsModal.tsx
+  lines: 312
+  classes: 1
+  methods: 11
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: MicSettingsModalProps
+    type: class
+    cc_avg: 0.0
+  - name: STT_MODELS
+    type: function
+    cc: 1
+  - name: runtimeIsTauri
+    type: function
+    cc: 1
+  - name: speech
+    type: function
+    cc: 1
+  - name: stt
+    type: function
+    cc: 1
+  - name: permissionsApi
+    type: function
+    cc: 3
+  - name: active
+    type: function
+    cc: 1
+  - name: state
+    type: function
+    cc: 4
+  - name: next
+    type: function
+    cc: 4
+  - name: micDevices
+    type: function
+    cc: 1
+  - name: update
+    type: function
+    cc: 1
+  - name: handleSave
+    type: function
+    cc: 3
+- path: src/components/Settings.tsx
+  lines: 704
+  classes: 1
+  methods: 16
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: SettingsProps
+    type: class
+    cc_avg: 0.0
+  - name: STT_MODELS
+    type: function
+    cc: 1
+  - name: runtimeIsTauri
+    type: function
+    cc: 1
+  - name: speech
+    type: function
+    cc: 1
+  - name: stt
+    type: function
+    cc: 1
+  - name: tts
+    type: function
+    cc: 1
+  - name: permissionsApi
+    type: function
+    cc: 3
+  - name: active
+    type: function
+    cc: 1
+  - name: state
+    type: function
+    cc: 4
+  - name: next
+    type: function
+    cc: 4
+  - name: micDevices
+    type: function
+    cc: 1
+  - name: speakerDevices
+    type: function
+    cc: 1
+  - name: hasDeviceLabels
+    type: function
+    cc: 1
+  - name: update
+    type: function
+    cc: 1
+  - name: handleSave
+    type: function
+    cc: 3
+  - name: result
+    type: function
+    cc: 2
+  - name: msg
+    type: function
+    cc: 1
+- path: src/components/SetupWizardModal.tsx
+  lines: 550
+  classes: 1
+  methods: 13
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: SetupWizardModalProps
+    type: class
+    cc_avg: 0.0
+  - name: MODELS
+    type: function
+    cc: 1
+  - name: toggleAutostart
+    type: function
+    cc: 4
+  - name: handleSave
+    type: function
+    cc: 1
+  - name: runtimeIsTauri
+    type: function
+    cc: 4
+  - name: configStatus
+    type: function
+    cc: 4
+  - name: apiKeyTrimmed
+    type: function
+    cc: 4
+  - name: testApiKey
+    type: function
+    cc: 4
+  - name: key
+    type: function
+    cc: 3
+  - name: msg
+    type: function
+    cc: 1
+  - name: canProceed
+    type: function
+    cc: 2
+  - name: Icon
+    type: function
+    cc: 1
+  - name: done
+    type: function
+    cc: 1
+  - name: active
+    type: function
+    cc: 1
+- path: src/contexts/CqrsContext.tsx
+  lines: 79
+  classes: 1
+  methods: 11
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: CqrsContextValue
+    type: class
+    cc_avg: 0.0
+  - name: CqrsContext
+    type: function
+    cc: 4
+    fan_out: 13
+  - name: CqrsProvider
+    type: function
+    cc: 4
+    fan_out: 13
+  - name: storeRef
+    type: function
+    cc: 2
+  - name: aggregateRef
+    type: function
+    cc: 2
+  - name: value
+    type: function
+    cc: 2
+  - name: store
+    type: function
+    cc: 1
+  - name: aggregate
+    type: function
+    cc: 1
+  - name: browseAdapter
+    type: function
+    cc: 1
+  - name: llmAdapter
+    type: function
+    cc: 1
+  - name: useCqrs
+    type: function
+    cc: 2
+  - name: context
+    type: function
+    cc: 2
+- path: src/core/processRegistry.ts
+  lines: 118
+  classes: 2
+  methods: 13
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: ProcessInfo
+    type: class
+    cc_avg: 0.0
+  - name: ProcessRegistry
+    type: class
+    cc_avg: 1.7
+  - name: processRegistry
+    type: function
+    cc: 1
+- path: src/domain/chatAggregate.ts
+  lines: 72
+  classes: 1
+  methods: 8
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: ChatAggregate
+    type: class
+    cc_avg: 2.0
+- path: src/persistence/scanHistoryRepository.ts
+  lines: 153
+  classes: 3
+  methods: 15
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: ScanHistoryEntry
+    type: class
+    cc_avg: 0.0
+  - name: IncrementalScanRecommendation
+    type: class
+    cc_avg: 0.0
+  - name: ScanHistoryRepository
+    type: class
+    cc_avg: 2.2
+- path: src/plugins/rtsp-camera/index.ts
+  lines: 58
+  classes: 1
+  methods: 3
+  cc_max: 4
+  inbound_deps: 0
+  exports:
+  - name: RegisterRtspCameraOptions
+    type: class
+    cc_avg: 0.0
+  - name: registerRtspCameraPlugin
+    type: function
+    cc: 4
+  - name: plugin
+    type: function
+    cc: 3
+  - name: tauriPlugin
+    type: function
+    cc: 1
+- path: e2e/logging.spec.ts
+  lines: 60
+  classes: 0
+  methods: 5
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: diagnosticButton
+    type: function
+    cc: 1
+  - name: diagnosticTitle
+    type: function
+    cc: 1
+  - name: closeDiagnosticBtn
+    type: function
+    cc: 2
+  - name: errorReportBtn
+    type: function
+    cc: 3
+  - name: w
+    type: function
+    cc: 1
+- path: e2e/network-scanning-flow.spec.ts
+  lines: 342
+  classes: 0
+  methods: 13
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: networkOption
+    type: function
+    cc: 2
+  - name: scanResults
+    type: function
+    cc: 3
+  - name: scanResultsVisible
+    type: function
+    cc: 3
+  - name: networkOptions
+    type: function
+    cc: 2
+  - name: cameraFound
+    type: function
+    cc: 3
+  - name: optionLocator
+    type: function
+    cc: 2
+  - name: element
+    type: function
+    cc: 2
+  - name: interactionFound
+    type: function
+    cc: 3
+  - name: testSuccessful
+    type: function
+    cc: 1
+  - name: button
+    type: function
+    cc: 1
+  - name: backButton
+    type: function
+    cc: 2
+  - name: historyItems
+    type: function
+    cc: 2
+  - name: historyItem
+    type: function
+    cc: 1
+- path: e2e/voice-interface.spec.ts
+  lines: 313
+  classes: 0
+  methods: 19
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: openApp
+    type: function
+    cc: 1
+  - name: supported
+    type: function
+    cc: 2
+  - name: input
+    type: function
+    cc: 1
+  - name: ttsButton
+    type: function
+    cc: 1
+  - name: hasTtsButton
+    type: function
+    cc: 2
+  - name: assistantMessages
+    type: function
+    cc: 1
+  - name: count
+    type: function
+    cc: 1
+  - name: result
+    type: function
+    cc: 1
+  - name: utt
+    type: function
+    cc: 1
+  - name: voiceCount
+    type: function
+    cc: 2
+  - name: voices
+    type: function
+    cc: 2
+  - name: micButton
+    type: function
+    cc: 1
+  - name: SR
+    type: function
+    cc: 3
+  - name: orig
+    type: function
+    cc: 1
+  - name: startCalled
+    type: function
+    cc: 2
+  - name: speakCalled
+    type: function
+    cc: 1
+  - name: sendBtn
+    type: function
+    cc: 1
+  - name: copyBtn
+    type: function
+    cc: 1
+  - name: settingsBtn
+    type: function
+    cc: 1
+- path: src/components/NetworkSelector.tsx
+  lines: 315
+  classes: 2
+  methods: 4
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: NetworkConfig
+    type: class
+    cc_avg: 0.0
+  - name: NetworkSelectorProps
+    type: class
+    cc_avg: 0.0
+  - name: handleSelect
+    type: function
+    cc: 1
+  - name: handleHistorySelect
+    type: function
+    cc: 3
+  - name: config
+    type: function
+    cc: 3
+  - name: handleNewNetwork
+    type: function
+    cc: 1
+- path: src/components/TtsSettingsModal.tsx
+  lines: 303
+  classes: 1
+  methods: 7
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: TtsSettingsModalProps
+    type: class
+    cc_avg: 0.0
+  - name: runtimeIsTauri
+    type: function
+    cc: 1
+  - name: tts
+    type: function
+    cc: 1
+  - name: speakerDevices
+    type: function
+    cc: 1
+  - name: update
+    type: function
+    cc: 1
+  - name: handleSave
+    type: function
+    cc: 3
+  - name: result
+    type: function
+    cc: 2
+  - name: msg
+    type: function
+    cc: 1
+- path: src/components/WatchBadge.simple.tsx
+  lines: 51
+  classes: 1
+  methods: 1
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: WatchBadgeProps
+    type: class
+    cc_avg: 0.0
+  - name: handleClick
+    type: function
+    cc: 3
+- path: src/config/appConfig.ts
+  lines: 628
+  classes: 13
+  methods: 3
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: LlmAppConfig
+    type: class
+    cc_avg: 0.0
+  - name: SttAppConfig
+    type: class
+    cc_avg: 0.0
+  - name: NetworkScanConfig
+    type: class
+    cc_avg: 0.0
+  - name: ServiceProbeConfig
+    type: class
+    cc_avg: 0.0
+  - name: SshAppConfig
+    type: class
+    cc_avg: 0.0
+  - name: LocaleConfig
+    type: class
+    cc_avg: 0.0
+  - name: CameraDefaults
+    type: class
+    cc_avg: 0.0
+  - name: MonitorAppConfig
+    type: class
+    cc_avg: 0.0
+  - name: EmailAppConfig
+    type: class
+    cc_avg: 0.0
+  - name: FrigateAppConfig
+    type: class
+    cc_avg: 0.0
+  - name: MotionDetectionConfig
+    type: class
+    cc_avg: 0.0
+  - name: AppConfig
+    type: class
+    cc_avg: 0.0
+  - name: ConfigFieldMeta
+    type: class
+    cc_avg: 0.0
+  - name: getConfigFieldsByCategory
+    type: function
+    cc: 3
+  - name: map
+    type: function
+    cc: 3
+  - name: list
+    type: function
+    cc: 1
+- path: src/lib/llmPrompts.ts
+  lines: 64
+  classes: 0
+  methods: 1
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: getPrompt
+    type: function
+    cc: 3
+- path: src/queries/getSettingsQuery.ts
+  lines: 33
+  classes: 1
+  methods: 2
+  cc_max: 3
+  inbound_deps: 0
+  exports:
+  - name: GetSettingsQuery
+    type: class
+    cc_avg: 3.0
+  - name: logger
+    type: function
+    cc: 3
+- path: e2e/plugin-system.spec.ts
+  lines: 315
+  classes: 0
+  methods: 3
+  cc_max: 2
+  inbound_deps: 0
+  exports:
+  - name: waitForApp
+    type: function
+    cc: 2
+  - name: sendMessage
+    type: function
+    cc: 1
+  - name: body
+    type: function
+    cc: 1
+- path: src-tauri/src/email.rs
+  lines: 488
+  classes: 3
+  methods: 1
+  cc_max: 2
+  inbound_deps: 0
+  exports:
+  - name: EmailConfig
+    type: class
+    cc_avg: 0.0
+  - name: EmailMessage
+    type: class
+    cc_avg: 0.0
+  - name: InboxSummary
+    type: class
+    cc_avg: 0.0
+- path: src/core/plugin.types.ts
+  lines: 230
+  classes: 19
+  methods: 3
+  cc_max: 2
+  inbound_deps: 0
+  exports:
+  - name: PluginQuery
+    type: class
+    cc_avg: 0.0
+  - name: QueryMetadata
+    type: class
+    cc_avg: 0.0
+  - name: PluginResult
+    type: class
+    cc_avg: 0.0
+  - name: ContentBlock
+    type: class
+    cc_avg: 0.0
+  - name: ResultMetadata
+    type: class
+    cc_avg: 0.0
+  - name: PluginCapabilities
+    type: class
+    cc_avg: 0.0
+  - name: DataSourcePlugin
+    type: class
+    cc_avg: 0.0
+  - name: StreamablePlugin
+    type: class
+    cc_avg: 0.0
+  - name: VisualPlugin
+    type: class
+    cc_avg: 0.0
+  - name: PersistentPlugin
+    type: class
+    cc_avg: 0.0
+  - name: PluginEvent
+    type: class
+    cc_avg: 0.0
+  - name: IPluginRegistry
+    type: class
+    cc_avg: 0.0
+  - name: IIntentRouter
+    type: class
+    cc_avg: 0.0
+  - name: ICommand
+    type: class
+    cc_avg: 0.0
+  - name: ICommandHandler
+    type: class
+    cc_avg: 0.0
+  - name: ICommandBus
+    type: class
+    cc_avg: 0.0
+  - name: IQuery
+    type: class
+    cc_avg: 0.0
+  - name: IQueryHandler
+    type: class
+    cc_avg: 0.0
+  - name: IQueryBus
+    type: class
+    cc_avg: 0.0
+  - name: isStreamable
+    type: function
+    cc: 2
+  - name: isVisual
+    type: function
+    cc: 2
+  - name: isPersistent
+    type: function
+    cc: 2
+- path: src/main.tsx
+  lines: 37
+  classes: 0
+  methods: 4
+  cc_max: 2
+  inbound_deps: 0
+  exports:
+  - name: startupLogger
+    type: function
+    cc: 2
+  - name: disableStrictModeForTauriDev
+    type: function
+    cc: 2
+  - name: renderApp
+    type: function
+    cc: 2
+  - name: rootElement
+    type: function
+    cc: 2
+- path: src/services/defaultLlmAdapter.ts
+  lines: 41
+  classes: 1
+  methods: 7
+  cc_max: 2
+  inbound_deps: 0
+  exports:
+  - name: DefaultLlmAdapter
+    type: class
+    cc_avg: 1.3
+- path: e2e/ssh-integration.spec.ts
+  lines: 151
+  classes: 0
+  methods: 4
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: input
+    type: function
+    cc: 1
+  - name: response
+    type: function
+    cc: 1
+  - name: messages
+    type: function
+    cc: 1
+  - name: apiKeySet
+    type: function
+    cc: 1
+- path: playwright.config.ts
+  lines: 54
+  classes: 0
+  methods: 1
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: testEnv
+    type: function
+    cc: 1
+- path: src/components/AlertBridgeComponent.tsx
+  lines: 18
+  classes: 1
+  methods: 1
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: AlertBridgeComponentProps
+    type: class
+    cc_avg: 0.0
+  - name: AlertBridgeComponent
+    type: function
+    cc: 1
+- path: src/components/ChatPersistenceBridge.tsx
+  lines: 19
+  classes: 1
+  methods: 1
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: Props
+    type: class
+    cc_avg: 0.0
+  - name: ChatPersistenceBridge
+    type: function
+    cc: 1
+- path: src/components/TtsControls.tsx
+  lines: 74
+  classes: 1
+  methods: 3
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: TtsControlsProps
+    type: class
+    cc_avg: 0.0
+  - name: handlePause
+    type: function
+    cc: 1
+  - name: handleResume
+    type: function
+    cc: 1
+  - name: handleStop
+    type: function
+    cc: 1
+- path: src/domain/audioSettings.ts
+  lines: 43
+  classes: 1
+  methods: 1
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: AudioSettings
+    type: class
+    cc_avg: 0.0
+  - name: withAudioSettingsDefaults
+    type: function
+    cc: 1
+- path: src/hooks/useChatMessages.ts
+  lines: 25
+  classes: 0
+  methods: 2
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: useChatMessages
+    type: function
+    cc: 1
+  - name: unsubscribe
+    type: function
+    cc: 1
+- path: src/hooks/useDatabaseManager.ts
+  lines: 13
+  classes: 0
+  methods: 2
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: DatabaseManagerContext
+    type: function
+    cc: 1
+  - name: useDatabaseManager
+    type: function
+    cc: 1
+- path: src/plugins/mqtt/index.ts
+  lines: 19
+  classes: 0
+  methods: 2
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: registerMqttPlugin
+    type: function
+    cc: 1
+  - name: plugin
+    type: function
+    cc: 1
+- path: src/queries/getMessagesQuery.ts
+  lines: 22
+  classes: 1
+  methods: 4
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: GetMessagesQuery
+    type: class
+    cc_avg: 1.0
+- path: src/services/defaultBrowseAdapter.ts
+  lines: 12
+  classes: 1
+  methods: 1
+  cc_max: 1
+  inbound_deps: 0
+  exports:
+  - name: DefaultBrowseAdapter
+    type: class
+    cc_avg: 1.0
+- path: postcss.config.js
+  lines: 6
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: project.sh
+  lines: 21
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: scripts/detect-platform.sh
+  lines: 328
+  classes: 0
+  methods: 8
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: detect_os
+    type: function
+    cc: 0
+  - name: detect_arch
+    type: function
+    cc: 0
+  - name: detect_cpu
+    type: function
+    cc: 0
+  - name: detect_gpu
+    type: function
+    cc: 0
+  - name: recommend_openvino_ep
+    type: function
+    cc: 0
+  - name: print_report
+    type: function
+    cc: 0
+  - name: export_vars
+    type: function
+    cc: 0
+  - name: main
+    type: function
+    cc: 0
+- path: scripts/install-openvino-docker.sh
+  lines: 202
+  classes: 0
+  methods: 8
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: check_docker
+    type: function
+    cc: 0
+  - name: pull_openvino_image
+    type: function
+    cc: 0
+  - name: test_in_docker
+    type: function
+    cc: 0
+  - name: print
+    type: function
+    cc: 0
+  - name: generate_dockerfile
+    type: function
+    cc: 0
+  - name: generate_compose
+    type: function
+    cc: 0
+  - name: build_docker_image
+    type: function
+    cc: 0
+  - name: main
+    type: function
+    cc: 0
+- path: scripts/install-openvino-macos.sh
+  lines: 114
+  classes: 0
+  methods: 8
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: install_homebrew_deps
+    type: function
+    cc: 0
+  - name: install_via_pip
+    type: function
+    cc: 0
+  - name: install_via_brew
+    type: function
+    cc: 0
+  - name: print_macos_notes
+    type: function
+    cc: 0
+  - name: setup_environment
+    type: function
+    cc: 0
+  - name: verify_install
+    type: function
+    cc: 0
+  - name: print
+    type: function
+    cc: 0
+  - name: main
+    type: function
+    cc: 0
+- path: scripts/install-openvino-pip.sh
+  lines: 143
+  classes: 0
+  methods: 7
+  cc_max: 0
+  inbound_deps: 1
+  exports:
+  - name: find_python
+    type: function
+    cc: 0
+  - name: install_in_venv
+    type: function
+    cc: 0
+  - name: install_system_wide
+    type: function
+    cc: 0
+  - name: install_dev_tools
+    type: function
+    cc: 0
+  - name: verify_install
+    type: function
+    cc: 0
+  - name: print
+    type: function
+    cc: 0
+  - name: main
+    type: function
+    cc: 0
+- path: scripts/install-openvino-rhel.sh
+  lines: 95
+  classes: 0
+  methods: 7
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: install_prerequisites
+    type: function
+    cc: 0
+  - name: install_via_yum_repo
+    type: function
+    cc: 0
+  - name: install_via_pip
+    type: function
+    cc: 0
+  - name: install_gpu_runtime
+    type: function
+    cc: 0
+  - name: setup_environment
+    type: function
+    cc: 0
+  - name: verify_install
+    type: function
+    cc: 0
+  - name: main
+    type: function
+    cc: 0
+- path: scripts/install-openvino-ubuntu.sh
+  lines: 279
+  classes: 0
+  methods: 9
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: install_prerequisites
+    type: function
+    cc: 0
+  - name: install_via_apt
+    type: function
+    cc: 0
+  - name: install_via_pip
+    type: function
+    cc: 0
+  - name: install_gpu_runtime
+    type: function
+    cc: 0
+  - name: install_python_extras
+    type: function
+    cc: 0
+  - name: setup_environment
+    type: function
+    cc: 0
+  - name: verify_install
+    type: function
+    cc: 0
+  - name: print
+    type: function
+    cc: 0
+  - name: main
+    type: function
+    cc: 0
+- path: scripts/install-openvino.sh
+  lines: 188
+  classes: 0
+  methods: 4
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: run_detect
+    type: function
+    cc: 0
+  - name: check_install
+    type: function
+    cc: 0
+  - name: print
+    type: function
+    cc: 0
+  - name: main
+    type: function
+    cc: 0
+- path: src-tauri/src/docker.rs
+  lines: 310
+  classes: 5
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: DockerContainer
+    type: class
+    cc_avg: 0.0
+  - name: DockerImage
+    type: class
+    cc_avg: 0.0
+  - name: DockerVolume
+    type: class
+    cc_avg: 0.0
+  - name: DockerNetwork
+    type: class
+    cc_avg: 0.0
+  - name: DockerInfo
+    type: class
+    cc_avg: 0.0
+- path: src-tauri/src/frigate_mqtt.rs
+  lines: 155
+  classes: 3
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: FrigateMqttEvent
+    type: class
+    cc_avg: 0.0
+  - name: FrigateMqttConfig
+    type: class
+    cc_avg: 0.0
+  - name: FrigateMqttRuntime
+    type: class
+    cc_avg: 0.0
+- path: src-tauri/src/llm.rs
+  lines: 126
+  classes: 1
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: LlmResponse
+    type: class
+    cc_avg: 0.0
+- path: src-tauri/src/remote_machine.rs
+  lines: 309
+  classes: 6
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: RemoteMachine
+    type: class
+    cc_avg: 0.0
+  - name: RemoteCommandResult
+    type: class
+    cc_avg: 0.0
+  - name: RemoteSystemInfo
+    type: class
+    cc_avg: 0.0
+  - name: DiskUsage
+    type: class
+    cc_avg: 0.0
+  - name: NetworkInterface
+    type: class
+    cc_avg: 0.0
+  - name: RemoteProcess
+    type: class
+    cc_avg: 0.0
+- path: src-tauri/src/setup-audio.sh
+  lines: 130
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src-tauri/target/release/bundle/appimage/Broxeen.AppDir/apprun-hooks/linuxdeploy-plugin-gtk.sh
+  lines: 18
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/core/types.ts
+  lines: 109
+  classes: 10
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: PluginContext
+    type: class
+    cc_avg: 0.0
+  - name: CameraConfig
+    type: class
+    cc_avg: 0.0
+  - name: MqttConfig
+    type: class
+    cc_avg: 0.0
+  - name: MqttAdapter
+    type: class
+    cc_avg: 0.0
+  - name: Plugin
+    type: class
+    cc_avg: 0.0
+  - name: IntentDetection
+    type: class
+    cc_avg: 0.0
+  - name: IntentRouter
+    type: class
+    cc_avg: 0.0
+  - name: PluginRegistry
+    type: class
+    cc_avg: 0.0
+  - name: CommandBus
+    type: class
+    cc_avg: 0.0
+  - name: AppContext
+    type: class
+    cc_avg: 0.0
+- path: src/discovery/types.ts
+  lines: 78
+  classes: 8
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: NetworkScanResult
+    type: class
+    cc_avg: 0.0
+  - name: DiscoveredDevice
+    type: class
+    cc_avg: 0.0
+  - name: ServiceProbeResult
+    type: class
+    cc_avg: 0.0
+  - name: DiscoveredService
+    type: class
+    cc_avg: 0.0
+  - name: ServiceMetadata
+    type: class
+    cc_avg: 0.0
+  - name: NetworkScannerConfig
+    type: class
+    cc_avg: 0.0
+  - name: ServiceProberConfig
+    type: class
+    cc_avg: 0.0
+  - name: DiscoveryEvent
+    type: class
+    cc_avg: 0.0
+- path: src/persistence/migrations.ts
+  lines: 302
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/persistence/types.ts
+  lines: 93
+  classes: 9
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: Device
+    type: class
+    cc_avg: 0.0
+  - name: DeviceService
+    type: class
+    cc_avg: 0.0
+  - name: ContentSnapshot
+    type: class
+    cc_avg: 0.0
+  - name: ChangeHistory
+    type: class
+    cc_avg: 0.0
+  - name: Conversation
+    type: class
+    cc_avg: 0.0
+  - name: Message
+    type: class
+    cc_avg: 0.0
+  - name: WatchRule
+    type: class
+    cc_avg: 0.0
+  - name: DatabaseConfig
+    type: class
+    cc_avg: 0.0
+  - name: Migration
+    type: class
+    cc_avg: 0.0
+- path: src/plugins/cameras/index.ts
+  lines: 7
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/plugins/marketplace/index.ts
+  lines: 6
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/plugins/monitor/index.ts
+  lines: 6
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/plugins/protocol-bridge/index.ts
+  lines: 12
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/plugins/system/logs.index.ts
+  lines: 8
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/plugins/voice/index.ts
+  lines: 8
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: src/reactive/types.ts
+  lines: 64
+  classes: 6
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: WatchRule
+    type: class
+    cc_avg: 0.0
+  - name: ChangeDetectedEvent
+    type: class
+    cc_avg: 0.0
+  - name: WatchConfig
+    type: class
+    cc_avg: 0.0
+  - name: ChangeDetectionResult
+    type: class
+    cc_avg: 0.0
+  - name: WatchManagerEvent
+    type: class
+    cc_avg: 0.0
+  - name: PollingStats
+    type: class
+    cc_avg: 0.0
+- path: src/services/browseService.ts
+  lines: 9
+  classes: 1
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: BrowseService
+    type: class
+    cc_avg: 0.0
+- path: src/services/llmService.ts
+  lines: 25
+  classes: 1
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+  exports:
+  - name: LlmService
+    type: class
+    cc_avg: 0.0
+- path: src/vite-env.d.ts
+  lines: 1
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+- path: tailwind.config.js
+  lines: 23
+  classes: 0
+  methods: 0
+  cc_max: 0
+  inbound_deps: 0
+hotspots:
+- name: registerCorePlugins
+  fan_out: 52
+  note: Orchestrates 52 calls
+- name: useChatSpeech
+  fan_out: 49
+  note: Orchestrates 49 calls
+- name: useTts
+  fan_out: 48
+  note: Orchestrates 48 calls
+- name: useStt
+  fan_out: 48
+  note: Orchestrates 48 calls
+- name: host
+  fan_out: 47
+  note: Orchestrates 47 calls
+- name: chatApiPlugin
+  fan_out: 47
+  note: Orchestrates 47 calls
+- name: useChatDispatch
+  fan_out: 46
+  note: 46-way dispatch
+- name: Pipeline.start
+  fan_out: 46
+  note: Orchestrates 46 calls
+- name: ensure_rtsp_worker
+  fan_out: 44
+  note: Orchestrates 44 calls
+- name: configLogger
+  fan_out: 43
+  note: Orchestrates 43 calls
+refactoring:
+  priorities:
+  - action: Split host (CC=71 → target CC<10)
+    impact: high
+    effort: low
+    module: vite.config.ts
+  - action: Split chatApiPlugin (CC=71 → target CC<10)
+    impact: high
+    effort: low
+    module: vite.config.ts
+  - action: Split handleQuery (CC=31 → target CC<10)
+    impact: high
+    effort: low
+    module: vite.config.ts
+  - action: Split intent (CC=30 → target CC<10)
+    impact: high
+    effort: low
+    module: vite.config.ts
+  - action: Split sub (CC=30 → target CC<10)
+    impact: high
+    effort: low
+    module: vite.config.ts
+  - action: Split repoLogger (CC=27 → target CC<10)
+    impact: high
+    effort: low
+    module: deviceRepository.ts
+  - action: Split useTts (CC=72 → target CC<10)
+    impact: high
+    effort: low
+    module: useTts.ts
+  - action: Split probeTauriBackendTts (CC=25 → target CC<10)
+    impact: high
+    effort: low
+    module: useTts.ts
+  - action: Split calculateBlockScore (CC=32 → target CC<10)
+    impact: high
+    effort: low
+    module: browseGateway.ts
+  - action: Split extractBrowserReadableContent (CC=42 → target CC<10)
+    impact: high
+    effort: low
+    module: browseGateway.ts
+  - action: Split title (CC=30 → target CC<10)
+    impact: high
+    effort: low
+    module: browseGateway.ts
+  - action: Split bestScore (CC=30 → target CC<10)
+    impact: high
+    effort: low
+    module: browseGateway.ts
+  - action: Split useChatDispatch (CC=78 → target CC<10)
+    impact: high
+    effort: low
+    module: useChatDispatch.ts
+  - action: Split handleSubmit (CC=72 → target CC<10)
+    impact: high
+    effort: low
+    module: useChatDispatch.ts
+  - action: Split useChatSpeech (CC=107 → target CC<10)
+    impact: high
+    effort: low
+    module: useChatSpeech.ts
+evolution:
+- date: '2026-03-24'
+  cc_avg: 4.0
+  critical: 306
+  lines: 82967
+  note: Automated analysis

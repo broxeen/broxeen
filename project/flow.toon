@@ -1,0 +1,616 @@
+# broxeen/flow | 3725 func | 12 pipelines | 2 hub-types | 2026-03-24
+
+PIPELINES[12] (NLP:1, Unknown:11):
+  Src [Unknown]: ? → ?
+              → executeBrowseCommand()                  CC=5    pure ▶
+              → runExecuteBrowseCommand()               CC=5    pure
+              → browseInBrowser()                       CC=8    IO
+              → runBrowseInBrowser()                    CC=8    IO
+              → getSmartFetchers()                      CC=10   cache
+              → fetchViaJina()                          CC=19   cache  !!
+              → fetchViaAdvancedProxy()                 CC=10   cache
+              → generateAdvancedHeaders()               CC=7    pure
+              → generateInteriaCookies()                CC=2    pure
+              → now()                                   CC=3    pure ■
+              PURITY: 5/10 pure  BOTTLENECK: fetchViaJina(CC=19)
+
+  Src [Unknown]: ? → ?
+              → start()                                 CC=2    IO ▶
+              → startCleanupInterval()                  CC=1    pure
+              → cleanupExpiredWatches()                 CC=3    IO
+              → cancelWatchRule()                       CC=2    pure
+              → stopPolling()                           CC=2    pure
+              → clearInterval()                         CC=1    pure
+              → pollTarget()                            CC=6    cache
+              → now()                                   CC=2    pure
+              → emitEvent()                             CC=2    pure
+              → listener()                              CC=2    pure ■
+              PURITY: 7/10 pure  BOTTLENECK: pollTarget(CC=6)
+
+  Src [Unknown]: ? → ?
+              → rows()                                  CC=4    pure ▶
+              → startPolling()                          CC=2    pure
+              → setInterval()                           CC=1    pure
+              → cleanupExpiredWatches()                 CC=3    IO
+              → cancelWatchRule()                       CC=2    pure
+              → stopPolling()                           CC=2    pure
+              → clearInterval()                         CC=1    pure
+              → pollTarget()                            CC=6    cache
+              → emitEvent()                             CC=2    pure
+              → listener()                              CC=2    pure ■
+              PURITY: 8/10 pure  BOTTLENECK: pollTarget(CC=6)
+
+  Src [Unknown]: ? → ?
+              → startTime()                             CC=6    cache ▶
+              → now()                                   CC=2    pure
+              → cancelWatchRule()                       CC=2    pure
+              → stopPolling()                           CC=2    pure
+              → clearInterval()                         CC=1    pure
+              → pollTarget()                            CC=6    cache
+              → emitEvent()                             CC=2    pure
+              → listener()                              CC=2    pure ■
+              PURITY: 6/8 pure  BOTTLENECK: startTime(CC=6)
+
+  Src [Unknown]: ? → ?
+              → expiredRules()                          CC=2    pure ▶
+              → cancelWatchRule()                       CC=2    pure
+              → stopPolling()                           CC=2    pure
+              → clearInterval()                         CC=1    pure
+              → pollTarget()                            CC=6    cache
+              → now()                                   CC=2    pure
+              → emitEvent()                             CC=2    pure
+              → listener()                              CC=2    pure ■
+              PURITY: 7/8 pure  BOTTLENECK: pollTarget(CC=6)
+
+  Src [Unknown]: ? → ?
+              → CONTENT_TRIM()                          CC=1    pure ▶
+              → runAsk()                                CC=1    pure
+              → chat()                                  CC=4    pure
+              → runChat()                               CC=4    pure
+              → chatDirect()                            CC=10   cache
+              → runChatDirect()                         CC=10   cache
+              → text()                                  CC=4    pure ■
+              PURITY: 5/7 pure  BOTTLENECK: chatDirect(CC=10)
+
+  Src [Unknown]: ? → ?
+              → TTS_TRIM()                              CC=1    pure ▶
+              → runAsk()                                CC=1    pure
+              → chat()                                  CC=4    pure
+              → runChat()                               CC=4    pure
+              → chatDirect()                            CC=10   cache
+              → runChatDirect()                         CC=10   cache
+              → text()                                  CC=4    pure ■
+              PURITY: 5/7 pure  BOTTLENECK: chatDirect(CC=10)
+
+  Src [Unknown]: ? → ?
+              → askAboutContent()                       CC=1    pure ▶
+              → runAsk()                                CC=1    pure
+              → chat()                                  CC=4    pure
+              → runChat()                               CC=4    pure
+              → chatDirect()                            CC=10   cache
+              → runChatDirect()                         CC=10   cache
+              → text()                                  CC=4    pure ■
+              PURITY: 5/7 pure  BOTTLENECK: chatDirect(CC=10)
+
+  Src [Unknown]: ? → ?
+              → describeImage()                         CC=1    pure ▶
+              → runDescribe()                           CC=1    pure
+              → chat()                                  CC=4    pure
+              → runChat()                               CC=4    pure
+              → chatDirect()                            CC=10   cache
+              → runChatDirect()                         CC=10   cache
+              → text()                                  CC=4    pure ■
+              PURITY: 5/7 pure  BOTTLENECK: chatDirect(CC=10)
+
+  Src [Unknown]: ? → ?
+              → describeImageChange()                   CC=1    pure ▶
+              → runDescribe()                           CC=1    pure
+              → chat()                                  CC=4    pure
+              → runChat()                               CC=4    pure
+              → chatDirect()                            CC=10   cache
+              → runChatDirect()                         CC=10   cache
+              → text()                                  CC=4    pure ■
+              PURITY: 5/7 pure  BOTTLENECK: chatDirect(CC=10)
+
+  Src [Unknown]: ? → ?
+              → summarizeForTts()                       CC=1    pure ▶
+              → runSummarize()                          CC=1    pure
+              → chat()                                  CC=4    pure
+              → runChat()                               CC=4    pure
+              → chatDirect()                            CC=10   cache
+              → runChatDirect()                         CC=10   cache
+              → text()                                  CC=4    pure ■
+              PURITY: 5/7 pure  BOTTLENECK: chatDirect(CC=10)
+
+  Src [NLP]: ? → ?
+              → detectIntent()                          CC=1    pure ▶
+              → runDetect()                             CC=1    pure
+              → chat()                                  CC=4    pure
+              → runChat()                               CC=4    pure
+              → chatDirect()                            CC=10   cache
+              → runChatDirect()                         CC=10   cache
+              → text()                                  CC=4    pure ■
+              PURITY: 5/7 pure  BOTTLENECK: chatDirect(CC=10)
+
+
+TRANSFORMS (fan-out ≥10):
+  registerCorePlugins()                                   fan=52   !! mutation-heavy
+  useChatSpeech()                                         fan=49   !! mutation-heavy
+  useTts()                                                fan=48   !! mutation-heavy
+  useStt()                                                fan=48   !! mutation-heavy
+  host()                                                  fan=47   !! mutation-heavy
+  chatApiPlugin()                                         fan=47   !! mutation-heavy
+  useChatDispatch()                                       fan=46   !! mutation-heavy
+  start()                                                 fan=46   !! mutation-heavy
+  ensure_rtsp_worker()                                    fan=44   !! mutation-heavy
+  configLogger()                                          fan=43   !! mutation-heavy
+  execute()                                               fan=43   !! mutation-heavy
+  handleStart()                                           fan=41   !! mutation-heavy
+  execute()                                               fan=38   !! mutation-heavy
+  ChatInput()                                             fan=38   !! mutation-heavy
+  search_with_rust_search()                               fan=38   !! mutation-heavy
+
+CONTRACTS:
+  Pipeline: Src
+    executeBrowseCommand()
+      IN:  ()
+      OUT: None
+
+    runExecuteBrowseCommand()
+      IN:  ()
+      OUT: None
+
+    browseInBrowser()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: IO(calls:IO)
+
+    runBrowseInBrowser()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: IO(calls:IO)
+
+    getSmartFetchers()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(name:getSmartFetchers)
+
+    fetchViaJina()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(name:fetchViaJina)
+      SMELL: CC=19 → split
+
+    fetchViaAdvancedProxy()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(name:fetchViaAdvancedProxy)
+
+    generateAdvancedHeaders()
+      IN:  ()
+      OUT: None
+
+    generateInteriaCookies()
+      IN:  ()
+      OUT: None
+
+    now()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    start()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: IO(calls:IO)
+
+    startCleanupInterval()
+      IN:  ()
+      OUT: None
+
+    cleanupExpiredWatches()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: IO(calls:IO)
+
+    cancelWatchRule()
+      IN:  ()
+      OUT: None
+
+    stopPolling()
+      IN:  ()
+      OUT: None
+
+    clearInterval()
+      IN:  ()
+      OUT: None
+
+    pollTarget()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    now()
+      IN:  ()
+      OUT: None
+
+    emitEvent()
+      IN:  ()
+      OUT: None
+
+    listener()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    rows()
+      IN:  ()
+      OUT: None
+
+    startPolling()
+      IN:  ()
+      OUT: None
+
+    setInterval()
+      IN:  ()
+      OUT: None
+
+    cleanupExpiredWatches()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: IO(calls:IO)
+
+    cancelWatchRule()
+      IN:  ()
+      OUT: None
+
+    stopPolling()
+      IN:  ()
+      OUT: None
+
+    clearInterval()
+      IN:  ()
+      OUT: None
+
+    pollTarget()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    emitEvent()
+      IN:  ()
+      OUT: None
+
+    listener()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    startTime()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    now()
+      IN:  ()
+      OUT: None
+
+    cancelWatchRule()
+      IN:  ()
+      OUT: None
+
+    stopPolling()
+      IN:  ()
+      OUT: None
+
+    clearInterval()
+      IN:  ()
+      OUT: None
+
+    pollTarget()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    emitEvent()
+      IN:  ()
+      OUT: None
+
+    listener()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    expiredRules()
+      IN:  ()
+      OUT: None
+
+    cancelWatchRule()
+      IN:  ()
+      OUT: None
+
+    stopPolling()
+      IN:  ()
+      OUT: None
+
+    clearInterval()
+      IN:  ()
+      OUT: None
+
+    pollTarget()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    now()
+      IN:  ()
+      OUT: None
+
+    emitEvent()
+      IN:  ()
+      OUT: None
+
+    listener()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    CONTENT_TRIM()
+      IN:  ()
+      OUT: None
+
+    runAsk()
+      IN:  ()
+      OUT: None
+
+    chat()
+      IN:  ()
+      OUT: None
+
+    runChat()
+      IN:  ()
+      OUT: None
+
+    chatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    runChatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    text()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    TTS_TRIM()
+      IN:  ()
+      OUT: None
+
+    runAsk()
+      IN:  ()
+      OUT: None
+
+    chat()
+      IN:  ()
+      OUT: None
+
+    runChat()
+      IN:  ()
+      OUT: None
+
+    chatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    runChatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    text()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    askAboutContent()
+      IN:  ()
+      OUT: None
+
+    runAsk()
+      IN:  ()
+      OUT: None
+
+    chat()
+      IN:  ()
+      OUT: None
+
+    runChat()
+      IN:  ()
+      OUT: None
+
+    chatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    runChatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    text()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    describeImage()
+      IN:  ()
+      OUT: None
+
+    runDescribe()
+      IN:  ()
+      OUT: None
+
+    chat()
+      IN:  ()
+      OUT: None
+
+    runChat()
+      IN:  ()
+      OUT: None
+
+    chatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    runChatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    text()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    describeImageChange()
+      IN:  ()
+      OUT: None
+
+    runDescribe()
+      IN:  ()
+      OUT: None
+
+    chat()
+      IN:  ()
+      OUT: None
+
+    runChat()
+      IN:  ()
+      OUT: None
+
+    chatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    runChatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    text()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    summarizeForTts()
+      IN:  ()
+      OUT: None
+
+    runSummarize()
+      IN:  ()
+      OUT: None
+
+    chat()
+      IN:  ()
+      OUT: None
+
+    runChat()
+      IN:  ()
+      OUT: None
+
+    chatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    runChatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    text()
+      IN:  ()
+      OUT: None
+
+  Pipeline: Src
+    detectIntent()
+      IN:  ()
+      OUT: None
+
+    runDetect()
+      IN:  ()
+      OUT: None
+
+    chat()
+      IN:  ()
+      OUT: None
+
+    runChat()
+      IN:  ()
+      OUT: None
+
+    chatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    runChatDirect()
+      IN:  ()
+      OUT: None
+      SIDE-EFFECT: cache(calls:cache)
+
+    text()
+      IN:  ()
+      OUT: None
+
+
+DATA_TYPES (by cross-function usage) [25 annotated, 154 inferred / 3725 functions]:
+  str                  consumed:16  produced:59   !! HUB-TYPE → split interface
+  dict                 consumed:1   produced:47   output-heavy
+  Entity               consumed:0   produced:29   output-heavy
+  AnalysisResult       consumed:0   produced:21   output-heavy
+  int                  consumed:11  produced:1    !! HUB-TYPE → split interface
+  np.ndarray           consumed:6   produced:0    input-heavy (read-only flow)
+  float                consumed:5   produced:0    input-heavy (read-only flow)
+  sqlite3.Connection   consumed:3   produced:1    narrow scope
+  bool                 consumed:2   produced:2    narrow scope
+  tuple                consumed:1   produced:2    narrow scope
+  cv2.BackgroundSubtractorMOG2 consumed:1   produced:1    narrow scope
+  argparse.Namespace   consumed:1   produced:1    narrow scope
+  list                 consumed:0   produced:2    narrow scope
+  list[tuple[str, float]] consumed:0   produced:1    narrow scope
+  ResolveResult        consumed:0   produced:1    narrow scope
+
+  HUB TYPES (consumed ≥10):
+    str → 16 consumers → split into:
+      - (analyze consumers to suggest sub-interfaces)
+    int → 11 consumers → split into:
+      - (analyze consumers to suggest sub-interfaces)
+
+SIDE_EFFECTS:
+  IO:        openApp, SSH_TEST_PORT, openApp, saveBtn, host, chatApiPlugin, localIp, arp, body, result
+  Cache:     configStore, upstream, BrowseCommand.execute, transcribeAudio, run, appCfg, resp, chatDirect, runChatDirect, fetchViaAdvancedProxy
+  Mutation:  updatedMessages, DeviceRepository.updateDeviceStatus, ConfiguredDeviceRepository.updateLastSnapshot, scopePrefix, dispatchLogger, addScopePrefix, prefix, QueryBus.dispatch, Cache.oldestInsertion, updateSystemContext
+  Pure:      testEnv, supported, input, ttsButton, hasTtsButton, assistantMessages, count, result, utt, voiceCount
+
+  PIPELINE PURITY:
+    Src             ██░░ 50% pure
+    Src             ██░░ 70% pure
+    Src             ███░ 80% pure
+    Src             ███░ 75% pure
+    Src             ███░ 87% pure
+    Src             ██░░ 71% pure
+    Src             ██░░ 71% pure
+    Src             ██░░ 71% pure
+    Src             ██░░ 71% pure
+    Src             ██░░ 71% pure
+    Src             ██░░ 71% pure
+    Src             ██░░ 71% pure
