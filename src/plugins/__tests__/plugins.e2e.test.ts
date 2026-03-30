@@ -529,20 +529,12 @@ describe('PluginRegistry', () => {
 // ─── Full Bootstrap Integration ──────────────────────────────
 
 describe('Bootstrap integration', () => {
-  // Share a single bootstrap context for all browser-mode tests (~6× faster)
-  let sharedCtx: Awaited<ReturnType<typeof import('../../core/bootstrap').bootstrapApp>>;
-
-  beforeAll(async () => {
+  it('bootstraps with all plugins registered', async () => {
     const { bootstrapApp } = await import('../../core/bootstrap');
-    sharedCtx = await bootstrapApp({ isTauri: false });
-  });
+    const ctx = await bootstrapApp({ isTauri: false });
 
-  afterAll(async () => {
-    await sharedCtx?.dispose();
-  });
-
-  it('bootstraps with all plugins registered', () => {
-    const ids = sharedCtx.pluginRegistry.getAll().map(p => p.id);
+    const plugins = ctx.pluginRegistry.getAll();
+    const ids = plugins.map(p => p.id);
 
     expect(ids).toContain('network-scan');
     expect(ids).toContain('network-ping');
@@ -552,27 +544,44 @@ describe('Bootstrap integration', () => {
     expect(ids).toContain('network-arp');
     expect(ids).toContain('http-browse');
     expect(ids).toContain('chat-llm');
+
+    await ctx.dispose();
   });
 
   it('routes camera query to network-scan plugin', async () => {
-    const intent = await sharedCtx.intentRouter.detect('pokaż kamery w sieci');
+    const { bootstrapApp } = await import('../../core/bootstrap');
+    const ctx = await bootstrapApp({ isTauri: false });
+
+    const intent = await ctx.intentRouter.detect('pokaż kamery w sieci');
     expect(intent.intent).toBe('network:scan');
 
-    const plugin = sharedCtx.intentRouter.route(intent.intent);
+    const plugin = ctx.intentRouter.route(intent.intent);
     expect(plugin).not.toBeNull();
     expect(plugin!.id).toBe('network-scan');
+
+    await ctx.dispose();
   });
 
   it('routes ping to ping plugin', async () => {
-    const intent = await sharedCtx.intentRouter.detect('ping 192.168.1.1');
-    const plugin = sharedCtx.intentRouter.route(intent.intent);
+    const { bootstrapApp } = await import('../../core/bootstrap');
+    const ctx = await bootstrapApp({ isTauri: false });
+
+    const intent = await ctx.intentRouter.detect('ping 192.168.1.1');
+    const plugin = ctx.intentRouter.route(intent.intent);
     expect(plugin!.id).toBe('network-ping');
+
+    await ctx.dispose();
   });
 
-  it('registers protocol-bridge plugin', () => {
-    expect(sharedCtx.pluginRegistry.get('protocol-bridge')).not.toBeNull();
-    const ids = sharedCtx.pluginRegistry.getAll().map(p => p.id);
+  it('registers protocol-bridge plugin', async () => {
+    const { bootstrapApp } = await import('../../core/bootstrap');
+    const ctx = await bootstrapApp({ isTauri: false });
+
+    expect(ctx.pluginRegistry.get('protocol-bridge')).not.toBeNull();
+    const ids = ctx.pluginRegistry.getAll().map(p => p.id);
     expect(ids).toContain('protocol-bridge');
+
+    await ctx.dispose();
   });
 
   it('exposes tauriInvoke on AppContext', async () => {
@@ -586,19 +595,29 @@ describe('Bootstrap integration', () => {
   });
 
   it('command bus plugins:ask uses scope-aware routing', async () => {
+    const { bootstrapApp } = await import('../../core/bootstrap');
+    const ctx = await bootstrapApp({ isTauri: false });
+
     // plugins:ask should be registered
-    expect(sharedCtx.commandBus.has('plugins:ask')).toBe(true);
+    expect(ctx.commandBus.has('plugins:ask')).toBe(true);
 
     // Execute a ping command via command bus — routes through intent detection + scope
-    const result = await sharedCtx.commandBus.execute('plugins:ask', 'ping 192.168.1.1') as any;
+    const result = await ctx.commandBus.execute('plugins:ask', 'ping 192.168.1.1') as any;
     expect(result).toBeDefined();
     expect(result.pluginId).toBe('network-ping');
+
+    await ctx.dispose();
   });
 
   it('command bus routes bridge intent to protocol-bridge plugin', async () => {
-    const result = await sharedCtx.commandBus.execute('plugins:ask', 'bridge status') as any;
+    const { bootstrapApp } = await import('../../core/bootstrap');
+    const ctx = await bootstrapApp({ isTauri: false });
+
+    const result = await ctx.commandBus.execute('plugins:ask', 'bridge status') as any;
     expect(result).toBeDefined();
     expect(result.pluginId).toBe('protocol-bridge');
+
+    await ctx.dispose();
   });
 });
 

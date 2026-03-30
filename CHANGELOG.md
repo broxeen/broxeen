@@ -1,5 +1,13 @@
 ## [Unreleased]
 
+## [1.0.103] - 2026-03-30
+
+### Other
+- Update pyqual.yaml
+- Update src/core/realtimeSync.ts
+- Update src/lib/browseGateway.test.ts
+- Update src/plugins/__tests__/plugins.e2e.test.ts
+
 ## [1.0.102] - 2026-03-30
 
 ### Other
