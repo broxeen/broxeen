@@ -1729,6 +1729,14 @@ D:
     open_database_connection()
     json_to_sqlite_param()
     sqlite_to_json()
+  src/plugins/monitor/motionDetectionPlugin.ts:
+    i: ../../components/ChatConfigPrompt,../../config/configStore,../../core/types,../../lib/logger
+    e: PipelineStatus,DetectionStats,DetectionRow,MotionDetectionPlugin,motionLog
+    PipelineStatus:
+    DetectionStats:
+    DetectionRow:
+    MotionDetectionPlugin: initialize(-1),parsed(-1),dispose(-1),canHandle(-1),lower(-1),execute(-1),start(-1),lower(-1),handleStart(-1),rtspUrl(-1),cameraId(-1),cfg(-1),processEvery(-1),apiKey(-1),platformLabel(-1),msg(-1),handleStop(-1),cameraId(-1),handleStatus(-1),result(-1),lines(-1),uptime(-1),uptimeStr(-1),handleStats(-1),cameraId(-1),cfg(-1),hours(-1),stats(-1),byClassLines(-1),peakHour(-1),handleDetections(-1),cameraId(-1),cfg(-1),label(-1),hours(-1),rows(-1),lines(-1),ts(-1),conf(-1),llmInfo(-1),handleConfig(-1),cfg(-1),extractRtspUrl(-1),m(-1),extractCameraId(-1),withoutRtsp(-1),m(-1),ipM(-1),extractCameraIdGeneric(-1),m(-1),extractCameraIdFromStop(-1),m(-1),extractHours(-1),m(-1),extractLabel(-1),lower(-1),errorResult(-1)
+    motionLog()
   src/plugins/discovery/cameraDetection.ts:
     e: CameraVendor,PortScanResult,CameraDetectionResult,getAllCameraPorts,allPorts,identifyVendor,confidence,matches,headerValue,generateRtspUrls,vendorInfo,vendorPaths,generateRecommendations,vendor,user,pass
     CameraVendor:
@@ -1747,14 +1755,6 @@ D:
     vendor()
     user()
     pass()
-  src/plugins/monitor/motionDetectionPlugin.ts:
-    i: ../../components/ChatConfigPrompt,../../config/configStore,../../core/types,../../lib/logger
-    e: PipelineStatus,DetectionStats,DetectionRow,MotionDetectionPlugin,motionLog
-    PipelineStatus:
-    DetectionStats:
-    DetectionRow:
-    MotionDetectionPlugin: initialize(-1),parsed(-1),dispose(-1),canHandle(-1),lower(-1),execute(-1),start(-1),lower(-1),handleStart(-1),rtspUrl(-1),cameraId(-1),cfg(-1),processEvery(-1),apiKey(-1),platformLabel(-1),msg(-1),handleStop(-1),cameraId(-1),handleStatus(-1),result(-1),lines(-1),uptime(-1),uptimeStr(-1),handleStats(-1),cameraId(-1),cfg(-1),hours(-1),stats(-1),byClassLines(-1),peakHour(-1),handleDetections(-1),cameraId(-1),cfg(-1),label(-1),hours(-1),rows(-1),lines(-1),ts(-1),conf(-1),llmInfo(-1),handleConfig(-1),cfg(-1),extractRtspUrl(-1),m(-1),extractCameraId(-1),withoutRtsp(-1),m(-1),ipM(-1),extractCameraIdGeneric(-1),m(-1),extractCameraIdFromStop(-1),m(-1),extractHours(-1),m(-1),extractLabel(-1),lower(-1),errorResult(-1)
-    motionLog()
   src/components/QuickCommands.tsx:
     i: lucide-react,react
     e: QuickCommand,SavedCommandHistoryItem,QuickCommandsProps,saved,parsed,formatCommandTitle,inferCategory,lower,getCategoryIcon,aggregation,command,category,existing,mergedCommands,seen,filteredCommands,categoryMatch,searchMatch,getCategoryColor,handleCommandClick,handleSearchChange,toggleFavorite,handleDragStart,handleDragOver,handleDragLeave,handleDrop,draggedIndex,handleDragEnd
@@ -2088,6 +2088,11 @@ D:
     summarizeSearchResults()
     runSummarize()
     resp()
+  resolver.py:
+    e: ResolveResult,fuzzy_match_domain,resolve
+    ResolveResult:  # Result of URL resolution...
+    fuzzy_match_domain(input_str;threshold;max_results)
+    resolve(raw_input;threshold)
   src/reactive/alertBridge.ts:
     i: ../domain/chatEvents,../domain/eventStore,../lib/logger,./types,./watchManager
     e: DeviceStatusChange,AlertBridgeOptions,AlertBridge,alertLog
@@ -2100,11 +2105,6 @@ D:
     e: ArpHost,ArpPlugin
     ArpHost:
     ArpPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),subnet(-1),hosts(-1),targetSubnet(-1),probeIps(-1),resp(-1),formatHosts(-1),extractSubnet(-1),match(-1),subnetMatch(-1),errorResult(-1),initialize(-1),dispose(-1)
-  resolver.py:
-    e: ResolveResult,fuzzy_match_domain,resolve
-    ResolveResult:  # Result of URL resolution...
-    fuzzy_match_domain(input_str;threshold;max_results)
-    resolve(raw_input;threshold)
   src/plugins/email/emailPlugin.ts:
     i: ../../config/configStore,../../core/types
     e: EmailConfig,EmailMessage,InboxSummary,EmailPlugin
@@ -2595,6 +2595,10 @@ D:
     key()
     cached()
     result()
+  src/core/pluginRegistry.ts:
+    i: ./types
+    e: PluginRegistry
+    PluginRegistry: register(-1),pluginId(-1),unregister(-1),plugin(-1),get(-1),getAll(-1),findByIntent(-1),legacyPlugins(-1),dataSourcePlugins(-1),initializeAll(-1),legacyInitPromises(-1),dataSourceInitPromises(-1),disposeAll(-1),legacyDisposePromises(-1),dataSourceDisposePromises(-1)
   src/core/realtimeSync.ts:
     i: ../domain/chatEvents,../lib/logger
     e: RealtimeSyncConfig,SyncMessage,RealtimeSync,syncLogger,getRealtimeSync,disposeRealtimeSync
@@ -2604,10 +2608,6 @@ D:
     syncLogger()
     getRealtimeSync()
     disposeRealtimeSync()
-  src/core/pluginRegistry.ts:
-    i: ./types
-    e: PluginRegistry
-    PluginRegistry: register(-1),pluginId(-1),unregister(-1),plugin(-1),get(-1),getAll(-1),findByIntent(-1),legacyPlugins(-1),dataSourcePlugins(-1),initializeAll(-1),legacyInitPromises(-1),dataSourceInitPromises(-1),disposeAll(-1),legacyDisposePromises(-1),dataSourceDisposePromises(-1)
   src/domain/chatEvents.ts:
     i: ./audioSettings
     e: ChatMessage,createEvent,projectChatMessages
@@ -3368,6 +3368,30 @@ D:
     print()
     print()
     main()
+  scripts/install-openvino-macos.sh:
+    e: install_homebrew_deps,install_via_pip,install_via_brew,print_macos_notes,setup_environment,verify_install,print,print,main
+    install_homebrew_deps()
+    install_via_pip()
+    install_via_brew()
+    print_macos_notes()
+    setup_environment()
+    verify_install()
+    print()
+    print()
+    main()
+  scripts/install-openvino-docker.sh:
+    e: check_docker,pull_openvino_image,test_in_docker,print,print,generate_dockerfile,generate_compose,build_docker_image,main
+    check_docker()
+    pull_openvino_image()
+    test_in_docker()
+    print()
+    print()
+    generate_dockerfile()
+    generate_compose()
+    build_docker_image()
+    main()
+  src-tauri/target/release/bundle/appimage/Broxeen.AppDir/apprun-hooks/linuxdeploy-plugin-gtk.sh:
+  src-tauri/src/setup-audio.sh:
   scripts/install-openvino-ubuntu.sh:
     e: install_prerequisites,install_via_apt,install_via_pip,install_gpu_runtime,install_python_extras,setup_environment,verify_install,print,print,main
     install_prerequisites()
@@ -3380,27 +3404,3 @@ D:
     print()
     print()
     main()
-  src-tauri/src/setup-audio.sh:
-  scripts/install-openvino-docker.sh:
-    e: check_docker,pull_openvino_image,test_in_docker,print,print,generate_dockerfile,generate_compose,build_docker_image,main
-    check_docker()
-    pull_openvino_image()
-    test_in_docker()
-    print()
-    print()
-    generate_dockerfile()
-    generate_compose()
-    build_docker_image()
-    main()
-  scripts/install-openvino-macos.sh:
-    e: install_homebrew_deps,install_via_pip,install_via_brew,print_macos_notes,setup_environment,verify_install,print,print,main
-    install_homebrew_deps()
-    install_via_pip()
-    install_via_brew()
-    print_macos_notes()
-    setup_environment()
-    verify_install()
-    print()
-    print()
-    main()
-  src-tauri/target/release/bundle/appimage/Broxeen.AppDir/apprun-hooks/linuxdeploy-plugin-gtk.sh:

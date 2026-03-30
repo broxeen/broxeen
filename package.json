@@ -1,7 +1,7 @@
 {
   "name": "broxeen",
   "private": true,
-  "version": "1.0.99",
+  "version": "1.0.100",
   "type": "module",
   "main": "index.html",
   "exports": {
@@ -67,6 +67,9 @@
     "vite": "^6.0.0",
     "vitest": "^2.0.0"
   },
-  "author": "Tom Sapletta <tom@sapletta.com>",
+  "author": {
+    "name": "Tom Sapletta",
+    "email": "tom@sapletta.com"
+  },
   "license": "Apache-2.0"
 }

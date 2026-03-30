@@ -1,0 +1,304 @@
+# code2llm | 229f 67163L | typescript:169,rust:43,shell:10,javascript:5,python:2 | 2026-03-30
+# CC̄=4.0 | critical:143/3697 | dups:0 | cycles:0
+
+HEALTH[20]:
+  🔴 GOD   src/config/appConfig.ts = 628L, 13 classes, 3m, max CC=3
+  🔴 GOD   src/plugins/remote-machine/remoteMachinePlugin.ts = 511L, 7 classes, 29m, max CC=26
+  🔴 GOD   src/plugins/files/fileSearchPlugin.ts = 560L, 4 classes, 30m, max CC=34
+  🔴 GOD   src/plugins/system/sshPlugin.ts = 544L, 4 classes, 29m, max CC=14
+  🔴 GOD   src/plugins/monitor/motionDetectionPlugin.ts = 512L, 4 classes, 44m, max CC=13
+  🔴 GOD   src/plugins/protocol-bridge/protocolBridgePlugin.ts = 1720L, 7 classes, 98m, max CC=24
+  🔴 GOD   src/plugins/monitor/monitorPlugin.ts = 2871L, 4 classes, 229m, max CC=93
+  🔴 GOD   src-tauri/src/motion_detection.rs = 958L, 8 classes, 8m, max CC=12
+  🔴 GOD   src-tauri/src/network_scan.rs = 1655L, 16 classes, 27m, max CC=26
+  🟡 CC    host CC=71 (limit:15)
+  🟡 CC    chatApiPlugin CC=71 (limit:15)
+  🟡 CC    handleQuery CC=31 (limit:15)
+  🟡 CC    intent CC=30 (limit:15)
+  🟡 CC    sub CC=30 (limit:15)
+  🟡 CC    repoLogger CC=27 (limit:15)
+  🟡 CC    execute CC=15 (limit:15)
+  🟡 CC    transcribeAudio CC=16 (limit:15)
+  🟡 CC    run CC=16 (limit:15)
+  🟡 CC    useChatPersistence CC=16 (limit:15)
+  🟡 CC    repoRef CC=16 (limit:15)
+
+REFACTOR[10]:
+  1. split src/config/appConfig.ts  (god module)
+  2. split src/plugins/remote-machine/remoteMachinePlugin.ts  (god module)
+  3. split src/plugins/files/fileSearchPlugin.ts  (god module)
+  4. split src/plugins/system/sshPlugin.ts  (god module)
+  5. split src/plugins/monitor/motionDetectionPlugin.ts  (god module)
+  6. split src/plugins/protocol-bridge/protocolBridgePlugin.ts  (god module)
+  7. split src/plugins/monitor/monitorPlugin.ts  (god module)
+  8. split src-tauri/src/motion_detection.rs  (god module)
+  9. split src-tauri/src/network_scan.rs  (god module)
+  10. split 11 high-CC methods  (CC>15)
+
+PIPELINES[2030]:
+  [1] Src [testEnv]: testEnv
+      PURITY: 100% pure
+  [2] Src [openApp]: openApp
+      PURITY: 100% pure
+  [3] Src [supported]: supported
+      PURITY: 100% pure
+  [4] Src [input]: input
+      PURITY: 100% pure
+  [5] Src [ttsButton]: ttsButton
+      PURITY: 100% pure
+
+LAYERS:
+  ./                              CC̄=8.9    ←in:0  →out:0
+  │ !! vite.config.ts             280L  0C   35m  CC=71     ←0
+  │ resolver                   129L  1C    2m  CC=10     ←0
+  │ playwright.config.ts        54L  0C    1m  CC=1      ←0
+  │ tailwind.config.js          23L  0C    0m  CC=0.0    ←0
+  │ project.sh                  21L  0C    0m  CC=0.0    ←0
+  │ postcss.config.js            6L  0C    0m  CC=0.0    ←0
+  │
+  src-tauri/                      CC̄=4.1    ←in:0  →out:0
+  │ !! network_scan.rs           1655L  16C   27m  CC=26     ←0
+  │ !! motion_detection.rs        958L  8C    8m  CC=12     ←0
+  │ !! file_search.rs             582L  3C   10m  CC=16     ←0
+  │ !! tts_backend.rs             527L  0C   22m  CC=6      ←0
+  │ !! content_extraction.rs      506L  1C   10m  CC=32     ←0
+  │ main.rs                    495L  1C    1m  CC=10     ←0
+  │ email.rs                   488L  3C    1m  CC=2      ←0
+  │ audio_commands.rs          445L  6C   17m  CC=8      ←0
+  │ browse_rendered.rs         394L  0C    6m  CC=10     ←0
+  │ !! vision_db.rs               392L  4C   12m  CC=16     ←0
+  │ rss_parser.rs              369L  4C   13m  CC=10     ←0
+  │ !! vision_detector.rs         344L  3C    8m  CC=15     ←0
+  │ vision_llm.rs              336L  7C    7m  CC=4      ←0
+  │ vision_config.rs           335L  9C   29m  CC=6      ←0
+  │ toonic_sidecar.rs          332L  1C    3m  CC=8      ←0
+  │ stt.rs                     325L  1C    6m  CC=6      ←0
+  │ !! vision_pipeline.rs         311L  3C    3m  CC=30     ←0
+  │ docker.rs                  310L  5C    0m  CC=0.0    ←0
+  │ remote_machine.rs          309L  6C    0m  CC=0.0    ←0
+  │ local_llm.rs               297L  3C    7m  CC=9      ←0
+  │ file_search_bench.rs       295L  0C    2m  CC=6      ←0
+  │ !! query_schema.rs            272L  1C    9m  CC=46     ←0
+  │ ssh.rs                     266L  3C    2m  CC=6      ←0
+  │ !! vision_tracker.rs          258L  4C    4m  CC=20     ←0
+  │ llm_query.rs               245L  1C    2m  CC=8      ←0
+  │ audio_capture.rs           243L  1C    9m  CC=9      ←0
+  │ wake_word.rs               232L  1C    7m  CC=14     ←0
+  │ tts.rs                     223L  1C   10m  CC=14     ←0
+  │ settings.rs                221L  3C   17m  CC=7      ←0
+  │ disk_info.rs               206L  2C    6m  CC=7      ←0
+  │ !! vision_motion.rs           186L  2C    2m  CC=16     ←0
+  │ network.rs                 174L  0C    7m  CC=14     ←0
+  │ vision_scene_buffer.rs     165L  3C    7m  CC=9      ←0
+  │ frigate_mqtt.rs            155L  3C    0m  CC=0.0    ←0
+  │ !! content_cleaning.rs        147L  0C    4m  CC=33     ←0
+  │ setup-audio.sh             130L  0C    0m  CC=0.0    ←0
+  │ !! vision_movement.rs         128L  1C    4m  CC=18     ←0
+  │ llm.rs                     126L  1C    0m  CC=0.0    ←0
+  │ network_info.rs            123L  1C    5m  CC=5      ←0
+  │ vision_query_engine.rs     117L  2C    2m  CC=8      ←0
+  │ logging.rs                 116L  0C    6m  CC=5      ←0
+  │ vision_capture.rs          102L  1C    3m  CC=5      ←0
+  │ autostart.rs                90L  0C    7m  CC=5      ←0
+  │ main_changes.rs             56L  0C    1m  CC=4      ←0
+  │ linuxdeploy-plugin-gtk.sh    18L  0C    0m  CC=0.0    ←0
+  │
+  src/                            CC̄=4.0    ←in:0  →out:0
+  │ !! monitorPlugin.ts          2871L  4C  229m  CC=93     ←1
+  │ !! browseGateway.ts          1741L  3C  143m  CC=42     ←0
+  │ !! protocolBridgePlugin.ts   1720L  7C   98m  CC=24     ←0
+  │ !! networkScanPlugin.ts      1586L  3C  135m  CC=40     ←0
+  │ !! useChatDispatch.ts         897L  1C   50m  CC=78     ←0
+  │ !! intentRouter.ts            853L  2C   20m  CC=55     ←0
+  │ !! ChatMessageList.tsx        805L  2C   25m  CC=107    ←0
+  │ !! CameraPreview.tsx          774L  2C   54m  CC=17     ←0
+  │ !! cameraLivePlugin.ts        755L  1C   57m  CC=95     ←0
+  │ !! Settings.tsx               704L  1C   16m  CC=4      ←0
+  │ !! ChatConfigPrompt.tsx       674L  3C   18m  CC=62     ←0
+  │ !! appConfig.ts               628L  13C    3m  CC=3      ←0
+  │ !! useChatSpeech.ts           594L  2C   25m  CC=107    ←0
+  │ !! actionSchema.ts            592L  1C   17m  CC=8      ←0
+  │ !! App.tsx                    571L  0C   34m  CC=21     ←0
+  │ !! QuickCommands.tsx          569L  3C   25m  CC=13     ←0
+  │ !! fileSearchPlugin.ts        560L  4C   30m  CC=34     ←0
+  │ !! SetupWizardModal.tsx       550L  1C   13m  CC=4      ←0
+  │ !! ChatInput.tsx              550L  3C   18m  CC=101    ←0
+  │ !! sshPlugin.ts               544L  4C   29m  CC=14     ←0
+  │ !! watchManager.ts            537L  1C   36m  CC=7      ←0
+  │ !! useStt.ts                  534L  2C   56m  CC=55     ←0
+  │ !! useTts.ts                  533L  3C   45m  CC=72     ←0
+  │ !! Chat.tsx                   514L  1C   40m  CC=15     ←0
+  │ !! motionDetectionPlugin.ts   512L  4C   44m  CC=13     ←0
+  │ !! remoteMachinePlugin.ts     511L  7C   29m  CC=26     ←0
+  │ ActionSuggestions.tsx      497L  2C   22m  CC=11     ←0
+  │ !! dockerPlugin.ts            489L  6C   24m  CC=52     ←0
+  │ !! deviceConfigPlugin.ts      464L  1C   38m  CC=76     ←0
+  │ cache.ts                   448L  5C   35m  CC=7      ←0
+  │ !! cameraVendorDatabase.ts    441L  1C    8m  CC=29     ←0
+  │ serviceProber.ts           435L  1C   26m  CC=12     ←0
+  │ !! healthCheck.ts             422L  3C   25m  CC=49     ←0
+  │ emailPlugin.ts             419L  4C   34m  CC=10     ←0
+  │ rtspCameraPlugin.ts        416L  9C   36m  CC=8      ←0
+  │ !! toonicBridgePlugin.ts      411L  3C   38m  CC=18     ←0
+  │ !! bootstrap.ts               409L  0C   17m  CC=45     ←0
+  │ llmClient.ts               402L  3C   30m  CC=10     ←0
+  │ !! DeviceDashboardModal.tsx   397L  3C   29m  CC=16     ←0
+  │ CommandHistory.tsx         393L  2C   21m  CC=6      ←0
+  │ NetworkHistorySelector.tsx   387L  2C   24m  CC=11     ←0
+  │ networkScanner.ts          383L  1C   31m  CC=7      ←0
+  │ cameraDetection.ts         381L  3C   13m  CC=13     ←0
+  │ !! advancedPortScanPlugin.ts   379L  1C   34m  CC=18     ←0
+  │ !! autoWatchIntegration.ts    367L  3C   26m  CC=15     ←0
+  │ !! HealthDiagnostic.tsx       364L  1C   22m  CC=15     ←0
+  │ changeDetector.ts          362L  1C   29m  CC=9      ←0
+  │ !! FileResultsDisplay.tsx     355L  2C   11m  CC=20     ←0
+  │ marketplaceLoader.ts       346L  2C   22m  CC=6      ←0
+  │ mqttPlugin.ts              327L  4C   23m  CC=7      ←0
+  │ !! ErrorReportPanel.tsx       326L  2C   15m  CC=41     ←0
+  │ errorReporting.ts          323L  2C   22m  CC=4      ←0
+  │ !! autoScanScheduler.ts       322L  2C   29m  CC=18     ←0
+  │ diskInfoPlugin.ts          319L  4C   28m  CC=8      ←0
+  │ DiagnosticsModal.tsx       319L  1C   11m  CC=4      ←0
+  │ !! deviceStatusPlugin.ts      317L  1C   29m  CC=33     ←0
+  │ NetworkSelector.tsx        315L  2C    4m  CC=3      ←0
+  │ !! useSpeech.ts               313L  4C   21m  CC=23     ←0
+  │ MicSettingsModal.tsx       312L  1C   11m  CC=4      ←0
+  │ fallbackHandler.ts         305L  2C   25m  CC=11     ←0
+  │ !! frigateEventsPlugin.ts     305L  1C   37m  CC=33     ←0
+  │ TtsSettingsModal.tsx       303L  1C    7m  CC=3      ←0
+  │ migrations.ts              302L  0C    0m  CC=0.0    ←0
+  │ logsPlugin.ts              301L  2C   23m  CC=7      ←0
+  │ serviceProbePlugin.ts      283L  1C   20m  CC=14     ←0
+  │ resolver.ts                264L  1C   19m  CC=11     ←0
+  │ realtimeSync.ts            264L  3C   19m  CC=6      ←0
+  │ scopeRegistry.ts           253L  3C   18m  CC=7      ←0
+  │ !! deviceRepository.ts        252L  1C   17m  CC=27     ←0
+  │ configuredDeviceRepository.ts   251L  3C   20m  CC=8      ←0
+  │ useLlm.ts                  250L  2C   18m  CC=12     ←0
+  │ databaseManager.ts         233L  4C   21m  CC=8      ←0
+  │ !! quickActionResolver.ts     233L  1C    8m  CC=58     ←0
+  │ alertBridge.ts             232L  3C   22m  CC=10     ←0
+  │ MessageResultCard.tsx      232L  2C    7m  CC=7      ←0
+  │ plugin.types.ts            230L  19C    3m  CC=2      ←0
+  │ !! browsePlugin.ts            226L  1C   21m  CC=23     ←0
+  │ DeviceStrip.tsx            226L  1C   12m  CC=5      ←0
+  │ !! QuickActionButtons.tsx     223L  2C    5m  CC=20     ←0
+  │ !! useHistoryPersistence.ts   219L  2C   16m  CC=20     ←0
+  │ !! llmIntentClassifier.ts     218L  2C   24m  CC=16     ←0
+  │ !! configStore.ts             214L  2C   23m  CC=40     ←0
+  │ watchConfig.ts             211L  0C    7m  CC=12     ←0
+  │ chatEvents.ts              209L  1C    2m  CC=6      ←0
+  │ QuickCommandHistory.tsx    204L  1C   11m  CC=6      ←0
+  │ preferenceLearning.ts      201L  3C   21m  CC=8      ←0
+  │ systemContext.ts           201L  1C   20m  CC=9      ←0
+  │ !! browseCommand.ts           187L  2C    9m  CC=15     ←0
+  │ !! authBrowsePlugin.ts        187L  1C   13m  CC=34     ←0
+  │ WatchBadge.tsx             187L  1C    5m  CC=5      ←0
+  │ voiceCommandsPlugin.ts     186L  2C    8m  CC=7      ←0
+  │ monitoringPlugin.ts        183L  2C   18m  CC=8      ←0
+  │ !! CameraLiveInline.tsx       179L  0C   18m  CC=61     ←0
+  │ !! onvifPlugin.ts             178L  2C   19m  CC=15     ←0
+  │ historyRepository.ts       167L  3C    9m  CC=6      ←0
+  │ !! cameraPtzPlugin.ts         164L  2C   14m  CC=17     ←0
+  │ pluginContext.tsx          161L  2C   10m  CC=12     ←0
+  │ portScanPlugin.ts          156L  2C   21m  CC=12     ←0
+  │ scanHistoryRepository.ts   153L  3C   14m  CC=4      ←0
+  │ autoConfig.ts              153L  1C   13m  CC=9      ←0
+  │ !! eventStore.ts              152L  1C   10m  CC=21     ←0
+  │ mdnsPlugin.ts              152L  2C   15m  CC=8      ←0
+  │ !! sttClient.ts               145L  1C   13m  CC=16     ←0
+  │ arpPlugin.ts               143L  2C   16m  CC=10     ←0
+  │ useWatchNotifications.ts   140L  2C   10m  CC=6      ←0
+  │ cameraHealthPlugin.ts      140L  2C   15m  CC=11     ←0
+  │ intentSchema.ts            137L  2C   14m  CC=7      ←0
+  │ logger.ts                  129L  0C   13m  CC=8      ←0
+  │ chatRepository.ts          123L  1C   16m  CC=14     ←0
+  │ pingPlugin.ts              123L  2C   18m  CC=9      ←0
+  │ processesPlugin.ts         120L  1C   11m  CC=11     ←0
+  │ processRegistry.ts         118L  2C   13m  CC=4      ←0
+  │ retry.ts                   112L  1C   19m  CC=9      ←1
+  │ chatPlugin.ts              111L  1C    9m  CC=6      ←0
+  │ queryBus.ts                110L  4C   14m  CC=6      ←0
+  │ types.ts                   109L  10C    0m  CC=0.0    ←0
+  │ cameraSnapshotPlugin.ts    105L  1C   12m  CC=8      ←0
+  │ ThinkingMessage.tsx        104L  1C    6m  CC=6      ←0
+  │ !! MessageQuickActions.tsx     95L  1C    6m  CC=21     ←0
+  │ pluginRegistry.ts           94L  1C   15m  CC=6      ←0
+  │ !! useChatPersistence.ts       93L  0C   10m  CC=16     ←0
+  │ types.ts                    93L  9C    0m  CC=0.0    ←0
+  │ wakeOnLanPlugin.ts          86L  1C   10m  CC=8      ←0
+  │ useAlertBridge.ts           84L  0C    6m  CC=14     ←0
+  │ CqrsContext.tsx             79L  1C   11m  CC=4      ←0
+  │ phonetic.ts                 78L  0C    5m  CC=5      ←1
+  │ ChatOverlays.tsx            78L  3C    1m  CC=6      ←0
+  │ types.ts                    78L  8C    0m  CC=0.0    ←0
+  │ TtsControls.tsx             74L  1C    3m  CC=1      ←0
+  │ chatAggregate.ts            72L  1C    8m  CC=4      ←0
+  │ sendMessageCommand.ts       68L  1C    5m  CC=5      ←0
+  │ llmPrompts.ts               64L  0C    1m  CC=3      ←0
+  │ commandBus.ts               64L  1C    7m  CC=5      ←0
+  │ types.ts                    64L  6C    0m  CC=0.0    ←0
+  │ index.ts                    58L  1C    3m  CC=4      ←0
+  │ WatchBadge.simple.tsx       51L  1C    1m  CC=3      ←0
+  │ saveSettingsCommand.ts      47L  1C    3m  CC=4      ←0
+  │ audioSettings.ts            43L  1C    1m  CC=1      ←0
+  │ defaultLlmAdapter.ts        41L  1C    7m  CC=2      ←0
+  │ copyContextCommand.ts       37L  1C    5m  CC=5      ←0
+  │ main.tsx                    37L  0C    4m  CC=2      ←0
+  │ getSettingsQuery.ts         33L  1C    2m  CC=3      ←0
+  │ useChatMessages.ts          25L  0C    2m  CC=1      ←0
+  │ llmService.ts               25L  1C    0m  CC=0.0    ←0
+  │ getMessagesQuery.ts         22L  1C    3m  CC=1      ←0
+  │ index.ts                    19L  0C    2m  CC=1      ←0
+  │ ChatPersistenceBridge.tsx    19L  1C    1m  CC=1      ←0
+  │ AlertBridgeComponent.tsx    18L  1C    1m  CC=1      ←0
+  │ useDatabaseManager.ts       13L  0C    2m  CC=1      ←0
+  │ runtime.ts                  12L  0C    2m  CC=5      ←0
+  │ defaultBrowseAdapter.ts     12L  1C    1m  CC=1      ←0
+  │ index.ts                    12L  0C    0m  CC=0.0    ←0
+  │ browseService.ts             9L  1C    0m  CC=0.0    ←0
+  │ logs.index.ts                8L  0C    0m  CC=0.0    ←0
+  │ index.ts                     8L  0C    0m  CC=0.0    ←0
+  │ index.ts                     7L  0C    0m  CC=0.0    ←0
+  │ index.ts                     6L  0C    0m  CC=0.0    ←0
+  │ index.ts                     6L  0C    0m  CC=0.0    ←0
+  │ vite-env.d.ts                1L  0C    0m  CC=0.0    ←0
+  │
+  scripts/                        CC̄=3.1    ←in:0  →out:14  !! split
+  │ !! chat-cli.mjs              1093L  0C  109m  CC=32     ←0
+  │ !! motion_pipeline            624L  3C   23m  CC=7      ←0
+  │ detect-platform.sh         328L  0C    8m  CC=0.0    ←0
+  │ install-openvino-ubuntu.sh   279L  0C    9m  CC=0.0    ←0
+  │ net-diag.mjs               265L  0C   47m  CC=12     ←0
+  │ install-openvino-docker.sh   202L  0C    8m  CC=0.0    ←0
+  │ install-openvino.sh        188L  0C    4m  CC=0.0    ←0
+  │ add-reolink-camera.mjs     155L  0C    3m  CC=4      ←0
+  │ install-openvino-pip.sh    143L  0C    7m  CC=0.0    ←1
+  │ install-openvino-macos.sh   114L  0C    8m  CC=0.0    ←0
+  │ install-openvino-rhel.sh    95L  0C    7m  CC=0.0    ←0
+  │
+  e2e/                            CC̄=1.7    ←in:0  →out:0
+  │ network-scanning-flow.spec.ts   342L  0C   13m  CC=3      ←0
+  │ plugin-system.spec.ts      315L  0C    3m  CC=2      ←0
+  │ voice-interface.spec.ts    313L  0C   19m  CC=3      ←0
+  │ ssh-docker.spec.ts         216L  0C    5m  CC=6      ←0
+  │ new-plugins.spec.ts        191L  0C   14m  CC=5      ←0
+  │ ssh-integration.spec.ts    151L  0C    4m  CC=1      ←0
+  │ chat-features.spec.ts      141L  0C   11m  CC=6      ←0
+  │ logging.spec.ts             60L  0C    5m  CC=3      ←0
+  │
+
+COUPLING:
+                   scripts     src.core  src.plugins     resolver      src.lib
+      scripts           ──           12            2                            !! fan-out
+     src.core          ←12           ──                                         hub
+  src.plugins           ←2                        ──                          
+     resolver                                                  ──            1
+      src.lib                                                  ←1           ──
+  CYCLES: none
+  HUB: src.core/ (fan-in=12)
+  SMELL: scripts/ fan-out=14 → split needed
+
+EXTERNAL:
+  validation: run `vallm batch .` → validation.toon
+  duplication: run `redup scan .` → duplication.toon

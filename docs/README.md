@@ -1,7 +1,7 @@
 <!-- code2docs:start --># broxeen
 
-![version](https://img.shields.io/badge/version-0.1.0-blue) ![python](https://img.shields.io/badge/python-%3E%3D3.9-blue) ![coverage](https://img.shields.io/badge/coverage-unknown-lightgrey) ![functions](https://img.shields.io/badge/functions-3725-green)
-> **3725** functions | **444** classes | **228** files | CC̄ = 4.0
+![version](https://img.shields.io/badge/version-0.1.0-blue) ![python](https://img.shields.io/badge/python-%3E%3D3.9-blue) ![coverage](https://img.shields.io/badge/coverage-unknown-lightgrey) ![functions](https://img.shields.io/badge/functions-3697-green)
+> **3697** functions | **444** classes | **228** files | CC̄ = 4.1
 
 > Auto-generated project documentation from source code analysis.
 
@@ -141,7 +141,7 @@ Content outside the markers is preserved when regenerating. Enable this with `sy
 
 ```
 broxeen/
-    ├── config        ├── d        ├── spec        ├── spec        ├── spec        ├── spec        ├── spec        ├── spec    ├── config        ├── spec        ├── spec        ├── types        ├── historyRepository        ├── deviceRepository        ├── migrations        ├── scanHistoryRepository        ├── databaseManager        ├── configuredDeviceRepository        ├── chatRepository        ├── copyContextCommand        ├── sendMessageCommand        ├── saveSettingsCommand        ├── browseCommand        ├── sttClient        ├── llmPrompts        ├── logger        ├── resolver        ├── llmClient        ├── phonetic        ├── runtime        ├── useChatPersistence        ├── useTts        ├── useDatabaseManager        ├── browseGateway        ├── useChatDispatch        ├── useHistoryPersistence        ├── useChatSpeech        ├── useStt        ├── useAlertBridge        ├── useWatchNotifications        ├── useLlm        ├── useChatMessages        ├── llmService        ├── defaultBrowseAdapter        ├── defaultLlmAdapter        ├── browseService        ├── preferenceLearning        ├── useSpeech        ├── types            ├── types        ├── queryBus        ├── realtimeSync        ├── pluginRegistry        ├── cache        ├── bootstrap        ├── intentRouter        ├── systemContext        ├── processRegistry        ├── retry        ├── fallbackHandler        ├── intentSchema        ├── commandBus        ├── actionSchema        ├── types        ├── llmIntentClassifier    ├── motion_pipeline        ├── serviceProber        ├── networkScanner        ├── getMessagesQuery        ├── getSettingsQuery        ├── appConfig        ├── monitoringPlugin        ├── watchConfig        ├── autoConfig        ├── audioSettings        ├── chatAggregate        ├── configStore        ├── chatEvents        ├── eventStore├── resolver        ├── quickActionResolver        ├── types        ├── errorReporting        ├── healthCheck        ├── alertBridge        ├── autoWatchIntegration        ├── changeDetector            ├── wakeOnLanPlugin        ├── watchManager            ├── onvifPlugin            ├── arpPlugin            ├── mdnsPlugin            ├── pingPlugin            ├── portScanPlugin            ├── remoteMachinePlugin                ├── index            ├── processesPlugin            ├── dockerPlugin            ├── diskInfoPlugin            ├── fileSearchPlugin        ├── monitor/            ├── logsPlugin            ├── sshPlugin            ├── serviceProbePlugin            ├── advancedPortScanPlugin            ├── cameraDetection            ├── motionDetectionPlugin            ├── deviceStatusPlugin            ├── autoScanScheduler            ├── rtspCameraPlugin        ├── rtsp-camera/        ├── marketplace/            ├── deviceConfigPlugin            ├── cameraPtzPlugin        ├── cameras/            ├── marketplaceLoader            ├── cameraHealthPlugin            ├── cameraSnapshotPlugin        ├── mqtt/            ├── mqttPlugin            ├── browsePlugin            ├── scopeRegistry            ├── authBrowsePlugin        ├── voice/            ├── voiceCommandsPlugin            ├── frigateEventsPlugin            ├── chatPlugin            ├── cameraVendorDatabase            ├── networkScanPlugin            ├── toonicBridgePlugin        ├── protocol-bridge/            ├── emailPlugin    ├── main    ├── App            ├── cameraLivePlugin        ├── WatchBadge        ├── NetworkSelector        ├── HealthDiagnostic        ├── AlertBridgeComponent        ├── ChatOverlays        ├── Settings        ├── NetworkHistorySelector        ├── CameraPreview        ├── CameraLiveInline        ├── SetupWizardModal        ├── MessageResultCard        ├── MicSettingsModal        ├── QuickActionButtons        ├── QuickCommands            ├── simple        ├── TtsControls        ├── Chat        ├── CommandHistory        ├── DeviceDashboardModal        ├── MessageQuickActions        ├── ActionSuggestions        ├── ChatInput        ├── DiagnosticsModal        ├── ThinkingMessage        ├── ChatPersistenceBridge        ├── ChatConfigPrompt            ├── protocolBridgePlugin        ├── TtsSettingsModal        ├── FileResultsDisplay        ├── DeviceStrip        ├── ErrorReportPanel        ├── ChatMessageList        ├── QuickCommandHistory    ├── config    ├── config        ├── CqrsContext    ├── add-reolink-camera        ├── pluginContext        ├── network_info        ├── vision_config        ├── main_changes    ├── net-diag        ├── vision_scene_buffer        ├── vision_tracker        ├── llm        ├── tts        ├── llm_query        ├── vision_motion        ├── frigate_mqtt        ├── stt        ├── browse_rendered        ├── file_search        ├── vision_llm        ├── rss_parser        ├── vision_movement        ├── main        ├── query_schema        ├── logging        ├── autostart        ├── motion_detection        ├── vision_detector        ├── vision_pipeline        ├── ssh        ├── vision_db        ├── email        ├── audio_commands        ├── network_scan        ├── vision_query_engine        ├── disk_info        ├── docker        ├── vision_capture        ├── remote_machine        ├── wake_word        ├── toonic_sidecar        ├── settings    ├── chat-cli        ├── network        ├── local_llm        ├── audio_capture        ├── content_cleaning        ├── file_search_bench├── project    ├── install-openvino-rhel            ├── monitorPlugin    ├── detect-platform    ├── install-openvino    ├── install-openvino-docker    ├── install-openvino-pip    ├── install-openvino-ubuntu    ├── install-openvino-macos        ├── tts_backend        ├── setup-audio        ├── content_extraction```
+    ├── config        ├── d        ├── spec        ├── spec        ├── spec        ├── spec        ├── spec    ├── config        ├── spec        ├── spec        ├── spec        ├── types        ├── historyRepository        ├── deviceRepository        ├── migrations        ├── scanHistoryRepository        ├── configuredDeviceRepository        ├── databaseManager        ├── chatRepository        ├── sendMessageCommand        ├── copyContextCommand        ├── saveSettingsCommand        ├── browseCommand        ├── sttClient        ├── llmPrompts        ├── logger        ├── resolver        ├── llmClient        ├── phonetic        ├── runtime        ├── useChatPersistence        ├── useTts        ├── useDatabaseManager        ├── useChatDispatch        ├── useHistoryPersistence        ├── browseGateway        ├── useChatSpeech        ├── useAlertBridge        ├── useLlm    ├── motion_pipeline        ├── useWatchNotifications        ├── useChatMessages        ├── llmService        ├── defaultBrowseAdapter        ├── defaultLlmAdapter        ├── browseService        ├── preferenceLearning        ├── useStt            ├── types        ├── types        ├── queryBus        ├── useSpeech        ├── pluginRegistry        ├── cache        ├── realtimeSync        ├── bootstrap        ├── processRegistry        ├── systemContext        ├── retry        ├── actionSchema        ├── intentSchema        ├── commandBus        ├── fallbackHandler        ├── types        ├── llmIntentClassifier        ├── intentRouter        ├── monitoringPlugin        ├── networkScanner        ├── getMessagesQuery        ├── getSettingsQuery        ├── appConfig        ├── configStore        ├── serviceProber        ├── autoConfig        ├── audioSettings        ├── chatAggregate        ├── chatEvents        ├── watchConfig        ├── eventStore        ├── quickActionResolver├── resolver        ├── types        ├── autoWatchIntegration        ├── errorReporting        ├── alertBridge        ├── watchManager        ├── healthCheck            ├── remoteMachinePlugin        ├── changeDetector            ├── wakeOnLanPlugin            ├── mdnsPlugin            ├── onvifPlugin            ├── arpPlugin            ├── pingPlugin            ├── portScanPlugin                ├── index            ├── diskInfoPlugin            ├── processesPlugin            ├── logsPlugin            ├── sshPlugin        ├── monitor/            ├── dockerPlugin            ├── fileSearchPlugin            ├── serviceProbePlugin            ├── motionDetectionPlugin            ├── advancedPortScanPlugin            ├── cameraDetection            ├── autoScanScheduler            ├── deviceStatusPlugin            ├── rtspCameraPlugin            ├── deviceConfigPlugin        ├── marketplace/        ├── rtsp-camera/            ├── cameraPtzPlugin        ├── cameras/            ├── marketplaceLoader            ├── cameraHealthPlugin        ├── mqtt/            ├── cameraSnapshotPlugin            ├── mqttPlugin            ├── scopeRegistry            ├── browsePlugin            ├── networkScanPlugin        ├── voice/            ├── authBrowsePlugin            ├── voiceCommandsPlugin            ├── chatPlugin            ├── frigateEventsPlugin            ├── cameraVendorDatabase            ├── toonicBridgePlugin        ├── protocol-bridge/            ├── emailPlugin    ├── main            ├── cameraLivePlugin    ├── App        ├── NetworkSelector        ├── WatchBadge        ├── HealthDiagnostic        ├── AlertBridgeComponent        ├── ChatOverlays        ├── Settings        ├── NetworkHistorySelector        ├── CameraLiveInline        ├── SetupWizardModal        ├── CameraPreview        ├── MessageResultCard        ├── QuickActionButtons        ├── MicSettingsModal        ├── QuickCommands            ├── simple            ├── protocolBridgePlugin        ├── TtsControls        ├── Chat        ├── CommandHistory        ├── ActionSuggestions        ├── DeviceDashboardModal        ├── MessageQuickActions        ├── DiagnosticsModal        ├── ThinkingMessage        ├── ChatPersistenceBridge            ├── monitorPlugin        ├── ChatInput        ├── TtsSettingsModal        ├── ErrorReportPanel        ├── DeviceStrip        ├── FileResultsDisplay        ├── QuickCommandHistory        ├── CqrsContext    ├── config    ├── config        ├── ChatConfigPrompt        ├── pluginContext    ├── add-reolink-camera    ├── net-diag        ├── network_info        ├── main_changes        ├── vision_config        ├── vision_tracker        ├── vision_scene_buffer        ├── llm        ├── vision_motion        ├── ChatMessageList        ├── llm_query        ├── frigate_mqtt        ├── tts        ├── stt        ├── file_search        ├── vision_llm        ├── browse_rendered        ├── main        ├── rss_parser        ├── vision_movement        ├── logging        ├── motion_detection        ├── query_schema        ├── autostart        ├── vision_detector        ├── vision_pipeline        ├── ssh        ├── email        ├── audio_commands        ├── disk_info    ├── chat-cli        ├── vision_db        ├── vision_query_engine        ├── docker        ├── vision_capture        ├── remote_machine        ├── wake_word        ├── settings        ├── toonic_sidecar        ├── network_scan        ├── network        ├── audio_capture        ├── local_llm        ├── content_cleaning        ├── file_search_bench├── project    ├── detect-platform    ├── install-openvino-pip    ├── install-openvino    ├── install-openvino-docker        ├── tts_backend    ├── install-openvino-ubuntu    ├── install-openvino-rhel        ├── setup-audio    ├── install-openvino-macos        ├── content_extraction```
 
 ## API Overview
 
@@ -163,16 +163,16 @@ broxeen/
 - **`ScanHistoryEntry`** — —
 - **`IncrementalScanRecommendation`** — —
 - **`ScanHistoryRepository`** — —
+- **`ConfiguredDevice`** — —
+- **`ConfiguredDeviceRow`** — —
+- **`ConfiguredDeviceRepository`** — —
 - **`DbAdapter`** — —
 - **`TauriDbAdapter`** — —
 - **`InMemoryDbAdapter`** — —
 - **`DatabaseManager`** — —
-- **`ConfiguredDevice`** — —
-- **`ConfiguredDeviceRow`** — —
-- **`ConfiguredDeviceRepository`** — —
 - **`ChatRepository`** — —
-- **`CopyContextCommand`** — —
 - **`SendMessageCommand`** — —
+- **`CopyContextCommand`** — —
 - **`SaveSettingsCommand`** — —
 - **`BrowseCommandParams`** — —
 - **`BrowseCommand`** — —
@@ -184,20 +184,21 @@ broxeen/
 - **`TtsOptions`** — —
 - **`TauriTtsAvailability`** — —
 - **`BackendTtsInfo`** — —
-- **`BrowseResult`** — —
-- **`AllOriginsResponse`** — —
-- **`BrowserProxyPayload`** — —
 - **`UseChatDispatchDeps`** — —
 - **`CommandHistoryItem`** — —
 - **`NetworkHistoryItem`** — —
+- **`BrowseResult`** — —
+- **`AllOriginsResponse`** — —
+- **`BrowserProxyPayload`** — —
 - **`UseChatSpeechDeps`** — —
 - **`UseChatSpeechReturn`** — —
-- **`UseSttOptions`** — —
-- **`UseSttReturn`** — —
-- **`WatchNotification`** — —
-- **`UseWatchNotificationsReturn`** — —
 - **`UseLlmOptions`** — —
 - **`UseLlmReturn`** — —
+- **`LocalClassifier`** — —
+- **`LlmVerifier`** — —
+- **`MotionPipeline`** — —
+- **`WatchNotification`** — —
+- **`UseWatchNotificationsReturn`** — —
 - **`LlmService`** — —
 - **`DefaultBrowseAdapter`** — —
 - **`DefaultLlmAdapter`** — —
@@ -205,20 +206,8 @@ broxeen/
 - **`PreferenceEntry`** — —
 - **`PreferenceScore`** — —
 - **`PreferenceLearningStore`** — —
-- **`SpeechRecognitionEvent`** — —
-- **`SpeechRecognitionErrorEvent`** — —
-- **`SpeechRecognitionInstance`** — —
-- **`Window`** — —
-- **`PluginContext`** — —
-- **`CameraConfig`** — —
-- **`MqttConfig`** — —
-- **`MqttAdapter`** — —
-- **`Plugin`** — —
-- **`IntentDetection`** — —
-- **`IntentRouter`** — —
-- **`PluginRegistry`** — —
-- **`CommandBus`** — —
-- **`AppContext`** — —
+- **`UseSttOptions`** — —
+- **`UseSttReturn`** — —
 - **`PluginQuery`** — —
 - **`QueryMetadata`** — —
 - **`PluginResult`** — —
@@ -238,31 +227,43 @@ broxeen/
 - **`IQuery`** — —
 - **`IQueryHandler`** — —
 - **`IQueryBus`** — —
+- **`PluginContext`** — —
+- **`CameraConfig`** — —
+- **`MqttConfig`** — —
+- **`MqttAdapter`** — —
+- **`Plugin`** — —
+- **`IntentDetection`** — —
+- **`IntentRouter`** — —
+- **`PluginRegistry`** — —
+- **`CommandBus`** — —
+- **`AppContext`** — —
 - **`QueryBus`** — —
 - **`ListPluginsQuery`** — —
 - **`PluginInfo`** — —
 - **`GetPluginStatusQuery`** — —
-- **`RealtimeSyncConfig`** — —
-- **`SyncMessage`** — —
-- **`RealtimeSync`** — —
+- **`SpeechRecognitionEvent`** — —
+- **`SpeechRecognitionErrorEvent`** — —
+- **`SpeechRecognitionInstance`** — —
+- **`Window`** — —
 - **`PluginRegistry`** — —
 - **`CacheEntry`** — —
 - **`CacheConfig`** — —
 - **`CacheStats`** — —
 - **`Cache`** — —
 - **`CacheFactory`** — —
-- **`IntentRouter`** — —
-- **`PluginQuery`** — —
-- **`SystemContext`** — —
+- **`RealtimeSyncConfig`** — —
+- **`SyncMessage`** — —
+- **`RealtimeSync`** — —
 - **`ProcessInfo`** — —
 - **`ProcessRegistry`** — —
+- **`SystemContext`** — —
 - **`RetryOptions`** — —
-- **`FallbackResult`** — —
-- **`FallbackOptions`** — —
+- **`ActionSchema`** — —
 - **`SubActionDef`** — —
 - **`IntentSchema`** — —
 - **`CommandBus`** — —
-- **`ActionSchema`** — —
+- **`FallbackResult`** — —
+- **`FallbackOptions`** — —
 - **`NetworkScanResult`** — —
 - **`DiscoveredDevice`** — —
 - **`ServiceProbeResult`** — —
@@ -273,10 +274,10 @@ broxeen/
 - **`DiscoveryEvent`** — —
 - **`LlmIntentResult`** — —
 - **`LlmResponse`** — —
-- **`LocalClassifier`** — —
-- **`LlmVerifier`** — —
-- **`MotionPipeline`** — —
-- **`ServiceProber`** — —
+- **`IntentRouter`** — —
+- **`PluginQuery`** — —
+- **`VisionQueryResult`** — —
+- **`MonitoringPlugin`** — —
 - **`NetworkScanner`** — —
 - **`GetMessagesQuery`** — —
 - **`GetSettingsQuery`** — —
@@ -293,47 +294,34 @@ broxeen/
 - **`MotionDetectionConfig`** — —
 - **`AppConfig`** — —
 - **`ConfigFieldMeta`** — —
-- **`VisionQueryResult`** — —
-- **`MonitoringPlugin`** — —
+- **`ConfigStoreImpl`** — —
+- **`ConfigStatus`** — —
+- **`ServiceProber`** — —
 - **`AutoConfigResult`** — —
 - **`AudioSettings`** — —
 - **`ChatAggregate`** — —
-- **`ConfigStoreImpl`** — —
-- **`ConfigStatus`** — —
 - **`ChatMessage`** — —
 - **`EventStore`** — —
-- **`ResolveResult`** — Result of URL resolution.
 - **`QuickActionSet`** — —
+- **`ResolveResult`** — Result of URL resolution.
 - **`WatchRule`** — —
 - **`ChangeDetectedEvent`** — —
 - **`WatchConfig`** — —
 - **`ChangeDetectionResult`** — —
 - **`WatchManagerEvent`** — —
 - **`PollingStats`** — —
-- **`ErrorReport`** — —
-- **`ErrorReporting`** — —
-- **`HealthCheckResult`** — —
-- **`HealthReport`** — —
-- **`HealthChecker`** — —
-- **`DeviceStatusChange`** — —
-- **`AlertBridgeOptions`** — —
-- **`AlertBridge`** — —
 - **`AutoWatchConfig`** — —
 - **`AutoWatchStats`** — —
 - **`AutoWatchIntegration`** — —
-- **`ChangeDetector`** — —
-- **`WakeOnLanPlugin`** — —
+- **`ErrorReport`** — —
+- **`ErrorReporting`** — —
+- **`DeviceStatusChange`** — —
+- **`AlertBridgeOptions`** — —
+- **`AlertBridge`** — —
 - **`WatchManager`** — —
-- **`OnvifCamera`** — —
-- **`OnvifPlugin`** — —
-- **`ArpHost`** — —
-- **`ArpPlugin`** — —
-- **`MdnsService`** — —
-- **`MdnsPlugin`** — —
-- **`PingPlugin`** — —
-- **`PingResult`** — —
-- **`PortScanPlugin`** — —
-- **`PortScanResult`** — —
+- **`HealthCheckResult`** — —
+- **`HealthReport`** — —
+- **`HealthChecker`** — —
 - **`RemoteMachine`** — —
 - **`RemoteCommandResult`** — —
 - **`RemoteSystemInfo`** — —
@@ -341,39 +329,51 @@ broxeen/
 - **`NetworkInterface`** — —
 - **`RemoteProcess`** — —
 - **`RemoteMachinePlugin`** — —
-- **`ProcessesPlugin`** — —
-- **`DockerContainer`** — —
-- **`DockerImage`** — —
-- **`DockerVolume`** — —
-- **`DockerNetwork`** — —
-- **`DockerInfo`** — —
-- **`DockerPlugin`** — —
+- **`ChangeDetector`** — —
+- **`WakeOnLanPlugin`** — —
+- **`MdnsService`** — —
+- **`MdnsPlugin`** — —
+- **`OnvifCamera`** — —
+- **`OnvifPlugin`** — —
+- **`ArpHost`** — —
+- **`ArpPlugin`** — —
+- **`PingPlugin`** — —
+- **`PingResult`** — —
+- **`PortScanPlugin`** — —
+- **`PortScanResult`** — —
 - **`DiskInfoPlugin`** — —
 - **`DiskPartition`** — —
 - **`DiskInfo`** — —
 - **`SshResult`** — —
-- **`FileSearchResult`** — —
-- **`FileSearchResponse`** — —
-- **`FileContentResponse`** — —
-- **`FileSearchPlugin`** — —
+- **`ProcessesPlugin`** — —
 - **`LogCommand`** — —
 - **`LogsPlugin`** — —
 - **`SshPlugin`** — —
 - **`SshExecResult`** — —
 - **`SshTestResult`** — —
 - **`KnownHost`** — —
+- **`DockerContainer`** — —
+- **`DockerImage`** — —
+- **`DockerVolume`** — —
+- **`DockerNetwork`** — —
+- **`DockerInfo`** — —
+- **`DockerPlugin`** — —
+- **`FileSearchResult`** — —
+- **`FileSearchResponse`** — —
+- **`FileContentResponse`** — —
+- **`FileSearchPlugin`** — —
 - **`ServiceProbePlugin`** — —
-- **`AdvancedPortScanPlugin`** — —
-- **`CameraVendor`** — —
-- **`PortScanResult`** — —
-- **`CameraDetectionResult`** — —
 - **`PipelineStatus`** — —
 - **`DetectionStats`** — —
 - **`DetectionRow`** — —
 - **`MotionDetectionPlugin`** — —
-- **`DeviceStatusPlugin`** — —
+- **`AdvancedPortScanPlugin`** — —
+- **`CameraVendor`** — —
+- **`PortScanResult`** — —
+- **`CameraDetectionResult`** — —
 - **`AutoScanConfig`** — —
 - **`AutoScanScheduler`** — —
+- **`DeviceStatusPlugin`** — —
 - **`CameraConfig`** — —
 - **`FrameGrabber`** — —
 - **`CapturedFrame`** — —
@@ -383,8 +383,8 @@ broxeen/
 - **`LlmSceneDescriber`** — —
 - **`RtspCameraPluginOptions`** — —
 - **`RtspCameraPlugin`** — —
-- **`RegisterRtspCameraOptions`** — —
 - **`DeviceConfigPlugin`** — —
+- **`RegisterRtspCameraOptions`** — —
 - **`PtzCommand`** — —
 - **`CameraPtzPlugin`** — —
 - **`MarketplaceEntry`** — —
@@ -396,19 +396,19 @@ broxeen/
 - **`MqttClientAdapter`** — —
 - **`TopicValue`** — —
 - **`MqttPlugin`** — —
-- **`HttpBrowsePlugin`** — —
 - **`ScopeDefinition`** — —
 - **`RemotePluginManifest`** — —
 - **`ScopeRegistry`** — —
-- **`AuthBrowsePlugin`** — —
-- **`VoiceCommand`** — —
-- **`VoiceCommandsPlugin`** — —
-- **`FrigateEventsPlugin`** — —
-- **`ChatLlmPlugin`** — —
-- **`CameraVendor`** — —
+- **`HttpBrowsePlugin`** — —
 - **`NetworkScanPlugin`** — —
 - **`NetworkDevice`** — —
 - **`NetworkScanResult`** — —
+- **`AuthBrowsePlugin`** — —
+- **`VoiceCommand`** — —
+- **`VoiceCommandsPlugin`** — —
+- **`ChatLlmPlugin`** — —
+- **`FrigateEventsPlugin`** — —
+- **`CameraVendor`** — —
 - **`ToonicStatus`** — —
 - **`ToonicEvent`** — —
 - **`ToonicBridgePlugin`** — —
@@ -417,9 +417,9 @@ broxeen/
 - **`InboxSummary`** — —
 - **`EmailPlugin`** — —
 - **`CameraLivePlugin`** — —
-- **`WatchBadgeProps`** — —
 - **`NetworkConfig`** — —
 - **`NetworkSelectorProps`** — —
+- **`WatchBadgeProps`** — —
 - **`HealthDiagnosticProps`** — —
 - **`AlertBridgeComponentProps`** — —
 - **`ExpandedImageData`** — —
@@ -428,37 +428,18 @@ broxeen/
 - **`SettingsProps`** — —
 - **`NetworkHistoryItem`** — —
 - **`NetworkHistorySelectorProps`** — —
+- **`SetupWizardModalProps`** — —
 - **`CameraPreviewProps`** — —
 - **`FrameAnalysis`** — —
-- **`SetupWizardModalProps`** — —
 - **`DomainMeta`** — —
 - **`MessageResultCardProps`** — —
-- **`MicSettingsModalProps`** — —
 - **`QuickActionButtonsProps`** — —
 - **`ActionLink`** — —
+- **`MicSettingsModalProps`** — —
 - **`QuickCommand`** — —
 - **`SavedCommandHistoryItem`** — —
 - **`QuickCommandsProps`** — —
 - **`WatchBadgeProps`** — —
-- **`TtsControlsProps`** — —
-- **`ChatProps`** — —
-- **`CommandHistoryItem`** — —
-- **`CommandHistoryProps`** — —
-- **`DeviceEntry`** — —
-- **`DeviceServiceEntry`** — —
-- **`DeviceDashboardModalProps`** — —
-- **`MessageQuickActionsProps`** — —
-- **`ActionSuggestion`** — —
-- **`ActionSuggestionsProps`** — —
-- **`ScopeOption`** — —
-- **`SttState`** — —
-- **`ChatInputProps`** — —
-- **`DiagnosticsModalProps`** — —
-- **`ThinkingMessageProps`** — —
-- **`Props`** — —
-- **`ConfigAction`** — —
-- **`ConfigPromptData`** — —
-- **`ChatConfigPromptProps`** — —
 - **`BridgeEndpoint`** — —
 - **`BridgeMessage`** — —
 - **`ActionHint`** — —
@@ -466,16 +447,37 @@ broxeen/
 - **`WsConnection`** — —
 - **`SseStream`** — —
 - **`ProtocolBridgePlugin`** — —
+- **`TtsControlsProps`** — —
+- **`ChatProps`** — —
+- **`CommandHistoryItem`** — —
+- **`CommandHistoryProps`** — —
+- **`ActionSuggestion`** — —
+- **`ActionSuggestionsProps`** — —
+- **`DeviceEntry`** — —
+- **`DeviceServiceEntry`** — —
+- **`DeviceDashboardModalProps`** — —
+- **`MessageQuickActionsProps`** — —
+- **`DiagnosticsModalProps`** — —
+- **`ThinkingMessageProps`** — —
+- **`Props`** — —
+- **`MonitorTarget`** — —
+- **`CaptureMetadata`** — —
+- **`MonitorLogEntry`** — —
+- **`MonitorPlugin`** — —
+- **`ScopeOption`** — —
+- **`SttState`** — —
+- **`ChatInputProps`** — —
 - **`TtsSettingsModalProps`** — —
-- **`FileResult`** — —
-- **`FileResultsDisplayProps`** — —
-- **`DeviceStripProps`** — —
 - **`Window`** — —
 - **`ErrorReportPanelProps`** — —
-- **`TtsState`** — —
-- **`ChatMessageListProps`** — —
+- **`DeviceStripProps`** — —
+- **`FileResult`** — —
+- **`FileResultsDisplayProps`** — —
 - **`QuickCommandHistoryProps`** — —
 - **`CqrsContextValue`** — —
+- **`ConfigAction`** — —
+- **`ConfigPromptData`** — —
+- **`ChatConfigPromptProps`** — —
 - **`PluginContextValue`** — —
 - **`PluginProviderProps`** — —
 - **`NetworkInfo`** — —
@@ -487,21 +489,23 @@ broxeen/
 - **`SceneConfig`** — —
 - **`DatabaseConfig`** — —
 - **`LlmConfig`** — —
-- **`ObjectEvent`** — —
-- **`MinuteBatch`** — —
-- **`MinuteBuffer`** — —
 - **`CropSnapshot`** — —
 - **`CompletedTrack`** — —
 - **`ActiveTrack`** — —
 - **`Tracker`** — —
+- **`ObjectEvent`** — —
+- **`MinuteBatch`** — —
+- **`MinuteBuffer`** — —
 - **`LlmResponse`** — —
-- **`TtsAvailability`** — —
-- **`NlQueryResult`** — —
 - **`MovingObject`** — —
 - **`MotionDetector`** — —
+- **`TtsState`** — —
+- **`ChatMessageListProps`** — —
+- **`NlQueryResult`** — —
 - **`FrigateMqttEvent`** — —
 - **`FrigateMqttConfig`** — —
 - **`FrigateMqttRuntime`** — —
+- **`TtsAvailability`** — —
 - **`VadResult`** — —
 - **`FileSearchResult`** — —
 - **`FileSearchResponse`** — —
@@ -512,12 +516,12 @@ broxeen/
 - **`ObjectDescription`** — —
 - **`SceneNarrativeResult`** — —
 - **`LlmClient`** — —
+- **`BrowseResult`** — —
 - **`RssItem`** — —
 - **`RssFeed`** — —
 - **`AtomEntry`** — —
 - **`AtomFeed`** — —
 - **`MovementSummary`** — —
-- **`BrowseResult`** — —
 - **`PipelineProcess`** — —
 - **`NativePipeline`** — —
 - **`StartPipelineRequest`** — —
@@ -534,10 +538,6 @@ broxeen/
 - **`SshResult`** — —
 - **`SshTestResult`** — —
 - **`KnownHost`** — —
-- **`LocalDetection`** — —
-- **`LlmEvent`** — —
-- **`Statistics`** — —
-- **`VisionDatabase`** — —
 - **`EmailConfig`** — —
 - **`EmailMessage`** — —
 - **`InboxSummary`** — —
@@ -547,6 +547,30 @@ broxeen/
 - **`SttStatus`** — —
 - **`TtsInfo`** — —
 - **`AudioDevices`** — —
+- **`DiskPartition`** — —
+- **`DiskInfo`** — —
+- **`LocalDetection`** — —
+- **`LlmEvent`** — —
+- **`Statistics`** — —
+- **`VisionDatabase`** — —
+- **`QueryResult`** — —
+- **`QueryEngine`** — —
+- **`DockerContainer`** — —
+- **`DockerImage`** — —
+- **`DockerVolume`** — —
+- **`DockerNetwork`** — —
+- **`DockerInfo`** — —
+- **`CaptureStream`** — —
+- **`RemoteMachine`** — —
+- **`RemoteCommandResult`** — —
+- **`RemoteSystemInfo`** — —
+- **`DiskUsage`** — —
+- **`NetworkInterface`** — —
+- **`RemoteProcess`** — —
+- **`WakeWordState`** — —
+- **`AudioSettings`** — —
+- **`LegacyAudioSettings`** — —
+- **`ToonicStatus`** — —
 - **`CapturedFrame`** — —
 - **`LiveFrameCache`** — —
 - **`RtspWorker`** — —
@@ -563,33 +587,9 @@ broxeen/
 - **`NetworkDevice`** — —
 - **`NetworkScanResult`** — —
 - **`ScanNetworkArgs`** — —
-- **`QueryResult`** — —
-- **`QueryEngine`** — —
-- **`DiskPartition`** — —
-- **`DiskInfo`** — —
-- **`DockerContainer`** — —
-- **`DockerImage`** — —
-- **`DockerVolume`** — —
-- **`DockerNetwork`** — —
-- **`DockerInfo`** — —
-- **`CaptureStream`** — —
-- **`RemoteMachine`** — —
-- **`RemoteCommandResult`** — —
-- **`RemoteSystemInfo`** — —
-- **`DiskUsage`** — —
-- **`NetworkInterface`** — —
-- **`RemoteProcess`** — —
-- **`WakeWordState`** — —
-- **`ToonicStatus`** — —
-- **`AudioSettings`** — —
-- **`LegacyAudioSettings`** — —
+- **`RecordingState`** — —
 - **`LocalLlmConfig`** — —
 - **`LocalLlm`** — —
-- **`RecordingState`** — —
-- **`MonitorTarget`** — —
-- **`CaptureMetadata`** — —
-- **`MonitorLogEntry`** — —
-- **`MonitorPlugin`** — —
 - **`ActionLinks`** — —
 
 ### Functions
@@ -649,10 +649,6 @@ broxeen/
 - `closeDiagnosticBtn()` — —
 - `errorReportBtn()` — —
 - `w()` — —
-- `input()` — —
-- `response()` — —
-- `messages()` — —
-- `apiKeySet()` — —
 - `host()` — —
 - `chatApiPlugin()` — —
 - `run()` — —
@@ -688,6 +684,13 @@ broxeen/
 - `upstream()` — —
 - `contentType()` — —
 - `buffer()` — —
+- `input()` — —
+- `response()` — —
+- `messages()` — —
+- `apiKeySet()` — —
+- `waitForApp()` — —
+- `sendMessage()` — —
+- `body()` — —
 - `networkOption()` — —
 - `scanResults()` — —
 - `scanResultsVisible()` — —
@@ -701,15 +704,12 @@ broxeen/
 - `backButton()` — —
 - `historyItems()` — —
 - `historyItem()` — —
-- `waitForApp()` — —
-- `sendMessage()` — —
-- `body()` — —
 - `repoLogger()` — —
 - `repoLogger()` — —
-- `dbLogger()` — —
 - `repoLogger()` — —
 - `rowToDevice()` — —
 - `genId()` — —
+- `dbLogger()` — —
 - `repoLogger()` — —
 - `logger()` — —
 - `logger()` — —
@@ -855,6 +855,72 @@ broxeen/
 - `runStopViaBackend()` — —
 - `DatabaseManagerContext()` — —
 - `useDatabaseManager()` — —
+- `dispatchLogger()` — —
+- `handleConfigCommand()` — —
+- `lower()` — —
+- `intervalMs()` — —
+- `threshold()` — —
+- `thumb()` — —
+- `status()` — —
+- `subnet()` — —
+- `addScopePrefix()` — —
+- `prefix()` — —
+- `categorizeCommand()` — —
+- `lowerCommand()` — —
+- `checkIfAmbiguousQuery()` — —
+- `lowerQuery()` — —
+- `checkIfNetworkQuery()` — —
+- `containsUrl()` — —
+- `getAmbiguousQueryText()` — —
+- `getSuggestionsForQuery()` — —
+- `getNetworkSelectionText()` — —
+- `parseCameraResults()` — —
+- `lines()` — —
+- `cameraMatch()` — —
+- `camCfg()` — —
+- `looksLikeRecoverableError()` — —
+- `useChatDispatch()` — —
+- `handleSubmit()` — —
+- `originalQuery()` — —
+- `query()` — —
+- `configResult()` — —
+- `thinkingId()` — —
+- `isVoiceInput()` — —
+- `result()` — —
+- `fallback()` — —
+- `fallbackPrompt()` — —
+- `textData()` — —
+- `hasCameraLiveBlock()` — —
+- `parsed()` — —
+- `contentBlocks()` — —
+- `runtimeIsTauri()` — —
+- `errorMessage()` — —
+- `handleCommandHistorySelect()` — —
+- `handleSuggestionClick()` — —
+- `handleNetworkOptionClick()` — —
+- `sendAmbiguousQuerySuggestions()` — —
+- `suggestionsId()` — —
+- `sendNetworkSelectionMessage()` — —
+- `networkSelectionId()` — —
+- `handleCameraSelect()` — —
+- `handleCameraAnalysisComplete()` — —
+- `handleCameraStreamStart()` — —
+- `histLogger()` — —
+- `useHistoryPersistence()` — —
+- `repoRef()` — —
+- `getRepo()` — —
+- `addToCommandHistory()` — —
+- `repo()` — —
+- `loadCommandHistory()` — —
+- `rows()` — —
+- `addToNetworkHistory()` — —
+- `loadNetworkHistory()` — —
+- `addToCommandHistoryLocalStorage()` — —
+- `saved()` — —
+- `existingIndex()` — —
+- `loadCommandHistoryLocalStorage()` — —
+- `addToNetworkHistoryLocalStorage()` — —
+- `loadNetworkHistoryLocalStorage()` — —
 - `browseLogger()` — —
 - `MAX_CONTENT_LENGTH()` — —
 - `getRandomUserAgent()` — —
@@ -998,72 +1064,6 @@ broxeen/
 - `hasMeaningfulContent()` — —
 - `executeBrowseCommand()` — —
 - `runExecuteBrowseCommand()` — —
-- `dispatchLogger()` — —
-- `handleConfigCommand()` — —
-- `lower()` — —
-- `intervalMs()` — —
-- `threshold()` — —
-- `thumb()` — —
-- `status()` — —
-- `subnet()` — —
-- `addScopePrefix()` — —
-- `prefix()` — —
-- `categorizeCommand()` — —
-- `lowerCommand()` — —
-- `checkIfAmbiguousQuery()` — —
-- `lowerQuery()` — —
-- `checkIfNetworkQuery()` — —
-- `containsUrl()` — —
-- `getAmbiguousQueryText()` — —
-- `getSuggestionsForQuery()` — —
-- `getNetworkSelectionText()` — —
-- `parseCameraResults()` — —
-- `lines()` — —
-- `cameraMatch()` — —
-- `camCfg()` — —
-- `looksLikeRecoverableError()` — —
-- `useChatDispatch()` — —
-- `handleSubmit()` — —
-- `originalQuery()` — —
-- `query()` — —
-- `configResult()` — —
-- `thinkingId()` — —
-- `isVoiceInput()` — —
-- `result()` — —
-- `fallback()` — —
-- `fallbackPrompt()` — —
-- `textData()` — —
-- `hasCameraLiveBlock()` — —
-- `parsed()` — —
-- `contentBlocks()` — —
-- `runtimeIsTauri()` — —
-- `errorMessage()` — —
-- `handleCommandHistorySelect()` — —
-- `handleSuggestionClick()` — —
-- `handleNetworkOptionClick()` — —
-- `sendAmbiguousQuerySuggestions()` — —
-- `suggestionsId()` — —
-- `sendNetworkSelectionMessage()` — —
-- `networkSelectionId()` — —
-- `handleCameraSelect()` — —
-- `handleCameraAnalysisComplete()` — —
-- `handleCameraStreamStart()` — —
-- `histLogger()` — —
-- `useHistoryPersistence()` — —
-- `repoRef()` — —
-- `getRepo()` — —
-- `addToCommandHistory()` — —
-- `repo()` — —
-- `loadCommandHistory()` — —
-- `rows()` — —
-- `addToNetworkHistory()` — —
-- `loadNetworkHistory()` — —
-- `addToCommandHistoryLocalStorage()` — —
-- `saved()` — —
-- `existingIndex()` — —
-- `loadCommandHistoryLocalStorage()` — —
-- `addToNetworkHistoryLocalStorage()` — —
-- `loadNetworkHistoryLocalStorage()` — —
 - `speechLogger()` — —
 - `useChatSpeech()` — —
 - `stt()` — —
@@ -1089,6 +1089,53 @@ broxeen/
 - `wakeWordRunningRef()` — —
 - `wakeWordStoppedForSttRef()` — —
 - `toggleMic()` — —
+- `hookLog()` — —
+- `useAlertBridge()` — —
+- `bridgeRef()` — —
+- `bridge()` — —
+- `handler()` — —
+- `detail()` — —
+- `llmLogger()` — —
+- `useLlm()` — —
+- `historyRef()` — —
+- `send()` — —
+- `runSend()` — —
+- `resp()` — —
+- `msg()` — —
+- `describe()` — —
+- `runDescribe()` — —
+- `summarize()` — —
+- `runSummarize()` — —
+- `summarizeSearch()` — —
+- `runSummarizeSearch()` — —
+- `detectIntent()` — —
+- `runDetectIntent()` — —
+- `raw()` — —
+- `finalIntent()` — —
+- `clearHistory()` — —
+- `init_db(db_path)` — —
+- `save_detection(conn, camera_id, label, confidence)` — —
+- `update_detection_llm(conn, det_id, llm_label, llm_description)` — —
+- `get_statistics(conn, camera_id, hours)` — —
+- `create_bg_subtractor(history, var_threshold)` — —
+- `extract_moving_objects(frame, bg_subtractor, min_area, max_area)` — —
+- `should_send_to_llm(label, confidence, threshold, night_mode)` — —
+- `parse_args()` — —
+- `main()` — —
+- `useWatchNotifications()` — —
+- `unsub()` — —
+- `changeEvent()` — —
+- `notif()` — —
+- `timer()` — —
+- `acknowledge()` — —
+- `acknowledgeEndpoint()` — —
+- `acknowledgeAll()` — —
+- `stopWatch()` — —
+- `mapChangeToNotification()` — —
+- `useChatMessages()` — —
+- `unsubscribe()` — —
+- `log()` — —
+- `MAX_ENTRIES()` — —
 - `sttLogger()` — —
 - `getAudioSettings()` — —
 - `settings()` — —
@@ -1145,45 +1192,9 @@ broxeen/
 - `normalized()` — —
 - `rec()` — —
 - `cleanupSettings()` — —
-- `hookLog()` — —
-- `useAlertBridge()` — —
-- `bridgeRef()` — —
-- `bridge()` — —
-- `handler()` — —
-- `detail()` — —
-- `useWatchNotifications()` — —
-- `unsub()` — —
-- `changeEvent()` — —
-- `notif()` — —
-- `timer()` — —
-- `acknowledge()` — —
-- `acknowledgeEndpoint()` — —
-- `acknowledgeAll()` — —
-- `stopWatch()` — —
-- `mapChangeToNotification()` — —
-- `llmLogger()` — —
-- `useLlm()` — —
-- `historyRef()` — —
-- `send()` — —
-- `runSend()` — —
-- `resp()` — —
-- `msg()` — —
-- `describe()` — —
-- `runDescribe()` — —
-- `summarize()` — —
-- `runSummarize()` — —
-- `summarizeSearch()` — —
-- `runSummarizeSearch()` — —
-- `detectIntent()` — —
-- `runDetectIntent()` — —
-- `raw()` — —
-- `finalIntent()` — —
-- `clearHistory()` — —
-- `useChatMessages()` — —
-- `unsubscribe()` — —
-- `log()` — —
-- `MAX_ENTRIES()` — —
-- `preferenceLearning()` — —
+- `isStreamable()` — —
+- `isVisual()` — —
+- `isPersistent()` — —
 - `speechLogger()` — —
 - `getSpeechRecognitionCtor()` — —
 - `getUnsupportedReason()` — —
@@ -1205,18 +1216,8 @@ broxeen/
 - `stopListening()` — —
 - `runStopListening()` — —
 - `enableAutoListen()` — —
-- `isStreamable()` — —
-- `isVisual()` — —
-- `isPersistent()` — —
-- `cachingMiddleware()` — —
-- `cache()` — —
-- `key()` — —
-- `cached()` — —
-- `result()` — —
-- `syncLogger()` — —
-- `getRealtimeSync()` — —
-- `disposeRealtimeSync()` — —
 - `cacheLogger()` — —
+- `syncLogger()` — —
 - `log()` — —
 - `bootstrapApp()` — —
 - `pluginRegistry()` — —
@@ -1234,7 +1235,6 @@ broxeen/
 - `intent()` — —
 - `activeScope()` — —
 - `plugin()` — —
-- `buildQuery()` — —
 - `log()` — —
 - `detectOs()` — —
 - `ua()` — —
@@ -1255,7 +1255,6 @@ broxeen/
 - `resetSystemContext()` — —
 - `buildSystemContextPrompt()` — —
 - `capsText()` — —
-- `processRegistry()` — —
 - `resolveDecision()` — —
 - `sleep()` — —
 - `computeDelayMs()` — —
@@ -1275,6 +1274,36 @@ broxeen/
 - `m()` — —
 - `shouldRetryUnknownAsTransient()` — —
 - `message()` — —
+- `getSchemasByDomain()` — —
+- `getAllDomains()` — —
+- `scoreMatch()` — —
+- `lower()` — —
+- `words()` — —
+- `hits()` — —
+- `maxPossible()` — —
+- `findMatchingSchemas()` — —
+- `getDomainHints()` — —
+- `findDomainSchemas()` — —
+- `hints()` — —
+- `matchedDomains()` — —
+- `schemasToConfigActions()` — —
+- `schemasToLlmContext()` — —
+- `byDomain()` — —
+- `list()` — —
+- `schemaRegistry()` — —
+- `registerIntentSchema()` — —
+- `registerIntentSchemas()` — —
+- `getIntentSchema()` — —
+- `getAllIntentSchemas()` — —
+- `getSchemasByPlugin()` — —
+- `getSchemasByDomain()` — —
+- `clearIntentSchemas()` — —
+- `matchIntentByPatterns()` — —
+- `lower()` — —
+- `matches()` — —
+- `canPluginHandle()` — —
+- `schemas()` — —
+- `defineIntent()` — —
 - `fallbackLogger()` — —
 - `tryLlmFallback()` — —
 - `cfg()` — —
@@ -1300,36 +1329,6 @@ broxeen/
 - `finalActions()` — —
 - `generateFallback()` — —
 - `llmResult()` — —
-- `schemaRegistry()` — —
-- `registerIntentSchema()` — —
-- `registerIntentSchemas()` — —
-- `getIntentSchema()` — —
-- `getAllIntentSchemas()` — —
-- `getSchemasByPlugin()` — —
-- `getSchemasByDomain()` — —
-- `clearIntentSchemas()` — —
-- `matchIntentByPatterns()` — —
-- `lower()` — —
-- `matches()` — —
-- `canPluginHandle()` — —
-- `schemas()` — —
-- `defineIntent()` — —
-- `getSchemasByDomain()` — —
-- `getAllDomains()` — —
-- `scoreMatch()` — —
-- `lower()` — —
-- `words()` — —
-- `hits()` — —
-- `maxPossible()` — —
-- `findMatchingSchemas()` — —
-- `getDomainHints()` — —
-- `findDomainSchemas()` — —
-- `hints()` — —
-- `matchedDomains()` — —
-- `schemasToConfigActions()` — —
-- `schemasToLlmContext()` — —
-- `byDomain()` — —
-- `list()` — —
 - `log()` — —
 - `intentCache()` — —
 - `CACHE_TTL_MS()` — —
@@ -1354,35 +1353,12 @@ broxeen/
 - `isLlmClassifierAvailable()` — —
 - `clearIntentCache()` — —
 - `getIntentCacheStats()` — —
-- `init_db(db_path)` — —
-- `save_detection(conn, camera_id, label, confidence)` — —
-- `update_detection_llm(conn, det_id, llm_label, llm_description)` — —
-- `get_statistics(conn, camera_id, hours)` — —
-- `create_bg_subtractor(history, var_threshold)` — —
-- `extract_moving_objects(frame, bg_subtractor, min_area, max_area)` — —
-- `should_send_to_llm(label, confidence, threshold, night_mode)` — —
-- `parse_args()` — —
-- `main()` — —
+- `log()` — —
 - `logger()` — —
 - `getConfigFieldsByCategory()` — —
 - `map()` — —
 - `list()` — —
-- `log()` — —
-- `formatQueryResult()` — —
-- `cols()` — —
-- `widths()` — —
-- `max()` — —
-- `val()` — —
-- `displayRows()` — —
-- `cells()` — —
-- `display()` — —
-- `getWatchConfig()` — —
-- `env()` — —
-- `getAutoWatchConfig()` — —
-- `getPollingInterval()` — —
-- `getChangeThreshold()` — —
-- `validateWatchConfig()` — —
-- `mergeWatchConfig()` — —
+- `configLogger()` — —
 - `autoConfigLogger()` — —
 - `runAutoConfig()` — —
 - `status()` — —
@@ -1397,13 +1373,16 @@ broxeen/
 - `n()` — —
 - `pickBestInterface()` — —
 - `withAudioSettingsDefaults()` — —
-- `configLogger()` — —
-- `configStore()` — —
 - `createEvent()` — —
 - `projectChatMessages()` — —
+- `getWatchConfig()` — —
+- `env()` — —
+- `getAutoWatchConfig()` — —
+- `getPollingInterval()` — —
+- `getChangeThreshold()` — —
+- `validateWatchConfig()` — —
+- `mergeWatchConfig()` — —
 - `esLogger()` — —
-- `fuzzy_match_domain(input_str, threshold, max_results)` — Find closest matching domains using SequenceMatcher.
-- `resolve(raw_input, threshold)` — Resolve user input into a browseable URL.
 - `resolveQuickActions()` — —
 - `text()` — —
 - `subnetMatch()` — —
@@ -1412,17 +1391,11 @@ broxeen/
 - `url()` — —
 - `seen()` — —
 - `deduped()` — —
-- `errorReporting()` — —
-- `captureError()` — —
-- `captureNetworkError()` — —
-- `capturePluginError()` — —
-- `captureUserError()` — —
-- `captureSystemError()` — —
-- `healthLogger()` — —
-- `healthChecker()` — —
-- `runHealthCheck()` — —
-- `runQuickHealthCheck()` — —
+- `fuzzy_match_domain(input_str, threshold, max_results)` — Find closest matching domains using SequenceMatcher.
+- `resolve(raw_input, threshold)` — Resolve user input into a browseable URL.
 - `alertLog()` — —
+- `healthLogger()` — —
+- `motionLog()` — —
 - `getAllCameraPorts()` — —
 - `allPorts()` — —
 - `identifyVendor()` — —
@@ -1436,21 +1409,14 @@ broxeen/
 - `vendor()` — —
 - `user()` — —
 - `pass()` — —
-- `motionLog()` — —
-- `statusLogger()` — —
 - `schedLogger()` — —
-- `autoScanScheduler()` — —
-- `blobToBase64()` — —
-- `reader()` — —
-- `result()` — —
-- `base64()` — —
+- `statusLogger()` — —
+- `configLogger()` — —
 - `registerRtspCameraPlugin()` — —
 - `plugin()` — —
 - `tauriPlugin()` — —
-- `configLogger()` — —
 - `registerMqttPlugin()` — —
 - `plugin()` — —
-- `scopeRegistry()` — —
 - `logger()` — —
 - `logger()` — —
 - `frigateLogger()` — —
@@ -1501,15 +1467,15 @@ broxeen/
 - `activeSpeaker()` — —
 - `persistSettings()` — —
 - `updateSettings()` — —
+- `handleSelect()` — —
+- `handleHistorySelect()` — —
+- `config()` — —
+- `handleNewNetwork()` — —
 - `formatTime()` — —
 - `now()` — —
 - `diff()` — —
 - `getNotificationIcon()` — —
 - `getSeverityColor()` — —
-- `handleSelect()` — —
-- `handleHistorySelect()` — —
-- `config()` — —
-- `handleNewNetwork()` — —
 - `copyErrorsToClipboard()` — —
 - `currentReport()` — —
 - `timestamp()` — —
@@ -1574,6 +1540,37 @@ broxeen/
 - `formatLastUsed()` — —
 - `now()` — —
 - `diff()` — —
+- `FRAME_CACHE()` — —
+- `CameraLiveInline()` — —
+- `fps()` — —
+- `intervalMs()` — —
+- `cacheKey()` — —
+- `cached()` — —
+- `rtspFailCountRef()` — —
+- `RTSP_FAIL_THRESHOLD()` — —
+- `timerRef()` — —
+- `inFlightRef()` — —
+- `cancelled()` — —
+- `tick()` — —
+- `useHttp()` — —
+- `res()` — —
+- `now()` — —
+- `dt()` — —
+- `nextFps()` — —
+- `msg()` — —
+- `MODELS()` — —
+- `toggleAutostart()` — —
+- `handleSave()` — —
+- `runtimeIsTauri()` — —
+- `configStatus()` — —
+- `apiKeyTrimmed()` — —
+- `testApiKey()` — —
+- `key()` — —
+- `msg()` — —
+- `canProceed()` — —
+- `Icon()` — —
+- `done()` — —
+- `active()` — —
 - `videoRef()` — —
 - `canvasRef()` — —
 - `streamRef()` — —
@@ -1628,37 +1625,6 @@ broxeen/
 - `videoTrack()` — —
 - `interval()` — —
 - `getStatusColor()` — —
-- `FRAME_CACHE()` — —
-- `CameraLiveInline()` — —
-- `fps()` — —
-- `intervalMs()` — —
-- `cacheKey()` — —
-- `cached()` — —
-- `rtspFailCountRef()` — —
-- `RTSP_FAIL_THRESHOLD()` — —
-- `timerRef()` — —
-- `inFlightRef()` — —
-- `cancelled()` — —
-- `tick()` — —
-- `useHttp()` — —
-- `res()` — —
-- `now()` — —
-- `dt()` — —
-- `nextFps()` — —
-- `msg()` — —
-- `MODELS()` — —
-- `toggleAutostart()` — —
-- `handleSave()` — —
-- `runtimeIsTauri()` — —
-- `configStatus()` — —
-- `apiKeyTrimmed()` — —
-- `testApiKey()` — —
-- `key()` — —
-- `msg()` — —
-- `canProceed()` — —
-- `Icon()` — —
-- `done()` — —
-- `active()` — —
 - `detectDomain()` — —
 - `detectStatus()` — —
 - `MessageResultCard()` — —
@@ -1666,6 +1632,11 @@ broxeen/
 - `meta()` — —
 - `status()` — —
 - `statusMeta()` — —
+- `QuickActionButtons()` — —
+- `isEmail()` — —
+- `handleActionClick()` — —
+- `MessageWithQuickActions()` — —
+- `hasQuickActions()` — —
 - `STT_MODELS()` — —
 - `runtimeIsTauri()` — —
 - `speech()` — —
@@ -1677,11 +1648,6 @@ broxeen/
 - `micDevices()` — —
 - `update()` — —
 - `handleSave()` — —
-- `QuickActionButtons()` — —
-- `isEmail()` — —
-- `handleActionClick()` — —
-- `MessageWithQuickActions()` — —
-- `hasQuickActions()` — —
 - `saved()` — —
 - `parsed()` — —
 - `formatCommandTitle()` — —
@@ -1708,6 +1674,7 @@ broxeen/
 - `draggedIndex()` — —
 - `handleDragEnd()` — —
 - `handleClick()` — —
+- `browseLogger()` — —
 - `handlePause()` — —
 - `handleResume()` — —
 - `handleStop()` — —
@@ -1772,6 +1739,28 @@ broxeen/
 - `isActive()` — —
 - `categoryInfo()` — —
 - `successIndicator()` — —
+- `saved()` — —
+- `getTimeOfDay()` — —
+- `hour()` — —
+- `generateContextualSuggestions()` — —
+- `timeOfDay()` — —
+- `generateSmartSuggestions()` — —
+- `sortedLearning()` — —
+- `aScore()` — —
+- `bScore()` — —
+- `category()` — —
+- `getSmartTitle()` — —
+- `getSmartIcon()` — —
+- `trackSuggestionUsage()` — —
+- `key()` — —
+- `existing()` — —
+- `contextual()` — —
+- `smart()` — —
+- `lastQuery()` — —
+- `sortedSuggestions()` — —
+- `getCategoryColor()` — —
+- `getCategoryIcon()` — —
+- `handleSuggestionClick()` — —
 - `timeAgo()` — —
 - `diff()` — —
 - `mins()` — —
@@ -1807,28 +1796,24 @@ broxeen/
 - `getIcon()` — —
 - `getVariantClasses()` — —
 - `isExecuted()` — —
-- `saved()` — —
-- `getTimeOfDay()` — —
-- `hour()` — —
-- `generateContextualSuggestions()` — —
-- `timeOfDay()` — —
-- `generateSmartSuggestions()` — —
-- `sortedLearning()` — —
-- `aScore()` — —
-- `bScore()` — —
-- `category()` — —
-- `getSmartTitle()` — —
-- `getSmartIcon()` — —
-- `trackSuggestionUsage()` — —
-- `key()` — —
-- `existing()` — —
-- `contextual()` — —
-- `smart()` — —
-- `lastQuery()` — —
-- `sortedSuggestions()` — —
-- `getCategoryColor()` — —
-- `getCategoryIcon()` — —
-- `handleSuggestionClick()` — —
+- `runtimeIsTauri()` — —
+- `speech()` — —
+- `stt()` — —
+- `tts()` — —
+- `permissionsApi()` — —
+- `active()` — —
+- `state()` — —
+- `next()` — —
+- `micDevices()` — —
+- `speakerDevices()` — —
+- `hasDeviceLabels()` — —
+- `ThinkingMessage()` — —
+- `startRef()` — —
+- `timer()` — —
+- `now()` — —
+- `remaining()` — —
+- `showCountdown()` — —
+- `ChatPersistenceBridge()` — —
 - `chatLogger()` — —
 - `ChatInput()` — —
 - `inputHistoryRef()` — —
@@ -1848,72 +1833,12 @@ broxeen/
 - `history()` — —
 - `nextIndex()` — —
 - `runtimeIsTauri()` — —
-- `speech()` — —
-- `stt()` — —
-- `tts()` — —
-- `permissionsApi()` — —
-- `active()` — —
-- `state()` — —
-- `next()` — —
-- `micDevices()` — —
-- `speakerDevices()` — —
-- `hasDeviceLabels()` — —
-- `ThinkingMessage()` — —
-- `startRef()` — —
-- `timer()` — —
-- `now()` — —
-- `remaining()` — —
-- `showCountdown()` — —
-- `ChatPersistenceBridge()` — —
-- `ChatConfigPrompt()` — —
-- `handleAction()` — —
-- `handleFieldSave()` — —
-- `value()` — —
-- `meta()` — —
-- `getVariantClasses()` — —
-- `layout()` — —
-- `currentValue()` — —
-- `isCompleted()` — —
-- `isClicked()` — —
-- `buildApiKeyPrompt()` — —
-- `buildNetworkConfigPrompt()` — —
-- `buildModelSelectionPrompt()` — —
-- `buildMonitorConfigPrompt()` — —
-- `buildSshHostPrompt()` — —
-- `buildCameraActionPrompt()` — —
-- `buildConfigOverviewPrompt()` — —
-- `status()` — —
-- `browseLogger()` — —
-- `runtimeIsTauri()` — —
 - `tts()` — —
 - `speakerDevices()` — —
 - `update()` — —
 - `handleSave()` — —
 - `result()` — —
 - `msg()` — —
-- `getFileIcon()` — —
-- `lower()` — —
-- `formatBytes()` — —
-- `FileResultsDisplay()` — —
-- `toggleSelect()` — —
-- `next()` — —
-- `handleSendSelected()` — —
-- `ClarificationView()` — —
-- `extCounts()` — —
-- `ext()` — —
-- `topExts()` — —
-- `deviceTypeIcon()` — —
-- `statusDot()` — —
-- `age()` — —
-- `loadDevices()` — —
-- `repo()` — —
-- `all()` — —
-- `interval()` — —
-- `handler()` — —
-- `dispatchChatAction()` — —
-- `handleDelete()` — —
-- `extra()` — —
-- `ok()` — —
 - `ErrorReportPanel()` — —
 - `refreshData()` — —
 - `getFilterOptions()` — —
@@ -1929,31 +1854,29 @@ broxeen/
 - `getSeverityColor()` — —
 - `getSeverityIcon()` — —
 - `getTypeIcon()` — —
-- `resolveIcon()` — —
-- `getNetworkIcon()` — —
-- `markdownComponents()` — —
-- `codeText()` — —
-- `inputElement()` — —
-- `stripSuggestionMarker()` — —
-- `idx()` — —
-- `extractSuggestionSection()` — —
-- `CopyMessageButton()` — —
-- `handleCopy()` — —
-- `ChatMessageList()` — —
-- `mdComponents()` — —
-- `mdComponentsSimple()` — —
-- `isSystem()` — —
-- `prevIsSystem()` — —
-- `nextIsSystem()` — —
-- `isDataUrl()` — —
-- `canPreview()` — —
-- `m()` — —
-- `section()` — —
-- `seen()` — —
-- `query()` — —
-- `label()` — —
-- `placeholderMatch()` — —
-- `placeholderPos()` — —
+- `deviceTypeIcon()` — —
+- `statusDot()` — —
+- `age()` — —
+- `loadDevices()` — —
+- `repo()` — —
+- `all()` — —
+- `interval()` — —
+- `handler()` — —
+- `dispatchChatAction()` — —
+- `handleDelete()` — —
+- `extra()` — —
+- `ok()` — —
+- `getFileIcon()` — —
+- `lower()` — —
+- `formatBytes()` — —
+- `FileResultsDisplay()` — —
+- `toggleSelect()` — —
+- `next()` — —
+- `handleSendSelected()` — —
+- `ClarificationView()` — —
+- `extCounts()` — —
+- `ext()` — —
+- `topExts()` — —
 - `savedHistory()` — —
 - `parsed()` — —
 - `getCategoryIcon()` — —
@@ -1976,9 +1899,24 @@ broxeen/
 - `llmAdapter()` — —
 - `useCqrs()` — —
 - `context()` — —
-- `addCamera()` — —
-- `dbManager()` — —
-- `deviceRepo()` — —
+- `ChatConfigPrompt()` — —
+- `handleAction()` — —
+- `handleFieldSave()` — —
+- `value()` — —
+- `meta()` — —
+- `getVariantClasses()` — —
+- `layout()` — —
+- `currentValue()` — —
+- `isCompleted()` — —
+- `isClicked()` — —
+- `buildApiKeyPrompt()` — —
+- `buildNetworkConfigPrompt()` — —
+- `buildModelSelectionPrompt()` — —
+- `buildMonitorConfigPrompt()` — —
+- `buildSshHostPrompt()` — —
+- `buildCameraActionPrompt()` — —
+- `buildConfigOverviewPrompt()` — —
+- `status()` — —
 - `PluginCtx()` — —
 - `PluginProvider()` — —
 - `value()` — —
@@ -1989,8 +1927,9 @@ broxeen/
 - `result()` — —
 - `usePlugins()` — —
 - `ctx()` — —
-- `get_local_network_info()` — —
-- `list_network_interfaces()` — —
+- `addCamera()` — —
+- `dbManager()` — —
+- `deviceRepo()` — —
 - `ARGS()` — —
 - `MODE_CAM()` — —
 - `MODE_CMP()` — —
@@ -2038,10 +1977,37 @@ broxeen/
 - `nmapHosts()` — —
 - `allIps()` — —
 - `cameras()` — —
+- `get_local_network_info()` — —
+- `list_network_interfaces()` — —
+- `resolveIcon()` — —
+- `getNetworkIcon()` — —
+- `markdownComponents()` — —
+- `codeText()` — —
+- `inputElement()` — —
+- `stripSuggestionMarker()` — —
+- `idx()` — —
+- `extractSuggestionSection()` — —
+- `CopyMessageButton()` — —
+- `handleCopy()` — —
+- `ChatMessageList()` — —
+- `mdComponents()` — —
+- `mdComponentsSimple()` — —
+- `isSystem()` — —
+- `prevIsSystem()` — —
+- `nextIsSystem()` — —
+- `isDataUrl()` — —
+- `canPreview()` — —
+- `m()` — —
+- `section()` — —
+- `seen()` — —
+- `query()` — —
+- `label()` — —
+- `placeholderMatch()` — —
+- `placeholderPos()` — —
+- `validate_sql_public()` — —
 - `tts_is_available()` — —
 - `tts_speak()` — —
 - `tts_stop()` — —
-- `validate_sql_public()` — —
 - `detect_voice_activity()` — —
 - `is_available()` — —
 - `render_and_extract()` — —
@@ -2055,15 +2021,15 @@ broxeen/
 - `parse_rss_feed_command()` — —
 - `analyse_movement()` — —
 - `movement_tag()` — —
-- `build_text_to_sql_prompt()` — —
 - `init_logging()` — —
 - `backend_info()` — —
 - `backend_warn()` — —
 - `backend_error()` — —
+- `resolve_db_path()` — —
+- `build_text_to_sql_prompt()` — —
 - `autostart_enable()` — —
 - `autostart_disable()` — —
 - `autostart_status()` — —
-- `resolve_db_path()` — —
 - `stt_start()` — —
 - `stt_status()` — —
 - `stt_get_mic_level()` — —
@@ -2078,10 +2044,6 @@ broxeen/
 - `wake_word_start()` — —
 - `wake_word_stop()` — —
 - `wake_word_check_triggered()` — —
-- `anonymize_rtsp_url()` — —
-- `rtsp_stop_worker()` — —
-- `rtsp_stop_all_workers()` — —
-- `rtsp_worker_stats()` — —
 - `col()` — —
 - `run()` — —
 - `hasCmd()` — —
@@ -2190,6 +2152,10 @@ broxeen/
 - `rest()` — —
 - `intent()` — —
 - `waitAndExit()` — —
+- `anonymize_rtsp_url()` — —
+- `rtsp_stop_worker()` — —
+- `rtsp_stop_all_workers()` — —
+- `rtsp_worker_stats()` — —
 - `db_execute()` — —
 - `db_query()` — —
 - `db_close()` — —
@@ -2197,13 +2163,6 @@ broxeen/
 - `truncate_to_chars()` — —
 - `normalize_whitespace()` — —
 - `is_bot_protection_text()` — —
-- `install_prerequisites()` — —
-- `install_via_yum_repo()` — —
-- `install_via_pip()` — —
-- `install_gpu_runtime()` — —
-- `setup_environment()` — —
-- `verify_install()` — —
-- `main()` — —
 - `detect_os()` — —
 - `detect_arch()` — —
 - `detect_cpu()` — —
@@ -2211,6 +2170,13 @@ broxeen/
 - `recommend_openvino_ep()` — —
 - `print_report()` — —
 - `export_vars()` — —
+- `main()` — —
+- `find_python()` — —
+- `install_in_venv()` — —
+- `install_system_wide()` — —
+- `install_dev_tools()` — —
+- `verify_install()` — —
+- `print()` — —
 - `main()` — —
 - `run_detect()` — —
 - `check_install()` — —
@@ -2223,30 +2189,6 @@ broxeen/
 - `generate_dockerfile()` — —
 - `generate_compose()` — —
 - `build_docker_image()` — —
-- `main()` — —
-- `find_python()` — —
-- `install_in_venv()` — —
-- `install_system_wide()` — —
-- `install_dev_tools()` — —
-- `verify_install()` — —
-- `print()` — —
-- `main()` — —
-- `install_prerequisites()` — —
-- `install_via_apt()` — —
-- `install_via_pip()` — —
-- `install_gpu_runtime()` — —
-- `install_python_extras()` — —
-- `setup_environment()` — —
-- `verify_install()` — —
-- `print()` — —
-- `main()` — —
-- `install_homebrew_deps()` — —
-- `install_via_pip()` — —
-- `install_via_brew()` — —
-- `print_macos_notes()` — —
-- `setup_environment()` — —
-- `verify_install()` — —
-- `print()` — —
 - `main()` — —
 - `detect_tts_engine()` — —
 - `tts_engine_info()` — —
@@ -2262,6 +2204,30 @@ broxeen/
 - `speak_to_base64_with_engine()` — —
 - `piper_setup_instructions()` — —
 - `piper_is_installed()` — —
+- `install_prerequisites()` — —
+- `install_via_apt()` — —
+- `install_via_pip()` — —
+- `install_gpu_runtime()` — —
+- `install_python_extras()` — —
+- `setup_environment()` — —
+- `verify_install()` — —
+- `print()` — —
+- `main()` — —
+- `install_prerequisites()` — —
+- `install_via_yum_repo()` — —
+- `install_via_pip()` — —
+- `install_gpu_runtime()` — —
+- `setup_environment()` — —
+- `verify_install()` — —
+- `main()` — —
+- `install_homebrew_deps()` — —
+- `install_via_pip()` — —
+- `install_via_brew()` — —
+- `print_macos_notes()` — —
+- `setup_environment()` — —
+- `verify_install()` — —
+- `print()` — —
+- `main()` — —
 - `extract_search_results()` — —
 - `extract_content()` — —
 - `extract_with_scraper()` — —
@@ -2340,8 +2306,8 @@ broxeen/
 📄 `src-tauri.src.wake_word` (7 functions, 1 classes)
 📄 `src.App` (38 functions)
 📄 `src.commands.browseCommand` (9 functions, 2 classes)
-📄 `src.commands.copyContextCommand` (6 functions, 1 classes)
-📄 `src.commands.saveSettingsCommand` (4 functions, 1 classes)
+📄 `src.commands.copyContextCommand` (5 functions, 1 classes)
+📄 `src.commands.saveSettingsCommand` (3 functions, 1 classes)
 📄 `src.commands.sendMessageCommand` (5 functions, 1 classes)
 📄 `src.components.ActionSuggestions` (22 functions, 2 classes)
 📄 `src.components.AlertBridgeComponent` (1 functions, 1 classes)
@@ -2377,16 +2343,16 @@ broxeen/
 📄 `src.components.WatchBadge.simple` (1 functions, 1 classes)
 📄 `src.config.appConfig` (3 functions, 13 classes)
 📄 `src.config.autoConfig` (14 functions, 1 classes)
-📄 `src.config.configStore` (25 functions, 2 classes)
+📄 `src.config.configStore` (24 functions, 2 classes)
 📄 `src.config.watchConfig` (8 functions)
 📄 `src.contexts.CqrsContext` (11 functions, 1 classes)
 📄 `src.contexts.pluginContext` (10 functions, 2 classes)
 📄 `src.core.actionSchema` (18 functions, 1 classes)
 📄 `src.core.bootstrap` (17 functions)
-📄 `src.core.cache` (39 functions, 5 classes)
+📄 `src.core.cache` (38 functions, 5 classes)
 📄 `src.core.commandBus` (7 functions, 1 classes)
 📄 `src.core.fallbackHandler` (29 functions, 2 classes)
-📄 `src.core.intentRouter` (21 functions, 2 classes)
+📄 `src.core.intentRouter` (20 functions, 2 classes)
 📄 `src.core.intentSchema` (15 functions, 2 classes)
 📄 `src.core.llmIntentClassifier` (25 functions, 2 classes)
 📄 `src.core.plugin.types` (3 functions, 19 classes)
@@ -2394,12 +2360,12 @@ broxeen/
 📄 `src.core.preferenceLearning` (23 functions, 3 classes)
 📄 `src.core.processRegistry` (15 functions, 2 classes)
 📄 `src.core.queryBus` (14 functions, 4 classes)
-📄 `src.core.realtimeSync` (20 functions, 3 classes)
+📄 `src.core.realtimeSync` (19 functions, 3 classes)
 📄 `src.core.retry` (19 functions, 1 classes)
 📄 `src.core.systemContext` (21 functions, 1 classes)
 📄 `src.core.types` (10 classes)
-📄 `src.discovery.networkScanner` (34 functions, 1 classes)
-📄 `src.discovery.serviceProber` (33 functions, 1 classes)
+📄 `src.discovery.networkScanner` (33 functions, 1 classes)
+📄 `src.discovery.serviceProber` (32 functions, 1 classes)
 📄 `src.discovery.types` (8 classes)
 📄 `src.domain.audioSettings` (1 functions, 1 classes)
 📄 `src.domain.chatAggregate` (8 functions, 1 classes)
@@ -2427,13 +2393,13 @@ broxeen/
 📄 `src.lib.runtime` (2 functions)
 📄 `src.lib.sttClient` (13 functions, 1 classes)
 📄 `src.main` (4 functions)
-📄 `src.persistence.chatRepository` (17 functions, 1 classes)
-📄 `src.persistence.configuredDeviceRepository` (29 functions, 3 classes)
-📄 `src.persistence.databaseManager` (24 functions, 4 classes)
-📄 `src.persistence.deviceRepository` (23 functions, 1 classes)
-📄 `src.persistence.historyRepository` (14 functions, 3 classes)
+📄 `src.persistence.chatRepository` (16 functions, 1 classes)
+📄 `src.persistence.configuredDeviceRepository` (28 functions, 3 classes)
+📄 `src.persistence.databaseManager` (22 functions, 4 classes)
+📄 `src.persistence.deviceRepository` (22 functions, 1 classes)
+📄 `src.persistence.historyRepository` (13 functions, 3 classes)
 📄 `src.persistence.migrations`
-📄 `src.persistence.scanHistoryRepository` (17 functions, 3 classes)
+📄 `src.persistence.scanHistoryRepository` (16 functions, 3 classes)
 📄 `src.persistence.types` (9 classes)
 📄 `src.plugins.authBrowse.authBrowsePlugin` (13 functions, 1 classes)
 📄 `src.plugins.camera.cameraLivePlugin` (72 functions, 1 classes)
@@ -2444,7 +2410,7 @@ broxeen/
 📄 `src.plugins.cameras.cameraSnapshotPlugin` (12 functions, 1 classes)
 📄 `src.plugins.chat.chatPlugin` (9 functions, 1 classes)
 📄 `src.plugins.discovery.advancedPortScanPlugin` (42 functions, 1 classes)
-📄 `src.plugins.discovery.autoScanScheduler` (35 functions, 2 classes)
+📄 `src.plugins.discovery.autoScanScheduler` (34 functions, 2 classes)
 📄 `src.plugins.discovery.cameraDetection` (13 functions, 3 classes)
 📄 `src.plugins.discovery.deviceConfigPlugin` (42 functions, 1 classes)
 📄 `src.plugins.discovery.deviceStatusPlugin` (41 functions, 1 classes)
@@ -2462,7 +2428,7 @@ broxeen/
 📄 `src.plugins.monitor.motionDetectionPlugin` (58 functions, 4 classes)
 📄 `src.plugins.monitoringPlugin` (19 functions, 2 classes)
 📦 `src.plugins.mqtt` (2 functions)
-📄 `src.plugins.mqtt.mqttPlugin` (29 functions, 4 classes)
+📄 `src.plugins.mqtt.mqttPlugin` (28 functions, 4 classes)
 📄 `src.plugins.network.arpPlugin` (16 functions, 2 classes)
 📄 `src.plugins.network.mdnsPlugin` (16 functions, 2 classes)
 📄 `src.plugins.network.onvifPlugin` (19 functions, 2 classes)
@@ -2473,8 +2439,8 @@ broxeen/
 📄 `src.plugins.protocol-bridge.protocolBridgePlugin` (152 functions, 7 classes)
 📄 `src.plugins.remote-machine.remoteMachinePlugin` (33 functions, 7 classes)
 📦 `src.plugins.rtsp-camera` (3 functions, 1 classes)
-📄 `src.plugins.rtsp-camera.rtspCameraPlugin` (41 functions, 9 classes)
-📄 `src.plugins.scope.scopeRegistry` (23 functions, 3 classes)
+📄 `src.plugins.rtsp-camera.rtspCameraPlugin` (42 functions, 9 classes)
+📄 `src.plugins.scope.scopeRegistry` (22 functions, 3 classes)
 📄 `src.plugins.system.diskInfoPlugin` (33 functions, 4 classes)
 📄 `src.plugins.system.logs.index`
 📄 `src.plugins.system.logsPlugin` (25 functions, 2 classes)
@@ -2483,17 +2449,17 @@ broxeen/
 📄 `src.plugins.toonic.toonicBridgePlugin` (54 functions, 3 classes)
 📦 `src.plugins.voice`
 📄 `src.plugins.voice.voiceCommandsPlugin` (9 functions, 2 classes)
-📄 `src.queries.getMessagesQuery` (4 functions, 1 classes)
+📄 `src.queries.getMessagesQuery` (3 functions, 1 classes)
 📄 `src.queries.getSettingsQuery` (2 functions, 1 classes)
-📄 `src.reactive.alertBridge` (28 functions, 3 classes)
-📄 `src.reactive.changeDetector` (38 functions, 1 classes)
+📄 `src.reactive.alertBridge` (27 functions, 3 classes)
+📄 `src.reactive.changeDetector` (37 functions, 1 classes)
 📄 `src.reactive.types` (6 classes)
-📄 `src.reactive.watchManager` (45 functions, 1 classes)
+📄 `src.reactive.watchManager` (44 functions, 1 classes)
 📄 `src.services.browseService` (1 classes)
 📄 `src.services.defaultBrowseAdapter` (1 functions, 1 classes)
 📄 `src.services.defaultLlmAdapter` (7 functions, 1 classes)
 📄 `src.services.llmService` (1 classes)
-📄 `src.utils.errorReporting` (28 functions, 2 classes)
+📄 `src.utils.errorReporting` (27 functions, 2 classes)
 📄 `src.utils.healthCheck` (28 functions, 3 classes)
 📄 `src.utils.quickActionResolver` (12 functions, 1 classes)
 📄 `src.vite-env.d`

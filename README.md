@@ -329,8 +329,7 @@ Diagnostyka i raport błędów są dostępne z pływających przycisków po praw
 
 ## License
 
-Apache License 2.0 - see [LICENSE](LICENSE) for details.
-
+Licensed under Apache-2.0.
 ## Author
 
-Created by **Tom Sapletta** - [tom@sapletta.com](mailto:tom@sapletta.com)
+Tom Sapletta

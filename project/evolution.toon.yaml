@@ -1,0 +1,79 @@
+# code2llm/evolution | 3464 func | 195f | 2026-03-30
+
+NEXT[10] (ranked by impact):
+  [1] !! SPLIT-FUNC      useChatSpeech  CC=107  fan=49
+      WHY: CC=107 exceeds 15
+      EFFORT: ~1h  IMPACT: 5243
+
+  [2] !! SPLIT-FUNC      CameraLivePlugin.execute  CC=95  fan=43
+      WHY: CC=95 exceeds 15
+      EFFORT: ~1h  IMPACT: 4085
+
+  [3] !! SPLIT-FUNC      ChatInput  CC=101  fan=38
+      WHY: CC=101 exceeds 15
+      EFFORT: ~1h  IMPACT: 3838
+
+  [4] !! SPLIT-FUNC      MonitorPlugin.handleStart  CC=93  fan=41
+      WHY: CC=93 exceeds 15
+      EFFORT: ~1h  IMPACT: 3813
+
+  [5] !! SPLIT-FUNC      useChatDispatch  CC=78  fan=46
+      WHY: CC=78 exceeds 15
+      EFFORT: ~1h  IMPACT: 3588
+
+  [6] !! SPLIT-FUNC      ChatMessageList  CC=107  fan=33
+      WHY: CC=107 exceeds 15
+      EFFORT: ~1h  IMPACT: 3531
+
+  [7] !! SPLIT-FUNC      useTts  CC=72  fan=48
+      WHY: CC=72 exceeds 15
+      EFFORT: ~1h  IMPACT: 3456
+
+  [8] !! SPLIT-FUNC      host  CC=71  fan=47
+      WHY: CC=71 exceeds 15
+      EFFORT: ~1h  IMPACT: 3337
+
+  [9] !! SPLIT-FUNC      chatApiPlugin  CC=71  fan=47
+      WHY: CC=71 exceeds 15
+      EFFORT: ~1h  IMPACT: 3337
+
+  [10] !! SPLIT-FUNC      configLogger  CC=76  fan=43
+      WHY: CC=76 exceeds 15
+      EFFORT: ~1h  IMPACT: 3268
+
+
+RISKS[0]: none
+
+METRICS-TARGET:
+  CC̄:          4.1 → ≤2.9
+  max-CC:      107 → ≤20
+  god-modules: 0 → 0
+  high-CC(≥15): 138 → ≤69
+  hub-types:   0 → ≤0
+
+PATTERNS (language parser shared logic):
+  _extract_declarations() in base.py — unified extraction for:
+    - TypeScript: interfaces, types, classes, functions, arrow funcs
+    - PHP: namespaces, traits, classes, functions, includes
+    - Ruby: modules, classes, methods, requires
+    - C++: classes, structs, functions, #includes
+    - C#: classes, interfaces, methods, usings
+    - Java: classes, interfaces, methods, imports
+    - Go: packages, functions, structs
+    - Rust: modules, functions, traits, use statements
+
+  Shared regex patterns per language:
+    - import: language-specific import/require/using patterns
+    - class: class/struct/trait declarations with inheritance
+    - function: function/method signatures with visibility
+    - brace_tracking: for C-family languages ({ })
+    - end_keyword_tracking: for Ruby (module/class/def...end)
+
+  Benefits:
+    - Consistent extraction logic across all languages
+    - Reduced code duplication (~70% reduction in parser LOC)
+    - Easier maintenance: fix once, apply everywhere
+    - Standardized FunctionInfo/ClassInfo models
+
+HISTORY:
+  (first run — no previous data)

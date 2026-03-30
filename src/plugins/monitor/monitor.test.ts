@@ -14,9 +14,52 @@ import { DatabaseManager } from '../../persistence/databaseManager';
 import { processRegistry } from '../../core/processRegistry';
 import { configStore } from '../../config/configStore';
 
-const browserCtx: PluginContext = { isTauri: false };
+const browserCtx: PluginContext = { 
+  isTauri: false,
+  tauriInvoke: vi.fn()
+};
 
-beforeEach(() => { vi.restoreAllMocks(); vi.useFakeTimers(); });
+beforeEach(() => { 
+  vi.restoreAllMocks(); 
+  vi.useFakeTimers();
+
+  // Mock global fetch so browser-mode HTTP calls (e.g. verifyCredentials with
+  // AbortSignal.timeout) resolve immediately instead of hanging under fake timers.
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+    ok: true,
+    status: 200,
+    text: async () => 'OK',
+    json: async () => ({}),
+    blob: async () => new Blob(['x'.repeat(300)], { type: 'image/jpeg' }),
+  }));
+  
+  // Re-setup tauriInvoke mock after restoreAllMocks
+  browserCtx.tauriInvoke = vi.fn().mockImplementation((command: string, args?: any) => {
+    switch (command) {
+      case 'rtsp_capture_frame':
+        return Promise.resolve({
+          base64: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
+          width: 640,
+          height: 480,
+          timestamp: Date.now()
+        });
+      case 'monitor_poll':
+        return Promise.resolve('<html><body>Mock content</body></html>');
+      case 'toonic_proxy_post':
+        return Promise.resolve(JSON.stringify({ watcher_type: 'mock', source_id: 'test' }));
+      case 'browse':
+        return Promise.resolve({ title: 'Mock', content: 'Mock content' });
+      case 'motion_pipeline_status':
+        return Promise.resolve([]);
+      case 'motion_pipeline_stop':
+        return Promise.resolve();
+      case 'motion_pipeline_start':
+        return Promise.resolve();
+      default:
+        return Promise.resolve({});
+    }
+  });
+});
 afterEach(() => { vi.restoreAllMocks(); vi.useRealTimers(); });
 
 describe('MonitorPlugin', () => {

@@ -1,11 +1,11 @@
 flowchart TD
     resolver["resolver<br/>2 funcs"]
-    scripts_install_openvino_pip["scripts.install-openvino-pip<br/>7 funcs"]
-    scripts_motion_pipeline["scripts.motion_pipeline<br/>23 funcs"]
-    src_core["src.core<br/>286 funcs"]
-    src_lib["src.lib<br/>226 funcs"]
-    src_plugins["src.plugins<br/>1332 funcs"]
-    scripts_motion_pipeline ==>|12| src_core
-    scripts_motion_pipeline -->|2| src_plugins
-    scripts_motion_pipeline -->|1| scripts_install_openvino_pip
-    resolver -->|1| src_lib
+    scripts__install_openvino_pip["scripts.install-openvino-pip<br/>7 funcs"]
+    scripts__motion_pipeline["scripts.motion_pipeline<br/>23 funcs"]
+    src__core["src.core<br/>283 funcs"]
+    src__lib["src.lib<br/>226 funcs"]
+    src__plugins["src.plugins<br/>1330 funcs"]
+    scripts__motion_pipeline ==>|12| src__core
+    scripts__motion_pipeline -->|2| src__plugins
+    scripts__motion_pipeline -->|1| scripts__install_openvino_pip
+    resolver -->|1| src__lib

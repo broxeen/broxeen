@@ -2,480 +2,530 @@
 
 ## Overview
 
-- **Project**: broxeen
-- **Language**: typescript
-- **Files**: 206
-- **Lines**: 82967
-- **Functions**: 3725
-- **Classes**: 444
-- **Avg CC**: 4.0
-- **Critical (CC≥10)**: 306
+- **Project**: /home/tom/github/broxeen/broxeen
+- **Primary Language**: typescript
+- **Languages**: typescript: 169, rust: 43, shell: 10, javascript: 5, python: 2
+- **Analysis Mode**: static
+- **Total Functions**: 3697
+- **Total Classes**: 444
+- **Modules**: 229
+- **Entry Points**: 2785
+
+## Architecture by Module
+
+### src.plugins.monitor.monitorPlugin
+- **Functions**: 300
+- **Classes**: 4
+- **File**: `monitorPlugin.ts`
+
+### src.plugins.discovery.networkScanPlugin
+- **Functions**: 197
+- **Classes**: 3
+- **File**: `networkScanPlugin.ts`
+
+### src.lib.browseGateway
+- **Functions**: 183
+- **Classes**: 3
+- **File**: `browseGateway.ts`
+
+### scripts.chat-cli
+- **Functions**: 156
+- **File**: `chat-cli.mjs`
+
+### src.plugins.protocol-bridge.protocolBridgePlugin
+- **Functions**: 152
+- **Classes**: 7
+- **File**: `protocolBridgePlugin.ts`
+
+### src.plugins.camera.cameraLivePlugin
+- **Functions**: 72
+- **Classes**: 1
+- **File**: `cameraLivePlugin.ts`
+
+### src.hooks.useStt
+- **Functions**: 62
+- **Classes**: 2
+- **File**: `useStt.ts`
+
+### src.components.CameraPreview
+- **Functions**: 62
+- **Classes**: 2
+- **File**: `CameraPreview.tsx`
+
+### src.plugins.monitor.motionDetectionPlugin
+- **Functions**: 58
+- **Classes**: 4
+- **File**: `motionDetectionPlugin.ts`
+
+### src.hooks.useChatDispatch
+- **Functions**: 56
+- **Classes**: 1
+- **File**: `useChatDispatch.ts`
+
+### src.plugins.toonic.toonicBridgePlugin
+- **Functions**: 54
+- **Classes**: 3
+- **File**: `toonicBridgePlugin.ts`
 
-## Architecture
+### src.hooks.useTts
+- **Functions**: 51
+- **Classes**: 3
+- **File**: `useTts.ts`
 
-### e2e/ (8 files, 1729L, 74 functions)
+### scripts.net-diag
+- **Functions**: 51
+- **File**: `net-diag.mjs`
 
-- `chat-features.spec.ts` — 141L, 11 methods, CC↑6
-- `ssh-docker.spec.ts` — 216L, 5 methods, CC↑6
-- `new-plugins.spec.ts` — 191L, 14 methods, CC↑5
-- `logging.spec.ts` — 60L, 5 methods, CC↑3
-- `network-scanning-flow.spec.ts` — 342L, 13 methods, CC↑3
-- _3 more files_
+### src.reactive.watchManager
+- **Functions**: 44
+- **Classes**: 1
+- **File**: `watchManager.ts`
 
-### root/ (6 files, 513L, 38 functions)
+### src.components.Chat
+- **Functions**: 44
+- **Classes**: 1
+- **File**: `Chat.tsx`
 
-- `vite.config.ts` — 280L, 35 methods, CC↑71
-- `resolver.py` — 129L, 2 methods, CC↑10
-- `playwright.config.ts` — 54L, 1 methods, CC↑1
-- `postcss.config.js` — 6L, 0 methods, CC↑0
-- `project.sh` — 21L, 0 methods, CC↑0
-- _1 more files_
+### vite.config
+- **Functions**: 42
+- **File**: `vite.config.ts`
 
-### scripts/ (11 files, 3486L, 233 functions)
+### src.plugins.discovery.advancedPortScanPlugin
+- **Functions**: 42
+- **Classes**: 1
+- **File**: `advancedPortScanPlugin.ts`
 
-- `chat-cli.mjs` — 1093L, 109 methods, CC↑32
-- `net-diag.mjs` — 265L, 47 methods, CC↑12
-- `motion_pipeline.py` — 624L, 23 methods, CC↑7
-- `add-reolink-camera.mjs` — 155L, 3 methods, CC↑4
-- `detect-platform.sh` — 328L, 8 methods, CC↑0
-- _6 more files_
+### src.plugins.rtsp-camera.rtspCameraPlugin
+- **Functions**: 42
+- **Classes**: 9
+- **File**: `rtspCameraPlugin.ts`
 
-### src/ (3 files, 609L, 38 functions)
+### src.plugins.discovery.deviceConfigPlugin
+- **Functions**: 42
+- **Classes**: 1
+- **File**: `deviceConfigPlugin.ts`
 
-- `App.tsx` — 571L, 34 methods, CC↑21
-- `main.tsx` — 37L, 4 methods, CC↑2
-- `vite-env.d.ts` — 1L, 0 methods, CC↑0
+### src.plugins.discovery.deviceStatusPlugin
+- **Functions**: 41
+- **Classes**: 1
+- **File**: `deviceStatusPlugin.ts`
 
-### src-tauri/benches/ (1 files, 295L, 2 functions)
+## Key Entry Points
 
-- `file_search_bench.rs` — 295L, 2 methods, CC↑6
+Main execution flows into the system:
 
-### src-tauri/src/ (43 files, 13691L, 304 functions)
+### src.core.bootstrap.registerCorePlugins
+- **Calls**: src.core.bootstrap.safeRegister, src.core.bootstrap.NetworkScanPlugin, src.core.bootstrap.warn, src.core.bootstrap.PingPlugin, src.core.bootstrap.PortScanPlugin, src.core.bootstrap.OnvifPlugin, src.core.bootstrap.MdnsPlugin, src.core.bootstrap.ArpPlugin
 
-- `query_schema.rs` — 272L, 9 methods, CC↑46
-- `content_cleaning.rs` — 147L, 4 methods, CC↑33
-- `content_extraction.rs` — 506L, 10 methods, CC↑32
-- `vision_pipeline.rs` — 311L, 3 methods, CC↑30
-- `network_scan.rs` — 1655L, 27 methods, CC↑26
-- _38 more files_
+### src.hooks.useChatSpeech.useChatSpeech
+- **Calls**: src.hooks.useChatSpeech.useSpeech, src.hooks.useChatSpeech.useStt, src.hooks.useChatSpeech.useTts, src.hooks.useChatSpeech.useMemo, src.hooks.useChatSpeech.useEffect, src.hooks.useChatSpeech.stop, src.hooks.useChatSpeech.appendStatusNotice, src.hooks.useChatSpeech.info
 
-### src-tauri/target/release/bundle/appimage/Broxeen.AppDir/apprun-hooks/ (1 files, 18L, 0 functions)
+### src.hooks.useTts.useTts
+- **Calls**: src.hooks.useTts.useState, src.hooks.useTts.useRef, src.hooks.useTts.useCallback, src.hooks.useTts.clearTimeout, src.hooks.useTts.clearInterval, src.hooks.useTts.clearBackendProgress, src.hooks.useTts.now, src.hooks.useTts.setProgress
 
-- `linuxdeploy-plugin-gtk.sh` — 18L, 0 methods, CC↑0
+### src.hooks.useStt.useStt
+- **Calls**: src.hooks.useStt.useState, src.hooks.useStt.useRef, src.hooks.useStt.useEffect, src.hooks.useStt.getUnsupportedReason, src.hooks.useStt.isTauriRuntime, src.hooks.useStt.setMode, src.hooks.useStt.setIsSupported, src.hooks.useStt.setUnsupportedReason
 
-### src/commands/ (4 files, 339L, 24 functions)
+### vite.config.host
+- **Calls**: vite.config.trim, vite.config.values, vite.config.networkInterfaces, vite.config.of, vite.config.test, vite.config.run, vite.config.split, vite.config.map
 
-- `browseCommand.ts` — 187L, 9 methods, CC↑15
-- `copyContextCommand.ts` — 37L, 6 methods, CC↑5
-- `sendMessageCommand.ts` — 68L, 5 methods, CC↑5
-- `saveSettingsCommand.ts` — 47L, 4 methods, CC↑4
+### vite.config.chatApiPlugin
+- **Calls**: vite.config.trim, vite.config.values, vite.config.networkInterfaces, vite.config.of, vite.config.test, vite.config.run, vite.config.split, vite.config.map
 
-### src/components/ (32 files, 10798L, 463 functions)
+### src.hooks.useChatDispatch.useChatDispatch
+- **Calls**: src.hooks.useChatDispatch.useCallback, src.hooks.useChatDispatch.trim, src.hooks.useChatDispatch.debug, src.hooks.useChatDispatch.addScopePrefix, src.hooks.useChatDispatch.setShowCommandHistory, src.hooks.useChatDispatch.setInput, src.hooks.useChatDispatch.info, src.hooks.useChatDispatch.store
 
-- `ChatMessageList.tsx` — 805L, 25 methods, CC↑107
-- `ChatInput.tsx` — 550L, 18 methods, CC↑101
-- `ChatConfigPrompt.tsx` — 674L, 18 methods, CC↑62
-- `CameraLiveInline.tsx` — 179L, 18 methods, CC↑61
-- `ErrorReportPanel.tsx` — 326L, 15 methods, CC↑41
-- _27 more files_
+### src-tauri.src.vision_pipeline.start
+- **Calls**: src-tauri.src.vision_pipeline.let, src-tauri.src.vision_pipeline.channel, src-tauri.src.vision_pipeline.open, src-tauri.src.vision_pipeline.from_config, src-tauri.src.vision_pipeline.clone, src-tauri.src.vision_pipeline.batching, src-tauri.src.vision_pipeline.spawn, src-tauri.src.vision_pipeline.try_recv
 
-### src/config/ (4 files, 1206L, 47 functions)
+### src-tauri.src.network_scan.ensure_rtsp_worker
+- **Calls**: src-tauri.src.network_scan.rtsp_workers, src-tauri.src.network_scan.lock, src-tauri.src.network_scan.expect, src-tauri.src.network_scan.Some, src-tauri.src.network_scan.get, src-tauri.src.network_scan.clone, src-tauri.src.network_scan.to_string, src-tauri.src.network_scan.spawn
 
-- `configStore.ts` — 214L, 24 methods, CC↑40
-- `watchConfig.ts` — 211L, 7 methods, CC↑12
-- `autoConfig.ts` — 153L, 13 methods, CC↑9
-- `appConfig.ts` — 628L, 3 methods, CC↑3
+### src.plugins.discovery.deviceConfigPlugin.configLogger
+- **Calls**: src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.initialize, src.plugins.discovery.deviceConfigPlugin.warn, src.plugins.discovery.deviceConfigPlugin.ConfiguredDeviceRepository, src.plugins.discovery.deviceConfigPlugin.getDevicesDb, src.plugins.discovery.deviceConfigPlugin.info, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.resolveRoute, src.plugins.discovery.deviceConfigPlugin.toLowerCase, src.plugins.discovery.deviceConfigPlugin.some
 
-### src/contexts/ (2 files, 240L, 21 functions)
+### src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.execute
+- **Calls**: src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.now, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.isStatusQuery, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.handleDeviceStatus, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.isFilterQuery, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.handleDeviceFilter, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.isExportQuery, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.handleExport, src.plugins.discovery.networkScanPlugin.toLowerCase
 
-- `pluginContext.tsx` — 161L, 10 methods, CC↑12
-- `CqrsContext.tsx` — 79L, 11 methods, CC↑4
+### src.components.ChatInput.ChatInput
+- **Calls**: src.components.ChatInput.useState, src.components.ChatInput.useMemo, src.components.ChatInput.trim, src.components.ChatInput.toLowerCase, src.components.ChatInput.getRecentQueries, src.components.ChatInput.startsWith, src.components.ChatInput.includes, src.components.ChatInput.has
 
-### src/core/ (17 files, 4465L, 286 functions)
+### src-tauri.src.file_search.search_with_rust_search
+- **Calls**: src-tauri.src.file_search.is_empty, src-tauri.src.file_search.join, src-tauri.src.file_search.location, src-tauri.src.file_search.to_str, src-tauri.src.file_search.unwrap_or, src-tauri.src.file_search.search_input, src-tauri.src.file_search.depth, src-tauri.src.file_search.ignore_case
 
-- `intentRouter.ts` — 853L, 21 methods, CC↑55
-- `bootstrap.ts` — 409L, 17 methods, CC↑45
-- `llmIntentClassifier.ts` — 218L, 24 methods, CC↑16
-- `fallbackHandler.ts` — 305L, 25 methods, CC↑11
-- `retry.ts` — 112L, 19 methods, CC↑9
-- _12 more files_
+### src-tauri.src.wake_word.start_wake_word_listening
+- **Calls**: src-tauri.src.wake_word.default_host, src-tauri.src.wake_word.default_input_device, src-tauri.src.wake_word.ok_or, src-tauri.src.wake_word.device, src-tauri.src.wake_word.name, src-tauri.src.wake_word.unwrap_or_else, src-tauri.src.wake_word.into, src-tauri.src.wake_word.default_input_config
 
-### src/discovery/ (3 files, 896L, 59 functions)
+### src.config.configStore.configLogger
+- **Calls**: src.config.configStore.Set, src.config.configStore.constructor, src.config.configStore.ConfigStoreImpl.load, src.config.configStore.info, src.config.configStore.getItem, src.config.configStore.parse, src.config.configStore.debug, src.config.configStore.warn
 
-- `serviceProber.ts` — 435L, 27 methods, CC↑12
-- `networkScanner.ts` — 383L, 32 methods, CC↑7
-- `types.ts` — 78L, 0 methods, CC↑0
+### src.hooks.useStt.startRecording
+- **Calls**: src.hooks.useStt.useCallback, src.hooks.useStt.logSyncDecorator, src.hooks.useStt.setError, src.hooks.useStt.setLastErrorDetails, src.hooks.useStt.setTranscript, src.hooks.useStt.setCurrentMode, src.hooks.useStt.debug, src.hooks.useStt.startTauriRecording
 
-### src/domain/ (4 files, 476L, 21 functions)
+### src.components.ErrorReportPanel.ErrorReportPanel
+- **Calls**: src.components.ErrorReportPanel.useState, src.components.ErrorReportPanel.getErrorStats, src.components.ErrorReportPanel.getErrors, src.components.ErrorReportPanel.useEffect, src.components.ErrorReportPanel.refreshData, src.components.ErrorReportPanel.setStats, src.components.ErrorReportPanel.setErrors, src.components.ErrorReportPanel.getFilterOptions
 
-- `eventStore.ts` — 152L, 10 methods, CC↑21
-- `chatEvents.ts` — 209L, 2 methods, CC↑6
-- `chatAggregate.ts` — 72L, 8 methods, CC↑4
-- `audioSettings.ts` — 43L, 1 methods, CC↑1
+### src.components.ChatMessageList.ChatMessageList
+- **Calls**: src.components.ChatMessageList.markdownComponents, src.components.ChatMessageList.renderer, src.components.ChatMessageList.map, src.components.ChatMessageList.onSubmit, src.components.ChatMessageList.onSetInput, src.components.ChatMessageList.onShowCommandHistory, src.components.ChatMessageList.getRecentQueries, src.components.ChatMessageList.getCurrentContext
 
-### src/hooks/ (12 files, 3695L, 261 functions)
+### src.plugins.discovery.deviceStatusPlugin.statusLogger
+- **Calls**: src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.initialize, src.plugins.discovery.deviceStatusPlugin.warn, src.plugins.discovery.deviceStatusPlugin.DeviceRepository, src.plugins.discovery.deviceStatusPlugin.getDevicesDb, src.plugins.discovery.deviceStatusPlugin.info, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.canHandle, src.plugins.discovery.deviceStatusPlugin.toLowerCase, src.plugins.discovery.deviceStatusPlugin.some
 
-- `useChatSpeech.ts` — 594L, 25 methods, CC↑107
-- `useChatDispatch.ts` — 897L, 50 methods, CC↑78
-- `useTts.ts` — 533L, 45 methods, CC↑72
-- `useStt.ts` — 534L, 56 methods, CC↑55
-- `useSpeech.ts` — 313L, 21 methods, CC↑23
-- _7 more files_
+### src-tauri.src.tts.tts_speak
+- **Calls**: src-tauri.src.tts.trim, src-tauri.src.tts.to_string, src-tauri.src.tts.is_empty, src-tauri.src.tts.Err, src-tauri.src.tts.load_settings, src-tauri.src.tts.backend_info, src-tauri.src.tts.backend_warn, src-tauri.src.tts.detect_backend
 
-### src/integration/ (1 files, 367L, 26 functions)
+### src.hooks.useSpeech.useSpeech
+- **Calls**: src.hooks.useSpeech.useState, src.hooks.useSpeech.useRef, src.hooks.useSpeech.useEffect, src.hooks.useSpeech.isTauriRuntime, src.hooks.useSpeech.getSpeechRecognitionCtor, src.hooks.useSpeech.getUnsupportedReason, src.hooks.useSpeech.info, src.hooks.useSpeech.warn
 
-- `autoWatchIntegration.ts` — 367L, 26 methods, CC↑15
+### src-tauri.src.browse_rendered.render_and_extract
+- **Calls**: src-tauri.src.browse_rendered.detect_chrome_binary, src-tauri.src.browse_rendered.ok_or_else, src-tauri.src.browse_rendered.to_string, src-tauri.src.browse_rendered.backend_info, src-tauri.src.browse_rendered.arg, src-tauri.src.browse_rendered.0, src-tauri.src.browse_rendered.36, src-tauri.src.browse_rendered.output
 
-### src/lib/ (8 files, 2835L, 226 functions)
+### src.persistence.deviceRepository.repoLogger
+- **Calls**: src.persistence.deviceRepository.constructor, src.persistence.deviceRepository.saveDevice, src.persistence.deviceRepository.DeviceRepository.now, src.persistence.deviceRepository.execute, src.persistence.deviceRepository.devices, src.persistence.deviceRepository.DeviceRepository.VALUES, src.persistence.deviceRepository.CONFLICT, src.persistence.deviceRepository.DeviceRepository.COALESCE
 
-- `browseGateway.ts` — 1741L, 143 methods, CC↑42
-- `sttClient.ts` — 145L, 13 methods, CC↑16
-- `resolver.ts` — 264L, 19 methods, CC↑11
-- `llmClient.ts` — 402L, 30 methods, CC↑10
-- `logger.ts` — 129L, 13 methods, CC↑8
-- _3 more files_
+### src.App.micStreamRef
+- **Calls**: src.App.useEffect, src.App.info, src.App.isTauriRuntime, src.App.logAsyncDecorator, src.App.runQuickHealthCheck, src.App.warn, src.App.error, src.App.bootstrapApp
 
-### src/persistence/ (8 files, 1574L, 104 functions)
+### src.App.micAudioCtxRef
+- **Calls**: src.App.useEffect, src.App.info, src.App.isTauriRuntime, src.App.logAsyncDecorator, src.App.runQuickHealthCheck, src.App.warn, src.App.error, src.App.bootstrapApp
 
-- `deviceRepository.ts` — 252L, 18 methods, CC↑27
-- `chatRepository.ts` — 123L, 17 methods, CC↑14
-- `configuredDeviceRepository.ts` — 251L, 21 methods, CC↑8
-- `databaseManager.ts` — 233L, 23 methods, CC↑8
-- `historyRepository.ts` — 167L, 10 methods, CC↑6
-- _3 more files_
+### src.App.micAnimationFrameRef
+- **Calls**: src.App.useEffect, src.App.info, src.App.isTauriRuntime, src.App.logAsyncDecorator, src.App.runQuickHealthCheck, src.App.warn, src.App.error, src.App.bootstrapApp
 
-### src/plugins/ (1 files, 183L, 18 functions)
+### src-tauri.src.logging.init_logging
+- **Calls**: src-tauri.src.logging.call_once, src-tauri.src.logging.let, src-tauri.src.logging.Some, src-tauri.src.logging.build_file_appender, src-tauri.src.logging.non_blocking, src-tauri.src.logging.layer, src-tauri.src.logging.with_ansi, src-tauri.src.logging.with_target
 
-- `monitoringPlugin.ts` — 183L, 18 methods, CC↑8
+### scripts.net-diag.main
+- **Calls**: scripts.net-diag.getLocalIp, scripts.net-diag.split, scripts.net-diag.slice, scripts.net-diag.join, scripts.net-diag.log, scripts.net-diag.col, scripts.net-diag.repeat, scripts.net-diag.printTools
 
-### src/plugins/authBrowse/ (1 files, 187L, 13 functions)
+### src-tauri.src.vision_db.execute_query
+- **Calls**: src-tauri.src.vision_db.trim, src-tauri.src.vision_db.to_uppercase, src-tauri.src.vision_db.starts_with, src-tauri.src.vision_db.prepare, src-tauri.src.vision_db.column_names, src-tauri.src.vision_db.into_iter, src-tauri.src.vision_db.map, src-tauri.src.vision_db.collect
 
-- `authBrowsePlugin.ts` — 187L, 13 methods, CC↑34
+### src.components.CameraLiveInline.CameraLiveInline
+- **Calls**: src.components.CameraLiveInline.max, src.components.CameraLiveInline.useMemo, src.components.CameraLiveInline.round, src.components.CameraLiveInline.get, src.components.CameraLiveInline.useState, src.components.CameraLiveInline.useRef, src.components.CameraLiveInline.useEffect, src.components.CameraLiveInline.setFrame
 
-### src/plugins/camera/ (2 files, 1196L, 65 functions)
+## Process Flows
 
-- `cameraLivePlugin.ts` — 755L, 57 methods, CC↑95
-- `cameraVendorDatabase.ts` — 441L, 8 methods, CC↑29
+Key execution flows identified:
 
-### src/plugins/cameras/ (4 files, 416L, 41 functions)
+### Flow 1: registerCorePlugins
+```
+registerCorePlugins [src.core.bootstrap]
+  └─> safeRegister
+```
 
-- `cameraPtzPlugin.ts` — 164L, 14 methods, CC↑17
-- `cameraHealthPlugin.ts` — 140L, 15 methods, CC↑11
-- `cameraSnapshotPlugin.ts` — 105L, 12 methods, CC↑8
-- `index.ts` — 7L, 0 methods, CC↑0
+### Flow 2: useChatSpeech
+```
+useChatSpeech [src.hooks.useChatSpeech]
+```
 
-### src/plugins/chat/ (1 files, 111L, 9 functions)
+### Flow 3: useTts
+```
+useTts [src.hooks.useTts]
+```
 
-- `chatPlugin.ts` — 111L, 9 methods, CC↑6
+### Flow 4: useStt
+```
+useStt [src.hooks.useStt]
+```
 
-### src/plugins/discovery/ (7 files, 3732L, 299 functions)
+### Flow 5: host
+```
+host [vite.config]
+```
 
-- `deviceConfigPlugin.ts` — 464L, 38 methods, CC↑76
-- `networkScanPlugin.ts` — 1586L, 135 methods, CC↑40
-- `deviceStatusPlugin.ts` — 317L, 29 methods, CC↑33
-- `advancedPortScanPlugin.ts` — 379L, 34 methods, CC↑18
-- `autoScanScheduler.ts` — 322L, 30 methods, CC↑18
-- _2 more files_
+### Flow 6: chatApiPlugin
+```
+chatApiPlugin [vite.config]
+```
 
-### src/plugins/docker/ (1 files, 489L, 24 functions)
+### Flow 7: useChatDispatch
+```
+useChatDispatch [src.hooks.useChatDispatch]
+```
 
-- `dockerPlugin.ts` — 489L, 24 methods, CC↑52
+### Flow 8: start
+```
+start [src-tauri.src.vision_pipeline]
+```
 
-### src/plugins/email/ (1 files, 419L, 34 functions)
+### Flow 9: ensure_rtsp_worker
+```
+ensure_rtsp_worker [src-tauri.src.network_scan]
+  └─> rtsp_workers
+```
 
-- `emailPlugin.ts` — 419L, 34 methods, CC↑10
+### Flow 10: configLogger
+```
+configLogger [src.plugins.discovery.deviceConfigPlugin]
+  └─ →> initialize
+```
 
-### src/plugins/files/ (1 files, 560L, 30 functions)
+## Key Classes
 
-- `fileSearchPlugin.ts` — 560L, 30 methods, CC↑34
+### src.plugins.monitor.monitorPlugin.MonitorPlugin
+- **Methods**: 300
+- **Key Methods**: src.plugins.monitor.monitorPlugin.MonitorPlugin.buildDbConflictPrompt, src.plugins.monitor.monitorPlugin.MonitorPlugin.canHandle, src.plugins.monitor.monitorPlugin.MonitorPlugin.lower, src.plugins.monitor.monitorPlugin.MonitorPlugin.execute, src.plugins.monitor.monitorPlugin.MonitorPlugin.start, src.plugins.monitor.monitorPlugin.MonitorPlugin.lower, src.plugins.monitor.monitorPlugin.MonitorPlugin.m, src.plugins.monitor.monitorPlugin.MonitorPlugin.toggle, src.plugins.monitor.monitorPlugin.MonitorPlugin.parseToggleMonitoring, src.plugins.monitor.monitorPlugin.MonitorPlugin.m
 
-### src/plugins/frigate/ (1 files, 305L, 37 functions)
+### src.plugins.discovery.networkScanPlugin.NetworkScanPlugin
+- **Methods**: 197
+- **Key Methods**: src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.resolveRoute, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.lower, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.initialize, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.canHandle, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.isStatusQuery, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.isFilterQuery, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.isExportQuery, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.extractExportFormat, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.lower, src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.extractFilterType
 
-- `frigateEventsPlugin.ts` — 305L, 37 methods, CC↑33
+### src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin
+- **Methods**: 151
+- **Key Methods**: src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.resolveRoute, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.lower, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.canHandle, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.lower, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.execute, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.start, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.route, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.autoProtocol, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.detectProtocolFromInput, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.lower
 
-### src/plugins/http/ (1 files, 226L, 21 functions)
+### src.plugins.camera.cameraLivePlugin.CameraLivePlugin
+- **Methods**: 72
+- **Key Methods**: src.plugins.camera.cameraLivePlugin.CameraLivePlugin.canHandle, src.plugins.camera.cameraLivePlugin.CameraLivePlugin.trimmed, src.plugins.camera.cameraLivePlugin.CameraLivePlugin.execute, src.plugins.camera.cameraLivePlugin.CameraLivePlugin.start, src.plugins.camera.cameraLivePlugin.CameraLivePlugin.sanitizedInput, src.plugins.camera.cameraLivePlugin.CameraLivePlugin.rtspMatch, src.plugins.camera.cameraLivePlugin.CameraLivePlugin.storedPath, src.plugins.camera.cameraLivePlugin.CameraLivePlugin.credMatch, src.plugins.camera.cameraLivePlugin.CameraLivePlugin.ipMatch, src.plugins.camera.cameraLivePlugin.CameraLivePlugin.isReachable
 
-- `browsePlugin.ts` — 226L, 21 methods, CC↑23
+### src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin
+- **Methods**: 57
+- **Key Methods**: src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.initialize, src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.parsed, src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.dispose, src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.canHandle, src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.lower, src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.execute, src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.start, src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.lower, src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.handleStart, src.plugins.monitor.motionDetectionPlugin.MotionDetectionPlugin.rtspUrl
 
-### src/plugins/marketplace/ (2 files, 352L, 22 functions)
+### src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin
+- **Methods**: 53
+- **Key Methods**: src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.canHandle, src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.execute, src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.start, src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.lower, src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.msg, src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.handleStart, src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.status, src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.handleStop, src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.msg, src.plugins.toonic.toonicBridgePlugin.ToonicBridgePlugin.handleStatus
 
-- `marketplaceLoader.ts` — 346L, 22 methods, CC↑6
-- `index.ts` — 6L, 0 methods, CC↑0
+### src.reactive.watchManager.WatchManager
+- **Methods**: 44
+- **Key Methods**: src.reactive.watchManager.WatchManager.start, src.reactive.watchManager.WatchManager.stop, src.reactive.watchManager.WatchManager.clearInterval, src.reactive.watchManager.WatchManager.now, src.reactive.watchManager.WatchManager.recentQuery, src.reactive.watchManager.WatchManager.cancelWatchRule, src.reactive.watchManager.WatchManager.watchRule, src.reactive.watchManager.WatchManager.loadActiveWatches, src.reactive.watchManager.WatchManager.db, src.reactive.watchManager.WatchManager.now
 
-### src/plugins/monitor/ (3 files, 3389L, 273 functions)
+### src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin
+- **Methods**: 42
+- **Key Methods**: src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.canHandle, src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.lower, src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.execute, src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.start, src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.ipMatch, src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.subnetMatch, src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.targetIp, src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.targetSubnet, src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.result, src.plugins.discovery.advancedPortScanPlugin.AdvancedPortScanPlugin.results
 
-- `monitorPlugin.ts` — 2871L, 229 methods, CC↑93
-- `motionDetectionPlugin.ts` — 512L, 44 methods, CC↑13
-- `index.ts` — 6L, 0 methods, CC↑0
+### src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin
+- **Methods**: 41
+- **Key Methods**: src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.initialize, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.resolveRoute, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.lower, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.canHandle, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.execute, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.start, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.lowerInput, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.listConfiguredDevices, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.devices, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.cameras
 
-### src/plugins/mqtt/ (2 files, 346L, 26 functions)
+### src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin
+- **Methods**: 40
+- **Key Methods**: src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.initialize, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.canHandle, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.lowerInput, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.execute, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.start, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.lowerInput, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.showGeneralStatus, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.start, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.devicesWithStatus, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.recentlyActive
 
-- `mqttPlugin.ts` — 327L, 24 methods, CC↑7
-- `index.ts` — 19L, 2 methods, CC↑1
+### src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin
+- **Methods**: 38
+- **Key Methods**: src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.initialize, src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.cfg, src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.unlisten, src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.dispose, src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.resolveRoute, src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.lower, src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.canHandle, src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.execute, src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.start, src.plugins.frigate.frigateEventsPlugin.FrigateEventsPlugin.route
 
-### src/plugins/network/ (6 files, 838L, 99 functions)
+### src.reactive.changeDetector.ChangeDetector
+- **Methods**: 37
+- **Key Methods**: src.reactive.changeDetector.ChangeDetector.previousSnapshot, src.reactive.changeDetector.ChangeDetector.changeScore, src.reactive.changeDetector.ChangeDetector.hasChanged, src.reactive.changeDetector.ChangeDetector.changeType, src.reactive.changeDetector.ChangeDetector.newSnapshot, src.reactive.changeDetector.ChangeDetector.db, src.reactive.changeDetector.ChangeDetector.row, src.reactive.changeDetector.ChangeDetector.db, src.reactive.changeDetector.ChangeDetector.now, src.reactive.changeDetector.ChangeDetector.hash
 
-- `onvifPlugin.ts` — 178L, 19 methods, CC↑15
-- `portScanPlugin.ts` — 156L, 21 methods, CC↑12
-- `arpPlugin.ts` — 143L, 16 methods, CC↑10
-- `pingPlugin.ts` — 123L, 18 methods, CC↑9
-- `mdnsPlugin.ts` — 152L, 15 methods, CC↑8
-- _1 more files_
+### src.plugins.files.fileSearchPlugin.FileSearchPlugin
+- **Methods**: 36
+- **Key Methods**: src.plugins.files.fileSearchPlugin.FileSearchPlugin.canHandle, src.plugins.files.fileSearchPlugin.FileSearchPlugin.lower, src.plugins.files.fileSearchPlugin.FileSearchPlugin.execute, src.plugins.files.fileSearchPlugin.FileSearchPlugin.start, src.plugins.files.fileSearchPlugin.FileSearchPlugin.lower, src.plugins.files.fileSearchPlugin.FileSearchPlugin.response, src.plugins.files.fileSearchPlugin.FileSearchPlugin.filePath, src.plugins.files.fileSearchPlugin.FileSearchPlugin.response, src.plugins.files.fileSearchPlugin.FileSearchPlugin.isImage, src.plugins.files.fileSearchPlugin.FileSearchPlugin.truncNote
 
-### src/plugins/protocol-bridge/ (2 files, 1732L, 98 functions)
+### src.plugins.email.emailPlugin.EmailPlugin
+- **Methods**: 36
+- **Key Methods**: src.plugins.email.emailPlugin.EmailPlugin.resolveRoute, src.plugins.email.emailPlugin.EmailPlugin.lower, src.plugins.email.emailPlugin.EmailPlugin.canHandle, src.plugins.email.emailPlugin.EmailPlugin.execute, src.plugins.email.emailPlugin.EmailPlugin.start, src.plugins.email.emailPlugin.EmailPlugin.route, src.plugins.email.emailPlugin.EmailPlugin.isPollConfigRequest, src.plugins.email.emailPlugin.EmailPlugin.handleConfig, src.plugins.email.emailPlugin.EmailPlugin.currentConfig, src.plugins.email.emailPlugin.EmailPlugin.emailConfig
 
-- `protocolBridgePlugin.ts` — 1720L, 98 methods, CC↑24
-- `index.ts` — 12L, 0 methods, CC↑0
+### src.plugins.system.sshPlugin.SshPlugin
+- **Methods**: 34
+- **Key Methods**: src.plugins.system.sshPlugin.SshPlugin.canHandle, src.plugins.system.sshPlugin.SshPlugin.lower, src.plugins.system.sshPlugin.SshPlugin.execute, src.plugins.system.sshPlugin.SshPlugin.start, src.plugins.system.sshPlugin.SshPlugin.lower, src.plugins.system.sshPlugin.SshPlugin.testHost, src.plugins.system.sshPlugin.SshPlugin.handleExecute, src.plugins.system.sshPlugin.SshPlugin.host, src.plugins.system.sshPlugin.SshPlugin.subnet, src.plugins.system.sshPlugin.SshPlugin.sshCfg
 
-### src/plugins/remote-machine/ (1 files, 511L, 29 functions)
+### src.discovery.networkScanner.NetworkScanner
+- **Methods**: 33
+- **Key Methods**: src.discovery.networkScanner.NetworkScanner.scanNetwork, src.discovery.networkScanner.NetworkScanner.startTime, src.discovery.networkScanner.NetworkScanner.methodResults, src.discovery.networkScanner.NetworkScanner.uniqueDevices, src.discovery.networkScanner.NetworkScanner.scanDuration, src.discovery.networkScanner.NetworkScanner.performScan, src.discovery.networkScanner.NetworkScanner.pingSweep, src.discovery.networkScanner.NetworkScanner.networkRanges, src.discovery.networkScanner.NetworkScanner.promises, src.discovery.networkScanner.NetworkScanner.mdnsDiscovery
 
-- `remoteMachinePlugin.ts` — 511L, 29 methods, CC↑26
+### src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin
+- **Methods**: 33
+- **Key Methods**: src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.initialize, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.dispose, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.canHandle, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.execute, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.intentLower, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.machine, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.handleAddMachine, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.hostMatch, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.userMatch, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.handleListMachines
 
-### src/plugins/rtsp-camera/ (2 files, 474L, 38 functions)
+### src.plugins.system.diskInfoPlugin.DiskInfoPlugin
+- **Methods**: 33
+- **Key Methods**: src.plugins.system.diskInfoPlugin.DiskInfoPlugin.canHandle, src.plugins.system.diskInfoPlugin.DiskInfoPlugin.lower, src.plugins.system.diskInfoPlugin.DiskInfoPlugin.execute, src.plugins.system.diskInfoPlugin.DiskInfoPlugin.start, src.plugins.system.diskInfoPlugin.DiskInfoPlugin.lower, src.plugins.system.diskInfoPlugin.DiskInfoPlugin.remoteHost, src.plugins.system.diskInfoPlugin.DiskInfoPlugin.buildConfigPrompt, src.plugins.system.diskInfoPlugin.DiskInfoPlugin.highUsage, src.plugins.system.diskInfoPlugin.DiskInfoPlugin.buildProgressBar, src.plugins.system.diskInfoPlugin.DiskInfoPlugin.filled
 
-- `rtspCameraPlugin.ts` — 416L, 35 methods, CC↑8
-- `index.ts` — 58L, 3 methods, CC↑4
+### src.plugins.discovery.autoScanScheduler.AutoScanScheduler
+- **Methods**: 33
+- **Key Methods**: src.plugins.discovery.autoScanScheduler.AutoScanScheduler.setStatusChangeCallback, src.plugins.discovery.autoScanScheduler.AutoScanScheduler.start, src.plugins.discovery.autoScanScheduler.AutoScanScheduler.stop, src.plugins.discovery.autoScanScheduler.AutoScanScheduler.clearInterval, src.plugins.discovery.autoScanScheduler.AutoScanScheduler.clearInterval, src.plugins.discovery.autoScanScheduler.AutoScanScheduler.isRunning, src.plugins.discovery.autoScanScheduler.AutoScanScheduler.lastScanTimestamp, src.plugins.discovery.autoScanScheduler.AutoScanScheduler.tick, src.plugins.discovery.autoScanScheduler.AutoScanScheduler.tickStart, src.plugins.discovery.autoScanScheduler.AutoScanScheduler.subnet
 
-### src/plugins/scope/ (1 files, 253L, 19 functions)
+### src.discovery.serviceProber.ServiceProber
+- **Methods**: 32
+- **Key Methods**: src.discovery.serviceProber.ServiceProber.probeDevice, src.discovery.serviceProber.ServiceProber.startTime, src.discovery.serviceProber.ServiceProber.results, src.discovery.serviceProber.ServiceProber.probeDuration, src.discovery.serviceProber.ServiceProber.probeHttpService, src.discovery.serviceProber.ServiceProber.startTime, src.discovery.serviceProber.ServiceProber.response, src.discovery.serviceProber.ServiceProber.responseTime, src.discovery.serviceProber.ServiceProber.html, src.discovery.serviceProber.ServiceProber.titleMatch
 
-- `scopeRegistry.ts` — 253L, 19 methods, CC↑7
+## Data Transformation Functions
 
-### src/plugins/system/ (5 files, 1292L, 91 functions)
+Key functions that process and transform data:
 
-- `sshPlugin.ts` — 544L, 29 methods, CC↑14
-- `processesPlugin.ts` — 120L, 11 methods, CC↑11
-- `diskInfoPlugin.ts` — 319L, 28 methods, CC↑8
-- `logsPlugin.ts` — 301L, 23 methods, CC↑7
-- `logs.index.ts` — 8L, 0 methods, CC↑0
+### vite.config.parseArpEntries
+- **Output to**: vite.config.run, vite.config.split, vite.config.map, vite.config.match, vite.config.test
 
-### src/plugins/toonic/ (1 files, 411L, 38 functions)
+### vite.config.parseNmapHosts
+- **Output to**: vite.config.matchAll, vite.config.slice, vite.config.indexOf, vite.config.map, vite.config.push
 
-- `toonicBridgePlugin.ts` — 411L, 38 methods, CC↑18
+### vite.config.parsedUrl
 
-### src/plugins/voice/ (2 files, 194L, 8 functions)
+### src.hooks.useTts.preprocessForTts
+- **Output to**: src.hooks.useTts.replace, src.hooks.useTts.trim, src.hooks.useTts.split, src.hooks.useTts.slice, src.hooks.useTts.join
 
-- `voiceCommandsPlugin.ts` — 186L, 8 methods, CC↑7
-- `index.ts` — 8L, 0 methods, CC↑0
+### src.hooks.useChatDispatch.parseCameraResults
+- **Output to**: src.hooks.useChatDispatch.split, src.hooks.useChatDispatch.includes, src.hooks.useChatDispatch.push, src.hooks.useChatDispatch.match, src.hooks.useChatDispatch.getAll
 
-### src/queries/ (2 files, 55L, 6 functions)
+### src.hooks.useChatDispatch.parsed
+- **Output to**: src.hooks.useChatDispatch.String
 
-- `getSettingsQuery.ts` — 33L, 2 methods, CC↑3
-- `getMessagesQuery.ts` — 22L, 4 methods, CC↑1
-
-### src/reactive/ (4 files, 1195L, 90 functions)
-
-- `alertBridge.ts` — 232L, 23 methods, CC↑10
-- `changeDetector.ts` — 362L, 30 methods, CC↑9
-- `watchManager.ts` — 537L, 37 methods, CC↑7
-- `types.ts` — 64L, 0 methods, CC↑0
-
-### src/services/ (4 files, 87L, 8 functions)
-
-- `defaultLlmAdapter.ts` — 41L, 7 methods, CC↑2
-- `defaultBrowseAdapter.ts` — 12L, 1 methods, CC↑1
-- `browseService.ts` — 9L, 0 methods, CC↑0
-- `llmService.ts` — 25L, 0 methods, CC↑0
-
-### src/utils/ (3 files, 978L, 62 functions)
-
-- `quickActionResolver.ts` — 233L, 8 methods, CC↑58
-- `healthCheck.ts` — 422L, 26 methods, CC↑49
-- `errorReporting.ts` — 323L, 28 methods, CC↑9
-
-## Key Exports
-
-- **ChatMessageList** (function, CC=107) ⚠ split
-- **useChatSpeech** (function, CC=107) ⚠ split
-- **ChatInput** (function, CC=101) ⚠ split
-- **handleKeyDown** (function, CC=32) ⚠ split
-- **CameraLivePlugin** (class, CC̄=4.5)
-  - `execute` CC=95 ⚠ split
-  - `start` CC=23 ⚠ split
-  - `sanitizedInput` CC=23 ⚠ split
-  - `rtspMatch` CC=23 ⚠ split
-- **MonitorPlugin** (class, CC̄=4.4)
-  - `execute` CC=16 ⚠ split
-  - `start` CC=16 ⚠ split
-  - `handleAddToMonitoring` CC=15 ⚠ split
-  - `handleStart` CC=93 ⚠ split
-  - `goal` CC=15 ⚠ split
-  - `when` CC=15 ⚠ split
-  - `handleStop` CC=25 ⚠ split
-  - `handleLogs` CC=36 ⚠ split
-  - `handleConfig` CC=32 ⚠ split
-  - `poll` CC=33 ⚠ split
-  - `summarizeCaptureFailure` CC=19 ⚠ split
-  - `ensureApiToken` CC=18 ⚠ split
-  - `parseTarget` CC=26 ⚠ split
-  - `formatTargetLogs` CC=21 ⚠ split
-  - `initialize` CC=17 ⚠ split
-  - `loadMonitoredDevices` CC=17 ⚠ split
-  - `handleResolveDbConflict` CC=19 ⚠ split
-- **dispatchLogger** (function, CC=19) ⚠ split
-- **handleConfigCommand** (function, CC=19) ⚠ split
-- **useChatDispatch** (function, CC=78) ⚠ split
-- **handleSubmit** (function, CC=72) ⚠ split
-- **DeviceConfigPlugin** (class, CC̄=4.2)
-  - `execute` CC=15 ⚠ split
-  - `parseAddCommand` CC=21 ⚠ split
-- **configLogger** (function, CC=76) ⚠ split
-- **useTts** (function, CC=72) ⚠ split
-- **probeTauriBackendTts** (function, CC=25) ⚠ split
-- **speak** (function, CC=20) ⚠ split
-- **runSpeak** (function, CC=20) ⚠ split
-- **host** (function, CC=71) ⚠ split
-- **chatApiPlugin** (function, CC=71) ⚠ split
-- **handleQuery** (function, CC=31) ⚠ split
-- **intent** (function, CC=30) ⚠ split
-- **sub** (function, CC=30) ⚠ split
-- **ChatConfigPrompt** (function, CC=62) ⚠ split
-- **CameraLiveInline** (function, CC=61) ⚠ split
-- **rtspFailCountRef** (function, CC=42) ⚠ split
-- **RTSP_FAIL_THRESHOLD** (function, CC=42) ⚠ split
-- **timerRef** (function, CC=42) ⚠ split
-- **inFlightRef** (function, CC=42) ⚠ split
-- **tick** (function, CC=40) ⚠ split
-- **useHttp** (function, CC=36) ⚠ split
-- **resolveQuickActions** (function, CC=58) ⚠ split
-- **IntentRouter** (class, CC̄=7.6)
-  - `initializeDefaultPatterns` CC=55 ⚠ split
-  - `route` CC=18 ⚠ split
-  - `extractEntities` CC=39 ⚠ split
-- **useStt** (function, CC=55) ⚠ split
-- **startRecording** (function, CC=20) ⚠ split
-- **DockerPlugin** (class, CC̄=5.1)
-  - `execute` CC=52 ⚠ split
-  - `intentLower` CC=52 ⚠ split
-- **HealthChecker** (class, CC̄=4.9)
-  - `registerDefaultChecks` CC=49 ⚠ split
-- **registerCorePlugins** (function, CC=45) ⚠ split
-- **detectContentType** (function, CC=22) ⚠ split
-- **stripCookieBannerText** (function, CC=16) ⚠ split
-- **calculateBlockScore** (function, CC=32) ⚠ split
-- **extractBrowserReadableContent** (function, CC=42) ⚠ split
-- **title** (function, CC=30) ⚠ split
-- **bestScore** (function, CC=30) ⚠ split
-- **normalizeBrowseResult** (function, CC=20) ⚠ split
-- **fetchViaAllOriginsJson** (function, CC=21) ⚠ split
-- **fetchViaJina** (function, CC=19) ⚠ split
-- **jinaProxies** (function, CC=18) ⚠ split
-- **isValidContent** (function, CC=19) ⚠ split
-- **ErrorReportPanel** (function, CC=41) ⚠ split
-- **ConfigStoreImpl** (class, CC̄=3.0)
-  - `load` CC=15 ⚠ split
-- **configLogger** (function, CC=40) ⚠ split
-- **NetworkScanPlugin** (class, CC̄=3.3)
-  - `handleDeviceFilter` CC=17 ⚠ split
-  - `handleExport` CC=15 ⚠ split
-  - `execute` CC=40 ⚠ split
-  - `detectSubnet` CC=18 ⚠ split
-  - `persistDevices` CC=24 ⚠ split
-  - `getDefaultSubnet` CC=16 ⚠ split
-- **AuthBrowsePlugin** (class, CC̄=5.8)
-  - `execute` CC=30 ⚠ split
-- **logger** (function, CC=34) ⚠ split
-- **FileSearchPlugin** (class, CC̄=4.1)
-  - `parseSearchParams` CC=34 ⚠ split
-- **strip_cookie_banner_text** (function, CC=33) ⚠ split
-- **statusLogger** (function, CC=33) ⚠ split
-- **FrigateEventsPlugin** (class, CC̄=3.1)
-  - `handleMqttEvent` CC=33 ⚠ split
-- **handleFindRpi** (function, CC=18) ⚠ split
-- **handleScan** (function, CC=18) ⚠ split
-- **handleEmailInbox** (function, CC=32) ⚠ split
-- **max** (function, CC=15) ⚠ split
-- **intent** (function, CC=20) ⚠ split
-- **extract_search_results** (function, CC=15) ⚠ split
-- **extract_action_links** (function, CC=32) ⚠ split
-- **start** (function, CC=30) ⚠ split
-- **detectCameraVendor** (function, CC=29) ⚠ split
-- **repoLogger** (function, CC=27) ⚠ split
-- **RemoteMachinePlugin** (class, CC̄=4.2)
-  - `execute` CC=26 ⚠ split
-  - `intentLower` CC=26 ⚠ split
-- **ProtocolBridgePlugin** (class, CC̄=3.8)
-  - `execute` CC=24 ⚠ split
-  - `detectProtocolFromInput` CC=17 ⚠ split
-  - `handleAdd` CC=21 ⚠ split
-  - `handleRestSend` CC=16 ⚠ split
-  - `handleWebSocket` CC=21 ⚠ split
-  - `handleSse` CC=20 ⚠ split
-  - `handleGraphQL` CC=18 ⚠ split
-  - `handleMqttRead` CC=15 ⚠ split
-- **useSpeech** (function, CC=23) ⚠ split
-- **HttpBrowsePlugin** (class, CC̄=4.6)
-  - `createNaturalPresentation` CC=23 ⚠ split
-- **micStreamRef** (function, CC=21) ⚠ split
-- **micAudioCtxRef** (function, CC=21) ⚠ split
-- **micAnimationFrameRef** (function, CC=21) ⚠ split
-- **MessageQuickActions** (function, CC=21) ⚠ split
-- **esLogger** (function, CC=21) ⚠ split
-- **update** (function, CC=20) ⚠ split
-- **FileResultsDisplay** (function, CC=20) ⚠ split
-- **QuickActionButtons** (function, CC=20) ⚠ split
-- **useHistoryPersistence** (function, CC=20) ⚠ split
-- **analyse_movement** (function, CC=18) ⚠ split
-- **AdvancedPortScanPlugin** (class, CC̄=2.7)
-  - `formatSingleHostResult` CC=18 ⚠ split
-- **AutoScanScheduler** (class, CC̄=4.0)
-  - `tick` CC=18 ⚠ split
-  - `retryOfflineDevices` CC=17 ⚠ split
-- **ToonicBridgePlugin** (class, CC̄=3.4)
-  - `execute` CC=18 ⚠ split
-  - `start` CC=18 ⚠ split
-  - `lower` CC=18 ⚠ split
-- **handlePlay** (function, CC=17) ⚠ split
-- **CameraPtzPlugin** (class, CC̄=4.3)
-  - `canHandle` CC=17 ⚠ split
-- **insert_detection** (function, CC=16) ⚠ split
-- **process_frame** (function, CC=16) ⚠ split
-- **filtered** (function, CC=16) ⚠ split
-- **classifyIntent** (function, CC=16) ⚠ split
-- **useChatPersistence** (function, CC=16) ⚠ split
-- **repoRef** (function, CC=16) ⚠ split
-- **conversationIdRef** (function, CC=16) ⚠ split
-- **transcribeAudio** (function, CC=16) ⚠ split
-- **run** (function, CC=16) ⚠ split
-- **detect** (function, CC=15) ⚠ split
-- **BrowseCommand** (class, CC̄=3.1)
-  - `execute` CC=15 ⚠ split
-- **handleKeyDown** (function, CC=15) ⚠ split
-- **copyErrorsToClipboard** (function, CC=15) ⚠ split
-- **AutoWatchIntegration** (class, CC̄=2.7)
-  - `extractIntentInfo` CC=15 ⚠ split
-- **OnvifPlugin** (class, CC̄=3.2)
-  - `formatCameras` CC=15 ⚠ split
-
-## Hotspots (High Fan-Out)
-
-- **registerCorePlugins** — fan-out=52: Orchestrates 52 calls
-- **useChatSpeech** — fan-out=49: Orchestrates 49 calls
-- **useTts** — fan-out=48: Orchestrates 48 calls
-- **useStt** — fan-out=48: Orchestrates 48 calls
-- **host** — fan-out=47: Orchestrates 47 calls
-- **chatApiPlugin** — fan-out=47: Orchestrates 47 calls
-- **useChatDispatch** — fan-out=46: 46-way dispatch
-
-## Refactoring Priorities
-
-| # | Action | Impact | Effort |
-|---|--------|--------|--------|
-| 1 | Split host (CC=71 → target CC<10) | high | low |
-| 2 | Split chatApiPlugin (CC=71 → target CC<10) | high | low |
-| 3 | Split handleQuery (CC=31 → target CC<10) | high | low |
-| 4 | Split intent (CC=30 → target CC<10) | high | low |
-| 5 | Split sub (CC=30 → target CC<10) | high | low |
-| 6 | Split repoLogger (CC=27 → target CC<10) | high | low |
-| 7 | Split useTts (CC=72 → target CC<10) | high | low |
-| 8 | Split probeTauriBackendTts (CC=25 → target CC<10) | high | low |
-| 9 | Split calculateBlockScore (CC=32 → target CC<10) | high | low |
-| 10 | Split extractBrowserReadableContent (CC=42 → target CC<10) | high | low |
+### scripts.motion_pipeline.MotionPipeline.process_frame
+- **Output to**: scripts.motion_pipeline.extract_moving_objects, self.classifier.classify, self._is_in_cooldown, self._update_cooldown, scripts.motion_pipeline.save_detection
+
+### scripts.motion_pipeline.parse_args
+- **Output to**: argparse.ArgumentParser, p.add_argument, p.add_argument, p.add_argument, p.add_argument
+
+### src.lib.browseGateway.processedBlock
+- **Output to**: src.lib.browseGateway.includes, src.lib.browseGateway.text, src.lib.browseGateway.replace, src.lib.browseGateway.trim
+
+### src.lib.browseGateway.processedContent
+- **Output to**: src.lib.browseGateway.createHumanLikeSummary
+
+### src.core.preferenceLearning.PreferenceLearningStore.parsed
+- **Output to**: src.core.preferenceLearning.set
+
+### src.core.realtimeSync.RealtimeSync.processSyncEvent
+- **Output to**: src.core.realtimeSync.includes, src.core.realtimeSync.get, src.core.realtimeSync.RealtimeSync.handler, src.core.realtimeSync.error
+
+### src.core.processRegistry.ProcessRegistry.processRegistry
+
+### src.core.fallbackHandler.parsed
+- **Output to**: src.core.fallbackHandler.parse
+
+### src.plugins.monitoringPlugin.MonitoringPlugin.formatQueryResult
+- **Output to**: src.plugins.monitoringPlugin.push, src.plugins.monitoringPlugin.join, src.plugins.monitoringPlugin.rekord, src.plugins.monitoringPlugin.map, src.plugins.monitoringPlugin.MonitoringPlugin.max
+
+### src.config.watchConfig.validateWatchConfig
+- **Output to**: src.config.watchConfig.push
+
+### src.integration.autoWatchIntegration.AutoWatchIntegration.processMessage
+- **Output to**: src.integration.autoWatchIntegration.AutoWatchIntegration.extractIntentInfo, src.integration.autoWatchIntegration.shouldAutoWatch, src.integration.autoWatchIntegration.triggerAutoWatch, src.integration.autoWatchIntegration.error
+
+### src.plugins.network.onvifPlugin.OnvifPlugin.formatCameras
+- **Output to**: src.plugins.network.onvifPlugin.push, src.plugins.network.onvifPlugin.forEach, src.plugins.network.onvifPlugin.camelCase, src.plugins.network.onvifPlugin.snake_case, src.plugins.network.onvifPlugin.join
+
+### src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.handleListProcesses
+- **Output to**: src.plugins.remote-machine.remoteMachinePlugin.slice, src.plugins.remote-machine.remoteMachinePlugin.map, src.plugins.remote-machine.remoteMachinePlugin.join, src.plugins.remote-machine.remoteMachinePlugin.Procesy
+
+### src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.processes
+
+### src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.processList
+
+### src.plugins.network.mdnsPlugin.MdnsPlugin.formatServices
+- **Output to**: src.plugins.network.mdnsPlugin.push, src.plugins.network.mdnsPlugin.MdnsPlugin.groupByType, src.plugins.network.mdnsPlugin.entries, src.plugins.network.mdnsPlugin.MdnsPlugin.friendlyType, src.plugins.network.mdnsPlugin.forEach
+
+### src.plugins.network.arpPlugin.ArpPlugin.formatHosts
+- **Output to**: src.plugins.network.arpPlugin.push, src.plugins.network.arpPlugin.forEach, src.plugins.network.arpPlugin.join, src.plugins.network.arpPlugin.now
+
+### src.plugins.network.pingPlugin.PingPlugin.formatResult
+- **Output to**: src.plugins.network.pingPlugin.push, src.plugins.network.pingPlugin.join, src.plugins.network.pingPlugin.now
+
+### src.plugins.network.portScanPlugin.PortScanPlugin.formatResult
+- **Output to**: src.plugins.network.portScanPlugin.push, src.plugins.network.portScanPlugin.forEach, src.plugins.network.portScanPlugin.substring, src.plugins.network.portScanPlugin.slice, src.plugins.network.portScanPlugin.join
+
+## Behavioral Patterns
+
+### state_machine_RemoteMachinePlugin
+- **Type**: state_machine
+- **Confidence**: 0.70
+- **Functions**: src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.initialize, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.dispose, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.canHandle, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.execute, src.plugins.remote-machine.remoteMachinePlugin.RemoteMachinePlugin.intentLower
+
+### state_machine_MqttPlugin
+- **Type**: state_machine
+- **Confidence**: 0.70
+- **Functions**: src.plugins.mqtt.mqttPlugin.MqttPlugin.connected, src.plugins.mqtt.mqttPlugin.MqttPlugin.initialize, src.plugins.mqtt.mqttPlugin.MqttPlugin.subs, src.plugins.mqtt.mqttPlugin.MqttPlugin.isAvailable, src.plugins.mqtt.mqttPlugin.MqttPlugin.execute
+
+### state_machine_ProtocolBridgePlugin
+- **Type**: state_machine
+- **Confidence**: 0.70
+- **Functions**: src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.resolveRoute, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.lower, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.canHandle, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.lower, src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.execute
+
+## Public API Surface
+
+Functions exposed as public API (no underscore prefix):
+
+- `src.core.bootstrap.registerCorePlugins` - 52 calls
+- `src.hooks.useChatSpeech.useChatSpeech` - 49 calls
+- `src.hooks.useTts.useTts` - 48 calls
+- `src.hooks.useStt.useStt` - 48 calls
+- `vite.config.host` - 47 calls
+- `vite.config.chatApiPlugin` - 47 calls
+- `src.hooks.useChatDispatch.useChatDispatch` - 46 calls
+- `src-tauri.src.vision_pipeline.start` - 46 calls
+- `src-tauri.src.network_scan.ensure_rtsp_worker` - 44 calls
+- `src.plugins.discovery.deviceConfigPlugin.configLogger` - 43 calls
+- `src.plugins.camera.cameraLivePlugin.CameraLivePlugin.execute` - 43 calls
+- `src.plugins.monitor.monitorPlugin.MonitorPlugin.handleStart` - 41 calls
+- `src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.execute` - 38 calls
+- `src.components.ChatInput.ChatInput` - 38 calls
+- `src-tauri.src.file_search.search_with_rust_search` - 38 calls
+- `src-tauri.src.wake_word.start_wake_word_listening` - 38 calls
+- `scripts.chat-cli.handleEmailInbox` - 37 calls
+- `src.hooks.useChatDispatch.handleSubmit` - 34 calls
+- `src.config.configStore.configLogger` - 34 calls
+- `src.hooks.useStt.startRecording` - 33 calls
+- `src.components.ErrorReportPanel.ErrorReportPanel` - 33 calls
+- `src.components.ChatMessageList.ChatMessageList` - 33 calls
+- `src.plugins.discovery.deviceStatusPlugin.statusLogger` - 32 calls
+- `src-tauri.src.tts.tts_speak` - 32 calls
+- `src.hooks.useSpeech.useSpeech` - 29 calls
+- `src-tauri.src.browse_rendered.render_and_extract` - 29 calls
+- `src.persistence.deviceRepository.repoLogger` - 28 calls
+- `src.App.micStreamRef` - 28 calls
+- `src.App.micAudioCtxRef` - 28 calls
+- `src.App.micAnimationFrameRef` - 28 calls
+- `src-tauri.src.logging.init_logging` - 27 calls
+- `src.lib.browseGateway.extractBrowserReadableContent` - 26 calls
+- `scripts.net-diag.main` - 26 calls
+- `src-tauri.src.vision_db.execute_query` - 26 calls
+- `src.hooks.useTts.speak` - 25 calls
+- `src.hooks.useTts.runSpeak` - 25 calls
+- `src.components.CameraLiveInline.CameraLiveInline` - 24 calls
+- `src.components.ChatConfigPrompt.ChatConfigPrompt` - 24 calls
+- `src-tauri.src.main.main` - 24 calls
+- `src-tauri.src.network.db_query` - 24 calls
+
+## System Interactions
+
+How components interact:
+
+```mermaid
+graph TD
+    registerCorePlugins --> safeRegister
+    registerCorePlugins --> NetworkScanPlugin
+    registerCorePlugins --> warn
+    registerCorePlugins --> PingPlugin
+    registerCorePlugins --> PortScanPlugin
+    useChatSpeech --> useSpeech
+    useChatSpeech --> useStt
+    useChatSpeech --> useTts
+    useChatSpeech --> useMemo
+    useChatSpeech --> useEffect
+    useTts --> useState
+    useTts --> useRef
+    useTts --> useCallback
+    useTts --> clearTimeout
+    useTts --> clearInterval
+    useStt --> useState
+    useStt --> useRef
+    useStt --> useEffect
+    useStt --> getUnsupportedReason
+    useStt --> isTauriRuntime
+    host --> trim
+    host --> values
+    host --> networkInterfaces
+    host --> of
+    host --> test
+    chatApiPlugin --> trim
+    chatApiPlugin --> values
+    chatApiPlugin --> networkInterfaces
+    chatApiPlugin --> of
+    chatApiPlugin --> test
+```
+
+## Reverse Engineering Guidelines
+
+1. **Entry Points**: Start analysis from the entry points listed above
+2. **Core Logic**: Focus on classes with many methods
+3. **Data Flow**: Follow data transformation functions
+4. **Process Flows**: Use the flow diagrams for execution paths
+5. **API Surface**: Public API functions reveal the interface
 
 ## Context for LLM
 
-When suggesting changes:
-1. Start from hotspots and high-CC functions
-2. Follow refactoring priorities above
-3. Maintain public API surface — keep backward compatibility
-4. Prefer minimal, incremental changes
-
+Maintain the identified architectural patterns and public API surface when suggesting changes.
