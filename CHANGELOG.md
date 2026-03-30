@@ -1,6 +1,37 @@
 ## [Unreleased]
 
+## [1.0.104] - 2026-03-30
+
+### Docs
+- Update CHANGELOG.md
+- Update TODO.md
+- Update docs/README.md
+- Update project/README.md
+- Update project/context.md
+
+### Other
+- Update planfile.yaml
+- Update project/analysis.toon.yaml
+- Update project/calls.mmd
+- Update project/compact_flow.mmd
+- Update project/duplication.toon.yaml
+- Update project/evolution.toon.yaml
+- Update project/flow.mmd
+- Update project/index.html
+- Update project/map.toon.yaml
+- Update project/project.toon.yaml
+- ... and 2 more files
+
+## [0.1.10] - 2026-03-30
+
+### Fixed
+- Fix smart-return-type issues (ticket-86813217)
+- Fix unused-imports issues (ticket-b0c6de72)
+
 ## [1.0.103] - 2026-03-30
+
+### Fixed
+- Fix MonitorPlugin test timeouts - Added comprehensive tauriInvoke mock and global fetch mock to prevent hanging tests when monitoring starts immediately with credentials, interval, or pixel-diff goal
 
 ### Other
 - Update pyqual.yaml

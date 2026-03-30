@@ -4,12 +4,12 @@
 
 - **Project**: /home/tom/github/broxeen/broxeen
 - **Primary Language**: typescript
-- **Languages**: typescript: 169, rust: 43, shell: 10, javascript: 5, python: 2
+- **Languages**: typescript: 166, shell: 7, javascript: 5, python: 3
 - **Analysis Mode**: static
-- **Total Functions**: 3697
-- **Total Classes**: 444
-- **Modules**: 229
-- **Entry Points**: 2785
+- **Total Functions**: 3355
+- **Total Classes**: 331
+- **Modules**: 181
+- **Entry Points**: 2566
 
 ## Architecture by Module
 
@@ -135,12 +135,6 @@ Main execution flows into the system:
 ### src.hooks.useChatDispatch.useChatDispatch
 - **Calls**: src.hooks.useChatDispatch.useCallback, src.hooks.useChatDispatch.trim, src.hooks.useChatDispatch.debug, src.hooks.useChatDispatch.addScopePrefix, src.hooks.useChatDispatch.setShowCommandHistory, src.hooks.useChatDispatch.setInput, src.hooks.useChatDispatch.info, src.hooks.useChatDispatch.store
 
-### src-tauri.src.vision_pipeline.start
-- **Calls**: src-tauri.src.vision_pipeline.let, src-tauri.src.vision_pipeline.channel, src-tauri.src.vision_pipeline.open, src-tauri.src.vision_pipeline.from_config, src-tauri.src.vision_pipeline.clone, src-tauri.src.vision_pipeline.batching, src-tauri.src.vision_pipeline.spawn, src-tauri.src.vision_pipeline.try_recv
-
-### src-tauri.src.network_scan.ensure_rtsp_worker
-- **Calls**: src-tauri.src.network_scan.rtsp_workers, src-tauri.src.network_scan.lock, src-tauri.src.network_scan.expect, src-tauri.src.network_scan.Some, src-tauri.src.network_scan.get, src-tauri.src.network_scan.clone, src-tauri.src.network_scan.to_string, src-tauri.src.network_scan.spawn
-
 ### src.plugins.discovery.deviceConfigPlugin.configLogger
 - **Calls**: src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.initialize, src.plugins.discovery.deviceConfigPlugin.warn, src.plugins.discovery.deviceConfigPlugin.ConfiguredDeviceRepository, src.plugins.discovery.deviceConfigPlugin.getDevicesDb, src.plugins.discovery.deviceConfigPlugin.info, src.plugins.discovery.deviceConfigPlugin.DeviceConfigPlugin.resolveRoute, src.plugins.discovery.deviceConfigPlugin.toLowerCase, src.plugins.discovery.deviceConfigPlugin.some
 
@@ -149,12 +143,6 @@ Main execution flows into the system:
 
 ### src.components.ChatInput.ChatInput
 - **Calls**: src.components.ChatInput.useState, src.components.ChatInput.useMemo, src.components.ChatInput.trim, src.components.ChatInput.toLowerCase, src.components.ChatInput.getRecentQueries, src.components.ChatInput.startsWith, src.components.ChatInput.includes, src.components.ChatInput.has
-
-### src-tauri.src.file_search.search_with_rust_search
-- **Calls**: src-tauri.src.file_search.is_empty, src-tauri.src.file_search.join, src-tauri.src.file_search.location, src-tauri.src.file_search.to_str, src-tauri.src.file_search.unwrap_or, src-tauri.src.file_search.search_input, src-tauri.src.file_search.depth, src-tauri.src.file_search.ignore_case
-
-### src-tauri.src.wake_word.start_wake_word_listening
-- **Calls**: src-tauri.src.wake_word.default_host, src-tauri.src.wake_word.default_input_device, src-tauri.src.wake_word.ok_or, src-tauri.src.wake_word.device, src-tauri.src.wake_word.name, src-tauri.src.wake_word.unwrap_or_else, src-tauri.src.wake_word.into, src-tauri.src.wake_word.default_input_config
 
 ### src.config.configStore.configLogger
 - **Calls**: src.config.configStore.Set, src.config.configStore.constructor, src.config.configStore.ConfigStoreImpl.load, src.config.configStore.info, src.config.configStore.getItem, src.config.configStore.parse, src.config.configStore.debug, src.config.configStore.warn
@@ -171,14 +159,8 @@ Main execution flows into the system:
 ### src.plugins.discovery.deviceStatusPlugin.statusLogger
 - **Calls**: src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.initialize, src.plugins.discovery.deviceStatusPlugin.warn, src.plugins.discovery.deviceStatusPlugin.DeviceRepository, src.plugins.discovery.deviceStatusPlugin.getDevicesDb, src.plugins.discovery.deviceStatusPlugin.info, src.plugins.discovery.deviceStatusPlugin.DeviceStatusPlugin.canHandle, src.plugins.discovery.deviceStatusPlugin.toLowerCase, src.plugins.discovery.deviceStatusPlugin.some
 
-### src-tauri.src.tts.tts_speak
-- **Calls**: src-tauri.src.tts.trim, src-tauri.src.tts.to_string, src-tauri.src.tts.is_empty, src-tauri.src.tts.Err, src-tauri.src.tts.load_settings, src-tauri.src.tts.backend_info, src-tauri.src.tts.backend_warn, src-tauri.src.tts.detect_backend
-
 ### src.hooks.useSpeech.useSpeech
 - **Calls**: src.hooks.useSpeech.useState, src.hooks.useSpeech.useRef, src.hooks.useSpeech.useEffect, src.hooks.useSpeech.isTauriRuntime, src.hooks.useSpeech.getSpeechRecognitionCtor, src.hooks.useSpeech.getUnsupportedReason, src.hooks.useSpeech.info, src.hooks.useSpeech.warn
-
-### src-tauri.src.browse_rendered.render_and_extract
-- **Calls**: src-tauri.src.browse_rendered.detect_chrome_binary, src-tauri.src.browse_rendered.ok_or_else, src-tauri.src.browse_rendered.to_string, src-tauri.src.browse_rendered.backend_info, src-tauri.src.browse_rendered.arg, src-tauri.src.browse_rendered.0, src-tauri.src.browse_rendered.36, src-tauri.src.browse_rendered.output
 
 ### src.persistence.deviceRepository.repoLogger
 - **Calls**: src.persistence.deviceRepository.constructor, src.persistence.deviceRepository.saveDevice, src.persistence.deviceRepository.DeviceRepository.now, src.persistence.deviceRepository.execute, src.persistence.deviceRepository.devices, src.persistence.deviceRepository.DeviceRepository.VALUES, src.persistence.deviceRepository.CONFLICT, src.persistence.deviceRepository.DeviceRepository.COALESCE
@@ -192,17 +174,35 @@ Main execution flows into the system:
 ### src.App.micAnimationFrameRef
 - **Calls**: src.App.useEffect, src.App.info, src.App.isTauriRuntime, src.App.logAsyncDecorator, src.App.runQuickHealthCheck, src.App.warn, src.App.error, src.App.bootstrapApp
 
-### src-tauri.src.logging.init_logging
-- **Calls**: src-tauri.src.logging.call_once, src-tauri.src.logging.let, src-tauri.src.logging.Some, src-tauri.src.logging.build_file_appender, src-tauri.src.logging.non_blocking, src-tauri.src.logging.layer, src-tauri.src.logging.with_ansi, src-tauri.src.logging.with_target
-
 ### scripts.net-diag.main
 - **Calls**: scripts.net-diag.getLocalIp, scripts.net-diag.split, scripts.net-diag.slice, scripts.net-diag.join, scripts.net-diag.log, scripts.net-diag.col, scripts.net-diag.repeat, scripts.net-diag.printTools
 
-### src-tauri.src.vision_db.execute_query
-- **Calls**: src-tauri.src.vision_db.trim, src-tauri.src.vision_db.to_uppercase, src-tauri.src.vision_db.starts_with, src-tauri.src.vision_db.prepare, src-tauri.src.vision_db.column_names, src-tauri.src.vision_db.into_iter, src-tauri.src.vision_db.map, src-tauri.src.vision_db.collect
-
 ### src.components.CameraLiveInline.CameraLiveInline
 - **Calls**: src.components.CameraLiveInline.max, src.components.CameraLiveInline.useMemo, src.components.CameraLiveInline.round, src.components.CameraLiveInline.get, src.components.CameraLiveInline.useState, src.components.CameraLiveInline.useRef, src.components.CameraLiveInline.useEffect, src.components.CameraLiveInline.setFrame
+
+### src.components.ChatConfigPrompt.ChatConfigPrompt
+- **Calls**: src.components.ChatConfigPrompt.Set, src.components.ChatConfigPrompt.recordChoice, src.components.ChatConfigPrompt.setClickedActions, src.components.ChatConfigPrompt.add, src.components.ChatConfigPrompt.setTimeout, src.components.ChatConfigPrompt.setCompletedActions, src.components.ChatConfigPrompt.onPrefill, src.components.ChatConfigPrompt.set
+
+### src.persistence.chatRepository.repoLogger
+- **Calls**: src.persistence.chatRepository.constructor, src.persistence.chatRepository.ChatRepository.ensureConversation, src.persistence.chatRepository.ChatRepository.now, src.persistence.chatRepository.execute, src.persistence.chatRepository.conversations, src.persistence.chatRepository.ChatRepository.VALUES, src.persistence.chatRepository.CONFLICT, src.persistence.chatRepository.warn
+
+### src.hooks.useLlm.useLlm
+- **Calls**: src.hooks.useLlm.useState, src.hooks.useLlm.useCallback, src.hooks.useLlm.logAsyncDecorator, src.hooks.useLlm.setLoading, src.hooks.useLlm.setError, src.hooks.useLlm.info, src.hooks.useLlm.askAboutContent, src.hooks.useLlm.slice
+
+### src.core.llmIntentClassifier.classifyIntent
+- **Calls**: src.core.llmIntentClassifier.trim, src.core.llmIntentClassifier.getCacheKey, src.core.llmIntentClassifier.cacheGet, src.core.llmIntentClassifier.debug, src.core.llmIntentClassifier.slice, src.core.llmIntentClassifier.get, src.core.llmIntentClassifier.buildIntentPrompt, src.core.llmIntentClassifier.llmChat
+
+### src.hooks.useStt.stopRecording
+- **Calls**: src.hooks.useStt.useCallback, src.hooks.useStt.logSyncDecorator, src.hooks.useStt.logAsyncDecorator, src.hooks.useStt.debug, src.hooks.useStt.setIsRecording, src.hooks.useStt.setIsTranscribing, src.hooks.useStt.setError, src.hooks.useStt.getAudioSettings
+
+### src.domain.eventStore.esLogger
+- **Calls**: src.domain.eventStore.EventStore.append, src.domain.eventStore.push, src.domain.eventStore.debug, src.domain.eventStore.getRealtimeSync, src.domain.eventStore.broadcast, src.domain.eventStore.warn, src.domain.eventStore.get, src.domain.eventStore.EventStore.handler
+
+### src.utils.healthCheck.HealthChecker.registerDefaultChecks
+- **Calls**: src.utils.healthCheck.HealthChecker.addCheck, src.utils.healthCheck.parseInt, src.utils.healthCheck.slice, src.utils.healthCheck.split, src.utils.healthCheck.String, src.utils.healthCheck.includes, src.utils.healthCheck.it, src.utils.healthCheck.toLowerCase
+
+### e2e.ssh-docker.spec.SSH_TEST_PORT
+- **Calls**: e2e.ssh-docker.spec.describe, e2e.ssh-docker.spec.beforeAll, e2e.ssh-docker.spec.execSync, e2e.ssh-docker.spec.warn, e2e.ssh-docker.spec.test, e2e.ssh-docker.spec.goto, e2e.ssh-docker.spec.waitForLoadState, e2e.ssh-docker.spec.locator
 
 ## Process Flows
 
@@ -244,21 +244,23 @@ chatApiPlugin [vite.config]
 useChatDispatch [src.hooks.useChatDispatch]
 ```
 
-### Flow 8: start
-```
-start [src-tauri.src.vision_pipeline]
-```
-
-### Flow 9: ensure_rtsp_worker
-```
-ensure_rtsp_worker [src-tauri.src.network_scan]
-  └─> rtsp_workers
-```
-
-### Flow 10: configLogger
+### Flow 8: configLogger
 ```
 configLogger [src.plugins.discovery.deviceConfigPlugin]
   └─ →> initialize
+```
+
+### Flow 9: execute
+```
+execute [src.plugins.discovery.networkScanPlugin.NetworkScanPlugin]
+  └─> now
+  └─> isStatusQuery
+      └─> resolveRoute
+```
+
+### Flow 10: ChatInput
+```
+ChatInput [src.components.ChatInput]
 ```
 
 ## Key Classes
@@ -355,6 +357,18 @@ Key functions that process and transform data:
 
 ### vite.config.parsedUrl
 
+### src.lib.browseGateway.processedBlock
+- **Output to**: src.lib.browseGateway.includes, src.lib.browseGateway.text, src.lib.browseGateway.replace, src.lib.browseGateway.trim
+
+### src.lib.browseGateway.processedContent
+- **Output to**: src.lib.browseGateway.createHumanLikeSummary
+
+### scripts.motion_pipeline.MotionPipeline.process_frame
+- **Output to**: scripts.motion_pipeline.extract_moving_objects, self.classifier.classify, self._is_in_cooldown, self._update_cooldown, scripts.motion_pipeline.save_detection
+
+### scripts.motion_pipeline.parse_args
+- **Output to**: argparse.ArgumentParser, p.add_argument, p.add_argument, p.add_argument, p.add_argument
+
 ### src.hooks.useTts.preprocessForTts
 - **Output to**: src.hooks.useTts.replace, src.hooks.useTts.trim, src.hooks.useTts.split, src.hooks.useTts.slice, src.hooks.useTts.join
 
@@ -363,18 +377,6 @@ Key functions that process and transform data:
 
 ### src.hooks.useChatDispatch.parsed
 - **Output to**: src.hooks.useChatDispatch.String
-
-### scripts.motion_pipeline.MotionPipeline.process_frame
-- **Output to**: scripts.motion_pipeline.extract_moving_objects, self.classifier.classify, self._is_in_cooldown, self._update_cooldown, scripts.motion_pipeline.save_detection
-
-### scripts.motion_pipeline.parse_args
-- **Output to**: argparse.ArgumentParser, p.add_argument, p.add_argument, p.add_argument, p.add_argument
-
-### src.lib.browseGateway.processedBlock
-- **Output to**: src.lib.browseGateway.includes, src.lib.browseGateway.text, src.lib.browseGateway.replace, src.lib.browseGateway.trim
-
-### src.lib.browseGateway.processedContent
-- **Output to**: src.lib.browseGateway.createHumanLikeSummary
 
 ### src.core.preferenceLearning.PreferenceLearningStore.parsed
 - **Output to**: src.core.preferenceLearning.set
@@ -446,15 +448,11 @@ Functions exposed as public API (no underscore prefix):
 - `vite.config.host` - 47 calls
 - `vite.config.chatApiPlugin` - 47 calls
 - `src.hooks.useChatDispatch.useChatDispatch` - 46 calls
-- `src-tauri.src.vision_pipeline.start` - 46 calls
-- `src-tauri.src.network_scan.ensure_rtsp_worker` - 44 calls
 - `src.plugins.discovery.deviceConfigPlugin.configLogger` - 43 calls
 - `src.plugins.camera.cameraLivePlugin.CameraLivePlugin.execute` - 43 calls
 - `src.plugins.monitor.monitorPlugin.MonitorPlugin.handleStart` - 41 calls
 - `src.plugins.discovery.networkScanPlugin.NetworkScanPlugin.execute` - 38 calls
 - `src.components.ChatInput.ChatInput` - 38 calls
-- `src-tauri.src.file_search.search_with_rust_search` - 38 calls
-- `src-tauri.src.wake_word.start_wake_word_listening` - 38 calls
 - `scripts.chat-cli.handleEmailInbox` - 37 calls
 - `src.hooks.useChatDispatch.handleSubmit` - 34 calls
 - `src.config.configStore.configLogger` - 34 calls
@@ -462,23 +460,27 @@ Functions exposed as public API (no underscore prefix):
 - `src.components.ErrorReportPanel.ErrorReportPanel` - 33 calls
 - `src.components.ChatMessageList.ChatMessageList` - 33 calls
 - `src.plugins.discovery.deviceStatusPlugin.statusLogger` - 32 calls
-- `src-tauri.src.tts.tts_speak` - 32 calls
 - `src.hooks.useSpeech.useSpeech` - 29 calls
-- `src-tauri.src.browse_rendered.render_and_extract` - 29 calls
 - `src.persistence.deviceRepository.repoLogger` - 28 calls
 - `src.App.micStreamRef` - 28 calls
 - `src.App.micAudioCtxRef` - 28 calls
 - `src.App.micAnimationFrameRef` - 28 calls
-- `src-tauri.src.logging.init_logging` - 27 calls
 - `src.lib.browseGateway.extractBrowserReadableContent` - 26 calls
 - `scripts.net-diag.main` - 26 calls
-- `src-tauri.src.vision_db.execute_query` - 26 calls
 - `src.hooks.useTts.speak` - 25 calls
 - `src.hooks.useTts.runSpeak` - 25 calls
 - `src.components.CameraLiveInline.CameraLiveInline` - 24 calls
 - `src.components.ChatConfigPrompt.ChatConfigPrompt` - 24 calls
-- `src-tauri.src.main.main` - 24 calls
-- `src-tauri.src.network.db_query` - 24 calls
+- `src.persistence.chatRepository.repoLogger` - 23 calls
+- `src.hooks.useLlm.useLlm` - 23 calls
+- `src.hooks.useSpeech.startListening` - 23 calls
+- `src.core.fallbackHandler.tryLlmFallback` - 22 calls
+- `src.core.llmIntentClassifier.classifyIntent` - 22 calls
+- `src.plugins.protocol-bridge.protocolBridgePlugin.ProtocolBridgePlugin.handleAdd` - 22 calls
+- `src.plugins.monitor.monitorPlugin.MonitorPlugin.poll` - 22 calls
+- `scripts.chat-cli.handleEmailSend` - 22 calls
+- `src.hooks.useSpeech.runStartListening` - 21 calls
+- `src.hooks.useStt.stopRecording` - 21 calls
 
 ## System Interactions
 

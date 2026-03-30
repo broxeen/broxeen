@@ -1,5 +1,5 @@
-# code2llm | 229f 67163L | typescript:169,rust:43,shell:10,javascript:5,python:2 | 2026-03-30
-# CC̄=4.0 | critical:143/3697 | dups:0 | cycles:0
+# code2llm | 181f 52105L | typescript:166,shell:7,javascript:5,python:3 | 2026-03-30
+# CC̄=4.0 | critical:128/3355 | dups:0 | cycles:0
 
 HEALTH[20]:
   🔴 GOD   src/config/appConfig.ts = 628L, 13 classes, 3m, max CC=3
@@ -9,8 +9,6 @@ HEALTH[20]:
   🔴 GOD   src/plugins/monitor/motionDetectionPlugin.ts = 512L, 4 classes, 44m, max CC=13
   🔴 GOD   src/plugins/protocol-bridge/protocolBridgePlugin.ts = 1720L, 7 classes, 98m, max CC=24
   🔴 GOD   src/plugins/monitor/monitorPlugin.ts = 2871L, 4 classes, 229m, max CC=93
-  🔴 GOD   src-tauri/src/motion_detection.rs = 958L, 8 classes, 8m, max CC=12
-  🔴 GOD   src-tauri/src/network_scan.rs = 1655L, 16 classes, 27m, max CC=26
   🟡 CC    host CC=71 (limit:15)
   🟡 CC    chatApiPlugin CC=71 (limit:15)
   🟡 CC    handleQuery CC=31 (limit:15)
@@ -18,12 +16,14 @@ HEALTH[20]:
   🟡 CC    sub CC=30 (limit:15)
   🟡 CC    repoLogger CC=27 (limit:15)
   🟡 CC    execute CC=15 (limit:15)
-  🟡 CC    transcribeAudio CC=16 (limit:15)
-  🟡 CC    run CC=16 (limit:15)
-  🟡 CC    useChatPersistence CC=16 (limit:15)
-  🟡 CC    repoRef CC=16 (limit:15)
+  🟡 CC    detectContentType CC=22 (limit:15)
+  🟡 CC    stripCookieBannerText CC=16 (limit:15)
+  🟡 CC    calculateBlockScore CC=32 (limit:15)
+  🟡 CC    extractBrowserReadableContent CC=42 (limit:15)
+  🟡 CC    title CC=30 (limit:15)
+  🟡 CC    bestScore CC=30 (limit:15)
 
-REFACTOR[10]:
+REFACTOR[8]:
   1. split src/config/appConfig.ts  (god module)
   2. split src/plugins/remote-machine/remoteMachinePlugin.ts  (god module)
   3. split src/plugins/files/fileSearchPlugin.ts  (god module)
@@ -31,77 +31,28 @@ REFACTOR[10]:
   5. split src/plugins/monitor/motionDetectionPlugin.ts  (god module)
   6. split src/plugins/protocol-bridge/protocolBridgePlugin.ts  (god module)
   7. split src/plugins/monitor/monitorPlugin.ts  (god module)
-  8. split src-tauri/src/motion_detection.rs  (god module)
-  9. split src-tauri/src/network_scan.rs  (god module)
-  10. split 11 high-CC methods  (CC>15)
+  8. split 13 high-CC methods  (CC>15)
 
-PIPELINES[2030]:
-  [1] Src [testEnv]: testEnv
+PIPELINES[1845]:
+  [1] Src [host]: host → run
       PURITY: 100% pure
-  [2] Src [openApp]: openApp
+  [2] Src [chatApiPlugin]: chatApiPlugin → run
       PURITY: 100% pure
-  [3] Src [supported]: supported
+  [3] Src [raw]: raw
       PURITY: 100% pure
-  [4] Src [input]: input
+  [4] Src [ip]: ip
       PURITY: 100% pure
-  [5] Src [ttsButton]: ttsButton
+  [5] Src [mac]: mac
       PURITY: 100% pure
 
 LAYERS:
-  ./                              CC̄=8.9    ←in:0  →out:0
+  ./                              CC̄=8.1    ←in:0  →out:0
   │ !! vite.config.ts             280L  0C   35m  CC=71     ←0
   │ resolver                   129L  1C    2m  CC=10     ←0
+  │ sitecustomize              129L  0C    7m  CC=7      ←0
   │ playwright.config.ts        54L  0C    1m  CC=1      ←0
   │ tailwind.config.js          23L  0C    0m  CC=0.0    ←0
-  │ project.sh                  21L  0C    0m  CC=0.0    ←0
   │ postcss.config.js            6L  0C    0m  CC=0.0    ←0
-  │
-  src-tauri/                      CC̄=4.1    ←in:0  →out:0
-  │ !! network_scan.rs           1655L  16C   27m  CC=26     ←0
-  │ !! motion_detection.rs        958L  8C    8m  CC=12     ←0
-  │ !! file_search.rs             582L  3C   10m  CC=16     ←0
-  │ !! tts_backend.rs             527L  0C   22m  CC=6      ←0
-  │ !! content_extraction.rs      506L  1C   10m  CC=32     ←0
-  │ main.rs                    495L  1C    1m  CC=10     ←0
-  │ email.rs                   488L  3C    1m  CC=2      ←0
-  │ audio_commands.rs          445L  6C   17m  CC=8      ←0
-  │ browse_rendered.rs         394L  0C    6m  CC=10     ←0
-  │ !! vision_db.rs               392L  4C   12m  CC=16     ←0
-  │ rss_parser.rs              369L  4C   13m  CC=10     ←0
-  │ !! vision_detector.rs         344L  3C    8m  CC=15     ←0
-  │ vision_llm.rs              336L  7C    7m  CC=4      ←0
-  │ vision_config.rs           335L  9C   29m  CC=6      ←0
-  │ toonic_sidecar.rs          332L  1C    3m  CC=8      ←0
-  │ stt.rs                     325L  1C    6m  CC=6      ←0
-  │ !! vision_pipeline.rs         311L  3C    3m  CC=30     ←0
-  │ docker.rs                  310L  5C    0m  CC=0.0    ←0
-  │ remote_machine.rs          309L  6C    0m  CC=0.0    ←0
-  │ local_llm.rs               297L  3C    7m  CC=9      ←0
-  │ file_search_bench.rs       295L  0C    2m  CC=6      ←0
-  │ !! query_schema.rs            272L  1C    9m  CC=46     ←0
-  │ ssh.rs                     266L  3C    2m  CC=6      ←0
-  │ !! vision_tracker.rs          258L  4C    4m  CC=20     ←0
-  │ llm_query.rs               245L  1C    2m  CC=8      ←0
-  │ audio_capture.rs           243L  1C    9m  CC=9      ←0
-  │ wake_word.rs               232L  1C    7m  CC=14     ←0
-  │ tts.rs                     223L  1C   10m  CC=14     ←0
-  │ settings.rs                221L  3C   17m  CC=7      ←0
-  │ disk_info.rs               206L  2C    6m  CC=7      ←0
-  │ !! vision_motion.rs           186L  2C    2m  CC=16     ←0
-  │ network.rs                 174L  0C    7m  CC=14     ←0
-  │ vision_scene_buffer.rs     165L  3C    7m  CC=9      ←0
-  │ frigate_mqtt.rs            155L  3C    0m  CC=0.0    ←0
-  │ !! content_cleaning.rs        147L  0C    4m  CC=33     ←0
-  │ setup-audio.sh             130L  0C    0m  CC=0.0    ←0
-  │ !! vision_movement.rs         128L  1C    4m  CC=18     ←0
-  │ llm.rs                     126L  1C    0m  CC=0.0    ←0
-  │ network_info.rs            123L  1C    5m  CC=5      ←0
-  │ vision_query_engine.rs     117L  2C    2m  CC=8      ←0
-  │ logging.rs                 116L  0C    6m  CC=5      ←0
-  │ vision_capture.rs          102L  1C    3m  CC=5      ←0
-  │ autostart.rs                90L  0C    7m  CC=5      ←0
-  │ main_changes.rs             56L  0C    1m  CC=4      ←0
-  │ linuxdeploy-plugin-gtk.sh    18L  0C    0m  CC=0.0    ←0
   │
   src/                            CC̄=4.0    ←in:0  →out:0
   │ !! monitorPlugin.ts          2871L  4C  229m  CC=93     ←1
@@ -109,7 +60,6 @@ LAYERS:
   │ !! protocolBridgePlugin.ts   1720L  7C   98m  CC=24     ←0
   │ !! networkScanPlugin.ts      1586L  3C  135m  CC=40     ←0
   │ !! useChatDispatch.ts         897L  1C   50m  CC=78     ←0
-  │ !! intentRouter.ts            853L  2C   20m  CC=55     ←0
   │ !! ChatMessageList.tsx        805L  2C   25m  CC=107    ←0
   │ !! CameraPreview.tsx          774L  2C   54m  CC=17     ←0
   │ !! cameraLivePlugin.ts        755L  1C   57m  CC=95     ←0
@@ -167,7 +117,6 @@ LAYERS:
   │ !! frigateEventsPlugin.ts     305L  1C   37m  CC=33     ←0
   │ TtsSettingsModal.tsx       303L  1C    7m  CC=3      ←0
   │ migrations.ts              302L  0C    0m  CC=0.0    ←0
-  │ logsPlugin.ts              301L  2C   23m  CC=7      ←0
   │ serviceProbePlugin.ts      283L  1C   20m  CC=14     ←0
   │ resolver.ts                264L  1C   19m  CC=11     ←0
   │ realtimeSync.ts            264L  3C   19m  CC=6      ←0
@@ -202,7 +151,7 @@ LAYERS:
   │ !! cameraPtzPlugin.ts         164L  2C   14m  CC=17     ←0
   │ pluginContext.tsx          161L  2C   10m  CC=12     ←0
   │ portScanPlugin.ts          156L  2C   21m  CC=12     ←0
-  │ scanHistoryRepository.ts   153L  3C   14m  CC=4      ←0
+  │ scanHistoryRepository.ts   153L  3C   14m  CC=4      ←1
   │ autoConfig.ts              153L  1C   13m  CC=9      ←0
   │ !! eventStore.ts              152L  1C   10m  CC=21     ←0
   │ mdnsPlugin.ts              152L  2C   15m  CC=8      ←0
@@ -257,14 +206,13 @@ LAYERS:
   │ defaultBrowseAdapter.ts     12L  1C    1m  CC=1      ←0
   │ index.ts                    12L  0C    0m  CC=0.0    ←0
   │ browseService.ts             9L  1C    0m  CC=0.0    ←0
-  │ logs.index.ts                8L  0C    0m  CC=0.0    ←0
   │ index.ts                     8L  0C    0m  CC=0.0    ←0
   │ index.ts                     7L  0C    0m  CC=0.0    ←0
   │ index.ts                     6L  0C    0m  CC=0.0    ←0
   │ index.ts                     6L  0C    0m  CC=0.0    ←0
   │ vite-env.d.ts                1L  0C    0m  CC=0.0    ←0
   │
-  scripts/                        CC̄=3.1    ←in:0  →out:14  !! split
+  scripts/                        CC̄=3.1    ←in:1  →out:14  !! split
   │ !! chat-cli.mjs              1093L  0C  109m  CC=32     ←0
   │ !! motion_pipeline            624L  3C   23m  CC=7      ←0
   │ detect-platform.sh         328L  0C    8m  CC=0.0    ←0
@@ -273,7 +221,7 @@ LAYERS:
   │ install-openvino-docker.sh   202L  0C    8m  CC=0.0    ←0
   │ install-openvino.sh        188L  0C    4m  CC=0.0    ←0
   │ add-reolink-camera.mjs     155L  0C    3m  CC=4      ←0
-  │ install-openvino-pip.sh    143L  0C    7m  CC=0.0    ←1
+  │ install-openvino-pip.sh    143L  0C    7m  CC=0.0    ←2
   │ install-openvino-macos.sh   114L  0C    8m  CC=0.0    ←0
   │ install-openvino-rhel.sh    95L  0C    7m  CC=0.0    ←0
   │
@@ -289,12 +237,14 @@ LAYERS:
   │
 
 COUPLING:
-                   scripts     src.core  src.plugins     resolver      src.lib
-      scripts           ──           12            2                            !! fan-out
-     src.core          ←12           ──                                         hub
-  src.plugins           ←2                        ──                          
-     resolver                                                  ──            1
-      src.lib                                                  ←1           ──
+                           scripts         src.core    sitecustomize      src.plugins         resolver          src.lib  src.persistence
+          scripts               ──               12               ←1                2                                                     !! fan-out
+         src.core              ←12               ──                                                                                       hub
+    sitecustomize                1                                ──                                                                   1
+      src.plugins               ←2                                                 ──                                                   
+         resolver                                                                                   ──                1                 
+          src.lib                                                                                   ←1               ──                 
+  src.persistence                                                 ←1                                                                  ──
   CYCLES: none
   HUB: src.core/ (fan-in=12)
   SMELL: scripts/ fan-out=14 → split needed

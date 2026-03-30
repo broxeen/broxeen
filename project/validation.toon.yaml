@@ -1,0 +1,390 @@
+# vallm batch | 324f | 258✓ 109⚠ 7✗ | 2026-03-30
+
+SUMMARY:
+  scanned: 324  passed: 258 (79.6%)  warnings: 109  errors: 7  unsupported: 57
+
+WARNINGS[109]{path,score}:
+  src/core/preferenceLearning.test.ts,0.67
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/lib/llmClient.test.ts,0.67
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  playwright.config.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vite' not found,2
+  src/core/actionSchema.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/core/cache.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/core/commandBus.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,6
+  src/core/fallbackHandler.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/core/intentRouter.fileSearch.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/core/intentRouter.llm.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/core/retry.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/core/systemContext.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/domain/audioSettings.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/domain/chatEvents.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/hooks/useDatabaseManager.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,6
+  src/lib/phonetic.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/lib/resolver.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/lib/sttClient.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/persistence/databaseManager.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/discovery/autoScanScheduler.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/discovery/networkScanPlugin.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/monitoringPlugin.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,6
+  src/plugins/protocol-bridge/rssParser.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/rtsp-camera/rtspCameraPlugin.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/utils/healthCheck.test.ts,0.83
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,5
+  vite.config.ts,0.83
+    issues[3]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vite' not found,1
+      js.import.resolvable,warning,Module 'vitest/config' not found,3
+      js.import.resolvable,warning,Module 'vite' not found,4
+  src/hooks/useTts.ts,0.88
+    issues[2]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,1
+      complexity.lizard_cc,warning,(anonymous): CC=18 exceeds limit 15,165
+  src/config/configStore.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,6
+  src/core/intentRouter.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,6
+  src/core/pluginRegistry.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,6
+  src/core/realtimeSync.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/domain/chatAggregate.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/domain/eventStore.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/hooks/useChatMessages.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,1
+  src/hooks/useSpeech.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/hooks/useSpeech.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,1
+  src/hooks/useTts.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/hooks/useWatchNotifications.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,14
+  src/lib/browseGateway.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/persistence/configuredDeviceRepository.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/persistence/deviceRepository.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/persistence/historyRepository.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/camera/cameraLivePlugin.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/discovery/deviceStatusPlugin.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/http/browsePlugin.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,6
+  src/plugins/monitor/motionDetectionPlugin.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/protocol-bridge/protocolBridgePlugin.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,8
+  src/plugins/system/diskInfoPlugin.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/system/sshPlugin.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/toonic/toonicBridgePlugin.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,6
+  src/plugins/voice/voiceCommandsPlugin.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/utils/quickActionResolver.test.ts,0.89
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/App.tsx,0.90
+    issues[3]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=37 exceeds limit 15,68
+      complexity.lizard_length,warning,(anonymous): 114 lines exceeds limit 100,68
+      complexity.lizard_cc,warning,(anonymous): CC=39 exceeds limit 15,239
+  src/components/ChatConfigPrompt.tsx,0.90
+    issues[3]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=65 exceeds limit 15,144
+      complexity.lizard_length,warning,(anonymous): 166 lines exceeds limit 100,144
+      complexity.lizard_length,warning,(anonymous): 335 lines exceeds limit 100,144
+  src/core/fallbackCli.test.ts,0.92
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,13
+  src/hooks/useHistoryPersistence.ts,0.92
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,8
+  src/persistence/chatRepository.test.ts,0.92
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/files/fileSearchPlugin.scope.test.ts,0.92
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/files/fileSearchPlugin.test.ts,0.92
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/plugins/frigate/frigateEventsPlugin.test.ts,0.92
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/plugins/marketplace/marketplace.test.ts,0.92
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,5
+  src/plugins/system/logsPlugin.test.ts,0.92
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/plugins/system/processesPlugin.test.ts,0.92
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  e2e/network-scanning-flow.spec.ts,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=16 exceeds limit 15,38
+      complexity.lizard_length,warning,(anonymous): 122 lines exceeds limit 100,38
+  src/components/ActionSuggestions.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,ActionSuggestions: CC=156 exceeds limit 15,39
+      complexity.lizard_length,warning,ActionSuggestions: 396 lines exceeds limit 100,39
+  src/components/CameraLiveInline.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,tick: CC=36 exceeds limit 15,49
+      complexity.lizard_cc,warning,CameraLiveInline: CC=20 exceeds limit 15,6
+  src/components/CameraPreview.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,CameraPreview: CC=154 exceeds limit 15,46
+      complexity.lizard_length,warning,CameraPreview: 578 lines exceeds limit 100,46
+  src/components/Chat.test.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,render: CC=29 exceeds limit 15,56
+      complexity.lizard_length,warning,render: 688 lines exceeds limit 100,56
+  src/components/Chat.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=23 exceeds limit 15,310
+      complexity.lizard_cc,warning,copyChatContent: CC=35 exceeds limit 15,380
+  src/components/ChatMessageList.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=43 exceeds limit 15,335
+      complexity.lizard_length,warning,(anonymous): 396 lines exceeds limit 100,335
+  src/components/ErrorReportPanel.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,ErrorReportPanel: CC=74 exceeds limit 15,19
+      complexity.lizard_length,warning,ErrorReportPanel: 283 lines exceeds limit 100,19
+  src/components/HealthDiagnostic.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,HealthDiagnostic: CC=86 exceeds limit 15,20
+      complexity.lizard_length,warning,HealthDiagnostic: 302 lines exceeds limit 100,20
+  src/components/NetworkHistorySelector.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,NetworkHistorySelector: CC=82 exceeds limit 15,32
+      complexity.lizard_length,warning,NetworkHistorySelector: 301 lines exceeds limit 100,32
+  src/components/NetworkSelector.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,NetworkSelector: CC=21 exceeds limit 15,116
+      complexity.lizard_length,warning,NetworkSelector: 186 lines exceeds limit 100,116
+  src/components/QuickActionButtons.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,QuickActionButtons: CC=31 exceeds limit 15,30
+      complexity.lizard_length,warning,QuickActionButtons: 160 lines exceeds limit 100,30
+  src/components/QuickCommandHistory.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,QuickCommandHistory: CC=34 exceeds limit 15,22
+      complexity.lizard_length,warning,QuickCommandHistory: 157 lines exceeds limit 100,22
+  src/components/QuickCommands.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,QuickCommands: CC=133 exceeds limit 15,35
+      complexity.lizard_length,warning,QuickCommands: 474 lines exceeds limit 100,35
+  src/components/WatchBadge.tsx,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,WatchBadge: CC=45 exceeds limit 15,18
+      complexity.lizard_length,warning,WatchBadge: 160 lines exceeds limit 100,18
+  src/debug-intent.test.ts,0.93
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/debug-plugins.test.ts,0.93
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/hooks/useAlertBridge.ts,0.93
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,15
+  src/hooks/useChatPersistence.test.ts,0.93
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/hooks/useLlm.ts,0.93
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,1
+  src/hooks/useStt.test.ts,0.93
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/plugins/cameras/cameras.test.ts,0.93
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,6
+  src/plugins/discovery/networkScanPlugin.ts,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=176 exceeds limit 15,175
+      complexity.lizard_length,warning,(anonymous): 863 lines exceeds limit 100,175
+  src/plugins/remote-machine/remoteMachinePlugin.ts,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,execute: CC=25 exceeds limit 15,90
+      complexity.lizard_length,warning,handleAddMachine: 105 lines exceeds limit 100,181
+  src/reactive/alertBridge.test.ts,0.93
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,1
+  src/utils/quickActionResolver.ts,0.93
+    issues[2]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,resolveQuickActions: CC=49 exceeds limit 15,41
+      complexity.lizard_length,warning,resolveQuickActions: 150 lines exceeds limit 100,41
+  src/commands/browseCommand.test.ts,0.94
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,2
+  src/hooks/useChatPersistence.ts,0.94
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,9
+  src/hooks/useStt.ts,0.94
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,1
+  src/plugins/network/network.test.ts,0.96
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,6
+  src/components/DeviceDashboardModal.tsx,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=49 exceeds limit 15,125
+  src/components/DiagnosticsModal.tsx,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=43 exceeds limit 15,39
+  src/components/FileResultsDisplay.tsx,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=17 exceeds limit 15,175
+  src/components/MessageQuickActions.tsx,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,MessageQuickActions: CC=17 exceeds limit 15,19
+  src/components/Settings.test.tsx,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_length,warning,(anonymous): 145 lines exceeds limit 100,199
+  src/components/Settings.tsx,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=39 exceeds limit 15,118
+  src/core/systemContext.ts,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,detectOs: CC=25 exceeds limit 15,39
+  src/hooks/useChatSpeech.ts,0.97
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,1
+  src/lib/browseGateway.ts,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,looksLikeHtml: CC=19 exceeds limit 15,1063
+  src/persistence/configuredDeviceRepository.ts,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,save: CC=26 exceeds limit 15,66
+  src/plugins/camera/cameraVendorDatabase.ts,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,detectCameraVendor: CC=23 exceeds limit 15,327
+  src/plugins/cameras/cameraPtzPlugin.ts,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,canHandle: CC=16 exceeds limit 15,23
+  src/plugins/monitor/monitor.test.ts,0.97
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,5
+  src/plugins/network/onvifPlugin.ts,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,(anonymous): CC=16 exceeds limit 15,129
+  src/plugins/toonic/toonicBridgePlugin.ts,0.97
+    issues[1]{rule,severity,message,line}:
+      complexity.lizard_cc,warning,execute: CC=17 exceeds limit 15,77
+  src/hooks/useChatDispatch.ts,0.98
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'react' not found,1
+  src/plugins/__tests__/plugins.e2e.test.ts,0.98
+    issues[1]{rule,severity,message,line}:
+      js.import.resolvable,warning,Module 'vitest' not found,7
+
+ERRORS[7]{path,score}:
+  scripts/add-camera.sql,0.00
+    issues[1]{rule,severity,message,line}:
+      syntax.tree_sitter,error,tree-sitter found 2 parse error(s) in sql,
+  src/components/MicSettingsModal.tsx,0.00
+    issues[1]{rule,severity,message,line}:
+      syntax.tree_sitter,error,tree-sitter found 1 parse error(s) in tsx,
+  src/components/TtsSettingsModal.tsx,0.00
+    issues[1]{rule,severity,message,line}:
+      syntax.tree_sitter,error,tree-sitter found 1 parse error(s) in tsx,
+  src/core/bootstrap.ts,0.00
+    issues[1]{rule,severity,message,line}:
+      syntax.tree_sitter,error,tree-sitter found 1 parse error(s) in typescript,
+  resolver.py,0.86
+    issues[2]{rule,severity,message,line}:
+      python.import.resolvable,error,Module 'phonetic' not found,17
+      python.import.resolvable,error,Module 'domains' not found,18
+  sitecustomize.py,0.95
+    issues[1]{rule,severity,message,line}:
+      python.import.resolvable,error,Module 'goal.config' not found,48
+  scripts/motion_pipeline.py,0.97
+    issues[1]{rule,severity,message,line}:
+      python.import.resolvable,error,Module 'ultralytics' not found,64
+
+UNSUPPORTED[6]{bucket,count}:
+  *.md,34
+  Dockerfile*,3
+  *.txt,1
+  *.yml,2
+  *.example,2
+  other,15

@@ -1,7 +1,7 @@
-# broxeen | 3697 func | 206f | 82967L | typescript | 2026-03-30
+# broxeen | 3355 func | 166f | 83191L | typescript | 2026-03-30
 
 HEALTH:
-  CC̄=4.0  critical=306 (limit:10)  dup=54  cycles=0
+  CC̄=4.0  critical=270 (limit:10)  dup=14  cycles=0
 
 ALERTS[20]:
   !!! cc_exceeded      useChatSpeech = 107 (limit:15)
@@ -15,23 +15,23 @@ ALERTS[20]:
   !!! cc_exceeded      handleSubmit = 72 (limit:15)
   !!! cc_exceeded      host = 71 (limit:15)
 
-MODULES[229] (top by size):
+MODULES[181] (top by size):
   M[src/plugins/monitor/monitorPlugin.ts] 2871L C:4 F:229 CC↑93 D:1 (typescript)
   M[src/lib/browseGateway.ts] 1741L C:3 F:143 CC↑42 D:0 (typescript)
   M[src/plugins/protocol-bridge/protocolBridgePlugin.ts] 1720L C:7 F:98 CC↑24 D:0 (typescript)
-  M[src-tauri/src/network_scan.rs] 1655L C:16 F:27 CC↑26 D:0 (rust)
   M[src/plugins/discovery/networkScanPlugin.ts] 1586L C:3 F:135 CC↑40 D:0 (typescript)
   M[scripts/chat-cli.mjs] 1093L C:0 F:109 CC↑32 D:0 (javascript)
-  M[src-tauri/src/motion_detection.rs] 958L C:8 F:8 CC↑12 D:0 (rust)
   M[src/hooks/useChatDispatch.ts] 897L C:1 F:50 CC↑78 D:0 (typescript)
-  M[src/core/intentRouter.ts] 853L C:2 F:20 CC↑55 D:0 (typescript)
   M[src/components/ChatMessageList.tsx] 805L C:2 F:25 CC↑107 D:0 (typescript)
   M[src/components/CameraPreview.tsx] 774L C:2 F:54 CC↑17 D:0 (typescript)
   M[src/plugins/camera/cameraLivePlugin.ts] 755L C:1 F:57 CC↑95 D:0 (typescript)
   M[src/components/Settings.tsx] 704L C:1 F:16 CC↑4 D:0 (typescript)
   M[src/components/ChatConfigPrompt.tsx] 674L C:3 F:18 CC↑62 D:0 (typescript)
   M[src/config/appConfig.ts] 628L C:13 F:3 CC↑3 D:0 (typescript)
-  LANGS: typescript:169/rust:43/shell:10/javascript:5/python:2
+  M[scripts/motion_pipeline.py] 624L C:3 F:23 CC↑7 D:0 (python)
+  M[src/hooks/useChatSpeech.ts] 594L C:2 F:25 CC↑107 D:0 (typescript)
+  M[src/core/actionSchema.ts] 592L C:1 F:17 CC↑8 D:0 (typescript)
+  LANGS: typescript:166/shell:7/javascript:5/python:3
 
 HOTSPOTS[10]:
   ★ registerCorePlugins fan=52  // Orchestrates 52 calls
@@ -49,4 +49,4 @@ REFACTOR[15]:
 
 EVOLUTION:
   2026-03-24 CC̄=4.0 crit=306 82967L // Automated analysis
-  2026-03-30 CC̄=4.0 crit=306 82967L // Automated analysis
+  2026-03-30 CC̄=4.0 crit=270 83191L // Automated analysis

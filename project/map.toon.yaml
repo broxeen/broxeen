@@ -1,10 +1,10 @@
-# broxeen | 229f 67163L | typescript:169,python:2,javascript:5,rust:43,shell:10 | 2026-03-30
-# stats: 3697 func | 0 cls | 229 mod | CC̄=4.0 | critical:143 | cycles:0
+# broxeen | 181f 52105L | typescript:166,python:3,javascript:5,shell:7 | 2026-03-30
+# stats: 3355 func | 0 cls | 181 mod | CC̄=4.0 | critical:128 | cycles:0
 # alerts[5]: CC ChatMessageList=107; CC useChatSpeech=107; CC ChatInput=101; CC CameraLivePlugin.execute=95; CC MonitorPlugin.handleStart=93
 # hotspots[5]: registerCorePlugins fan=52; useChatSpeech fan=49; useTts fan=48; useStt fan=48; host fan=47
-# evolution: baseline
+# evolution: CC̄ 4.1→4.0 (improved -0.1)
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
-M[229]:
+M[181]:
   e2e/chat-features.spec.ts,141
   e2e/logging.spec.ts,60
   e2e/network-scanning-flow.spec.ts,342
@@ -15,7 +15,6 @@ M[229]:
   e2e/voice-interface.spec.ts,313
   playwright.config.ts,54
   postcss.config.js,6
-  project.sh,21
   resolver.py,129
   scripts/add-reolink-camera.mjs,155
   scripts/chat-cli.mjs,1093
@@ -28,51 +27,7 @@ M[229]:
   scripts/install-openvino-ubuntu.sh,279
   scripts/motion_pipeline.py,624
   scripts/net-diag.mjs,265
-  src-tauri/benches/file_search_bench.rs,295
-  src-tauri/src/audio_capture.rs,243
-  src-tauri/src/audio_commands.rs,445
-  src-tauri/src/autostart.rs,90
-  src-tauri/src/browse_rendered.rs,394
-  src-tauri/src/content_cleaning.rs,147
-  src-tauri/src/content_extraction.rs,506
-  src-tauri/src/disk_info.rs,206
-  src-tauri/src/docker.rs,310
-  src-tauri/src/email.rs,488
-  src-tauri/src/file_search.rs,582
-  src-tauri/src/frigate_mqtt.rs,155
-  src-tauri/src/llm.rs,126
-  src-tauri/src/llm_query.rs,245
-  src-tauri/src/local_llm.rs,297
-  src-tauri/src/logging.rs,116
-  src-tauri/src/main.rs,495
-  src-tauri/src/main_changes.rs,56
-  src-tauri/src/motion_detection.rs,958
-  src-tauri/src/network.rs,174
-  src-tauri/src/network_info.rs,123
-  src-tauri/src/network_scan.rs,1655
-  src-tauri/src/query_schema.rs,272
-  src-tauri/src/remote_machine.rs,309
-  src-tauri/src/rss_parser.rs,369
-  src-tauri/src/settings.rs,221
-  src-tauri/src/setup-audio.sh,130
-  src-tauri/src/ssh.rs,266
-  src-tauri/src/stt.rs,325
-  src-tauri/src/toonic_sidecar.rs,332
-  src-tauri/src/tts.rs,223
-  src-tauri/src/tts_backend.rs,527
-  src-tauri/src/vision_capture.rs,102
-  src-tauri/src/vision_config.rs,335
-  src-tauri/src/vision_db.rs,392
-  src-tauri/src/vision_detector.rs,344
-  src-tauri/src/vision_llm.rs,336
-  src-tauri/src/vision_motion.rs,186
-  src-tauri/src/vision_movement.rs,128
-  src-tauri/src/vision_pipeline.rs,311
-  src-tauri/src/vision_query_engine.rs,117
-  src-tauri/src/vision_scene_buffer.rs,165
-  src-tauri/src/vision_tracker.rs,258
-  src-tauri/src/wake_word.rs,232
-  src-tauri/target/release/bundle/appimage/Broxeen.AppDir/apprun-hooks/linuxdeploy-plugin-gtk.sh,18
+  sitecustomize.py,129
   src/App.tsx,571
   src/commands/browseCommand.ts,187
   src/commands/copyContextCommand.ts,37
@@ -121,7 +76,6 @@ M[229]:
   src/core/cache.ts,448
   src/core/commandBus.ts,64
   src/core/fallbackHandler.ts,305
-  src/core/intentRouter.ts,853
   src/core/intentSchema.ts,137
   src/core/llmIntentClassifier.ts,218
   src/core/plugin.types.ts,230
@@ -211,8 +165,6 @@ M[229]:
   src/plugins/rtsp-camera/rtspCameraPlugin.ts,416
   src/plugins/scope/scopeRegistry.ts,253
   src/plugins/system/diskInfoPlugin.ts,319
-  src/plugins/system/logs.index.ts,8
-  src/plugins/system/logsPlugin.ts,301
   src/plugins/system/processesPlugin.ts,120
   src/plugins/system/sshPlugin.ts,544
   src/plugins/toonic/toonicBridgePlugin.ts,411
@@ -640,11 +592,6 @@ D:
     msg()
     rec()
     cleanupSettings()
-  src/core/intentRouter.ts:
-    i: ../plugins/scope/scopeRegistry,./llmIntentClassifier,./types
-    e: IntentRouter,PluginQuery
-    IntentRouter: initializeDefaultPatterns(-1),registerPlugin(-1),registerDataSourcePlugin(-1),detect(-1),normalizedInput(-1),llmResult(-1),route(-1),calculateConfidence(-1),keywords(-1),matches(-1),baseConfidence(-1),extractEntities(-1),urlMatch(-1),ipTarget(-1),macAddr(-1),diskPath(-1),diskHost(-1),sshIp(-1),sshUser(-1),buildQuery(-1)
-    PluginQuery:
   src/plugins/docker/dockerPlugin.ts:
     i: ../../core/types
     e: DockerContainer,DockerImage,DockerVolume,DockerNetwork,DockerInfo,DockerPlugin
@@ -661,10 +608,6 @@ D:
     HealthReport:
     HealthChecker: registerDefaultChecks(-1),version(-1),major(-1),platform(-1),arch(-1),isTauri(-1),response(-1),testMgr(-1),stats(-1),isTauri(-1),reactAvailable(-1),tauriAvailable(-1),allAvailable(-1),allAvailable(-1),addCheck(-1),result(-1),runChecks(-1),results(-1),errorCount(-1),warningCount(-1),runQuickCheck(-1),report(-1),criticalErrors(-1),healthChecker(-1),runHealthCheck(-1),runQuickHealthCheck(-1),runQuickHealthCheck(-1)
     healthLogger()
-  src-tauri/src/query_schema.rs:
-    i: super::
-    e: build_text_to_sql_prompt
-    build_text_to_sql_prompt()
   src/core/bootstrap.ts:
     i: ../config/configStore,../domain/eventStore,../lib/logger,../persistence/databaseManager,../plugins/scope/scopeRegistry,./commandBus,./intentRouter,./llmIntentClassifier,./pluginRegistry,./types
     e: log,bootstrapApp,pluginRegistry,useLlmClassifier,intentRouter,commandBus,eventStore,dbManager,status,sharedTauriInvoke,safeRegister,registerCorePlugins,grabbers,rtspPlugin,intent,activeScope,plugin
@@ -928,13 +871,6 @@ D:
     e: FrigateEventsPlugin,frigateLogger
     FrigateEventsPlugin: initialize(-1),cfg(-1),unlisten(-1),dispose(-1),resolveRoute(-1),lower(-1),canHandle(-1),execute(-1),start(-1),route(-1),cfg(-1),handleMqttEvent(-1),cfg(-1),eventType(-1),after(-1),before(-1),label(-1),camera(-1),idRaw(-1),id(-1),allowed(-1),active(-1),now(-1),last(-1),current(-1),previous(-1),cleanBase(-1),url(-1),resp(-1),blob(-1),base64(-1),mimeType(-1),blobToBase64(-1),reader(-1),res(-1),idx(-1),resolve(-1),emitMonitorChange(-1)
     frigateLogger()
-  src-tauri/src/content_cleaning.rs:
-    i: crate::logging::
-    e: strip_cookie_banner_text,truncate_to_chars,normalize_whitespace,is_bot_protection_text
-    strip_cookie_banner_text()
-    truncate_to_chars()
-    normalize_whitespace()
-    is_bot_protection_text()
   scripts/chat-cli.mjs:
     i: child_process,fs,fs,os,os,path,readline
     e: col,run,hasCmd,getLocalIp,subnet,getLocalCidrs,out,cidrs,m,ip,detectIntent,handlePing,m,host,out,parseArpEntries,raw,ip,mac,parseNmapHosts,ip,block,hasCam,handleFindRpi,cidrs,out,blocks,hits,ip,mac,vendor,handleScan,localIp,sub,arp,wifiArp,nmapCmd,nmapOut,hosts,cameras,others,handlePortScan,m,host,out,r,handleArp,entries,handleBrowse,url,res,text,title,plain,showHelp,findDbPath,hasSqlite3Cli,sqliteQuery,handleDevices,dbPath,device,services,out,count,handlePlugins,res,data,plugins,out,name,handleDbCommand,sub,devicesDb,chatDb,tables,size,count,sql,dbPath,out,handleConfig,sub,envFile,val,fromFile,display,masked,getEmailConfig,runPythonScript,cmd,out,handleEmailTest,c,out,r,handleEmailSend,to,subject,body,c,out,handleEmailInbox,max,c,out,r,msgs,total,out,r,icon,showEmailHelp,APP_URL,askApp,res,data,handleMonitorCommand,query,result,isRealResult,getFrigateConfig,handleFrigateCommand,c,c,mqttReach,mqttOk,frigateApi,appResult,result,isReal,runComparison,appResult,rl,_pendingAsync,showPrompt,input,lip,arg,args,args,s,parts,sub,rest,parts,sub,parts,sub,rest,c,intent,appResult,appResult,appResult,appResult,waitAndExit
@@ -1094,26 +1030,6 @@ D:
     appResult()
     appResult()
     waitAndExit()
-  src-tauri/src/content_extraction.rs:
-    i: crate::content_cleaning::,crate::logging::backend_info,scraper::Html,super::
-    e: ActionLinks,extract_search_results,extract_content,extract_with_scraper,try_extract_search,extract_action_links,test_extract_action_links_comprehensive,test_extract_action_links_missing_links,test_extract_action_links_fallback_patterns,test_extract_action_links_polish_patterns,test_extract_action_links_priority
-    ActionLinks:
-    extract_search_results()
-    extract_content()
-    extract_with_scraper()
-    try_extract_search()
-    extract_action_links()
-    test_extract_action_links_comprehensive()
-    test_extract_action_links_missing_links()
-    test_extract_action_links_fallback_patterns()
-    test_extract_action_links_polish_patterns()
-    test_extract_action_links_priority()
-  src-tauri/src/vision_pipeline.rs:
-    i: anyhow::Result,crate::vision_capture::CaptureStream,crate::vision_config::VisionConfig,crate::vision_db::VisionDatabase,crate::vision_detector::Detector,crate::vision_llm::LlmClient,crate::vision_movement,crate::vision_scene_buffer::,crate::vision_tracker::Tracker,std::sync::Arc,tauri::Emitter,tauri::Emitter,tokio::sync::watch,tracing::
-    e: TrackMsg,PipelineHandle,Pipeline
-    TrackMsg:
-    PipelineHandle:
-    Pipeline:
   src/plugins/camera/cameraVendorDatabase.ts:
     e: CameraVendor,detectCameraVendor,oui,getVendorInfo,buildRtspUrl,vendor,auth,path,buildSnapshotUrl,vendor,auth,path
     CameraVendor:
@@ -1143,52 +1059,6 @@ D:
     NetworkInterface:
     RemoteProcess:
     RemoteMachinePlugin: initialize(-1),dispose(-1),canHandle(-1),execute(-1),intentLower(-1),machine(-1),handleAddMachine(-1),hostMatch(-1),userMatch(-1),handleListMachines(-1),machineList(-1),handleTestConnection(-1),machine(-1),handleConnect(-1),machine(-1),handleSystemInfo(-1),systemInfo(-1),handleListProcesses(-1),processes(-1),processList(-1),handleCheckDocker(-1),hasDocker(-1),handleExecuteCommand(-1),commandMatch(-1),command(-1),result(-1),handleCopyFile(-1),extractMachineFromIntent(-1),hostMatch(-1),userMatch(-1),loadSavedMachines(-1),saved(-1),saveMachines(-1)
-  src-tauri/src/network_scan.rs:
-    i: base64::,base64::,base64::,crate::logging::,image::GenericImageView,serde::,std::collections::HashMap,std::collections::HashSet,std::collections::HashSet,std::io::Read,std::io::Read,std::io::Read,std::net::,std::net::ToSocketAddrs,std::path::Path,std::process::Command,std::process::Stdio,std::str::FromStr,std::sync::,std::sync::OnceLock,std::sync::atomic::,std::time::,super::
-    e: CapturedFrame,LiveFrameCache,RtspWorker,RtspWorkerStat,HttpFetchBase64Result,CameraHealthStatus,PingResult,SimplePingResult,OpenPort,PortScanResult,ArpHost,OnvifCamera,MdnsService,NetworkDevice,NetworkScanResult,ScanNetworkArgs,anonymize_rtsp_url,test_anonymize_rtsp_url_with_password,test_anonymize_rtsp_url_with_numeric_password,test_anonymize_rtsp_url_without_password,test_anonymize_rtsp_url_no_auth,test_anonymize_non_rtsp_url,test_anonymize_rtsp_url_multiline,infer_vendor_from_ports,rtsp_workers,find_jpeg_frame,ensure_rtsp_worker,rtsp_stop_worker,rtsp_stop_all_workers,rtsp_worker_stats,resolve_db_path,parse_ping_output,resolve_host,try_read_banner,parse_arp_scan_output,parse_arp_cache,parse_avahi_output,parse_dns_sd_output,parse_target_range,detect_local_subnet,classify_device,enrich_with_arp,parse_arp_line
-    CapturedFrame:
-    LiveFrameCache:
-    RtspWorker:
-    RtspWorkerStat:
-    HttpFetchBase64Result:
-    CameraHealthStatus:
-    PingResult:
-    SimplePingResult:
-    OpenPort:
-    PortScanResult:
-    ArpHost:
-    OnvifCamera:
-    MdnsService:
-    NetworkDevice:
-    NetworkScanResult:
-    ScanNetworkArgs:
-    anonymize_rtsp_url()
-    test_anonymize_rtsp_url_with_password()
-    test_anonymize_rtsp_url_with_numeric_password()
-    test_anonymize_rtsp_url_without_password()
-    test_anonymize_rtsp_url_no_auth()
-    test_anonymize_non_rtsp_url()
-    test_anonymize_rtsp_url_multiline()
-    infer_vendor_from_ports()
-    rtsp_workers()
-    find_jpeg_frame()
-    ensure_rtsp_worker()
-    rtsp_stop_worker()
-    rtsp_stop_all_workers()
-    rtsp_worker_stats()
-    resolve_db_path()
-    parse_ping_output()
-    resolve_host()
-    try_read_banner()
-    parse_arp_scan_output()
-    parse_arp_cache()
-    parse_avahi_output()
-    parse_dns_sd_output()
-    parse_target_range()
-    detect_local_subnet()
-    classify_device()
-    enrich_with_arp()
-    parse_arp_line()
   src/plugins/protocol-bridge/protocolBridgePlugin.ts:
     i: ../../core/types,../../lib/logger
     e: BridgeEndpoint,BridgeMessage,ActionHint,MqttCacheEntry,WsConnection,SseStream,ProtocolBridgePlugin,browseLogger
@@ -1346,13 +1216,6 @@ D:
     extCounts()
     ext()
     topExts()
-  src-tauri/src/vision_tracker.rs:
-    i: chrono::,crate::vision_detector::Detection,opencv::,tracing::debug,uuid::Uuid
-    e: CropSnapshot,CompletedTrack,ActiveTrack,Tracker
-    CropSnapshot:
-    CompletedTrack:
-    ActiveTrack:
-    Tracker:
   src/plugins/discovery/advancedPortScanPlugin.ts:
     i: ../../core/types
     e: AdvancedPortScanPlugin
@@ -1370,14 +1233,6 @@ D:
     ToonicEvent:
     ToonicBridgePlugin: canHandle(-1),execute(-1),start(-1),lower(-1),msg(-1),handleStart(-1),status(-1),handleStop(-1),msg(-1),handleStatus(-1),status(-1),icon(-1),handleSources(-1),json(-1),data(-1),sources(-1),icon(-1),handleEvents(-1),json(-1),data(-1),ts(-1),icon(-1),handleWatch(-1),urlMatch(-1),url(-1),catMatch(-1),category(-1),body(-1),json(-1),data(-1),handleUnwatch(-1),idMatch(-1),sourceId(-1),json(-1),data(-1),handleSnapshot(-1),json(-1),data(-1),handleDetect(-1),goal(-1),snapJson(-1),snap(-1),body(-1),json(-1),data(-1),handleHelp(-1),status(-1),proxyGet(-1),proxyPost(-1),proxyDelete(-1),result(-1),initialize(-1),dispose(-1)
     log()
-  src-tauri/src/vision_movement.rs:
-    i: crate::vision_tracker::CompletedTrack
-    e: MovementSummary,classify_zone,bbox_center,analyse_movement,movement_tag
-    MovementSummary:
-    classify_zone()
-    bbox_center()
-    analyse_movement()
-    movement_tag()
   src/plugins/cameras/cameraPtzPlugin.ts:
     i: ../../core/types
     e: PtzCommand,CameraPtzPlugin
@@ -1548,34 +1403,6 @@ D:
     deviceCount()
     mins()
     isOnline()
-  src-tauri/src/vision_motion.rs:
-    i: anyhow::Result,opencv::
-    e: MovingObject,MotionDetector
-    MovingObject:
-    MotionDetector:
-  src-tauri/src/file_search.rs:
-    i: base64::Engine,crate::logging::backend_info,rust_search::SearchBuilder,serde::,std::fs,std::fs,std::path::,std::path::PathBuf,std::time::,std::time::SystemTime,super::,tempfile::TempDir
-    e: FileSearchResult,FileSearchResponse,FileContentResponse,guess_mime_type,classify_file_type,is_text_file,format_time,search_with_rust_search,create_test_files,test_guess_mime_type,test_classify_file_type,test_is_text_file,test_format_time
-    FileSearchResult:
-    FileSearchResponse:
-    FileContentResponse:
-    guess_mime_type()
-    classify_file_type()
-    is_text_file()
-    format_time()
-    search_with_rust_search()
-    create_test_files()
-    test_guess_mime_type()
-    test_classify_file_type()
-    test_is_text_file()
-    test_format_time()
-  src-tauri/src/vision_db.rs:
-    i: anyhow::Result,chrono::,rusqlite::,serde::,std::path::Path
-    e: LocalDetection,LlmEvent,Statistics,VisionDatabase
-    LocalDetection:
-    LlmEvent:
-    Statistics:
-    VisionDatabase:
   src/commands/browseCommand.ts:
     i: ../domain/chatAggregate,../domain/eventStore,../lib/logger,../services/browseService,../services/llmService
     e: BrowseCommandParams,BrowseCommand,logger
@@ -1668,11 +1495,6 @@ D:
     handleKeyDown()
     num()
     card()
-  src-tauri/src/vision_detector.rs:
-    i: anyhow::,ndarray::Array4,opencv::,opencv::core::,ort::session::Session,tracing::debug
-    e: Detection,Detector
-    Detection:
-    Detector:
   src/persistence/chatRepository.ts:
     i: ../domain/chatEvents,../lib/logger,./databaseManager
     e: ChatRepository,repoLogger
@@ -1699,34 +1521,6 @@ D:
     i: ../../core/types,../../discovery/types
     e: ServiceProbePlugin
     ServiceProbePlugin: initialize(-1),canHandle(-1),lowerInput(-1),execute(-1),target(-1),result(-1),content(-1),extractTarget(-1),ipMatch(-1),hostnameMatch(-1),lowerInput(-1),devicePattern(-1),match(-1),performSimpleProbe(-1),startTime(-1),url(-1),response(-1),getDeviceId(-1),formatProbeResult(-1),metadata(-1),dispose(-1)
-  src-tauri/src/tts.rs:
-    i: crate::settings::load_settings,serde::,std::process::,std::sync::
-    e: TtsAvailability,active_tts_child,detect_backend,normalize_lang,map_rate,map_pitch,map_volume,stop_active_tts_child,tts_is_available,tts_speak,tts_stop
-    TtsAvailability:
-    active_tts_child()
-    detect_backend()
-    normalize_lang()
-    map_rate()
-    map_pitch()
-    map_volume()
-    stop_active_tts_child()
-    tts_is_available()
-    tts_speak()
-    tts_stop()
-  src-tauri/src/network.rs:
-    i: base64::Engine,std::collections::HashMap,std::path::Path,std::sync::Mutex
-    e: db_execute,db_query,db_close,resolve_db_path,open_database_connection,json_to_sqlite_param,sqlite_to_json
-    db_execute()
-    db_query()
-    db_close()
-    resolve_db_path()
-    open_database_connection()
-    json_to_sqlite_param()
-    sqlite_to_json()
-  src-tauri/src/wake_word.rs:
-    i: cpal::traits::,std::collections::VecDeque,std::sync::,tauri::Emitter
-    e: WakeWordState
-    WakeWordState:
   src/plugins/monitor/motionDetectionPlugin.ts:
     i: ../../components/ChatConfigPrompt,../../config/configStore,../../core/types,../../lib/logger
     e: PipelineStatus,DetectionStats,DetectionRow,MotionDetectionPlugin,motionLog
@@ -1899,25 +1693,6 @@ D:
     nmapHosts()
     allIps()
     cameras()
-  src-tauri/src/motion_detection.rs:
-    i: crate::logging::,crate::vision_db::,crate::vision_llm::LlmClient,crate::vision_query_engine::QueryEngine,serde::,std::collections::HashMap,std::env,std::io::,std::process::,std::sync::Mutex,std::thread,tauri::Emitter
-    e: PipelineProcess,NativePipeline,StartPipelineRequest,PipelineStatus,PipelineListResult,DetectionRow,DetectionStats,VisionQueryResult,now_ms,resolve_db_path,resolve_script_path,nl_to_sql,extract_time_filter,extract_number_before,extract_label_filter,extract_limit
-    PipelineProcess:
-    NativePipeline:
-    StartPipelineRequest:
-    PipelineStatus:
-    PipelineListResult:
-    DetectionRow:
-    DetectionStats:
-    VisionQueryResult:
-    now_ms()
-    resolve_db_path()
-    resolve_script_path()
-    nl_to_sql()
-    extract_time_filter()
-    extract_number_before()
-    extract_label_filter()
-    extract_limit()
   src/lib/resolver.ts:
     i: ./logger,./phonetic
     e: ResolveResult,levenshtein,m,n,similarity,dist,matches,fuzzyMatchDomain,cleaned,stem,ratioFull,ratioStem,ratio,resolve,text,query,normalized,fuzzy,suggestions,fuzzy,allSuggestions
@@ -2110,40 +1885,6 @@ D:
     EmailMessage:
     InboxSummary:
     EmailPlugin: resolveRoute(-1),lower(-1),canHandle(-1),execute(-1),start(-1),route(-1),isPollConfigRequest(-1),handleConfig(-1),currentConfig(-1),emailConfig(-1),result(-1),emailConfig(-1),summary(-1),text(-1),handlePollConfig(-1),minuteMatch(-1),secondMatch(-1),minutes(-1),seconds(-1),startPolling(-1),config(-1),summary(-1),stopPolling(-1),clearInterval(-1),getEmailConfig(-1),parseSendParams(-1),emailMatch(-1),to(-1),subjectMatch(-1),subject(-1),bodyMatch(-1),body(-1),browserFallback(-1),errorResult(-1),initialize(-1),dispose(-1)
-  src-tauri/src/browse_rendered.rs:
-    i: base64::,base64::Engine,std::env,std::process::Command
-    e: detect_chrome_binary,is_available,render_and_extract,extract_visible_text,capture_screenshot,normalize_text
-    detect_chrome_binary()
-    is_available()
-    render_and_extract()
-    extract_visible_text()
-    capture_screenshot()
-    normalize_text()
-  src-tauri/src/rss_parser.rs:
-    i: crate::logging::,serde::,super::,tauri::command
-    e: RssItem,RssFeed,AtomEntry,AtomFeed,parse_rss_feed,parse_atom_feed,extract_text,extract_atom_link,extract_atom_author,format_rss_feed,format_atom_feed,clean_html_text,detect_feed_type,parse_and_format_feed,test_detect_feed_type,test_clean_html_text,parse_rss_feed_command
-    RssItem:
-    RssFeed:
-    AtomEntry:
-    AtomFeed:
-    parse_rss_feed()
-    parse_atom_feed()
-    extract_text()
-    extract_atom_link()
-    extract_atom_author()
-    format_rss_feed()
-    format_atom_feed()
-    clean_html_text()
-    detect_feed_type()
-    parse_and_format_feed()
-    test_detect_feed_type()
-    test_clean_html_text()
-    parse_rss_feed_command()
-  src-tauri/src/main.rs:
-    i: audio_capture::SharedRecordingState,crate::content_cleaning::,crate::content_extraction::,crate::logging::,serde::,std::sync::,wake_word::SharedWakeWordState
-    e: BrowseResult,main
-    BrowseResult:
-    main()
   src/core/systemContext.ts:
     i: ../lib/logger,../lib/runtime
     e: SystemContext,log,detectOs,ua,platform,detectUser,detectHomeDir,detectShell,detectCapabilities,getSystemContext,os,user,homeDir,shell,hostname,capabilities,updateSystemContext,ctx,resetSystemContext,buildSystemContextPrompt,ctx,capsText
@@ -2218,21 +1959,6 @@ D:
     e: PingPlugin,PingResult
     PingPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),target(-1),result(-1),t0(-1),resp(-1),rtt(-1),extractTarget(-1),ipMatch(-1),hostMatch(-1),words(-1),last(-1),formatResult(-1),errorResult(-1),initialize(-1),dispose(-1)
     PingResult:
-  src-tauri/src/vision_scene_buffer.rs:
-    i: chrono::,crate::vision_movement::MovementSummary,crate::vision_tracker::CropSnapshot,std::collections::VecDeque,std::time::Instant,tracing::
-    e: ObjectEvent,MinuteBatch,MinuteBuffer
-    ObjectEvent:
-    MinuteBatch:
-    MinuteBuffer:
-  src-tauri/src/audio_capture.rs:
-    i: base64::Engine,cpal::,cpal::traits::,hound::,std::io::Cursor,std::sync::
-    e: RecordingState
-    RecordingState:
-  src-tauri/src/local_llm.rs:
-    i: crate::query_schema::,std::env,std::sync::OnceLock,super::
-    e: LocalLlmConfig,LocalLlm
-    LocalLlmConfig:
-    LocalLlm:
   src/persistence/databaseManager.ts:
     i: ../lib/logger,./migrations,./types
     e: DbAdapter,TauriDbAdapter,InMemoryDbAdapter,DatabaseManager,dbLogger
@@ -2335,50 +2061,6 @@ D:
     i: ../../core/types
     e: CameraSnapshotPlugin
     CameraSnapshotPlugin: canHandle(-1),lower(-1),execute(-1),start(-1),cameraId(-1),result(-1),cameraName(-1),extractCameraId(-1),cameraLabel(-1),errorResult(-1),initialize(-1),dispose(-1)
-  src-tauri/src/llm_query.rs:
-    i: crate::query_schema::,std::env
-    e: NlQueryResult,validate_sql_public,validate_sql
-    NlQueryResult:
-    validate_sql_public()
-    validate_sql()
-  src-tauri/src/audio_commands.rs:
-    i: crate::audio_capture::,crate::settings::load_settings,crate::stt,crate::tts_backend,crate::wake_word::,std::sync::
-    e: ActiveStream,ActiveTts,ActiveWakeWordStream,SttStatus,TtsInfo,AudioDevices,is_wake_word_active,pause_wake_word,resume_wake_word,stt_start,stt_status,stt_get_mic_level,stt_is_silence,backend_tts_stop,backend_tts_pause,backend_tts_resume,backend_tts_speak_base64,backend_tts_info,backend_audio_devices,piper_is_installed,wake_word_start,wake_word_stop,wake_word_check_triggered
-    ActiveStream:
-    ActiveTts:
-    ActiveWakeWordStream:
-    SttStatus:
-    TtsInfo:
-    AudioDevices:
-    is_wake_word_active()
-    pause_wake_word()
-    resume_wake_word()
-    stt_start()
-    stt_status()
-    stt_get_mic_level()
-    stt_is_silence()
-    backend_tts_stop()
-    backend_tts_pause()
-    backend_tts_resume()
-    backend_tts_speak_base64()
-    backend_tts_info()
-    backend_audio_devices()
-    piper_is_installed()
-    wake_word_start()
-    wake_word_stop()
-    wake_word_check_triggered()
-  src-tauri/src/vision_query_engine.rs:
-    i: anyhow::Result,crate::vision_db::,crate::vision_llm::LlmClient,serde::,tracing::info
-    e: QueryResult,QueryEngine
-    QueryResult:
-    QueryEngine:
-  src-tauri/src/toonic_sidecar.rs:
-    i: crate::logging::,serde::,std::process::,std::sync::Mutex,std::time::Duration
-    e: ToonicStatus,toonic_lock,find_toonic_path,find_python
-    ToonicStatus:
-    toonic_lock()
-    find_toonic_path()
-    find_python()
   scripts/motion_pipeline.py:
     e: LocalClassifier,LlmVerifier,MotionPipeline,init_db,save_detection,update_detection_llm,get_statistics,create_bg_subtractor,extract_moving_objects,should_send_to_llm,parse_args,main
     LocalClassifier: __init__(1),_load_model(0),_select_model_path(0),classify(2)
@@ -2426,15 +2108,19 @@ D:
     i: ../persistence/databaseManager,../persistence/types
     e: NetworkScanner
     NetworkScanner: scanNetwork(-1),startTime(-1),methodResults(-1),uniqueDevices(-1),scanDuration(-1),performScan(-1),pingSweep(-1),networkRanges(-1),promises(-1),mdnsDiscovery(-1),response(-1),ssdpDiscovery(-1),arpScan(-1),pingHost(-1),startTime(-1),response(-1),responseTime(-1),getLocalNetworkRanges(-1),generateIpRange(-1),baseIp(-1),deduplicateDevices(-1),seen(-1),persistDevices(-1),db(-1),now(-1),existingDevice(-1),VALUES(-1),addEventListener(-1),removeEventListener(-1),index(-1),emitEvent(-1),listener(-1),isActive(-1)
+  sitecustomize.py:
+    e: _running_goal_cli,_echo_skip,_load_goal_config,_nodejs_is_private,_publish_skip_reason,_filter_project_types,_patch_goal_publishers
+    _running_goal_cli()
+    _echo_skip(reason)
+    _load_goal_config()
+    _nodejs_is_private()
+    _publish_skip_reason(project_type)
+    _filter_project_types(project_types)
+    _patch_goal_publishers()
   src/reactive/watchManager.ts:
     i: ../persistence/databaseManager,../persistence/types,./changeDetector
     e: WatchManager
     WatchManager: start(-1),stop(-1),clearInterval(-1),now(-1),recentQuery(-1),cancelWatchRule(-1),watchRule(-1),loadActiveWatches(-1),db(-1),now(-1),rows(-1),startPolling(-1),interval(-1),stopPolling(-1),interval(-1),clearInterval(-1),pollTarget(-1),startTime(-1),currentContent(-1),changeResult(-1),pollTime(-1),fetchTargetContent(-1),response(-1),startCleanupInterval(-1),setInterval(-1),cleanupExpiredWatches(-1),db(-1),now(-1),expiredRules(-1),oneHourAgo(-1),addEventListener(-1),removeEventListener(-1),index(-1),emitEvent(-1),listener(-1),getStats(-1),getActiveWatchCount(-1),saveWatchRule(-1),db(-1),getWatchRule(-1),db(-1),row(-1),updateWatchRule(-1),db(-1)
-  src/plugins/system/logsPlugin.ts:
-    i: ../../config/configStore,../../core/types,../../lib/logger
-    e: LogCommand,LogsPlugin
-    LogCommand:
-    LogsPlugin: initialize(-1),canHandle(-1),lowerQuery(-1),execute(-1),lowerQuery(-1),command(-1),result(-1),executeCommand(-1),downloadLogs(-1),currentLogLevel(-1),consoleLogs(-1),logContent(-1),blob(-1),url(-1),a(-1),collectConsoleLogs(-1),formatLogFile(-1),clearLogs(-1),showLogLevel(-1),currentLogLevel(-1),description(-1),upperLevel(-1),getAppVersion(-1),response(-1),dispose(-1)
   src/plugins/mqtt/mqttPlugin.ts:
     e: MqttConfig,MqttClientAdapter,TopicValue,MqttPlugin
     MqttConfig:
@@ -2464,34 +2150,6 @@ D:
     meta()
     status()
     statusMeta()
-  src-tauri/src/disk_info.rs:
-    i: crate::logging::backend_info,serde::,std::process::Command,super::
-    e: DiskPartition,DiskInfo,parse_df_output,parse_df_simple,parse_df_line,get_hostname,test_parse_df_line,test_get_hostname
-    DiskPartition:
-    DiskInfo:
-    parse_df_output()
-    parse_df_simple()
-    parse_df_line()
-    get_hostname()
-    test_parse_df_line()
-    test_get_hostname()
-  src-tauri/src/settings.rs:
-    i: crate::logging::,serde::,std::env,std::fs,std::path::PathBuf
-    e: AudioSettings,LegacyAudioSettings,default_tts_enabled,default_tts_rate,default_tts_pitch,default_tts_volume,default_tts_lang,default_tts_engine,default_stt_enabled,default_stt_engine,default_stt_model,default_mic_enabled,default_device_id,default_auto_listen
-    AudioSettings:
-    LegacyAudioSettings:
-    default_tts_enabled()
-    default_tts_rate()
-    default_tts_pitch()
-    default_tts_volume()
-    default_tts_lang()
-    default_tts_engine()
-    default_stt_enabled()
-    default_stt_engine()
-    default_stt_model()
-    default_mic_enabled()
-    default_device_id()
-    default_auto_listen()
   e2e/ssh-docker.spec.ts:
     i: @playwright/test
     e: SSH_TEST_PORT,input,response,input,response,input,response,input,response,input,messages,apiKey,input,response,apiKey,input,response,input,response,input,response,input,response
@@ -2555,6 +2213,13 @@ D:
     acknowledgeAll()
     stopWatch()
     mapChangeToNotification()
+  src/core/realtimeSync.ts:
+    i: ../domain/chatEvents,../lib/logger
+    e: RealtimeSyncConfig,SyncMessage,RealtimeSync,syncLogger
+    RealtimeSyncConfig:
+    SyncMessage:
+    RealtimeSync: generateSourceId(-1),checkSupport(-1),test(-1),initialize(-1),initializeLocalStorageFallback(-1),handleBroadcastMessage(-1),message(-1),handleStorageEvent(-1),processSyncEvent(-1),handlers(-1),handler(-1),broadcast(-1),fallbackToLocalStorage(-1),setTimeout(-1),getStats(-1),dispose(-1),getRealtimeSync(-1),disposeRealtimeSync(-1)
+    syncLogger()
   src/core/queryBus.ts:
     i: ./plugin.types
     e: QueryBus,ListPluginsQuery,PluginInfo,GetPluginStatusQuery
@@ -2566,13 +2231,6 @@ D:
     i: ./types
     e: PluginRegistry
     PluginRegistry: register(-1),pluginId(-1),unregister(-1),plugin(-1),get(-1),getAll(-1),findByIntent(-1),legacyPlugins(-1),dataSourcePlugins(-1),initializeAll(-1),legacyInitPromises(-1),dataSourceInitPromises(-1),disposeAll(-1),legacyDisposePromises(-1),dataSourceDisposePromises(-1)
-  src/core/realtimeSync.ts:
-    i: ../domain/chatEvents,../lib/logger
-    e: RealtimeSyncConfig,SyncMessage,RealtimeSync,syncLogger
-    RealtimeSyncConfig:
-    SyncMessage:
-    RealtimeSync: generateSourceId(-1),checkSupport(-1),test(-1),initialize(-1),initializeLocalStorageFallback(-1),handleBroadcastMessage(-1),message(-1),handleStorageEvent(-1),processSyncEvent(-1),handlers(-1),handler(-1),broadcast(-1),fallbackToLocalStorage(-1),setTimeout(-1),getStats(-1),dispose(-1),getRealtimeSync(-1),disposeRealtimeSync(-1)
-    syncLogger()
   src/domain/chatEvents.ts:
     i: ./audioSettings
     e: ChatMessage,createEvent,projectChatMessages
@@ -2647,72 +2305,6 @@ D:
     categoryIcon()
     categoryIcon()
     successIndicator()
-  src-tauri/src/vision_config.rs:
-    i: serde::Deserialize,std::env
-    e: VisionConfig,CameraConfig,DetectorConfig,PipelineConfig,TrackerConfig,SceneConfig,DatabaseConfig,LlmConfig,default_camera_id,default_model_path,default_confidence_threshold,default_nms_threshold,default_input_size,default_use_openvino,default_intra_threads
-    VisionConfig:
-    CameraConfig:
-    DetectorConfig:
-    PipelineConfig:
-    TrackerConfig:
-    SceneConfig:
-    DatabaseConfig:
-    LlmConfig:
-    default_camera_id()
-    default_model_path()
-    default_confidence_threshold()
-    default_nms_threshold()
-    default_input_size()
-    default_use_openvino()
-    default_intra_threads()
-  src-tauri/src/stt.rs:
-    i: base64::Engine,std::env
-    e: VadResult,rms_energy,zero_crossing_rate,detect_voice_activity,parse_wav_samples,base64_decode,detect_artifacts
-    VadResult:
-    rms_energy()
-    zero_crossing_rate()
-    detect_voice_activity()
-    parse_wav_samples()
-    base64_decode()
-    detect_artifacts()
-  src-tauri/src/ssh.rs:
-    i: crate::logging::,serde::,std::io::Read,std::net::TcpStream,std::process::Command,std::time::Instant,super::
-    e: SshResult,SshTestResult,KnownHost,get_ssh_banner,test_ssh_banner_localhost
-    SshResult:
-    SshTestResult:
-    KnownHost:
-    get_ssh_banner()
-    test_ssh_banner_localhost()
-  src-tauri/benches/file_search_bench.rs:
-    i: broxeen::file_search::,std::fs,std::path::PathBuf,std::time::Instant,super::,tempfile::TempDir
-    e: create_large_test_dataset,benchmark_search_with_rust_search_direct
-    create_large_test_dataset()
-    benchmark_search_with_rust_search_direct()
-  src-tauri/src/tts_backend.rs:
-    i: base64::Engine,rodio::,std::io::,std::io::Write,std::io::Write,std::os::unix::fs::PermissionsExt,std::path::PathBuf,std::process::Command
-    e: piper_dir,piper_binary,piper_model,detect_tts_engine,tts_engine_info,select_tts_engine,synthesize_to_wav,synthesize_to_wav_with_engine,synthesize_piper,synthesize_espeak,play_wav_blocking,play_wav_async,play_wav_stoppable,speak,speak_with_engine,speak_to_base64,speak_to_base64_with_engine,wrap_raw_pcm_as_wav,base64_encode,truncate,piper_setup_instructions,piper_is_installed
-    piper_dir()
-    piper_binary()
-    piper_model()
-    detect_tts_engine()
-    tts_engine_info()
-    select_tts_engine()
-    synthesize_to_wav()
-    synthesize_to_wav_with_engine()
-    synthesize_piper()
-    synthesize_espeak()
-    play_wav_blocking()
-    play_wav_async()
-    play_wav_stoppable()
-    speak()
-    speak_with_engine()
-    speak_to_base64()
-    speak_to_base64_with_engine()
-    wrap_raw_pcm_as_wav()
-    base64_encode()
-    truncate()
-    piper_setup_instructions()
-    piper_is_installed()
   e2e/new-plugins.spec.ts:
     i: @playwright/test
     e: llmStatus,env,llmClassifierStatus,configStore,apiKey,text,messages,lastMessage,updatedMessages,newLastMessage,messages,lastMessage,updatedMessages,newLastMessage,messages,lastMessage,updatedMessages,newLastMessage,messages,lastMessage,input,autocomplete,suggestions,currentValue
@@ -2792,38 +2384,6 @@ D:
     extra()
     ok()
     repo()
-  src-tauri/src/network_info.rs:
-    i: local_ip_address::list_afinet_netifas,local_ip_address::list_afinet_netifas,serde::,std::net::IpAddr,super::
-    e: NetworkInfo,get_local_network_info,get_interface_name,list_network_interfaces,test_get_local_network_info,test_list_network_interfaces
-    NetworkInfo:
-    get_local_network_info()
-    get_interface_name()
-    list_network_interfaces()
-    test_get_local_network_info()
-    test_list_network_interfaces()
-  src-tauri/src/logging.rs:
-    i: std::path::PathBuf,std::sync::,tracing::,tracing_appender::non_blocking::WorkerGuard,tracing_appender::rolling::,tracing_subscriber::,tracing_subscriber::fmt::time::UtcTime
-    e: resolve_log_dir,build_file_appender,init_logging,backend_info,backend_warn,backend_error
-    resolve_log_dir()
-    build_file_appender()
-    init_logging()
-    backend_info()
-    backend_warn()
-    backend_error()
-  src-tauri/src/autostart.rs:
-    i: crate::logging::,std::fs,std::path::PathBuf
-    e: autostart_dir,desktop_entry_path,current_exe_path,desktop_entry_content,autostart_enable,autostart_disable,autostart_status
-    autostart_dir()
-    desktop_entry_path()
-    current_exe_path()
-    desktop_entry_content()
-    autostart_enable()
-    autostart_disable()
-    autostart_status()
-  src-tauri/src/vision_capture.rs:
-    i: anyhow::,opencv::,std::time::Duration,tracing::
-    e: CaptureStream
-    CaptureStream:
   src/persistence/scanHistoryRepository.ts:
     e: ScanHistoryEntry,IncrementalScanRecommendation,ScanHistoryRepository
     ScanHistoryEntry:
@@ -2942,19 +2502,6 @@ D:
     addCamera()
     dbManager()
     deviceRepo()
-  src-tauri/src/main_changes.rs:
-    i: audio_capture::SharedRecordingState,audio_commands::ActiveStream,std::sync::
-    e: main
-    main()
-  src-tauri/src/vision_llm.rs:
-    i: anyhow::,base64::,crate::vision_config::LlmConfig,serde::Serialize,serde_json::Value,super::,tracing::
-    e: ChatRequest,Message,ImageUrlData,ObjectDescription,SceneNarrativeResult,LlmClient
-    ChatRequest:
-    Message:
-    ImageUrlData:
-    ObjectDescription:
-    SceneNarrativeResult:
-    LlmClient:
   e2e/voice-interface.spec.ts:
     i: @playwright/test
     e: openApp,supported,input,ttsButton,hasTtsButton,assistantMessages,count,result,utt,voiceCount,voices,result,utt,supported,micButton,micButton,SR,orig,startCalled,micButton,SR,orig,input,input,input,assistantMessages,speakCalled,orig,input,result,input,sendBtn,input,copyBtn,settingsBtn,micButton
@@ -3135,13 +2682,6 @@ D:
     disableStrictModeForTauriDev()
     renderApp()
     rootElement()
-  src-tauri/src/email.rs:
-    i: base64::Engine,crate::logging::,serde::,std::io::Write,std::path::Path,std::process::Command
-    e: EmailConfig,EmailMessage,InboxSummary,load_email_config_from_env
-    EmailConfig:
-    EmailMessage:
-    InboxSummary:
-    load_email_config_from_env()
   playwright.config.ts:
     i: @playwright/test,vite
     e: testEnv
@@ -3263,7 +2803,6 @@ D:
     ChangeDetectionResult:
     WatchManagerEvent:
     PollingStats:
-  src/plugins/system/logs.index.ts:
   src/plugins/monitor/index.ts:
   src/plugins/marketplace/index.ts:
   src/plugins/cameras/index.ts:
@@ -3271,34 +2810,15 @@ D:
   src/plugins/protocol-bridge/index.ts:
   tailwind.config.js:
   postcss.config.js:
-  src-tauri/src/llm.rs:
-    i: serde::,std::env
-    e: LlmResponse
-    LlmResponse:
-  src-tauri/src/frigate_mqtt.rs:
-    i: crate::logging::,rumqttc::,serde::,std::sync::,std::time::Duration,tauri::AppHandle,tauri::Emitter,tokio::sync::oneshot,tokio::task::JoinHandle
-    e: FrigateMqttEvent,FrigateMqttConfig,FrigateMqttRuntime
-    FrigateMqttEvent:
-    FrigateMqttConfig:
-    FrigateMqttRuntime:
-  src-tauri/src/docker.rs:
-    i: serde::,std::process::Command
-    e: DockerContainer,DockerImage,DockerVolume,DockerNetwork,DockerInfo
-    DockerContainer:
-    DockerImage:
-    DockerVolume:
-    DockerNetwork:
-    DockerInfo:
-  src-tauri/src/remote_machine.rs:
-    i: serde::,std::process::Command
-    e: RemoteMachine,RemoteCommandResult,RemoteSystemInfo,DiskUsage,NetworkInterface,RemoteProcess
-    RemoteMachine:
-    RemoteCommandResult:
-    RemoteSystemInfo:
-    DiskUsage:
-    NetworkInterface:
-    RemoteProcess:
-  project.sh:
+  scripts/install-openvino-rhel.sh:
+    e: install_prerequisites,install_via_yum_repo,install_via_pip,install_gpu_runtime,setup_environment,verify_install,main
+    install_prerequisites()
+    install_via_yum_repo()
+    install_via_pip()
+    install_gpu_runtime()
+    setup_environment()
+    verify_install()
+    main()
   scripts/detect-platform.sh:
     e: detect_os,detect_arch,detect_cpu,detect_gpu,recommend_openvino_ep,print_report,export_vars,main
     detect_os()
@@ -3308,15 +2828,6 @@ D:
     recommend_openvino_ep()
     print_report()
     export_vars()
-    main()
-  scripts/install-openvino-rhel.sh:
-    e: install_prerequisites,install_via_yum_repo,install_via_pip,install_gpu_runtime,setup_environment,verify_install,main
-    install_prerequisites()
-    install_via_yum_repo()
-    install_via_pip()
-    install_gpu_runtime()
-    setup_environment()
-    verify_install()
     main()
   scripts/install-openvino-pip.sh:
     e: find_python,install_in_venv,install_system_wide,install_dev_tools,verify_install,print,print,print,print,main
@@ -3359,7 +2870,6 @@ D:
     print()
     print()
     main()
-  src-tauri/src/setup-audio.sh:
   scripts/install-openvino-ubuntu.sh:
     e: install_prerequisites,install_via_apt,install_via_pip,install_gpu_runtime,install_python_extras,setup_environment,verify_install,print,print,main
     install_prerequisites()
@@ -3372,4 +2882,3 @@ D:
     print()
     print()
     main()
-  src-tauri/target/release/bundle/appimage/Broxeen.AppDir/apprun-hooks/linuxdeploy-plugin-gtk.sh:
