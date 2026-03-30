@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, it, expect } from 'vitest';
 import { resolveQuickActions } from './quickActionResolver';
 import type { ChatMessage } from '../domain/chatEvents';

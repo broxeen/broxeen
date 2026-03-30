@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { VoiceCommandsPlugin } from './voiceCommandsPlugin';
 import type { PluginContext } from '../../core/types';

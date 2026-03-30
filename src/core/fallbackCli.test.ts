@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * CLI-style integration test — exercises the full intent detection + fallback
  * pipeline with diverse queries that a real user might type, including:

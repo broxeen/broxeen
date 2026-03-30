@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * HTTP Browse Plugin Tests
  */

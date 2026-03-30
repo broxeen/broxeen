@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { DeviceStatusPlugin } from './deviceStatusPlugin';
 import { DeviceRepository } from '../../persistence/deviceRepository';

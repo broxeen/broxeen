@@ -1,5 +1,33 @@
 ## [Unreleased]
 
+## [1.0.101] - 2026-03-30
+
+### Docs
+- Update CHANGELOG.md
+- Update TODO.md
+
+### Other
+- Update planfile.yaml
+- Update prefact.yaml
+- Update pyqual.yaml
+- Update src/commands/browseCommand.test.ts
+- Update src/config/configStore.test.ts
+- Update src/core/actionSchema.test.ts
+- Update src/core/cache.test.ts
+- Update src/core/commandBus.test.ts
+- Update src/core/fallbackCli.test.ts
+- Update src/core/fallbackHandler.test.ts
+- ... and 43 more files
+
+## [0.1.10] - 2026-03-30
+
+### Fixed
+- Fix relative-imports issues (ticket-39d6f3d7)
+- Fix llm-generated-code issues (ticket-e2dc6f7c)
+- Fix string-concat issues (ticket-9e860f48)
+- Fix magic-numbers issues (ticket-71a882ac)
+- Fix ai-boilerplate issues (ticket-64c7946b)
+
 ## [1.0.100] - 2026-03-30
 
 ### Docs

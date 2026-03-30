@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * Intent Router Tests
  */

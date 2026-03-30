@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * ProtocolBridgePlugin v2 tests
  * Covers: MQTT, REST, WebSocket, SSE, GraphQL ↔ text ↔ voice

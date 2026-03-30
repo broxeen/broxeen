@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, it, expect, beforeEach } from 'vitest';
 import { ProcessesPlugin } from './processesPlugin';
 import { processRegistry } from '../../core/processRegistry';

@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import type { PluginContext } from '../../core/types';
 import { FileSearchPlugin } from './fileSearchPlugin';

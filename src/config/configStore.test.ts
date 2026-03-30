@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * Tests for ConfigStore — centralized app configuration.
  * Since configStore is a singleton, we use reset() + set() to isolate tests.

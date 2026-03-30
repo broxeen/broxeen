@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * Monitoring Plugin Tests
  */

@@ -30,6 +30,7 @@ export class RealtimeSync {
   private broadcastChannel: BroadcastChannel | null = null;
   private sourceId: string;
   private eventHandlers = new Map<DomainEvent['type'], Set<(event: DomainEvent) => void>>();
+  private storageCleanupTimers = new Set<ReturnType<typeof setTimeout>>();
   private isSupported = false;
 
   constructor(config: RealtimeSyncConfig) {
@@ -164,9 +165,28 @@ export class RealtimeSync {
 
   private fallbackToLocalStorage(message: SyncMessage): void {
     try {
-      localStorage.setItem(this.config.channelName, JSON.stringify(message));
+      const storage = globalThis.localStorage;
+      if (!storage) {
+        syncLogger.debug('LocalStorage unavailable for sync fallback', { type: message.event.type });
+        return;
+      }
+
+      storage.setItem(this.config.channelName, JSON.stringify(message));
       // Remove immediately to trigger storage event in other tabs
-      setTimeout(() => localStorage.removeItem(this.config.channelName), 100);
+      const cleanupTimer = setTimeout(() => {
+        try {
+          storage.removeItem(this.config.channelName);
+        } catch (error) {
+          syncLogger.debug('Failed to cleanup localStorage fallback payload', {
+            type: message.event.type,
+            error,
+          });
+        } finally {
+          this.storageCleanupTimers.delete(cleanupTimer);
+        }
+      }, 100);
+
+      this.storageCleanupTimers.add(cleanupTimer);
       syncLogger.debug('Broadcasted via localStorage fallback', { type: message.event.type });
     } catch (error) {
       syncLogger.error('Failed to broadcast via localStorage', error);
@@ -214,6 +234,11 @@ export class RealtimeSync {
    * Cleanup resources
    */
   dispose(): void {
+    for (const timer of this.storageCleanupTimers) {
+      clearTimeout(timer);
+    }
+    this.storageCleanupTimers.clear();
+
     if (this.broadcastChannel) {
       this.broadcastChannel.close();
       this.broadcastChannel = null;

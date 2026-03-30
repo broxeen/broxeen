@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, it, expect, beforeEach } from 'vitest';
 import { IntentRouter } from '../src/core/intentRouter';
 import { PluginRegistry } from '../src/core/pluginRegistry';

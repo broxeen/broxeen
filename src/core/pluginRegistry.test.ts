@@ -1,3 +1,4 @@
+// @vitest-environment node
 /**
  * Plugin Registry Tests
  */

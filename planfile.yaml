@@ -1,0 +1,84 @@
+name: Code Quality Improvement
+project_name: ''
+project_type: prefactoring
+domain: dev-tools
+goal: Improve code quality using prefact
+goals:
+- Fix all prefact-detected issues
+- Improve code maintainability
+- Ensure consistent code style
+quality_gates:
+- metric: Prefact Issues
+  threshold: '0'
+sprints:
+- id: sprint-1
+  name: Code Quality Improvements
+  duration: 2 weeks
+  objectives:
+  - Fix code quality issues
+  task_patterns:
+  - id: ticket-39d6f3d7
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in resolver.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - resolver.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-e2dc6f7c
+    name: Fix llm-generated-code issues
+    description: Resolve 2 llm-generated-code issues in resolver.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - resolver.py
+    rule_id: llm-generated-code
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9e860f48
+    name: Fix string-concat issues
+    description: Resolve 4 string-concat issues in scripts/motion_pipeline.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - scripts/motion_pipeline.py
+    rule_id: string-concat
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-71a882ac
+    name: Fix magic-numbers issues
+    description: Resolve 18 magic-numbers issues in scripts/motion_pipeline.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - scripts/motion_pipeline.py
+    rule_id: magic-numbers
+    count: 18
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-64c7946b
+    name: Fix ai-boilerplate issues
+    description: Resolve 1 ai-boilerplate issues in scripts/motion_pipeline.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - scripts/motion_pipeline.py
+    rule_id: ai-boilerplate
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced

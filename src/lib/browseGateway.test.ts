@@ -1,5 +1,16 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { invoke } from "@tauri-apps/api/core";
+
+// Eliminate real setTimeout delays in retry logic — speeds up proxy-fallback tests by ~10s
+vi.mock("../core/retry", async (importOriginal) => {
+  const original = await importOriginal<typeof import("../core/retry")>();
+  return {
+    ...original,
+    retry: <T>(fn: (attempt: number) => Promise<T>, opts: Parameters<typeof original.retry>[1]) =>
+      original.retry(fn, { ...opts, baseDelayMs: 0, maxDelayMs: 0 }),
+  };
+});
+
 import { executeBrowseCommand } from "./browseGateway";
 
 describe("browseGateway", () => {

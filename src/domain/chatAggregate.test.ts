@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, it, expect, beforeEach } from "vitest";
 import { ChatAggregate } from "./chatAggregate";
 import type { DomainEvent } from "./chatEvents";
