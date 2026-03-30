@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [1.0.102] - 2026-03-30
+
+### Other
+- Update sitecustomize.py
+
 ## [1.0.101] - 2026-03-30
 
 ### Docs
