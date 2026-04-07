@@ -112,7 +112,7 @@ export default function DiagnosticsModal({
           </button>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto">
           {/* Runtime info */}
           <div className="rounded-xl bg-gray-800/50 p-4 space-y-2 text-xs">
             <h3 className="text-xs font-semibold uppercase text-gray-400 mb-2">

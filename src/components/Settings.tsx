@@ -201,7 +201,7 @@ export default function Settings({
           </button>
         </div>
 
-        <div className="space-y-5">
+        <div className="space-y-5 max-h-[calc(100vh-200px)] overflow-y-auto">
           {/* Diagnostics Section */}
           <section>
             <h3 className="mb-3 text-sm font-semibold uppercase text-gray-400">

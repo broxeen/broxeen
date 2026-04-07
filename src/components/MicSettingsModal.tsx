@@ -134,7 +134,7 @@ export default function MicSettingsModal({
           </button>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto">
           {/* Live mic level */}
           <div className="rounded-xl bg-gray-800/50 p-4">
             <div className="mb-2 flex items-center justify-between text-xs text-gray-400">
