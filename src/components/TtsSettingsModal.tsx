@@ -94,6 +94,7 @@ export default function TtsSettingsModal({
             onClick={onClose}
             className="rounded-lg p-1.5 text-gray-400 transition hover:bg-gray-800 hover:text-white"
           >
+            
             <X size={20} />
           </button>
         </div>
