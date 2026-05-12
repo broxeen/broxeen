@@ -109,10 +109,29 @@ export default function App() {
       },
     );
 
-    // Run startup sequence
+    const hydrateConfig = logAsyncDecorator(
+      "startup:app",
+      "hydrateConfig",
+      async () => {
+        await configStore.hydrateFromDisk();
+
+        if (!configStore.get<string>("llm.apiKey")) {
+          startupLogger.info(
+            "No API key found after config hydration — opening setup wizard",
+          );
+          setSetupWizardOpen(true);
+        } else {
+          startupLogger.info("API key found after config hydration");
+          setSetupWizardOpen(false);
+        }
+      },
+    );
+
+    // Run startup sequence.
+    // Config must be hydrated before plugin initialization and setup checks.
     Promise.all([
       runHealthCheck(),
-      initializePlugins()
+      hydrateConfig().then(() => initializePlugins()),
     ]).catch((error) => {
       startupLogger.error("Startup initialization failed", error);
     });
@@ -163,13 +182,13 @@ export default function App() {
     if (window.speechSynthesis) {
       window.speechSynthesis.onvoiceschanged = loadVoices;
     }
-
+/*
     // First-run onboarding: open setup wizard if no API key configured
     if (!configStore.get<string>("llm.apiKey")) {
       startupLogger.info("No API key found — opening setup wizard for first-run onboarding");
       setSetupWizardOpen(true);
     }
-
+*/
     const hasSpeechRecognition =
       typeof window !== "undefined" &&
       !!(window.SpeechRecognition || window.webkitSpeechRecognition);

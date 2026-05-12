@@ -267,3 +267,9 @@ tmp/
 *.db
 *.sqlite
 wizard/.venv/
+
+
+# Broxeen local user config / secrets
+app_config.json
+broxeen_app_config.json
+*.local.config.json

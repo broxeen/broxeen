@@ -219,3 +219,121 @@ pub fn save_settings(settings: AudioSettings) -> Result<(), String> {
     backend_info(format!("Settings saved to {}", path.display()));
     Ok(())
 }
+
+// ─────────────────────────────────────────────────────────────
+// App configuration persistence
+// ─────────────────────────────────────────────────────────────
+//
+// Stores frontend application config in the OS per-user config directory.
+//
+// Windows:
+//   C:\Users\<USER>\AppData\Roaming\broxeen\app_config.json
+//
+// Linux:
+//   ~/.config/broxeen/app_config.json
+//
+// macOS:
+//   ~/Library/Application Support/broxeen/app_config.json
+//
+// This is intentionally per-user and outside the repository, so API keys are
+// not shared between system users and are not accidentally committed to Git.
+
+pub fn app_config_path() -> PathBuf {
+    let config_dir = dirs::config_dir()
+        .unwrap_or_else(|| PathBuf::from("."))
+        .join("broxeen");
+
+    if let Err(err) = fs::create_dir_all(&config_dir) {
+        backend_warn(format!(
+            "Failed to create app config directory {}: {}",
+            config_dir.display(),
+            err
+        ));
+    }
+
+    let path = config_dir.join("app_config.json");
+    backend_info(format!("Resolved app config path: {}", path.display()));
+    path
+}
+
+#[tauri::command]
+pub fn get_app_config() -> Result<Option<serde_json::Value>, String> {
+    backend_info("Command get_app_config invoked");
+
+    let path = app_config_path();
+
+    if !path.exists() {
+        backend_warn(format!(
+            "App config file not found at {}. Using frontend defaults.",
+            path.display()
+        ));
+        return Ok(None);
+    }
+
+    let data = fs::read_to_string(&path).map_err(|err| {
+        backend_error(format!(
+            "Failed to read app config file {}: {}",
+            path.display(),
+            err
+        ));
+        err.to_string()
+    })?;
+
+    let config = serde_json::from_str::<serde_json::Value>(&data).map_err(|err| {
+        backend_error(format!(
+            "Failed to parse app config JSON from {}: {}",
+            path.display(),
+            err
+        ));
+        err.to_string()
+    })?;
+
+    backend_info("App config loaded successfully from disk");
+    Ok(Some(config))
+}
+
+#[tauri::command]
+pub fn save_app_config(config: serde_json::Value) -> Result<(), String> {
+    backend_info("Command save_app_config invoked");
+
+    let path = app_config_path();
+
+    let json = serde_json::to_string_pretty(&config).map_err(|err| {
+        backend_error(format!("Failed to serialize app config: {}", err));
+        err.to_string()
+    })?;
+
+    fs::write(&path, json).map_err(|err| {
+        backend_error(format!(
+            "Failed to write app config file {}: {}",
+            path.display(),
+            err
+        ));
+        err.to_string()
+    })?;
+
+    backend_info(format!("App config saved to {}", path.display()));
+    Ok(())
+}
+
+#[tauri::command]
+pub fn delete_app_config() -> Result<(), String> {
+    backend_info("Command delete_app_config invoked");
+
+    let path = app_config_path();
+
+    if path.exists() {
+        fs::remove_file(&path).map_err(|err| {
+            backend_error(format!(
+                "Failed to delete app config file {}: {}",
+                path.display(),
+                err
+            ));
+            err.to_string()
+        })?;
+
+        backend_info(format!("App config deleted from {}", path.display()));
+    }
+
+    Ok(())
+}

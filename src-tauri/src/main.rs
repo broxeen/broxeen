@@ -391,8 +391,11 @@ fn main() {
         .manage(active_tts)
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![
-            get_app_version,
             settings::get_settings,
+            settings::save_settings,
+            settings::get_app_config,
+            settings::save_app_config,
+            settings::delete_app_config,
             settings::save_settings,
             browse,
             llm::llm_chat,
