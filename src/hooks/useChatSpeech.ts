@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo, useCallback } from "react";
+import { useEffect, useRef, useMemo, useCallback, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { useSpeech } from "./useSpeech";
 import { useStt } from "./useStt";
@@ -28,13 +28,17 @@ export interface UseChatSpeechReturn {
   isListening: boolean;
   speechSupported: boolean;
   speechUnsupportedReason: string | null | undefined;
+
   // STT state
   stt: ReturnType<typeof useStt>;
+
   // TTS state
   tts: ReturnType<typeof useTts>;
+
   // Computed
   micPhase: MicPhase;
   shouldUseWebSpeech: boolean;
+
   // Actions
   toggleMic: () => void;
 }
@@ -54,7 +58,6 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
   const {
     isListening,
     transcript,
-    interimTranscript,
     finalTranscript,
     isSupported: speechSupported,
     unsupportedReason: speechUnsupportedReason,
@@ -65,7 +68,10 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     clearFinalTranscript,
   } = useSpeech(settings.tts_lang);
 
-  const stt = useStt({ lang: settings.tts_lang, audioSettings: settings });
+  const stt = useStt({
+    lang: settings.tts_lang,
+    audioSettings: settings,
+  });
 
   const shouldUseWebSpeech =
     settings.stt_engine === "webspeech" && speechSupported;
@@ -78,6 +84,14 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     lang: settings.tts_lang,
   });
 
+  /**
+   * Cooldown po zakończeniu TTS.
+   *
+   * Bez tego auto-listen może włączyć mikrofon natychmiast po wypowiedzi,
+   * złapać końcówkę własnego głosu aplikacji i wysłać ją jako nowe pytanie.
+   */
+  const [ttsCooldownActive, setTtsCooldownActive] = useState(false);
+
   const micPhase = useMemo(() => {
     if (stt.isTranscribing) return "transcribing" as const;
     if (stt.isRecording) return "recording" as const;
@@ -85,30 +99,85 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     return "idle" as const;
   }, [isListening, stt.isRecording, stt.isTranscribing]);
 
-  // ── Effects ──
-
-  // Stop TTS when mic activates
-  useEffect(() => {
-    if (micPhase !== "idle" && tts.isSpeaking) {
-      tts.stop();
-    }
-  }, [micPhase, tts]);
-
-  // Refs for auto-listen
+  // ── Refs ──
   const lastSpeechSubmitRef = useRef<string>("");
   const sttAutoListenTimerRef = useRef<number | null>(null);
   const sttAutoListenStartedAtRef = useRef<number | null>(null);
   const sttAutoListenSilenceHitsRef = useRef<number>(0);
+  const wakeWordTriggeredSttRef = useRef(false);
+  const wakeWordRunningRef = useRef(false);
+  const wakeWordStoppedForSttRef = useRef(false);
 
-  // Speech unsupported notices
+  // ───────────────────────────────────────────────────────────────────
+  // TTS feedback protection
+  // ───────────────────────────────────────────────────────────────────
+
+  /**
+   * Gdy TTS mówi, mikrofon/STT ma zostać zatrzymany.
+   *
+   * Inaczej aplikacja słyszy własną odpowiedź, np. "Wynik to 4",
+   * i traktuje ją jako nowe zapytanie użytkownika.
+   */
   useEffect(() => {
-    if (settings.mic_enabled && settings.stt_engine === "webspeech" && !speechSupported) {
+    let cooldownTimer: number | null = null;
+
+    if (tts.isSpeaking) {
+      setTtsCooldownActive(true);
+
+      if (isListening) {
+        speechLogger.info(
+          "TTS speaking -> stopping WebSpeech listening to prevent feedback",
+        );
+        stopListening();
+      }
+
+      if (stt.isRecording && !stt.isTranscribing) {
+        speechLogger.info(
+          "TTS speaking -> stopping STT recording to prevent feedback",
+        );
+        stt.stopRecording();
+      }
+
+      disableAutoListen();
+      return;
+    }
+
+    cooldownTimer = window.setTimeout(() => {
+      setTtsCooldownActive(false);
+    }, 1000);
+
+    return () => {
+      if (cooldownTimer !== null) {
+        window.clearTimeout(cooldownTimer);
+      }
+    };
+  }, [
+    tts.isSpeaking,
+    isListening,
+    stopListening,
+    disableAutoListen,
+    stt.isRecording,
+    stt.isTranscribing,
+    stt.stopRecording,
+  ]);
+
+  // ───────────────────────────────────────────────────────────────────
+  // Notices / diagnostics
+  // ───────────────────────────────────────────────────────────────────
+
+  useEffect(() => {
+    if (
+      settings.mic_enabled &&
+      settings.stt_engine === "webspeech" &&
+      !speechSupported
+    ) {
       if (speechUnsupportedReason && !stt.isSupported) {
         appendStatusNotice(
           "speech_unsupported",
           `ℹ️ ${speechUnsupportedReason}`,
         );
       }
+
       if (stt.isSupported) {
         appendStatusNotice(
           "speech_unsupported",
@@ -137,31 +206,95 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     appendStatusNotice,
   ]);
 
-  // Apply finalized speech transcript
+  // ───────────────────────────────────────────────────────────────────
+  // Apply transcripts
+  // ───────────────────────────────────────────────────────────────────
+
+  // Manual/WebSpeech finalized transcript
   useEffect(() => {
     if (transcript && transcript !== lastSpeechSubmitRef.current && !isListening) {
+      if (tts.isSpeaking || ttsCooldownActive) {
+        speechLogger.info("Ignoring transcript captured during TTS/cooldown", {
+          transcript,
+        });
+        return;
+      }
+
       speechLogger.info("Applying finalized speech transcript", {
         transcriptLength: transcript.length,
       });
+
       lastSpeechSubmitRef.current = transcript;
       onTranscriptReady(transcript);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [transcript, isListening]);
 
-  // Apply auto-listen speech transcript
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [transcript, isListening, tts.isSpeaking, ttsCooldownActive]);
+
+  // Auto-listen finalized transcript
   useEffect(() => {
     if (finalTranscript) {
+      if (tts.isSpeaking || ttsCooldownActive) {
+        speechLogger.info(
+          "Ignoring auto-listen transcript captured during TTS/cooldown",
+          {
+            finalTranscript,
+          },
+        );
+
+        clearFinalTranscript();
+        return;
+      }
+
       speechLogger.info("Applying auto-listen speech transcript", {
         transcriptLength: finalTranscript.length,
       });
+
       onTranscriptReady(finalTranscript);
       clearFinalTranscript();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [finalTranscript]);
 
-  // Auto-listen (Web Speech API)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finalTranscript, tts.isSpeaking, ttsCooldownActive]);
+
+  // Native/cloud STT finalized transcript
+  useEffect(() => {
+    if (stt.transcript && !stt.isRecording && !stt.isTranscribing) {
+      if (tts.isSpeaking || ttsCooldownActive) {
+        speechLogger.info("Ignoring STT transcript captured during TTS/cooldown", {
+          transcript: stt.transcript,
+        });
+
+        stt.setTranscript("");
+        return;
+      }
+
+      speechLogger.info("✓ Applying finalized STT transcript to input", {
+        transcript: stt.transcript,
+        transcriptLength: stt.transcript.length,
+        wakeWordTriggered: wakeWordTriggeredSttRef.current,
+      });
+
+      setInput(stt.transcript);
+      stt.setTranscript("");
+
+      speechLogger.info("→ Transcript cleared, ready for next input");
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    stt.transcript,
+    stt.isRecording,
+    stt.isTranscribing,
+    setInput,
+    tts.isSpeaking,
+    ttsCooldownActive,
+  ]);
+
+  // ───────────────────────────────────────────────────────────────────
+  // Auto-listen: Web Speech API
+  // ───────────────────────────────────────────────────────────────────
+
   useEffect(() => {
     if (!settings.mic_enabled) {
       disableAutoListen();
@@ -169,30 +302,47 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     }
 
     if (!settings.auto_listen) {
+      disableAutoListen();
+      return;
+    }
+
+    if (tts.isSpeaking || ttsCooldownActive) {
+      disableAutoListen();
       return;
     }
 
     if (!shouldUseWebSpeech) {
+      disableAutoListen();
       return;
     }
 
     enableAutoListen();
-    return () => disableAutoListen();
+
+    return () => {
+      disableAutoListen();
+    };
   }, [
     settings.mic_enabled,
     settings.auto_listen,
     shouldUseWebSpeech,
     enableAutoListen,
     disableAutoListen,
+    tts.isSpeaking,
+    ttsCooldownActive,
   ]);
 
-  // Auto-listen fallback for STT (Tauri/native capture or MediaRecorder mode)
+  // ───────────────────────────────────────────────────────────────────
+  // Auto-listen fallback: STT / Tauri native capture / MediaRecorder
+  // ───────────────────────────────────────────────────────────────────
+
   useEffect(() => {
     const runtimeIsTauri = isTauriRuntime();
 
     const shouldRun =
       settings.mic_enabled &&
       settings.auto_listen &&
+      !tts.isSpeaking &&
+      !ttsCooldownActive &&
       !shouldUseWebSpeech &&
       stt.isSupported &&
       !wakeWordEnabled;
@@ -202,20 +352,27 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
         window.clearInterval(sttAutoListenTimerRef.current);
         sttAutoListenTimerRef.current = null;
       }
+
       sttAutoListenStartedAtRef.current = null;
       sttAutoListenSilenceHitsRef.current = 0;
+
       return;
     }
 
     // Start a new recording when idle
     if (!stt.isRecording && !stt.isTranscribing) {
       speechLogger.info("Auto-listen(STT): starting recording");
+
       sttAutoListenStartedAtRef.current = Date.now();
       sttAutoListenSilenceHitsRef.current = 0;
+
       try {
         stt.startRecording();
       } catch (e) {
-        speechLogger.warn("Auto-listen(STT): startRecording failed", { error: e });
+        speechLogger.warn("Auto-listen(STT): startRecording failed", {
+          error: e,
+        });
+
         sttAutoListenStartedAtRef.current = null;
         sttAutoListenSilenceHitsRef.current = 0;
       }
@@ -230,7 +387,11 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
       return;
     }
 
-    const silenceMs = Math.max(300, Math.min(5000, settings.auto_listen_silence_ms || 1000));
+    const silenceMs = Math.max(
+      300,
+      Math.min(5000, settings.auto_listen_silence_ms || 1000),
+    );
+
     const thresholdSeconds = silenceMs / 1000;
     const requiredHits = Math.max(1, Math.round(silenceMs / 250));
 
@@ -240,15 +401,24 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
           return;
         }
 
+        if (tts.isSpeaking || ttsCooldownActive) {
+          speechLogger.info(
+            "Auto-listen(STT): TTS active -> stopping recording",
+          );
+
+          stt.stopRecording();
+          return;
+        }
+
         const startedAt = sttAutoListenStartedAtRef.current;
         const elapsedMs = startedAt ? Date.now() - startedAt : 0;
 
-        // Avoid stopping too early (let Whisper get enough audio)
+        // Avoid stopping too early.
         if (elapsedMs < 1200) {
           return;
         }
 
-        const silent = await invoke<boolean>('stt_is_silence', {
+        const silent = await invoke<boolean>("stt_is_silence", {
           thresholdSeconds,
           rmsThreshold: 0.015,
         });
@@ -259,15 +429,20 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
           sttAutoListenSilenceHitsRef.current = 0;
         }
 
-        // Require consecutive silent checks to reduce flapping
+        // Require consecutive silent checks to reduce flapping.
         if (sttAutoListenSilenceHitsRef.current >= requiredHits) {
-          speechLogger.info("Auto-listen(STT): silence detected -> stopping recording");
+          speechLogger.info(
+            "Auto-listen(STT): silence detected -> stopping recording",
+          );
+
           sttAutoListenSilenceHitsRef.current = 0;
           stt.stopRecording();
           sttAutoListenStartedAtRef.current = null;
         }
       } catch (e) {
-        speechLogger.debug("Auto-listen(STT): silence probe failed", { error: String(e) });
+        speechLogger.debug("Auto-listen(STT): silence probe failed", {
+          error: String(e),
+        });
       }
     }, 250);
 
@@ -288,32 +463,24 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     stt.startRecording,
     stt.stopRecording,
     wakeWordEnabled,
+    tts.isSpeaking,
+    ttsCooldownActive,
   ]);
 
-  // Apply finalized STT transcript to input
-  const wakeWordTriggeredSttRef = useRef(false);
+  // ───────────────────────────────────────────────────────────────────
+  // Diagnostics logs
+  // ───────────────────────────────────────────────────────────────────
 
-  useEffect(() => {
-    if (stt.transcript && !stt.isRecording && !stt.isTranscribing) {
-      speechLogger.info("✓ Applying finalized STT transcript to input", {
-        transcript: stt.transcript,
-        transcriptLength: stt.transcript.length,
-        wakeWordTriggered: wakeWordTriggeredSttRef.current,
-      });
-      setInput(stt.transcript);
-      stt.setTranscript("");
-      speechLogger.info("→ Transcript cleared, ready for next input");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stt.transcript, stt.isRecording, stt.isTranscribing, setInput]);
-
-  // Log STT/TTS availability warnings
   useEffect(() => {
     if (!settings.mic_enabled) {
       return;
     }
 
-    if (settings.stt_engine === "webspeech" && !speechSupported && speechUnsupportedReason) {
+    if (
+      settings.stt_engine === "webspeech" &&
+      !speechSupported &&
+      speechUnsupportedReason
+    ) {
       speechLogger.warn("Native STT (Web Speech API) is unavailable", {
         reason: speechUnsupportedReason,
         cloudFallbackSupported: stt.isSupported,
@@ -345,12 +512,16 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     }
   }, [settings.tts_enabled, tts.isSupported, tts.unsupportedReason]);
 
-  // Listen for TTS triggers from Summary Generated Events
+  // ───────────────────────────────────────────────────────────────────
+  // TTS trigger from message updates
+  // ───────────────────────────────────────────────────────────────────
+
   useEffect(() => {
     if (!settings.tts_enabled) return;
 
     const unsub = eventStore.on("summary_generated", (event) => {
       const { summary } = event.payload;
+
       if (summary) {
         speechLogger.info(
           "Summary generated, TTS will be triggered by message_updated",
@@ -363,19 +534,21 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
 
   const previousLoadingWaitIdsRef = useRef(new Set<number>());
 
-  // Listen for TTS triggers from Message Updated (for LLM general responses)
   useEffect(() => {
     if (!settings.tts_enabled) return;
 
     const unsub = eventStore.on("message_updated", (event) => {
       const { id, updates } = event.payload;
+
       if (
         updates.loading === false &&
         updates.text &&
         previousLoadingWaitIdsRef.current.has(id)
       ) {
         previousLoadingWaitIdsRef.current.delete(id);
+
         speechLogger.info("TTS auto-read triggered by message load complete");
+
         tts.speak(updates.text.slice(0, 3000));
       }
     });
@@ -392,9 +565,10 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     };
   }, [eventStore, settings.tts_enabled, tts]);
 
-  // ── Wake word ──
+  // ───────────────────────────────────────────────────────────────────
+  // Wake word
+  // ───────────────────────────────────────────────────────────────────
 
-  // Listen for wake word detection from backend
   useEffect(() => {
     if (!isTauriRuntime()) return;
     if (!settings.mic_enabled) return;
@@ -405,8 +579,13 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     const setupWakeWordListener = async () => {
       try {
         const { listen } = await import("@tauri-apps/api/event");
+
         unlisten = await listen("wake-word-detected", (event) => {
-          const payload = event.payload as { confidence: number; timestamp: number };
+          const payload = event.payload as {
+            confidence: number;
+            timestamp: number;
+          };
+
           speechLogger.info("🎤 Wake word 'heyken' detected!", {
             confidence: payload.confidence,
             timestamp: payload.timestamp,
@@ -416,9 +595,12 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
 
           speechLogger.info("🎤 Wake word detected - manual recording only");
         });
+
         speechLogger.info("Wake word listener registered");
       } catch (err) {
-        speechLogger.warn("Failed to setup wake word listener", { error: err });
+        speechLogger.warn("Failed to setup wake word listener", {
+          error: err,
+        });
       }
     };
 
@@ -433,47 +615,73 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
         }
       }
     };
-  }, [settings.mic_enabled, stt.isSupported, stt.isRecording, stt.isTranscribing, stt.startRecording]);
+  }, [
+    settings.mic_enabled,
+    stt.isSupported,
+    stt.isRecording,
+    stt.isTranscribing,
+    stt.startRecording,
+  ]);
 
-  // Ref to track wake word running state
-  const wakeWordRunningRef = useRef(false);
-  const wakeWordStoppedForSttRef = useRef(false);
-
-  // Start/stop wake word listening based on toggle
   useEffect(() => {
     if (!isTauriRuntime()) {
       wakeWordRunningRef.current = false;
       return;
     }
+
     if (!wakeWordEnabled) {
       if (wakeWordRunningRef.current) {
         speechLogger.debug("Stopping wake word listening (toggle disabled)");
+
         invoke("wake_word_stop").catch((err) => {
-          speechLogger.debug("Failed to stop wake word listening", { error: err });
+          speechLogger.debug("Failed to stop wake word listening", {
+            error: err,
+          });
         });
+
         wakeWordRunningRef.current = false;
       }
+
       return;
     }
+
     if (!settings.mic_enabled) {
       speechLogger.warn("Cannot enable wake word: microphone disabled in settings");
+
       if (wakeWordRunningRef.current) {
-        invoke("wake_word_stop").catch(() => { });
+        invoke("wake_word_stop").catch(() => {});
         wakeWordRunningRef.current = false;
       }
+
+      return;
+    }
+
+    if (tts.isSpeaking || ttsCooldownActive) {
+      if (wakeWordRunningRef.current) {
+        speechLogger.info("Stopping wake word while TTS is active");
+
+        invoke("wake_word_stop").catch(() => {});
+        wakeWordRunningRef.current = false;
+      }
+
       return;
     }
 
     if (!wakeWordRunningRef.current) {
       speechLogger.info("Starting wake word listening for 'heyken'");
+
       invoke("wake_word_start")
         .then(() => {
           speechLogger.info("Wake word listening started successfully");
           wakeWordRunningRef.current = true;
+
           appendStatusNotice("wake_word", "🔊 Nasłuchiwanie 'heyken' aktywne");
         })
         .catch((err) => {
-          speechLogger.error("Failed to start wake word listening", { error: err });
+          speechLogger.error("Failed to start wake word listening", {
+            error: err,
+          });
+
           wakeWordRunningRef.current = false;
           setWakeWordEnabled(false);
         });
@@ -482,14 +690,20 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
     return () => {
       if (wakeWordRunningRef.current) {
         speechLogger.debug("Cleanup: stopping wake word listening");
-        invoke("wake_word_stop").catch(() => { });
+
+        invoke("wake_word_stop").catch(() => {});
         wakeWordRunningRef.current = false;
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wakeWordEnabled, settings.mic_enabled]);
 
-  // Stop wake word when wake-word-triggered STT starts, restart when it finishes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    wakeWordEnabled,
+    settings.mic_enabled,
+    tts.isSpeaking,
+    ttsCooldownActive,
+  ]);
+
   useEffect(() => {
     if (!isTauriRuntime() || !wakeWordEnabled) {
       wakeWordStoppedForSttRef.current = false;
@@ -507,35 +721,46 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
           isRecording: stt.isRecording,
           isTranscribing: stt.isTranscribing,
         });
-        invoke("wake_word_stop").catch(() => { });
+
+        invoke("wake_word_stop").catch(() => {});
         wakeWordRunningRef.current = false;
         wakeWordStoppedForSttRef.current = true;
       }
-    } else {
-      if (wakeWordStoppedForSttRef.current) {
-        speechLogger.info("▶ Resuming wake word after wake-word-triggered STT completed", {
-          wakeWordTriggered: wakeWordTriggeredSttRef.current,
-          wakeWordRunning: wakeWordRunningRef.current,
-        });
-        wakeWordTriggeredSttRef.current = false;
-        wakeWordStoppedForSttRef.current = false;
+    } else if (wakeWordStoppedForSttRef.current) {
+      speechLogger.info("▶ Resuming wake word after wake-word-triggered STT completed", {
+        wakeWordTriggered: wakeWordTriggeredSttRef.current,
+        wakeWordRunning: wakeWordRunningRef.current,
+      });
 
-        if (!wakeWordRunningRef.current) {
-          speechLogger.info("→ Restarting wake word listener...");
-          invoke("wake_word_start")
-            .then(() => {
-              wakeWordRunningRef.current = true;
-              speechLogger.info("✓ Wake word listener restarted successfully");
-            })
-            .catch((err) => {
-              speechLogger.error("✗ Failed to restart wake word after STT", { error: err });
+      wakeWordTriggeredSttRef.current = false;
+      wakeWordStoppedForSttRef.current = false;
+
+      if (!wakeWordRunningRef.current && !tts.isSpeaking && !ttsCooldownActive) {
+        speechLogger.info("→ Restarting wake word listener...");
+
+        invoke("wake_word_start")
+          .then(() => {
+            wakeWordRunningRef.current = true;
+            speechLogger.info("✓ Wake word listener restarted successfully");
+          })
+          .catch((err) => {
+            speechLogger.error("✗ Failed to restart wake word after STT", {
+              error: err,
             });
-        }
+          });
       }
     }
-  }, [stt.isRecording, stt.isTranscribing, wakeWordEnabled]);
+  }, [
+    stt.isRecording,
+    stt.isTranscribing,
+    wakeWordEnabled,
+    tts.isSpeaking,
+    ttsCooldownActive,
+  ]);
 
-  // ── toggleMic ──
+  // ───────────────────────────────────────────────────────────────────
+  // Manual mic toggle
+  // ───────────────────────────────────────────────────────────────────
 
   const toggleMic = useCallback(() => {
     if (shouldUseWebSpeech) {
@@ -543,9 +768,16 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
         speechLogger.info("Microphone toggle -> stop listening (native)");
         stopListening();
       } else {
+        if (tts.isSpeaking) {
+          tts.stop();
+        }
+
+        setTtsCooldownActive(false);
+
         speechLogger.info("Microphone toggle -> start listening (native)");
         startListening();
       }
+
       return;
     }
 
@@ -560,14 +792,12 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
       if (speechUnsupportedReason) {
         appendStatusNotice(
           "mic_unsupported",
-          `ℹ️ ${speechUnsupportedReason}`
+          `ℹ️ ${speechUnsupportedReason}`,
         );
       } else if (stt.unsupportedReason) {
-        appendStatusNotice(
-          "mic_unsupported",
-          `ℹ️ ${stt.unsupportedReason}`
-        );
+        appendStatusNotice("mic_unsupported", `ℹ️ ${stt.unsupportedReason}`);
       }
+
       return;
     }
 
@@ -577,9 +807,25 @@ export function useChatSpeech(deps: UseChatSpeechDeps): UseChatSpeechReturn {
       return;
     }
 
+    if (tts.isSpeaking) {
+      tts.stop();
+    }
+
+    setTtsCooldownActive(false);
+
     speechLogger.info("Microphone toggle -> start recording (cloud STT)");
     stt.startRecording();
-  }, [shouldUseWebSpeech, isListening, startListening, stopListening, stt, speechSupported, speechUnsupportedReason, appendStatusNotice]);
+  }, [
+    shouldUseWebSpeech,
+    isListening,
+    startListening,
+    stopListening,
+    stt,
+    speechSupported,
+    speechUnsupportedReason,
+    appendStatusNotice,
+    tts,
+  ]);
 
   return {
     isListening,

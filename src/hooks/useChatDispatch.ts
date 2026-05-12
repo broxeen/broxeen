@@ -591,9 +591,14 @@ export function useChatDispatch(deps: UseChatDispatchDeps) {
           setExpandedLive(firstLivePayload);
         }
 
-        // Auto-play TTS for plugin responses (bypass loading-wait mechanism)
+        // Auto-play TTS for plugin responses.
+        // Small delay prevents STT/microphone cleanup from immediately stopping TTS.
         if (settings.tts_enabled && tts.isSupported && fullResult.trim().length > 0) {
-          tts.speak(fullResult.trim().slice(0, 3000));
+          const textToSpeak = fullResult.trim().slice(0, 3000);
+
+          window.setTimeout(() => {
+            tts.speak(textToSpeak);
+          }, 1200);
         }
 
         // Add to command history
