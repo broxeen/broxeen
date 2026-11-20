@@ -48,15 +48,15 @@ config = { version = "0.14", optional = true }
 anyhow = { version = "1", optional = true }
 thiserror = { version = "2", optional = true }
 uuid = { version = "1", features = ["v4"], optional = true }
-rss = "2.0.12"
+rss = "2.1.2"
 roxmltree = "0.19"
-rust_search = "2.0"
+rust_search = "2.1"
 
 # ── Local LLM support ───────────────────────────────────────────────────────
 ollama-rs = { version = "0.2", optional = true }
 
 [dev-dependencies]
-tempfile = "3.0"
+tempfile = "3.27"
 futures = "0.3"
 
 [[bench]]
